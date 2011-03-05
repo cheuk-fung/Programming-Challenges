@@ -1,0 +1,21 @@
+[ AC ][1]1000 A + B Problem		NULL
+[ AC ][2]1002 487-3279			string
+[ AC ][1]1003 Hangover			NULL
+[ AC ][1]1007 DNA Sorting		stable sort
+[ AC ][1]1008 Maya Calendar		NULL
+[ AC ][2]1014 Dividing			DP(Multiple Pack)
+[ AC ][2]1017 Packets			NULL
+[ AC ][2]1035 Spell checker		string
+[ AC ][3]1036 Gangsters			DP
+[ AC ][2]1042 Gone Fishing		DP || Greedy
+[ AC ][1]1207 The 3n + 1 problem	NULL
+[TODO][?]1505 Copying Books		Bisection || DP
+[ AC ][2]2092 Grandpa is Famous		NULL
+[ AC ][1]2262 Goldbach's Conjecture	NULL
+[ AC ][1]2388 Who's in the Middle	sort
+[TODO][?]2299 Ultra-QuickSort		Merge Sort
+[TODO][?]3080 Blue Jeans		LCS(Longest Common Subsequence)
+[TODO][?]3258 River Hopscotch		Bisection
+[TODO][?]3273 Monthly Expense		Bisection
+[WA??][3]3690 Constellations		KMP
+[TLE?][3]3768 Repeater			D&C(Divide and Conquer)
