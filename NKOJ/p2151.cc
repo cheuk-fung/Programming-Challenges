@@ -1,7 +1,7 @@
 /*
  *  SRC: NKOJ
  * TASK: 細胞分裂
- * ALGO: NULL
+ * ALGO: Prime
  * DATE: 03/22/2011 
  *
  * Created by Leewings Ac
