@@ -19,46 +19,50 @@
  */
 
 namespace BNum {
-    template<typename T> inline T min(T a, T b)
+
+    /*
+     * =====================================================================================
+     *        Class:  BigNum
+     *  Description:  A class for calculating Big Numbers.
+     *                Only for (long) Integer.
+     * =====================================================================================
+     */
+    class BigNum
     {
-        return a < b ? a : b;
-    } /* -----  end of template function min  ----- */
-
-
-    template<typename T> inline T max(T a, T b)
-    {
-        return a > b ? a : b;
-    } /* -----  end of template function max  ----- */
-
-    class BigNum {
         private:
+            /* ====================  DATA MEMBERS  ======================================= */
             static long maxSize;
             static long bound;
             static BigNum zero;
             long size;
-            int sign; // 1 for non-negative and -1 for negative
+            mutable int sign; /* 1 for non-negative and -1 for negative */
             long* num;
 
         public:
-            BigNum(long long = 0);
-            /* BigNum(const char*); */
-            BigNum(const BigNum&);
 
-            BigNum& operator=(long long);
-            /* BigNum& operator=(const char*); */
-            BigNum& operator=(const BigNum&);
+            /* ====================  LIFECYCLE     ======================================= */
+            BigNum(long long = 0);                 /* constructor */
+            BigNum(const BigNum&);                 /* copy constructor */
+            ~BigNum();                             /* destructor */
 
-            ~BigNum() { if (num) delete[] num; }
+            /* ====================  ACCESSORS     ======================================= */
+            void print() const;
 
+            friend int compare(const BigNum&, const BigNum&);
+            /* Return 1 for a > b, 0 for a == b and -1 for a < b. */
+            friend void swap(BigNum&, BigNum&);
+
+            /* ====================  MUTATORS      ======================================= */
             static void setMax(long, long);
 
             void upgrade(long);
             void downgrade(long);
-            void print() const;
-            void swap(BigNum&, BigNum&);
 
-            friend int compare(const BigNum&, const BigNum&);
-            // Return 1 for a > b, 0 for a == b and -1 for a < b.
+            /* ====================  OPERATORS     ======================================= */
+
+            BigNum& operator=(long long);     /* assignment operator */
+            BigNum& operator=(const BigNum&); /* assignment operator */
+
             friend bool operator==(const BigNum&, const BigNum&);
             /*
              * friend bool operator!=(const BigNum&, const BigNum&);
@@ -70,7 +74,7 @@ namespace BNum {
 
             BigNum& operator+=(long);
             BigNum& operator+=(const BigNum&);
-            BigNum& operator-=(long); // only for  a - b when a >= b
+            BigNum& operator-=(long);
             BigNum& operator-=(const BigNum&);
             BigNum& operator*=(long);
             BigNum& operator*=(const BigNum&);
@@ -88,8 +92,8 @@ namespace BNum {
              */
             friend BigNum operator*(const BigNum&, const BigNum&);
             /* friend BigNum operator/(const BigNum&, long); */
-            friend BigNum operator/(BigNum, BigNum);
-    };
+            friend BigNum operator/(const BigNum&, const BigNum&);
+    }; /* -----  end of class BigNum  ----- */
 
     BigNum::BigNum(long long n) : size(0)
     {
@@ -105,14 +109,19 @@ namespace BNum {
             n /= bound;
         }
         if (size == 0) size++;
-    }		/* -----  end of function BigNum::BigNum  ----- */
+    }  /* -----  end of method BigNum::BigNum  (constructor)  ----- */
 
-    BigNum::BigNum(const BigNum& m) : size(m.size), sign(m.sign)
+    BigNum::BigNum(const BigNum& other) : size(other.size), sign(other.sign)
     {
         num = new long[maxSize];
-        for (long i = 0; i < m.size; i++) num[i] = m.num[i];
-        for (long i = m.size; i < maxSize; i++) num[i] = 0;
-    }		/* -----  end of function BigNum::BigNum  ----- */
+        for (long i = 0; i < other.size; i++) num[i] = other.num[i];
+        for (long i = other.size; i < maxSize; i++) num[i] = 0;
+    }  /* -----  end of method BigNum::BigNum  (copy constructor)  ----- */
+
+    BigNum::~BigNum()
+    {
+        if (num) delete[] num;
+    }  /* -----  end of method BigNum::~BigNum  (destructor)  ----- */
 
     BigNum& BigNum::operator=(long long n)
     {
@@ -130,42 +139,26 @@ namespace BNum {
         if (size == 0) size++;
 
         return *this;
-    }		/* -----  end of function BigNum::operator=  ----- */
+    }  /* -----  end of method BigNum::operator=  (assignment operator)  ----- */
 
-    BigNum& BigNum::operator=(const BigNum& m)
+    BigNum& BigNum::operator=(const BigNum& other)
     {
-        for (long i = 0; i < m.size; i++) num[i] = m.num[i];
-        for (long i = m.size; i < size; i++) num[i] = 0;
-        sign = m.sign;
-        size = m.size;
-
+        if (this != &other) {
+            for (long i = 0; i < other.size; i++) num[i] = other.num[i];
+            for (long i = other.size; i < size; i++) num[i] = 0;
+            sign = other.sign;
+            size = other.size;
+        }
         return *this;
-    }		/* -----  end of function BigNum::operator=  ----- */
+    }  /* -----  end of method BigNum::operator=  (assignment operator)  ----- */
 
     inline void BigNum::setMax(long t_maxSize, long t_bound)
     {
         maxSize = t_maxSize;
         bound = t_bound;
-    }		/* -----  end of function BigNum::setMax----- */
+    }		/* -----  end of method BigNum::setMax  ----- */
 
-    inline void BigNum::upgrade(long p)
-    {
-        while (num[p] >= bound) {
-            num[p + 1] += num[p] / bound;
-            num[p++] %= bound;
-        }
-    }		/* -----  end of function BigNum::upgrade  ----- */
-
-    inline void BigNum::downgrade(long p)
-    {
-        while (num[p] < 0) {
-            num[p + 1] += num[p] / bound - 1;
-            num[p] %= bound;
-            num[p++] += bound;
-        }
-    }		/* -----  end of function BigNum::downgrade  ----- */
-
-    void BigNum::print() const 
+    void BigNum::print() const
     {
         if (sign == -1) printf("-");
         printf("%ld", num[size - 1]);
@@ -175,42 +168,30 @@ namespace BNum {
                 printf("0");
                 t /= 10;
             }
-            printf("%ld", num[i]);
+            if (num[i]) printf("%ld", num[i]);
         }
         printf("\n");
-    }		/* -----  end of function BigNum::print  ----- */
+    }		/* -----  end of method BigNum::print  ----- */
 
-    inline void BigNum::swap(BigNum& a, BigNum& b)
+    inline void BigNum::upgrade(long p)
     {
-        long t_size = a.size;
-        a.size = b.size;
-        b.size = t_size;
-
-        int t_sign = a.sign;
-        a.sign = b.sign;
-        b.sign = t_sign;
-
-        long* t_num = a.num;
-        a.num = b.num;
-        b.num = t_num;
-    }		/* -----  end of function BigNum::swap  ----- */
-
-    int compare(const BigNum& a, const BigNum& b)
-    {
-//        if (a.sign == 1 && b.sign == -1) return 1;
-//        if (a.sign == -1 && b.sign == 1) return -1;
-        if (a.sign != b.sign) return a.sign - b.sign;
-        int res;
-        if (a.sign == 1) res = 1;
-        else res = -1;
-        if (a.size > b.size) return res;
-        if (a.size < b.size) return -res;
-        for (long i = a.size - 1; i >= 0; i--) {
-            if (a.num[i] > b.num[i]) return res;
-            if (a.num[i] < b.num[i]) return -res;
+        while (num[p] >= bound) {
+            num[p + 1] += num[p] / bound;
+            num[p++] %= bound;
         }
-        return 0;
-    }		/* -----  end of function compare  ----- */
+    }		/* -----  end of method BigNum::upgrade  ----- */
+
+    inline void BigNum::downgrade(long p)
+    {
+        while (num[p] < 0) {
+            long inc = num[p] / bound;
+            if (inc * bound != num[p]) inc--;
+            num[p + 1] += inc;
+            num[p] %= bound;
+            if (num[p] < 0) num[p] += bound;
+            p++;
+        }
+    }		/* -----  end of method BigNum::downgrade  ----- */
 
     bool operator==(const BigNum& a, const BigNum& b)
     {
@@ -265,7 +246,7 @@ namespace BNum {
         }
 
         if (m < 0) m = -m;
-        if (m > bound) { // you may change "bound" here to fit your problem
+        if (m > bound) { /* you may change "bound" here to fit your problem */
             operator+=(BigNum(m));
             return *this;
         }
@@ -274,14 +255,14 @@ namespace BNum {
         while (num[size]) size++;
 
         return *this;
-    }		/* -----  end of function BigNum::operator+=  ----- */
+    }		/* -----  end of method BigNum::operator+=  ----- */
 
     BigNum& BigNum::operator+=(const BigNum& m)
     {
         if (sign == 1 && m.sign == -1) {
-            BigNum t = m;
-            t.sign = 1;
-            operator-=(t);
+            m.sign = -m.sign;
+            operator-=(m);
+            m.sign = -m.sign;
 
             return *this;
         }
@@ -294,13 +275,13 @@ namespace BNum {
             return *this;
         }
 
-        size = max(size, m.size);
+        size = size > m.size ? size : m.size;
         for (long i = 0; i < size; i++) num[i] += m.num[i];
         for (long i = 0; i < size; i++) upgrade(i);
         while (num[size]) size++;
 
         return *this;
-    }		/* -----  end of function BigNum::operator+=  ----- */
+    }		/* -----  end of method BigNum::operator+=  ----- */
 
     BigNum operator+(const BigNum& a, long b)
     {
@@ -357,14 +338,14 @@ namespace BNum {
         sign = -t_sign;
 
         return *this;
-    }		/* -----  end of function BigNum::operator-=  ----- */
+    }		/* -----  end of method BigNum::operator-=  ----- */
 
     BigNum& BigNum::operator-=(const BigNum& m)
     {
         if (sign == 1 && m.sign == -1) {
-            BigNum t = m;
-            t.sign = 1;
-            operator+=(t);
+            m.sign = -m.sign;
+            operator+=(m);
+            m.sign = -m.sign;
 
             return *this;
         }
@@ -377,26 +358,31 @@ namespace BNum {
             return *this;
         }
 
-        BigNum t = m;
-        t.sign = 1;
-        int tmp_sign = sign;
-        sign = 1;
-        int cmp = compare(*this, t);
+        int t_sign = sign, tm_sign = m.sign;
+        sign = m.sign = 1;
+        int cmp = compare(*this, m);
         if (cmp == 0) {
             *this = zero;
+            m.sign = tm_sign;
+
             return *this;
         }
-        if (cmp > 0) sign = tmp_sign;
-        else {
-            swap(*this, t);
-            sign = -tmp_sign;
+        if (cmp > 0) {
+            sign = t_sign;
+            for (long i = 0; i < m.size; i++) num[i] -= m.num[i];
         }
-        for (long i = 0; i < t.size; i++) num[i] -= t.num[i];
-        for (long i = 0; i < t.size; i++) downgrade(i);
+        else {
+            sign = -t_sign;
+            size = m.size;
+            for (long i = 0; i < m.size; i++) num[i] = m.num[i] - num[i];
+        }
+        for (long i = 0; i < m.size; i++) downgrade(i);
         while (size > 1 && !num[size - 1]) size--;
 
+        m.sign = tm_sign;
+
         return *this;
-    }		/* -----  end of function BigNum::operator-=  ----- */
+    }		/* -----  end of method BigNum::operator-=  ----- */
 
     BigNum operator-(const BigNum& a, long b)
     {
@@ -422,22 +408,22 @@ namespace BNum {
             return *this;
         }
         
-        long t_m = m;
-        if (m < 0) m = -m;
+        if (m < 0) {
+            sign = -sign;
+            m = -m;
+        }
         for (long i = 0; i < size; i++) num[i] *= m;
         for (long i = 0; i < size; i++) upgrade(i);
         while (num[size]) size++;
 
-        if (t_m < 0) sign = -sign;
-
         return *this;
-    }		/* -----  end of function BigNum::operator*=  ----- */
+    }		/* -----  end of method BigNum::operator*=  ----- */
 
     BigNum& BigNum::operator*=(const BigNum& m)
     {
         *this = *this * m;
         return *this;
-    }		/* -----  end of function BigNum::operator*=  ----- */
+    }		/* -----  end of method BigNum::operator*=  ----- */
 
     BigNum operator*(const BigNum& a, long b)
     {
@@ -492,13 +478,13 @@ namespace BNum {
         else sign = t_sign;
 
         return *this;
-    }		/* -----  end of function BigNum::operator/=  ----- */
+    }		/* -----  end of method BigNum::operator/=  ----- */
 
     BigNum& BigNum::operator/=(const BigNum& m)
     {
         *this = *this / m;
         return *this;
-    }		/* -----  end of function BigNum::operator/=  ----- */
+    }		/* -----  end of method BigNum::operator/=  ----- */
 
     BigNum operator/(const BigNum& a, long b)
     {
@@ -506,7 +492,7 @@ namespace BNum {
         return r /= b;
     }		/* -----  end of function operator/  ----- */
 
-    BigNum operator/(BigNum a, BigNum b)
+    BigNum operator/(const BigNum& a, const BigNum& b)
     {
         int ta_sign = a.sign, tb_sign = b.sign;
         a.sign = b.sign = 1;
@@ -516,20 +502,58 @@ namespace BNum {
             mid = (low + high + 1) / 2;
             ans = b * mid;
             int cmp = compare(ans, a);
-            if (cmp == 0) { // ans == a
+            if (cmp == 0) { /* ans == a */
                 low = mid;
                 break;
             }
-            if (cmp == -1) low = mid; // ans < a
+            if (cmp == -1) low = mid; /* ans < a */
             else high = mid - 1;
         }
 
+        a.sign = ta_sign;
+        b.sign = tb_sign;
+
         if (low == BigNum::zero) return BigNum::zero;
-        if (tb_sign == -1) low.sign = -ta_sign;
-        else low.sign = ta_sign;
+        if (b.sign == -1) low.sign = -a.sign;
+        else low.sign = a.sign;
 
         return low;
     }		/* -----  end of function operator/  ----- */
+
+    int compare(const BigNum& a, const BigNum& b)
+    {
+        /*
+         * if (a.sign == 1 && b.sign == -1) return 1;
+         * if (a.sign == -1 && b.sign == 1) return -1;
+         */
+        if (a.sign != b.sign) return a.sign - b.sign;
+        int res;
+        if (a.sign == 1) res = 1;
+        else res = -1;
+        if (a.size > b.size) return res;
+        if (a.size < b.size) return -res;
+        for (long i = a.size - 1; i >= 0; i--) {
+            if (a.num[i] > b.num[i]) return res;
+            if (a.num[i] < b.num[i]) return -res;
+        }
+
+        return 0;
+    }		/* -----  end of function compare  ----- */
+
+    inline void swap(BigNum& a, BigNum& b)
+    {
+        long t_size = a.size;
+        a.size = b.size;
+        b.size = t_size;
+
+        int t_sign = a.sign;
+        a.sign = b.sign;
+        b.sign = t_sign;
+
+        long* t_num = a.num;
+        a.num = b.num;
+        b.num = t_num;
+    }		/* -----  end of function swap  ----- */
 
     long BigNum::maxSize = 0;
     long BigNum::bound = 0;
