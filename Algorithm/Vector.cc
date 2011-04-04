@@ -26,32 +26,47 @@ namespace Vec {
             : x(xx), y(yy), z(zz) { }
     };
 
-    class Vector {
+    /*
+     * =====================================================================================
+     *        Class:  Vector
+     *  Description:  A class for calculating Vectors.
+     * =====================================================================================
+     */
+    class Vector
+    {
         private:
+            /* ====================  DATA MEMBERS  ======================================= */
             double x, y, z;
 
         public:
-            Vector(double xx = 0, double yy = 0, double zz = 0)
+
+            /* ====================  LIFECYCLE     ======================================= */
+            Vector(double xx = 0, double yy = 0, double zz = 0) /* constructor */
                 : x(xx), y(yy), z(zz) { }
-            Vector(const Point& a, const Point& b)
+            Vector(const Point& a, const Point& b) /* constructor */
                 : x(b.x - a.x), y(b.y - a.y), z(b.z - a.z) { }
 
-            double getX() const { return x; }
-            double getY() const { return y; }
-            double getZ() const { return z; }
+            /* ====================  ACCESSORS     ======================================= */
+            double get_x() const { return x; }
+            double get_y() const { return y; }
+            double get_z() const { return z; }
 
             double abs() const { return sqrt(x * x + y * y + z * z); }
             Vector unitize() const { return Vector(x / abs(), y / abs(), z / abs()); }
+            Vector reflect(const Vector&) const;
+
             friend Vector outer(const Vector&, const Vector&);
             friend double inner(const Vector&, const Vector&);
 
+            /* ====================  MUTATORS      ======================================= */
+
+            /* ====================  OPERATORS     ======================================= */
             bool operator==(const Vector& v) const;
             bool operator!=(const Vector& v) const;
             Vector& operator-=(const Vector&);
             Vector& operator*=(double);
 
-            Vector reflect(const Vector&) const;
-    };
+    }; /* -----  end of class Vector  ----- */
 
     inline Vector outer(const Vector& a, const Vector& b)
     {
@@ -66,12 +81,12 @@ namespace Vec {
     inline bool Vector::operator==(const Vector& v) const
     {
         return fabs(x - v.x) < 1e-6 && fabs(y - v.y) < 1e-6 && fabs(z - v.z) < 1e-6;
-    }		/* -----  end of function Vector::operator==  ----- */
+    }		/* -----  end of method Vector::operator==  ----- */
 
     inline bool Vector::operator!=(const Vector& v) const
     {
         return !(operator==(v));
-    }		/* -----  end of function Vector::operator!=  ----- */
+    }		/* -----  end of method Vector::operator!=  ----- */
 
     inline Vector& Vector::operator-=(const Vector& v)
     {
@@ -79,7 +94,7 @@ namespace Vec {
         y -= v.y;
         z -= v.z;
         return *this;
-    }		/* -----  end of function Vector::operator-=  ----- */
+    }		/* -----  end of method Vector::operator-=  ----- */
 
     Vector operator-(const Vector& a, const Vector& b)
     {
@@ -93,7 +108,7 @@ namespace Vec {
         y *= k;
         z *= k;
         return *this;
-    }		/* -----  end of function Vector::operator*=  ----- */
+    }		/* -----  end of method Vector::operator*=  ----- */
 
     Vector operator*(double k, const Vector& v)
     {
@@ -104,7 +119,7 @@ namespace Vec {
     inline Vector Vector::reflect(const Vector& n) const
     {
         return *this - 2 * inner(*this, n.unitize()) * n.unitize();
-    }		/* -----  end of function Vector::reflect  ----- */
+    }		/* -----  end of method Vector::reflect  ----- */
 
     inline double dis(const Point& a, const Point& b)
     {
@@ -139,7 +154,7 @@ namespace Vec {
         Flat(const Vector& nn, const Point& p)
             : n(nn)
         {
-            D = -(n.getX() * p.x + n.getY() * p.y + n.getZ() * p.z);
+            D = -(n.get_x() * p.x + n.get_y() * p.y + n.get_z() * p.z);
         }
         Flat(const Point& p1, const Point& p2, const Point& p3)
         {
@@ -156,9 +171,9 @@ namespace Vec {
         double k = inner(fl.n, l.v);
         if (fabs(k) < 1e-6) return false; // inner(n, v) == 0, namely fl//l
         double t = -(inner(fl.n, Vector(Point(0, 0, 0), l.m)) + fl.D) / k;
-        p->x = l.m.x + l.v.getX() * t;
-        p->y = l.m.y + l.v.getY() * t;
-        p->z = l.m.z + l.v.getZ() * t;
+        p->x = l.m.x + l.v.get_x() * t;
+        p->y = l.m.y + l.v.get_y() * t;
+        p->z = l.m.z + l.v.get_z() * t;
         if (l.v.unitize() != Vector(l.m, *p).unitize()) return false;
         return true;
     }
