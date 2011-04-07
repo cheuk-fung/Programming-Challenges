@@ -46,6 +46,7 @@ namespace BNum {
             ~BigNum();                             /* destructor */
 
             /* ====================  ACCESSORS     ======================================= */
+            int get_sign() const;
             void print() const;
 
             friend int compare(const BigNum&, const BigNum&);
@@ -157,6 +158,11 @@ namespace BNum {
         maxSize = t_maxSize;
         bound = t_bound;
     }		/* -----  end of method BigNum::setMax  ----- */
+
+    inline int BigNum::get_sign() const
+    {
+        return sign;
+    }		/* -----  end of method BigNum::get_sign  ----- */
 
     void BigNum::print() const
     {

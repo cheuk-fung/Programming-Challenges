@@ -6,13 +6,13 @@
 [DONE]p2150 分數線劃定                          sort
 [DONE]p2151 細胞分裂                            Prime
 [DONE]p2152 道路遊戲                            DP
-[DOIG]p2153 All Star Game                       DFS             May Done
-[DOIG]p2154 Birds Attack                        Physics         May Done
-[DOIG]p2155 Crazy Review                        Greedy          May Done
-[DOIG]p2156 Defence Of The ACM                  SPFA            May Done or TLE or WA
-[DOIG]p2157 Erase the word                      KMP             May Done
-[DOIG]p2158 Fantastic Problem from Sheldon      ????            TLE
-[DOIG]p2159 Get your chance                     Math            May Done or TLE
-[DOIG]p2160 Harder than usual                   Heap Sort       May Done
-[TODO]p2161 In the dormitory                    Math            May Done or TLE or WA
-[DOIG]p2162 Just a game                         DFS             May Done or WA
+[DONE]p2153 All Star Game                       DFS
+[DONE]p2154 Birds Attack                        Physics
+[DONE]p2155 Crazy Review                        Greedy
+[DOIG]p2156 Defence Of The ACM                  ????            MLE
+[DOIG]p2157 Erase the word                      KMP             WA * 5
+[DOIG]p2158 Fantastic Problem from Sheldon      Math            TLE
+[DONE]p2159 Get your chance                     Math
+[DONE]p2160 Harder than usual                   Heap Sort
+[TODO]p2161 In the dormitory                    Math            TLE * 5
+[DOIG]p2162 Just a game                         DFS             WA * 1
