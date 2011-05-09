@@ -10,7 +10,9 @@
 [DONE]1042 Gone Fishing		        DP || Greedy
 [DONE]1207 The 3n + 1 problem	        NULL
 [TODO]1505 Copying Books		Bisection || DP
+[DOIG]1753 Flip Game                    BFS
 [DONE]2092 Grandpa is Famous		NULL
+[DONE]2159 Ancient Cipher               NULL
 [DONE]2262 Goldbach's Conjecture	NULL
 [DONE]2388 Who's in the Middle	        sort
 [TODO]2299 Ultra-QuickSort		Merge Sort
@@ -19,3 +21,4 @@
 [TODO]3273 Monthly Expense		Bisection
 [WA??]3690 Constellations		KMP
 [TLE?]3768 Repeater			D&C(Divide and Conquer)
+[DONE]3299 Humidex                      Math
