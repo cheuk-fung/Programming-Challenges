@@ -10,7 +10,7 @@
 [DONE]1042 Gone Fishing		        DP || Greedy
 [DONE]1207 The 3n + 1 problem	        NULL
 [TODO]1505 Copying Books		Bisection || DP
-[DOIG]1753 Flip Game                    BFS
+[DONE]1753 Flip Game                    BFS
 [DONE]2092 Grandpa is Famous		NULL
 [DONE]2159 Ancient Cipher               NULL
 [DONE]2262 Goldbach's Conjecture	NULL
