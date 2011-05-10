@@ -1,24 +1,31 @@
-[DONE]1000 A + B Problem		NULL
-[DONE]1002 487-3279			string
-[DONE]1003 Hangover			NULL
-[DONE]1007 DNA Sorting		        stable sort
-[DONE]1008 Maya Calendar		NULL
-[DONE]1014 Dividing			DP(Multiple Pack)
-[DONE]1017 Packets			NULL
-[DONE]1035 Spell checker		string
-[DONE]1036 Gangsters			DP
-[DONE]1042 Gone Fishing		        DP || Greedy
-[DONE]1207 The 3n + 1 problem	        NULL
-[TODO]1505 Copying Books		Bisection || DP
-[DONE]1753 Flip Game                    BFS
-[DONE]2092 Grandpa is Famous		NULL
-[DONE]2159 Ancient Cipher               NULL
-[DONE]2262 Goldbach's Conjecture	NULL
-[DONE]2388 Who's in the Middle	        sort
-[TODO]2299 Ultra-QuickSort		Merge Sort
-[TODO]3080 Blue Jeans		        LCS(Longest Common Subsequence)
-[TODO]3258 River Hopscotch		Bisection
-[TODO]3273 Monthly Expense		Bisection
-[WA??]3690 Constellations		KMP
-[TLE?]3768 Repeater			D&C(Divide and Conquer)
-[DONE]3299 Humidex                      Math
+[DONE]1000 A + B Problem		        NULL
+[DONE]1001 Exponentiation                       BigNum
+[DONE]1002 487-3279			        string
+[DONE]1003 Hangover			        NULL
+[DONE]1004 Financial Management                 NULL
+[DONE]1005 I Think I Need a Houseboat           Math
+[DONE]1006 Biorhythms                           Number Theory
+[DONE]1007 DNA Sorting		                stable sort
+[DONE]1008 Maya Calendar		        NULL
+[DONE]1014 Dividing			        DP(Multiple Pack)
+[DONE]1017 Packets			        NULL
+[DONE]1035 Spell checker		        string
+[DONE]1036 Gangsters			        DP
+[DONE]1042 Gone Fishing		                DP || Greedy
+[DONE]1061 frog's dating                        Number Theory
+[DONE]1088 skiing                               memorize search
+[DONE]1207 The 3n + 1 problem	                NULL
+[TODO]1505 Copying Books		        Bisection || DP
+[DONE]1753 Flip Game                            BFS
+[DONE]2092 Grandpa is Famous		        NULL
+[DONE]2159 Ancient Cipher                       NULL
+[DONE]2262 Goldbach's Conjecture        	NULL
+[DONE]2388 Who's in the Middle  	        sort
+[TODO]2299 Ultra-QuickSort      		Merge Sort
+[DONE]2965 The Pilots Brothers' refrigerator    BFS
+[TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
+[TODO]3258 River Hopscotch		        Bisection
+[TODO]3273 Monthly Expense		        Bisection
+[WA??]3690 Constellations		        KMP
+[TLE?]3768 Repeater			        D&C(Divide and Conquer)
+[DONE]3299 Humidex                              Math

@@ -453,7 +453,7 @@ namespace BNum {
             for (long j = 0; j < b.size; j++)
                 r.num[i + j] += a.num[i] * b.num[j];
         r.size = a.size + b.size;
-        while (r.size  > 1 && r.num[r.size] == 0) r.size--;
+        while (r.size  > 1 && r.num[r.size - 1] == 0) r.size--;
         for (long i = 0; i < r.size; i++) r.upgrade(i);
         while (r.num[r.size]) r.size++;
 
