@@ -13,16 +13,18 @@
  * =====================================================================================
  */
 
-long prime(long n, long* p)
+int prime(int n, int* p)
 {
     bool b[n];
-    long sum = 0;
-    for (long i = 0; i < n; i++) b[i] = 1;
-    for (long i = 2; i < n; i++)
-        if (b[i]) {
-            p[sum++] = i;
-            for (int j = i; j < n; j += i) b[j] = 0;
+    int sum = 0;
+    for (int i = 0; i < n; i++) b[i] = true;
+    for (int i = 2; i < n; i++) {
+        if (b[i]) p[sum++] = i;
+        for (int j = 0; j < sum && i * p[j] <= n; j++) {
+            b[i * p[j]] = false;
+            if (i % p[j] == 0) break;
         }
+    }
 
     return sum;
 }
