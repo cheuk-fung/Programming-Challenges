@@ -17,15 +17,18 @@
 [DONE]1207 The 3n + 1 problem	                NULL
 [TODO]1505 Copying Books		        Bisection || DP
 [DONE]1753 Flip Game                            BFS
+[DONE]2019 Cornfields                           NULL
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2262 Goldbach's Conjecture        	NULL
-[DONE]2388 Who's in the Middle  	        sort
+[DONE]2295 A DP Problem                         string
 [TODO]2299 Ultra-QuickSort      		Merge Sort
+[DONE]2388 Who's in the Middle  	        sort
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
 [TODO]3258 River Hopscotch		        Bisection
 [TODO]3273 Monthly Expense		        Bisection
+[DONE]3364 Black and white painting             Math
 [WA??]3690 Constellations		        KMP
 [TLE?]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3299 Humidex                              Math
