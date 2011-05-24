@@ -29,6 +29,8 @@
 [TODO]3258 River Hopscotch		        Bisection
 [TODO]3273 Monthly Expense		        Bisection
 [DONE]3364 Black and white painting             Math
+[DONE]3467 Cross Counting                       NULL
+[DONE]3659 Cell Phone Network                   Tree DP
 [WA??]3690 Constellations		        KMP
 [TLE?]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3299 Humidex                              Math
