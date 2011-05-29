@@ -1,18 +1,3 @@
-/*
- * =====================================================================================
- * 
- *       Filename:  prime.cc
- * 
- *    Description:  
- * 
- *        Created:  04/02/2011 00:01:10
- *       Compiler:  g++
- * 
- *         Author:  Leewings Ac (Zhuofeng Wu), osideal {at} gmail.com
- * 
- * =====================================================================================
- */
-
 int prime(int n, int* p)
 {
     bool b[n];
@@ -28,4 +13,3 @@ int prime(int n, int* p)
 
     return sum;
 }
-
