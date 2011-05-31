@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ
  * TASK: Ant Counting
- * ALGO: DP
+ * ALGO: Combinatorics
  * DATE: 05/26/2011 
  *
  * Created by Leewings Ac
