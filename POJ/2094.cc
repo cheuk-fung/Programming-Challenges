@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ
  * TASK: Angry Teacher
- * ALGO: Math
+ * ALGO: Math & BigInteger
  * DATE: 05/25/2011 
  *
  * Created by Leewings Ac

@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ
  * TASK: Exponentiation
- * ALGO: BigNum
+ * ALGO: BigInteger
  * DATE: 05/10/2011 
  *
  * Created by Leewings Ac

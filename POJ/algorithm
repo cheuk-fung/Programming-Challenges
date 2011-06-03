@@ -1,5 +1,5 @@
 [DONE]1000 A + B Problem		        NULL
-[DONE]1001 Exponentiation                       BigNum
+[DONE]1001 Exponentiation                       BigInteger
 [DONE]1002 487-3279			        string
 [DONE]1003 Hangover			        NULL
 [DONE]1004 Financial Management                 NULL
@@ -20,7 +20,7 @@
 [DONE]1822 Fence2                               Combinatorics
 [DONE]2019 Cornfields                           NULL
 [DONE]2092 Grandpa is Famous		        NULL
-[DONE]2094 Angry Teacher                        Math + BigNum
+[DONE]2094 Angry Teacher                        Math + BigInteger
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2295 A DP Problem                         string
@@ -30,6 +30,7 @@
 [DONE]3046 Ant Counting                         Combinatorics
 [TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
 [TODO]3258 River Hopscotch		        Bisection
+[DONE]3281 Dining                               Maximum Flow
 [TODO]3273 Monthly Expense		        Bisection
 [DONE]3364 Black and white painting             Math
 [DONE]3467 Cross Counting                       NULL
