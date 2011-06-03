@@ -26,6 +26,7 @@
 [DONE]2295 A DP Problem                         string
 [TODO]2299 Ultra-QuickSort      		Merge Sort
 [DONE]2388 Who's in the Middle  	        sort
+[DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [DONE]3046 Ant Counting                         Combinatorics
 [TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
