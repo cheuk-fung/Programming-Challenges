@@ -13,6 +13,7 @@
 [DONE]1036 Gangsters			        DP
 [DONE]1042 Gone Fishing		                DP || Greedy
 [DONE]1061 frog's dating                        Number Theory
+[TODO]1062 昂贵的聘礼                           Dijkstra
 [DONE]1083 Moving Tables                        NULL
 [DONE]1088 skiing                               memorize search
 [DONE]1207 The 3n + 1 problem	                NULL
@@ -33,7 +34,7 @@
 [DONE]3046 Ant Counting                         Combinatorics
 [TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
 [TODO]3258 River Hopscotch		        Bisection
-[DONE]3281 Dining                               dinic
+[DONE]3281 Dining                               Dinic
 [TODO]3273 Monthly Expense		        Bisection
 [DONE]3295 Tautology                            enum && stack
 [DONE]3364 Black and white painting             Math

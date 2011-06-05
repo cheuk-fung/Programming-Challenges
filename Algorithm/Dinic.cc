@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ
  * TASK: Dining
- * ALGO: dinic 
+ * ALGO: Dinic 
  * DATE: 06/02/2011 
  *
  * Created by Leewings Ac
