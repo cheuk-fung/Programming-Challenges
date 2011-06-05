@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ
  * TASK: Dining
- * ALGO: Maximum Flow
+ * ALGO: dinic 
  * DATE: 06/02/2011 
  *
  * Created by Leewings Ac

@@ -13,6 +13,7 @@
 [DONE]1036 Gangsters			        DP
 [DONE]1042 Gone Fishing		                DP || Greedy
 [DONE]1061 frog's dating                        Number Theory
+[DONE]1083 Moving Tables                        NULL
 [DONE]1088 skiing                               memorize search
 [DONE]1207 The 3n + 1 problem	                NULL
 [TODO]1505 Copying Books		        Bisection || DP
@@ -27,12 +28,14 @@
 [TODO]2299 Ultra-QuickSort      		Merge Sort
 [DONE]2388 Who's in the Middle  	        sort
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
+[DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [DONE]3046 Ant Counting                         Combinatorics
 [TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
 [TODO]3258 River Hopscotch		        Bisection
-[DONE]3281 Dining                               Maximum Flow
+[DONE]3281 Dining                               dinic
 [TODO]3273 Monthly Expense		        Bisection
+[DONE]3295 Tautology                            enum && stack
 [DONE]3364 Black and white painting             Math
 [DONE]3467 Cross Counting                       NULL
 [DONE]3659 Cell Phone Network                   Tree DP
