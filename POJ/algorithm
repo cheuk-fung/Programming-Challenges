@@ -13,7 +13,7 @@
 [DONE]1036 Gangsters			        DP
 [DONE]1042 Gone Fishing		                DP || Greedy
 [DONE]1061 frog's dating                        Number Theory
-[TODO]1062 昂贵的聘礼                           Dijkstra
+[DONE]1062 昂贵的聘礼                           Dijkstra
 [DONE]1083 Moving Tables                        NULL
 [DONE]1088 skiing                               memorize search
 [DONE]1207 The 3n + 1 problem	                NULL
@@ -24,6 +24,7 @@
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2094 Angry Teacher                        Math + BigInteger
 [DONE]2159 Ancient Cipher                       NULL
+[DONE]2240 Arbitrage                            Floyd
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2295 A DP Problem                         string
 [TODO]2299 Ultra-QuickSort      		Merge Sort
