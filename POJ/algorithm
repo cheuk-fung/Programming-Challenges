@@ -17,7 +17,7 @@
 [DONE]1083 Moving Tables                        NULL
 [DONE]1088 skiing                               memorize search
 [DONE]1207 The 3n + 1 problem	                NULL
-[TODO]1505 Copying Books		        Bisection || DP
+[DONE]1505 Copying Books		        Bisection || DP
 [DONE]1753 Flip Game                            BFS
 [DONE]1822 Fence2                               Combinatorics
 [DONE]2019 Cornfields                           NULL
@@ -36,7 +36,7 @@
 [TODO]3080 Blue Jeans		                LCS(Longest Common Subsequence)
 [TODO]3258 River Hopscotch		        Bisection
 [DONE]3281 Dining                               Dinic
-[TODO]3273 Monthly Expense		        Bisection
+[DONE]3273 Monthly Expense		        Bisection
 [DONE]3295 Tautology                            enum && stack
 [DONE]3364 Black and white painting             Math
 [DONE]3467 Cross Counting                       NULL
