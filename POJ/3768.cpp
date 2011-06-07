@@ -2,99 +2,74 @@
  *  SRC: POJ
  * TASK: Repeater
  * ALGO: D&C
- * DATE: Nov. 4, 2010
+ * DATE: 06/07/2011 
  *
  * Created by Leewings Ac
  */
 
 #include <cstdio>
+#include <cstring>
 #include <cmath>
 
-using namespace std;
+int n, q, cnt;
 
-int n;
-char tmp[10][10], pic[5000][5000];
-
-bool draw(int level)
+void repeat(int qq, char** line, char** tmpl)
 {
-    if (level == 2) {
-	for (int i = 0; i < n; i++)
-	    for (int j = 0; j < n; j++) {
-		if (tmp[i][j] == ' ') {
-		    for (int a = i * n; a < (i + 1) * n; a++)
-			for (int b = j * n; b < (j + 1) * n; b++)
-			    pic[a][b] = ' ';
-		}
-		else {
-		    for (int a = i * n, c = 0; a < (i + 1) * n; a++, c++)
-			for (int b = j * n, d = 0; b < (j + 1) * n; b++, d++)
-			    pic[a][b] = tmp[c][d];
-		}
-	    }
-	return true;
+    if (qq == q) {
+        int size = pow(n, q);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < size; j++)
+                putchar(line[i][j]);
+            putchar(10);
+        }
+
+        return ;
     }
 
-    bool flag = false;
-    int size = pow(n, level - 1);
-    for (int i = 0; i < n; i++)
-	for (int j = 0; j < n; j++) {
-	    if (tmp[i][j] == ' ') {
-		for (int a = i * size; a < (i + 1) * size; a++)
-		    for (int b = j * size; b < (j + 1) * size; b++)
-			pic[a][b] = ' ';
-	    }
-	    else {
-		if (flag == false) flag = draw(level - 1);
-		else {
-		    for (int a = i * size, c = 0; a < (i + 1) * size; a++, c++)
-			for (int b = j * size, d = 0; b < (j + 1) * size; b++, d++)
-			    pic[a][b] = pic[c][d];
-		}
-	    }
-	}
-    
-    return true;
+    for (int i = 0; i < n; i++) {
+        char** nextLine;
+        nextLine = new char*[n];
+        int nextSize = pow(n, qq + 1);
+        for (int j = 0; j < n; j++) {
+            nextLine[j] = new char[nextSize];
+            memset(nextLine[j], ' ', nextSize);
+        }
+
+        int size = pow(n, qq);
+        for (int j = 0; j < size; j++)
+            if (line[i][j] != ' ')
+                for (int a = 0; a < n; a++)
+                    for (int b = 0; b < n; b++)
+                        nextLine[a][j * n + b] = tmpl[a][b];
+
+        repeat(qq + 1, nextLine, tmpl);
+    }
 }
 
-bool repeating()
+bool work()
 {
     scanf("%d", &n);
-    if (!n) return false;
-    
-    for (int i = 0; i < n; i++)
-	for (int j = 0; j < n; j++) {
-	    tmp[i][j] = getchar();
-	    if (tmp[i][j] == '\n') tmp[i][j] = getchar();
-	}
+    if (n == 0) return false;
 
-    int q;
+    char** tmpl;
+    tmpl = new char*[n];
+
+    for (int i = 0; i < n; i++) {
+        tmpl[i] = new char[n];
+        for (int j = 0; j < n; j++)
+            while ((tmpl[i][j] = getchar()) == '\n') ;
+    }
+
     scanf("%d", &q);
 
-    if (q == 0) return true;
-    if (q == 1) {
-	for (int i = 0; i < n; i++) {
-	    tmp[i][n] = '\0';
-	    printf("%s\n", tmp[i]);
-	}
-
-	return true;
-    }
-
-    draw(q);
-
-    int size = pow(n, q);
-    for (int i = 0; i < size; i++) {
-	pic[i][size] = '\0';
-	printf("%s\n", pic[i]);
-    }
+    repeat(1, tmpl, tmpl);
 
     return true;
 }
-    
+
 int main()
 {
-    while (repeating()) ;
-
+    while (work()) ;
     return 0;
 }
 

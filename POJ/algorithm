@@ -27,7 +27,7 @@
 [DONE]2240 Arbitrage                            Floyd
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2295 A DP Problem                         string
-[TODO]2299 Ultra-QuickSort      		Merge Sort
+[DONE]2299 Ultra-QuickSort      		Merge Sort
 [DONE]2388 Who's in the Middle  	        sort
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
@@ -42,5 +42,5 @@
 [DONE]3467 Cross Counting                       NULL
 [DONE]3659 Cell Phone Network                   Tree DP
 [WA??]3690 Constellations		        KMP
-[TLE?]3768 Repeater			        D&C(Divide and Conquer)
+[DONE]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3299 Humidex                              Math
