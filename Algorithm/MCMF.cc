@@ -25,10 +25,11 @@ struct Edge {
     { }
 };
 
-const int MAX = 200;
-const int src = 0, dest = MAX;
+const int INF = 0x7fffffff;
+const int MAXN = 200;
+const int src = 0, dest = MAXN;
 
-vector<Edge> edge[MAX + 1];
+vector<Edge> edge[MAXN + 1];
 
 struct Route {
     int u, v, p;
@@ -36,10 +37,85 @@ struct Route {
     Route(int uu = 0, int vv = 0, int pp = 0)
         : u(uu), v(vv), p(pp)
     { }
-} aRoute[MAX + 1];
+} aRoute[MAXN + 1];
 
-bool vis[MAX + 1];
-int lowest[MAX + 1];
+bool vis[MAXN + 1];
+int lowest[MAXN + 1];
+
+inline int min(int a, int b)
+{
+    return a < b ? a : b;
+}
+
+bool spfa()
+{
+    memset(vis, false, sizeof(vis));
+    for (int i = 0; i <= MAXN; i++) lowest[i] = INF;
+
+    queue<int> Q;
+    Q.push(src);
+    vis[src] = true;
+    lowest[src] = 0;
+    aRoute[src] = Route(-1, 0, -1);
+
+    while (!Q.empty()) {
+        int u = Q.front();
+        Q.pop();
+        vis[u] = false;
+        for (int i = 0; i < edge[u].size(); i++) {
+            int v = edge[u][i].v;
+            int dis = edge[u][i].cpf;
+            if (dis + lowest[u] < lowest[v] && edge[u][i].f < edge[u][i].c) {
+                lowest[v] = dis + lowest[u];
+                aRoute[v] = Route(u, v, i);
+                if (vis[v] == false) {
+                    vis[v] = true;
+                    Q.push(v);
+                }
+            }
+        }
+    }
+
+    return lowest[dest] < INF;
+}
+
+int flow()
+{
+    int minFlow = INF;
+    Route r = aRoute[dest];
+    while (r.u != -1) {
+        minFlow = min(minFlow, edge[r.u][r.p].c - edge[r.u][r.p].f);
+        r = aRoute[r.u];
+    }
+
+    int res = 0;
+    r = aRoute[dest];
+    while (r.u != -1) {
+        edge[r.u][r.p].f += minFlow;
+        res += edge[r.u][r.p].cpf;
+        int j = edge[r.u][r.p].p;
+        edge[r.v][j].f = -edge[r.u][r.p].f;
+        r = aRoute[r.u];
+    }
+    res *= minFlow;
+
+    return res;
+}
+
+int mcmf()
+{
+    int res = 0;
+    while (spfa()) res += flow();
+
+    return res;
+}
+
+void addEdge(int u, int v, int capa, int flow, int cpf)
+{
+
+    edge[u].push_back(Edge(v, edge[v].size(), capa, flow, cpf));
+    edge[v].push_back(Edge(u, edge[u].size() - 1, 0, 0, -cpf));
+}
 
 int N, M, K;
 int orders[60][60], storage[60][60], dist[60][60][60];
@@ -71,7 +147,7 @@ void buildEdge(int k)
      * 0: src
      * 1 to M: Storage
      * M + 1 to M + N: Shopkeeper
-     * MAX: dest
+     * MAXN: dest
      */
 
     const int  St = 0, SK = M;
@@ -80,91 +156,20 @@ void buildEdge(int k)
 
     for (int i = 1; i <= M; i++) {
         // src -> St, capa = storage[i][k], cpf = 0
-        edge[src].push_back(Edge(St + i, edge[St + i].size(), storage[i][k], 0, 0));
         // St -> src, capa = 0, cpf = 0
-        edge[St + i].push_back(Edge(src, edge[src].size() - 1, 0, 0, 0));
+        addEdge(src, St + i, storage[i][k], 0, 0);
     }
     for (int i = 1; i <= M; i++)
         for (int j = 1; j <= N; j++) {
-            // St -> SK, capa = MAX, cpf = dist[k][j][i]
-            edge[St + i].push_back(Edge(SK + j, edge[SK + j].size(), MAX, 0, dist[k][j][i]));
+            // St -> SK, capa = MAXN, cpf = dist[k][j][i]
             // SK -> St, capa = 0, cpf = -dist[k][j][i]
-            edge[SK + j].push_back(Edge(St + i, edge[St + i].size() - 1, 0, 0, -dist[k][j][i]));
+            addEdge(St + i, SK + j, MAXN, 0, dist[k][j][i]);
         }
     for (int i = 1; i <= N; i++) {
         // SK -> dest, capa = orders[i][k], cpf = 0
-        edge[SK + i].push_back(Edge(dest, edge[dest].size(), orders[i][k], 0, 0));
         // dest -> SK, capa = 0, cpf = 0
-        edge[dest].push_back(Edge(SK + i, edge[SK + i].size() - 1, 0, 0, 0));
+        addEdge(SK + i, dest, orders[i][k], 0, 0);
     }
-}
-
-inline int min(int a, int b)
-{
-    return a < b ? a : b;
-}
-
-bool spfa()
-{
-    memset(vis, false, sizeof(vis));
-    for (int i = 0; i <= MAX; i++) lowest[i] = MAX;
-
-    queue<int> Q;
-    Q.push(src);
-    vis[src] = true;
-    lowest[src] = 0;
-    aRoute[src] = Route(-1, 0, -1);
-
-    while (!Q.empty()) {
-        int u = Q.front();
-        Q.pop();
-        vis[u] = false;
-        for (int i = 0; i < edge[u].size(); i++) {
-            int v = edge[u][i].v;
-            int dis = edge[u][i].cpf;
-            if (dis + lowest[u] < lowest[v] && edge[u][i].f < edge[u][i].c) {
-                lowest[v] = dis + lowest[u];
-                aRoute[v] = Route(u, v, i);
-                if (vis[v] == false) {
-                    vis[v] = true;
-                    Q.push(v);
-                }
-            }
-        }
-    }
-
-    return lowest[dest] < MAX;
-}
-
-int flow()
-{
-    int minFlow = MAX;
-    Route r = aRoute[dest];
-    while (r.u != -1) {
-        minFlow = min(minFlow, edge[r.u][r.p].c - edge[r.u][r.p].f);
-        r = aRoute[r.u];
-    }
-
-    int res = 0;
-    r = aRoute[dest];
-    while (r.u != -1) {
-        edge[r.u][r.p].f += minFlow;
-        res += edge[r.u][r.p].cpf;
-        int j = edge[r.u][r.p].p;
-        edge[r.v][j].f = -edge[r.u][r.p].f;
-        r = aRoute[r.u];
-    }
-    res *= minFlow;
-
-    return res;
-}
-
-int mcmf()
-{
-    int res = 0;
-    while (spfa()) res += flow();
-
-    return res;
 }
 
 bool check()
