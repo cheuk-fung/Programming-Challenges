@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Flip Game
+ *  SRC: POJ 1753
+ * PROB: Flip Game
  * ALGO: BFS
- * DATE: 05/09/2011 
+ * DATE: May 9, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

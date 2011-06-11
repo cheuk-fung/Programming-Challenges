@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Biorhythms
+ *  SRC: POJ 1006
+ * PROB: Biorhythms
  * ALGO: Number Theory
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

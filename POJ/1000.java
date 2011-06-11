@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 1000
+ * PROB: A + B Problem
+ * ALGO: NULL
+ * DATE: May 30, 2011
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
 import java.util.*;
 

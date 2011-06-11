@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Hangover
+ *  SRC: POJ 1003
+ * PROB: Hangover
  * ALGO: NULL
- * DATE: 02/11/2011 
+ * DATE: Feb 11, 2011
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

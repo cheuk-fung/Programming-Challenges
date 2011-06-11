@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: ACM Computer Factory
+ *  SRC: POJ 3464
+ * PROB: ACM Computer Factory
  * ALGO: Dinic
- * DATE: 06/10/2011 
+ * DATE: Jun 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

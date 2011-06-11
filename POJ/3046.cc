@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Ant Counting
+ *  SRC: POJ 3046
+ * PROB: Ant Counting
  * ALGO: Combinatorics
- * DATE: 05/26/2011 
+ * DATE: May 26, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

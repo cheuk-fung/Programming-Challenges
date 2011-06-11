@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: DNA Sorting
+ *  SRC: POJ 1007
+ * PROB: DNA Sorting
  * ALGO: stable sort
- * DATE: Dec. 11, 2010
+ * DATE: Dec 11, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

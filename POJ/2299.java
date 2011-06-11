@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 2299
+ * PROB: Ultra-QuickSort
+ * ALGO: Merge Sort
+ * DATE: Jun 7, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.*;
 
 class Main

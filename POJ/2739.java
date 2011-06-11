@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 2739
+ * PROB: Sum of Consecutive Prime Numbers
+ * ALGO: Prime
+ * DATE: Jun 5, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.Scanner;
 
 class Main

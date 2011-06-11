@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Who's in the Middle
+ *  SRC: POJ 2388
+ * PROB: Who's in the Middle
  * ALGO: sort
- * DATE: Nov. 4, 2010
+ * DATE: Nov 4, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

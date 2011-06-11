@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Angry Teacher
+ *  SRC: POJ 2094
+ * PROB: Angry Teacher
  * ALGO: Math & BigInteger
- * DATE: 05/25/2011 
+ * DATE: May 25, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

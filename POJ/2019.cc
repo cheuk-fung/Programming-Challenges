@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Cornfields
+ *  SRC: POJ 2019
+ * PROB: Cornfields
  * ALGO: NULL
- * DATE: 05/23/2011 
+ * DATE: May 23, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Constellations
+ *  SRC: POJ 3690
+ * PROB: Constellations
  * ALGO: bit
- * DATE: 06/07/2011 
+ * DATE: Jun 7, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 3258
+ * PROB: River Hopscotch
+ * ALGO: Bisection
+ * DATE: Jun 7, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.*;
 
 class Main

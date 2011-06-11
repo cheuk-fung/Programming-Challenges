@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Packets
+ *  SRC: POJ 1017
+ * PROB: Packets
  * ALGO: NULL
- * DATE: Nov. 27, 2010
+ * DATE: Nov 27, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

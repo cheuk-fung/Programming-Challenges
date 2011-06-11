@@ -1,7 +1,9 @@
-/* *  SRC: POJ
- * TASK: Black and white painting
+/*
+ *  SRC: POJ 3364
+ * PROB: Black and white painting
  * ALGO: Math
- * DATE: 05/23/2011 
+ * DATE: May 23, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

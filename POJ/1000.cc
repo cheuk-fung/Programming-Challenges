@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * NAME: A + B Problem
+ *  SRC: POJ 1000
+ * PROB: A + B Problem
  * ALGO: NULL
- * DATE: Nov. 24, 2010
+ * DATE: Nov 24, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

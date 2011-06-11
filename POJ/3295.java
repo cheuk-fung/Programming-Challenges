@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 3295
+ * PROB: Tautology
+ * ALGO: enum & stack
+ * DATE: Jun 5, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.Scanner;
 import java.util.Stack;
 

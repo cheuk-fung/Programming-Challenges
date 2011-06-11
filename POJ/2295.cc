@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: A DP Problem
+ *  SRC: POJ 2295
+ * PROB: A DP Problem
  * ALGO: string
- * DATE: 05/23/2011 
+ * DATE: May 23, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

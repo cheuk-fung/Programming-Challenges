@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: frog's dating
+ *  SRC: POJ 1061
+ * PROB: frog's dating
  * ALGO: Number Theory
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

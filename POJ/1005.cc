@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: I Think I Need a Houseboat
+ *  SRC: POJ 1005
+ * PROB: I Think I Need a Houseboat
  * ALGO: Math
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

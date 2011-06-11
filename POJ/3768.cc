@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Repeater
+ *  SRC: POJ 3768
+ * PROB: Repeater
  * ALGO: D&C
- * DATE: 06/07/2011 
+ * DATE: Jun 7, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

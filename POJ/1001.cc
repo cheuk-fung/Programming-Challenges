@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Exponentiation
+ *  SRC: POJ 1001
+ * PROB: Exponentiation
  * ALGO: BigInteger
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

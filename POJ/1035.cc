@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Spell checker
+ *  SRC: POJ 1035
+ * PROB: Spell checker
  * AlGO: string
- * DATE: Nov. 5, 2010
+ * DATE: Nov 5, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

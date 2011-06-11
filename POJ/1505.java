@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 1505
+ * PROB: Copying Books
+ * ALGO: Bisection
+ * DATE: Jun 6, 2011
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.*;
 
 class Main

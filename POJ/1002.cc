@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: 487-3279
+ *  SRC: POJ 1002
+ * PROB: 487-3279
  * ALGO: string
- * DATE: Dec. 11, 2010
+ * DATE: Dec 11, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Goldbach's Conjecture
+ *  SRC: POJ 2262
+ * PROB: Goldbach's Conjecture
  * ALGO: NULL
- * DATE: Nov. 27, 2010
+ * DATE: Nov 27, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

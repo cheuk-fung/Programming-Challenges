@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Humidex
+ *  SRC: POJ 3299
+ * PROB: Humidex
  * ALGO: Math
- * DATE: 05/06/2011 
+ * DATE: May 6, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

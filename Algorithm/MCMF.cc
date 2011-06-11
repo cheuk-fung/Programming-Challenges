@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Minimum Cost
+ *  SRC: POJ 2516
+ * PROB: Minimum Cost
  * ALGO: MCMF
- * DATE: 06/03/2011 
+ * DATE: Jun 3, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

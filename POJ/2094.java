@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 2094
+ * PROB: Angry Teacher
+ * ALGO: Math & BigInteger
+ * DATE: Jun 1, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.Scanner;
 import java.math.BigInteger;
 

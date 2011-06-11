@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Cross Counting
+ *  SRC: POJ 3467
+ * PROB: Cross Counting
  * ALGO: NULL
- * DATE: 05/23/2011 
+ * DATE: May 23, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

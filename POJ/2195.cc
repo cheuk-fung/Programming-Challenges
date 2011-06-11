@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Going Home
+ *  SRC: POJ 2195
+ * PROB: Going Home
  * ALGO: MCMF
- * DATE: 06/10/2011 
+ * DATE: Jun 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

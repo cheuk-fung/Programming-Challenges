@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: The Pilots Brothers' refrigerator
+ *  SRC: POJ 2965
+ * PROB: The Pilots Brothers' refrigerator
  * ALGO: BFS
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 1083
+ * PROB: Moving Tables
+ * ALGO: NULL
+ * DATE: Jun 4, 2011
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.Scanner;
 
 class Main

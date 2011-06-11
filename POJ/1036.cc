@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Gangsters
+ *  SRC: POJ 1036
+ * PROB: Gangsters
  * ALGO: DP
- * DATE: Dec. 12, 2010
+ * DATE: Dec 12, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

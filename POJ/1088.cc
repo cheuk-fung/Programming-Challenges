@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: skiing
+ *  SRC: POJ 1088
+ * PROB: skiing
  * ALGO: memorize search
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

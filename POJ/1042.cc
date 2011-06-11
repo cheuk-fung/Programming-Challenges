@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Gone Fishing
+ *  SRC: POJ 1042
+ * PROB: Gone Fishing
  * ALGO: Greedy
- * DATE: Dec. 3, 2010
+ * DATE: Dec 3, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

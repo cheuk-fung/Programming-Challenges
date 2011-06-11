@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Dining
- * ALGO: Dinic 
- * DATE: 06/02/2011 
+ *  SRC: POJ 3281
+ * PROB: Dining
+ * ALGO: Dinic
+ * DATE: Jun 2, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

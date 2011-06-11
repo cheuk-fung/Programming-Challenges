@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Grandpa is Famous
+ *  SRC: POJ 2092
+ * PROB: Grandpa is Famous
  * ALGO: NULL
- * DATE: Dec. 12, 2010
+ * DATE: Dec 12, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

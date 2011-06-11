@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: The 3n + 1 problem
+ *  SRC: POJ 1207
+ * PROB: The 3n + 1 problem
  * ALGO: NULL
- * DATE: Nov. 27, 2010
+ * DATE: Nov 27, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 2240
+ * PROB: Arbitrage
+ * ALGO: Floyd
+ * DATE: Jun 6, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;

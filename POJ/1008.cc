@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Maya Calendar
+ *  SRC: POJ 1008
+ * PROB: Maya Calendar
  * ALGO: NULL
- * DATE: Nov. 27, 2010
+ * DATE: Nov 27, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

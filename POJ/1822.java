@@ -1,3 +1,13 @@
+/*
+ *  SRC: POJ 1822
+ * PROB: Fence2
+ * ALGO: Combinatorics
+ * DATE: May 31, 2011
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.util.Scanner;
 import java.math.BigInteger;
 

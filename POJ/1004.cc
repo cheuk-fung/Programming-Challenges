@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Financial Management
+ *  SRC: POJ 1004
+ * PROB: Financial Management
  * ALGO: NULL
- * DATE: 05/10/2011 
+ * DATE: May 10, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

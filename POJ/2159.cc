@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Ancient Cipher
+ *  SRC: POJ 2159
+ * PROB: Ancient Cipher
  * ALGO: NULL
- * DATE: 05/09/2011 
+ * DATE: May 9, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: 昂贵的聘礼
+ *  SRC: POJ 1062
+ * PROB: 昂贵的聘礼
  * ALGO: Dijkstra
- * DATE: 06/05/2011 
+ * DATE: Jun 5, 2011
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Cell Phone Network
+ *  SRC: POJ 3659
+ * PROB: Cell Phone Network
  * ALGO: Tree DP
- * DATE: 05/24/2011 
+ * DATE: May 24, 2011 
+ * COMP: g++
  *
  * Created by Leewings Ac
  */

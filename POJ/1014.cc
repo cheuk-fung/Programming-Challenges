@@ -1,8 +1,9 @@
 /*
- *  SRC: POJ
- * TASK: Dividing
+ *  SRC: POJ 1014
+ * PROB: Dividing
  * ALGO: DP(Multiple Pack)
- * DATE: Nov. 27, 2010
+ * DATE: Nov 27, 2010
+ * COMP: g++
  *
  * Created by Leewings Ac
  */
