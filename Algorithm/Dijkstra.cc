@@ -31,12 +31,12 @@ const int MAXN = ;
 
 vector<Edge> edge[MAXN + 1];
 
-int lowest[MAXN + 1];
+int shortest[MAXN + 1];
 
 int dijkstra()
 {
-    memset(lowest, 0x3f, sizeof(lowest));
-    lowest[0] = 0;
+    memset(shortest, 0x3f, sizeof(shortest));
+    shortest[0] = 0;
 
     priority_queue<Node> Q;
     Q.push(Node(0, 0));
@@ -45,13 +45,13 @@ int dijkstra()
         int u = Q.top().v;
         int d = Q.top().d; 
         Q.pop();
-        if (d > lowest[u]) continue;
+        if (d > shortest[u]) continue;
         for (int i = 0; i < edge[u].size(); i++) {
             int v = edge[u][i].v;
             int dis = edge[u][i].d;
-            if (dis + lowest[u] < lowest[v]) {
-                lowest[v] = dis + lowest[u];
-                Q.push(Node(v, lowest[v]));
+            if (dis + shortest[u] < shortest[v]) {
+                shortest[v] = dis + shortest[u];
+                Q.push(Node(v, shortest[v]));
             }
         }
     }

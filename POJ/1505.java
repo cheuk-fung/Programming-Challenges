@@ -65,15 +65,10 @@ class Prob
         Stack<Integer> pos = new Stack<Integer>();
         for (int i = m - 1; i >= 0; i--) {
             tot += books[i];
-            if (tot > low) {
+            if (tot > low || i + 1 <= k - 1 - pos.size()) {
                 tot = books[i];
                 pos.push(i + 1);
             }
-        }
-        if (pos.size() != k - 1) {
-            while (pos.empty() == false && pos.peek() <= k - 1 - pos.size()) pos.pop();
-            for (int i = k - 1 - pos.size(); i >= 1; i--)
-                pos.push(i);
         }
         
         int l = 0, r;

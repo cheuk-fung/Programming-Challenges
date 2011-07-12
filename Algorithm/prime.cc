@@ -2,7 +2,8 @@ int prime(int n, int* p)
 {
     bool b[n];
     int sum = 0;
-    for (int i = 0; i < n; i++) b[i] = true;
+    b[0] = b[1] = false;
+    for (int i = 2; i < n; i++) b[i] = true;
     for (int i = 2; i < n; i++) {
         if (b[i]) p[sum++] = i;
         for (int j = 0; j < sum && i * p[j] <= n; j++) {

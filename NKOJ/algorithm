@@ -1,6 +1,7 @@
 [DONE]p1001 A + B Problem		        NULL
 [DONE]p1002 [NKPC1]Lucky 的難題                 Math
 [DONE]p1005 Another A + B Problem	        NULL
+[DONE]p1019 计算 A+B (超级大数相加)             BigInteger
 [DONE]p1236 a^b                                 Number Theory
 [DONE]p2149 多項式輸出                          NULL
 [DONE]p2150 分數線劃定                          sort
@@ -17,7 +18,7 @@
 [TODO]p2161 In the dormitory                    Math            TLE * 5
 [DOIG]p2162 Just a game                         DFS             WA * 1
 [TODO]p2163 April Fool's Day                    Math
-[DONE]p2164 Bug checker                         SPFA || Topology sort
+[DONE]p2164 Bug checker                         SPFA || Topological sort
 [DONE]p2167 Eat healthily                       CompletePack
 [DONE]p2169 Gauss is a genius                   Math
 [DONE]p2170 Happy ending                        Math
