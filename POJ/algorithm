@@ -28,6 +28,7 @@
 [DONE]2019 Cornfields                           NULL
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2094 Angry Teacher                        Math + BigInteger
+[DONE]2115 C Looooops                           Number Theory
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2195 Going Home                           MCMF
 [DONE]2240 Arbitrage                            Floyd
@@ -35,10 +36,13 @@
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2295 A DP Problem                         string
 [DONE]2299 Ultra-QuickSort      		Merge Sort
+[DONE]2348 Euclid's Game                        Number Theory
 [DONE]2388 Who's in the Middle  	        sort
+[DONE]2407 Relatives                            Number Theory
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
+[DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
 [DONE]3046 Ant Counting                         Combinatorics
 [DONE]3080 Blue Jeans		                KMP
