@@ -17,14 +17,20 @@
 [DONE]1083 Moving Tables                        NULL
 [DONE]1088 skiing                               memorize search
 [DONE]1094 Sorting It All Out                   Topological Sort
+[DONE]1101 The Game                             BFS
 [DONE]1159 Palindrome                           DP
+[DONE]1183 反正切函数的应用                     Math
 [DONE]1207 The 3n + 1 problem	                NULL
+[DONE]1321 棋盘问题                             DFS
+[DONE]1370 Gossiping                            Number Theory
 [DONE]1503 Integer Inquiry                      BigInteger
 [DONE]1505 Copying Books		        Bisection || DP
 [DONE]1552 Doubles                              NULL
+[DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
 [DONE]1822 Fence2                               Combinatorics
 [DONE]1860 Currency Exchange                    Bellman Ford
+[DONE]1915 Knight Moves                         BFS
 [DONE]2019 Cornfields                           NULL
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2094 Angry Teacher                        Math + BigInteger
@@ -32,11 +38,13 @@
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2195 Going Home                           MCMF
 [DONE]2240 Arbitrage                            Floyd
+[DONE]2243 Knight Moves                         BFS
 [DONE]2255 Tree Recovery                        Binary Tree
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2295 A DP Problem                         string
 [DONE]2299 Ultra-QuickSort      		Merge Sort
 [DONE]2348 Euclid's Game                        Number Theory
+[DONE]2386 Lake Counting                        Flood Fill
 [DONE]2388 Who's in the Middle  	        sort
 [DONE]2407 Relatives                            Number Theory
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
