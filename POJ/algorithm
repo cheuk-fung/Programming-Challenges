@@ -12,6 +12,7 @@
 [DONE]1035 Spell checker		        string
 [DONE]1036 Gangsters			        DP
 [DONE]1042 Gone Fishing		                DP || Greedy
+[DONE]1050 To the Max                           DP
 [DONE]1061 frog's dating                        Number Theory
 [DONE]1062 昂贵的聘礼                           Dijkstra
 [DONE]1077 Eight                                BFS
@@ -19,7 +20,9 @@
 [DONE]1088 skiing                               memorize search
 [DONE]1094 Sorting It All Out                   Topological Sort
 [DONE]1101 The Game                             BFS
+[DONE]1141 Brackets Sequence                    DP
 [DONE]1159 Palindrome                           DP
+[DONE]1163 The Triangle                         DP
 [DONE]1183 反正切函数的应用                     Math
 [DONE]1190 生日蛋糕                             DFS
 [DONE]1207 The 3n + 1 problem	                NULL
@@ -51,13 +54,14 @@
 [DONE]2388 Who's in the Middle  	        sort
 [DONE]2407 Relatives                            Number Theory
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
+[DONE]2533 Longest Ordered Subsequence          DP
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
 [DONE]3046 Ant Counting                         Combinatorics
-[TODO]3047 Sudoku                               DFS
+[TODO]3074 Sudoku                               DFS
 [DONE]3080 Blue Jeans		                KMP
 [DONE]3094 Quicksum                             NULL
 [DONE]3258 River Hopscotch		        Bisection
@@ -68,6 +72,7 @@
 [DONE]3436 ACM Computer Factory                 Dinic
 [DONE]3467 Cross Counting                       NULL
 [DONE]3659 Cell Phone Network                   Tree DP
+[DONE]3661 Running                              DP
 [DONE]3690 Constellations		        bit
 [DONE]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3299 Humidex                              Math
