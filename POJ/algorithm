@@ -25,9 +25,11 @@
 [DONE]1163 The Triangle                         DP
 [DONE]1183 反正切函数的应用                     Math
 [DONE]1190 生日蛋糕                             DFS
+[DONE]1200 Crazy Search                         Hash
 [DONE]1207 The 3n + 1 problem	                NULL
 [DONE]1321 棋盘问题                             DFS
 [DONE]1328 Radar Installation                   Greedy
+[DONE]1363 Rails                                NULL
 [DONE]1370 Gossiping                            Number Theory
 [DONE]1376 Robot                                BFS
 [DONE]1503 Integer Inquiry                      BigInteger
@@ -39,6 +41,8 @@
 [DONE]1860 Currency Exchange                    Bellman Ford
 [DONE]1905 Expanding Rods                       Bisection
 [DONE]1915 Knight Moves                         BFS
+[DONE]1195 Mobile phones                        2D BIT(Binary Indexed Tree)
+[DONE]2002 Squares                              Geometry
 [DONE]2019 Cornfields                           NULL
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2094 Angry Teacher                        Math + BigInteger
@@ -65,6 +69,7 @@
 [DONE]2586 Y2K Accounting Bug                   Greedy
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
+[DONE]2828 Buy Tickets                          BIT
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
@@ -73,10 +78,12 @@
 [DONE]3080 Blue Jeans		                KMP
 [DONE]3094 Quicksum                             NULL
 [DONE]3122 Pie                                  Bisection
+[DONE]3250 Bad Hair Day                         stack
 [DONE]3258 River Hopscotch		        Bisection
 [DONE]3273 Monthly Expense		        Bisection
 [DONE]3281 Dining                               Dinic
 [DONE]3295 Tautology                            enum && stack
+[DONE]3349 Snowflake Snow Snowflakes            hash
 [DONE]3364 Black and white painting             Math
 [DONE]3436 ACM Computer Factory                 Dinic
 [DONE]3467 Cross Counting                       NULL
