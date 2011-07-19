@@ -1,6 +1,6 @@
 /*
  *  SRC: POJ 1088
- * PROB: skiing
+ * PROB: 滑雪
  * ALGO: memorize search
  * DATE: May 10, 2011
  * COMP: g++

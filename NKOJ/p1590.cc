@@ -1,5 +1,5 @@
 /*
- *  SRC: POJ 1017
+ *  SRC: NKOJ p1590
  * PROB: Packets
  * ALGO: NULL
  * DATE: Nov 27, 2010
