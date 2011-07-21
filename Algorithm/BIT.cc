@@ -21,32 +21,20 @@ inline int lowbit(int x)
     return x & -x;
 }
 
-int BITSum(int x, int y)
-{
-    int res = 0;
-    while (x > 0) {
-        int ty = y;
-        while (ty > 0) {
-            res += bit[x][ty];
-            ty -= lowbit(ty);
-        }
-//        res += bit[x];
-        x -= lowbit(x);
-    }
-    return res;
-}
-
 void BITUpdate(int x, int y, int val)
 {
-    while (x <= maxX) {
-        int ty = y;
-        while (ty <= maxY) {
-            bit[x][ty] += val;
-            ty += lowbit(ty);
-        }
-//        bit[x] += val;
-        x += lowbit(x);
-    }
+    for (int i = x; i <= maxX; i += lowbit(i))
+        for (int j = y; j <= maxY; j +=lowbit(j))
+            bit[i][j] += val;
+}
+
+long long BITSum(int x, int y)
+{
+    long long res = 0;
+    for (int i = x; i > 0; i -= lowbit(i))
+        for (int j = y; j > 0; j -= lowbit(j))
+            res += bit[i][j];
+    return res;
 }
 
 // bitMask = countBit(maxX);

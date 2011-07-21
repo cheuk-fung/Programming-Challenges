@@ -32,11 +32,14 @@
 [DONE]1363 Rails                                NULL
 [DONE]1370 Gossiping                            Number Theory
 [DONE]1376 Robot                                BFS
+[DONE]1389 Area of Simple Polygons              Segment Tree
 [DONE]1503 Integer Inquiry                      BigInteger
 [DONE]1505 Copying Books		        Bisection || DP
 [DONE]1552 Doubles                              NULL
+[DONE]1177 Picture                              Segment Tree
 [DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
+[DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
 [DONE]1822 Fence2                               Combinatorics
 [DONE]1860 Currency Exchange                    Bellman Ford
 [DONE]1905 Expanding Rods                       Bisection
@@ -48,6 +51,7 @@
 [DONE]2094 Angry Teacher                        Math + BigInteger
 [DONE]2109 Power of Cryptography                Bisection
 [DONE]2115 C Looooops                           Number Theory
+[DONE]2155 Matrix                               BIT
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2195 Going Home                           MCMF
 [DONE]2240 Arbitrage                            Floyd
@@ -58,6 +62,7 @@
 [DONE]2295 A DP Problem                         string
 [DONE]2299 Ultra-QuickSort      		Merge Sort
 [DONE]2348 Euclid's Game                        Number Theory
+[DONE]2352 Stars                                BIT
 [DONE]2386 Lake Counting                        Flood Fill
 [DONE]2388 Who's in the Middle  	        sort
 [DONE]2407 Relatives                            Number Theory
@@ -65,21 +70,28 @@
 [DONE]2441 Arrange the Bulls                    DP
 [DONE]2486 Apple Tree                           Tree DP
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
+[DONE]2528 Mayor's posters                      Segment Tree
 [DONE]2533 Longest Ordered Subsequence          DP
 [DONE]2586 Y2K Accounting Bug                   Greedy
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
+[DONE]2750 Potted Flower                        Segment Tree
+[DONE]2777 Count Color                          Segment Tree
+[DONE]2823 Sliding Window                       Segment Tree || Monotone Priority Queue
 [DONE]2828 Buy Tickets                          BIT
+[DONE]2886 Who Gets the Most Candies?           Segment Tree
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
 [DONE]3046 Ant Counting                         Combinatorics
+[DONE]3067 Japan                                BIT
 [DONE]3074 Sudoku                               DFS
 [DONE]3080 Blue Jeans		                KMP
 [DONE]3094 Quicksum                             NULL
 [DONE]3122 Pie                                  Bisection
 [DONE]3250 Bad Hair Day                         stack
 [DONE]3258 River Hopscotch		        Bisection
+[DONE]3264 Balanced Lineup                      Segment Tree
 [DONE]3273 Monthly Expense		        Bisection
 [DONE]3281 Dining                               Dinic
 [DONE]3295 Tautology                            enum && stack
