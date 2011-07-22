@@ -65,6 +65,7 @@
 [DONE]2352 Stars                                BIT
 [DONE]2386 Lake Counting                        Flood Fill
 [DONE]2388 Who's in the Middle  	        sort
+[DONE]2406 Power Strings                        KMP
 [DONE]2407 Relatives                            Number Theory
 [DONE]2411 Mondriaan's Dream                    DP
 [DONE]2441 Arrange the Bulls                    DP
@@ -76,6 +77,7 @@
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2750 Potted Flower                        Segment Tree
+[DONE]2774 Long Long Message                    Suffix Array
 [DONE]2777 Count Color                          Segment Tree
 [DONE]2823 Sliding Window                       Segment Tree || Monotone Priority Queue
 [DONE]2828 Buy Tickets                          BIT
@@ -91,7 +93,7 @@
 [DONE]3122 Pie                                  Bisection
 [DONE]3250 Bad Hair Day                         stack
 [DONE]3258 River Hopscotch		        Bisection
-[DONE]3264 Balanced Lineup                      Segment Tree
+[DONE]3264 Balanced Lineup                      Segment Tree || RMQ_ST(Range Maximum/Minimum Query_Sparse Table)
 [DONE]3273 Monthly Expense		        Bisection
 [DONE]3281 Dining                               Dinic
 [DONE]3295 Tautology                            enum && stack
@@ -99,6 +101,7 @@
 [DONE]3364 Black and white painting             Math
 [DONE]3436 ACM Computer Factory                 Dinic
 [DONE]3467 Cross Counting                       NULL
+[DONE]3630 Phone List                           Trie
 [DONE]3659 Cell Phone Network                   Tree DP
 [DONE]3661 Running                              DP
 [DONE]3690 Constellations		        bit
