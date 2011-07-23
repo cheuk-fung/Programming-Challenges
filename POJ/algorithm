@@ -20,12 +20,14 @@
 [DONE]1088 滑雪                                 memorize search
 [DONE]1094 Sorting It All Out                   Topological Sort
 [DONE]1101 The Game                             BFS
+[DONE]1129 Channel Allocation                   DFS
 [DONE]1141 Brackets Sequence                    DP
 [DONE]1159 Palindrome                           DP
 [DONE]1163 The Triangle                         DP
 [DONE]1183 反正切函数的应用                     Math
 [DONE]1190 生日蛋糕                             DFS
 [DONE]1200 Crazy Search                         Hash
+[DONE]1204 Word Puzzles                         AC Automata
 [DONE]1207 The 3n + 1 problem	                NULL
 [DONE]1321 棋盘问题                             DFS
 [DONE]1328 Radar Installation                   Greedy
@@ -53,6 +55,7 @@
 [DONE]2115 C Looooops                           Number Theory
 [DONE]2155 Matrix                               BIT
 [DONE]2159 Ancient Cipher                       NULL
+[DONE]2186 Popular Cows                         Tarjan(Strongly Connected Component)
 [DONE]2195 Going Home                           MCMF
 [DONE]2240 Arbitrage                            Floyd
 [DONE]2243 Knight Moves                         BFS
@@ -91,10 +94,12 @@
 [DONE]3080 Blue Jeans		                KMP
 [DONE]3094 Quicksum                             NULL
 [DONE]3122 Pie                                  Bisection
+[DONE]3126 Prime Path                           BFS
 [DONE]3250 Bad Hair Day                         stack
 [DONE]3258 River Hopscotch		        Bisection
 [DONE]3264 Balanced Lineup                      Segment Tree || RMQ_ST(Range Maximum/Minimum Query_Sparse Table)
 [DONE]3273 Monthly Expense		        Bisection
+[DONE]3278 Catch That Cow                       BFS
 [DONE]3281 Dining                               Dinic
 [DONE]3295 Tautology                            enum && stack
 [DONE]3349 Snowflake Snow Snowflakes            hash

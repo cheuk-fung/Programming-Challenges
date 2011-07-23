@@ -26,6 +26,7 @@
 [DONE]p1442 Blue Jeans		                KMP
 [DONE]p1477 Moving Tables                       NULL
 [DONE]p1500 Pie                                 Bisection
+[DONE]p1504 Prime Path                          BFS
 [DONE]p1564 Hangover                            NULL
 [DONE]p1579 Maya Calendar                       NULL
 [DONE]p1590 Packets                             NULL
@@ -36,8 +37,10 @@
 [DONE]p1624 The Game                            BFS
 [DONE]p1641 Japan                               BIT
 [DONE]p1748 Black and white painting            Math
+[DONE]p1777 Popular Cows                        Tarjan(Strongly Connected Component)
 [DONE]p1822 Goldbach's Conjecture        	NULL
 [DONE]p1825 Dining                              Dinic
+[DONE]p1827 Catch That Cow                      BFS
 [DONE]p1833 Monthly Expense		        Bisection
 [DONE]p1846 Best Messenger Tool——NKQQ           Bisection
 [DONE]p1990 Humidex                             Math

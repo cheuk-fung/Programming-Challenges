@@ -15,44 +15,47 @@
 class Trie
 {
     private:
+        const static int CHARSET_SIZE = 10;
+        const static int BUF_SIZE = 200000;
+
         struct Node {
-            Node* next[10];
-            bool exist;
+            Node* next[CHARSET_SIZE];
+            int exist;
         };
         Node* root;
 
-        int cnt;
-        Node buf[200000]; // change it to adapt to need
-
-        bool _insert(Node* p, char* s)
-        {
-            if (p->exist) return false;
-
-            if (*s == '\0') {
-                p->exist = true;
-                return true;
-            }
-
-            if (!p->next[*s - '0']) {
-                p->next[*s - '0'] = &buf[cnt++];
-                memset(p->next[*s - '0']->next, 0, sizeof(root->next));
-                p->next[*s -'0']->exist = false;
-            }
-            return _insert(p->next[*s - '0'], s + 1);
-        }
+        int bufCnt;
+        Node buf[BUF_SIZE];
 
     public:
         void reset()
         {
-            cnt = 0;
-            root = &buf[cnt++];
+            bufCnt = 0;
+            root = &buf[bufCnt++];
             memset(root->next, 0, sizeof(root->next));
             root->exist = false;
         }
 
-        bool insert(char *s)
+        int insert(char *s)
         {
-            return _insert(root, s);
+            Node* p = root;
+
+            while (*s) {
+                if (p->exist) return false;
+
+                int index = *s - '0';
+                if (!p->next[index]) {
+                    p->next[index] = &buf[bufCnt++];
+                    memset(p->next[index]->next, 0, sizeof(root->next));
+                    p->next[index]->exist = 0;
+                }
+                p = p->next[index];
+                s++;
+            }
+
+            p->exist++;
+
+            return true;
         }
 };
 
