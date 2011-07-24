@@ -27,8 +27,11 @@
 [DONE]1183 反正切函数的应用                     Math
 [DONE]1190 生日蛋糕                             DFS
 [DONE]1200 Crazy Search                         Hash
+[DONE]1201 Intervals                            SPFA(max)
 [DONE]1204 Word Puzzles                         AC Automata
 [DONE]1207 The 3n + 1 problem	                NULL
+[DONE]1251 Jungle Roads                         Prim
+[DONE]1258 Agri-Net                             Kruskal + Disjoint Set || Prim
 [DONE]1321 棋盘问题                             DFS
 [DONE]1328 Radar Installation                   Greedy
 [DONE]1363 Rails                                NULL
@@ -39,6 +42,7 @@
 [DONE]1505 Copying Books		        Bisection || DP
 [DONE]1552 Doubles                              NULL
 [DONE]1177 Picture                              Segment Tree
+[DONE]1716 Integer Intervals                    SPFA(max)
 [DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
 [DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
@@ -67,11 +71,13 @@
 [DONE]2348 Euclid's Game                        Number Theory
 [DONE]2352 Stars                                BIT
 [DONE]2386 Lake Counting                        Flood Fill
+[DONE]2387 Til the Cows Come Home               Dijkstra
 [DONE]2388 Who's in the Middle  	        sort
 [DONE]2406 Power Strings                        KMP
 [DONE]2407 Relatives                            Number Theory
 [DONE]2411 Mondriaan's Dream                    DP
 [DONE]2441 Arrange the Bulls                    DP
+[DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2528 Mayor's posters                      Segment Tree
@@ -88,6 +94,7 @@
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
 [DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
+[DONE]3013 Big Christmas Tree                   SPFA
 [DONE]3046 Ant Counting                         Combinatorics
 [DONE]3067 Japan                                BIT
 [DONE]3074 Sudoku                               DFS
@@ -95,9 +102,12 @@
 [DONE]3094 Quicksum                             NULL
 [DONE]3122 Pie                                  Bisection
 [DONE]3126 Prime Path                           BFS
+[DONE]3159 Candies                              Dijkstra
 [DONE]3250 Bad Hair Day                         stack
 [DONE]3258 River Hopscotch		        Bisection
+[DONE]3259 Wormholes                            Bellman Ford
 [DONE]3264 Balanced Lineup                      Segment Tree || RMQ_ST(Range Maximum/Minimum Query_Sparse Table)
+[DONE]3268 Silver Cow Party                     Dijkstra
 [DONE]3273 Monthly Expense		        Bisection
 [DONE]3278 Catch That Cow                       BFS
 [DONE]3281 Dining                               Dinic

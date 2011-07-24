@@ -2,6 +2,7 @@
 [DONE]p1002 [NKPC1]Lucky 的難題                 Math
 [DONE]p1005 Another A + B Problem	        NULL
 [DONE]p1019 计算 A+B (超级大数相加)             BigInteger
+[DONE]p1039 Arbitrage                            Floyd
 [DONE]p1042 Knight Moves                        BFS
 [DONE]p1053 哥德巴赫猜想                        Number Theory
 [DONE]p1060 Tian Ji -- The Horse Racing         Greedy + DP
@@ -27,6 +28,7 @@
 [DONE]p1477 Moving Tables                       NULL
 [DONE]p1500 Pie                                 Bisection
 [DONE]p1504 Prime Path                          BFS
+[DONE]p1559 Jungle Roads                        Prim
 [DONE]p1564 Hangover                            NULL
 [DONE]p1579 Maya Calendar                       NULL
 [DONE]p1590 Packets                             NULL
@@ -42,8 +44,10 @@
 [DONE]p1825 Dining                              Dinic
 [DONE]p1827 Catch That Cow                      BFS
 [DONE]p1833 Monthly Expense		        Bisection
+[DONE]p1838 Silver Cow Party                    Dijkstra
 [DONE]p1846 Best Messenger Tool——NKQQ           Bisection
 [DONE]p1990 Humidex                             Math
+[DONE]p2021 Integer Intervals                   SPFA(max)
 [DONE]p2149 多項式輸出                          NULL
 [DONE]p2150 分數線劃定                          sort
 [DONE]p2151 細胞分裂                            Prime
