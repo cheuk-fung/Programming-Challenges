@@ -18,7 +18,7 @@ const int MAX_N = 50010;
 
 long long dist[MAX_N];
 int w[MAX_N];
-bool visited[MAX_N];
+bool vis[MAX_N];
 
 struct Link {
     int v, d;
@@ -45,7 +45,7 @@ void addEdge(int u, int v, int d)
 
 void spfa()
 {
-    memset(visited, false, sizeof(visited));
+    memset(vis, false, sizeof(vis));
     memset(dist, 0x3f, sizeof(dist));
     dist[1] = 0;
 
@@ -55,15 +55,15 @@ void spfa()
         int u = Q.front();
         Q.pop();
 
-        visited[u] = false;
+        vis[u] = false;
         Link* p = edge[u];
         while (p) {
             int v = p->v;
             int d = p->d;
             if (d + dist[u] < dist[v]) {
                 dist[v] = d + dist[u];
-                if (!visited[v]) {
-                    visited[v] = true;
+                if (!vis[v]) {
+                    vis[v] = true;
                     Q.push(v);
                 }
             }

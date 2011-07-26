@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 3281
- * PROB: Dining
+ *  SRC: POJ 1149
+ * PROB: PIGS
  * ALGO: Dinic
- * DATE: Jun 2, 2011 
+ * DATE: Jul 25, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -25,12 +25,12 @@ struct Edge {
     { }
 };
 
-const int INF = 0x7fffffff;
-const int MAXN = 1000;
-const int src = 0, dest = MAXN;
+const int INF = 0x3fffffff;
+const int MAX_N = 1111;
+const int src = 0, dest = MAX_N;
 
-vector<Edge> edge[MAXN + 1];
-int dist[MAXN + 1];
+vector<Edge> edge[MAX_N + 1];
+int dist[MAX_N + 1];
 
 inline int min(int a, int b)
 {
@@ -84,7 +84,7 @@ int dinic()
 {
     int res = 0;
     while (bfs()) {
-        int tmp = dfs(src, MAXN);
+        int tmp = dfs(src, MAX_N);
         if (tmp) res += tmp;
         else break;
     }
@@ -98,69 +98,42 @@ void addEdge(int u, int v, int capa, int flow)
     edge[v].push_back(Edge(u, edge[u].size() - 1, 0, 0));
 }
 
-int N, F, D;
+int m, n;
+int pre[MAX_N];
 
-void init()
+void buildGraph()
 {
-    scanf("%d%d%d", &N, &F, &D);
+    scanf("%d%d", &m, &n);
 
-    /*
-     * 0: src
-     * 1 to F: FF
-     * F + 1 to F + N: C1
-     * F + N + 1 to F + 2N: C2
-     * F + 2N + 1 to F + 2N + D: DD
-     * MAXN: dest
-     */
-
-    const int FF = 0;
-    const int C1 = F, C2 = F + N;
-    const int DD = F + 2 * N;
-
-    for (int i = 1; i <= F; i++) {
-        // src -> FF, capa = 1
-        // FF -> src, capa = 0
-        addEdge(src, FF + i, 1, 0);
-    }
-    for (int i = 1; i <= N; i++) {
-        // C1 -> C2, capa = 1
-        // C2 -> C1, capa = 0
-        addEdge(C1 + i, C2 + i, 1, 0);
-    }
-    for (int i = 1; i <=D; i++) {
-        // DD -> dest, capa = 1
-        // dest -> DD, capa = 0
-        addEdge(DD + i, dest, 1, 0);
+    for (int i = 1; i <= m; i++) {
+        int pigs;
+        scanf("%d", &pigs);
+        addEdge(src, i, pigs, 0);
     }
 
-    for (int i = 1; i <= N; i++) {
-        int f, d;
-        scanf("%d%d", &f, &d);
-        for (int j = 0; j < f; j++) {
-            int tmp;
-            scanf("%d", &tmp);
-            // FF -> C1, capa = 1
-            // C1 -> FF, capa = 0
-            addEdge(FF + tmp, C1 + i, 1, 0);
+    for (int i = 1; i <= n; i++) {
+        int cnt;
+        scanf("%d", &cnt);
+        for (int j = 1; j <= cnt; j++) {
+            int key;
+            scanf("%d", &key);
+            if (pre[key]) addEdge(pre[key], i + m, INF, 0);
+            else addEdge(key, i + m, INF, 0);
+            pre[key] = i + m;
         }
-        for (int j = 0; j < d; j++) {
-            int tmp;
-            scanf("%d", &tmp);
-            // C2 -> DD, capa = 1
-            // DD -> C2, capa = 0
-            addEdge(C2 + i, DD + tmp, 1, 0);
-        }
+
+        scanf("%d", &cnt);
+        addEdge(i + m, dest, cnt, 0);
     }
 }
 
 int main()
 {
-    init();
+    buildGraph();
 
-    int ans = dinic();
-
-    printf("%d\n", ans);
+    printf("%d\n", dinic());
 
     return 0;
 }
+
 

@@ -22,8 +22,10 @@
 [DONE]1101 The Game                             BFS
 [DONE]1129 Channel Allocation                   DFS
 [DONE]1141 Brackets Sequence                    DP
+[DONE]1149 PIGS                                 Dinic
 [DONE]1159 Palindrome                           DP
 [DONE]1163 The Triangle                         DP
+[DONE]1177 Picture                              Segment Tree
 [DONE]1183 反正切函数的应用                     Math
 [DONE]1190 生日蛋糕                             DFS
 [DONE]1200 Crazy Search                         Hash
@@ -32,16 +34,18 @@
 [DONE]1207 The 3n + 1 problem	                NULL
 [DONE]1251 Jungle Roads                         Prim
 [DONE]1258 Agri-Net                             Kruskal + Disjoint Set || Prim
+[DONE]1273 Drainage Ditches                     Dinic
 [DONE]1321 棋盘问题                             DFS
 [DONE]1328 Radar Installation                   Greedy
 [DONE]1363 Rails                                NULL
 [DONE]1370 Gossiping                            Number Theory
 [DONE]1376 Robot                                BFS
 [DONE]1389 Area of Simple Polygons              Segment Tree
+[DONE]1459 Power Network                        Dinic
 [DONE]1503 Integer Inquiry                      BigInteger
 [DONE]1505 Copying Books		        Bisection || DP
 [DONE]1552 Doubles                              NULL
-[DONE]1177 Picture                              Segment Tree
+[DONE]1637 Sightseeing tour                     Dinic
 [DONE]1716 Integer Intervals                    SPFA(max)
 [DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
@@ -57,10 +61,12 @@
 [DONE]2094 Angry Teacher                        Math + BigInteger
 [DONE]2109 Power of Cryptography                Bisection
 [DONE]2115 C Looooops                           Number Theory
+[DONE]2135 Farm Tour                            MCMF
 [DONE]2155 Matrix                               BIT
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2186 Popular Cows                         Tarjan(Strongly Connected Component)
 [DONE]2195 Going Home                           MCMF
+[DONE]2239 Selecting Courses                    Dinic
 [DONE]2240 Arbitrage                            Floyd
 [DONE]2243 Knight Moves                         BFS
 [DONE]2255 Tree Recovery                        Binary Tree
@@ -77,6 +83,7 @@
 [DONE]2407 Relatives                            Number Theory
 [DONE]2411 Mondriaan's Dream                    DP
 [DONE]2441 Arrange the Bulls                    DP
+[DONE]2446 Chessboard                           Hungarian
 [DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
@@ -120,5 +127,6 @@
 [DONE]3659 Cell Phone Network                   Tree DP
 [DONE]3661 Running                              DP
 [DONE]3690 Constellations		        bit
+[DONE]3692 Kindergarten                         Hungarian
 [DONE]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3299 Humidex                              Math
