@@ -55,8 +55,8 @@ namespace Vec {
             Vector unitize() const { return Vector(x / abs(), y / abs(), z / abs()); }
             Vector reflect(const Vector&) const;
 
-            friend Vector outer(const Vector&, const Vector&);
-            friend double inner(const Vector&, const Vector&);
+            friend Vector cross(const Vector&, const Vector&);
+            friend double dot(const Vector&, const Vector&);
 
             /* ====================  MUTATORS      ======================================= */
 
@@ -68,15 +68,15 @@ namespace Vec {
 
     }; /* -----  end of class Vector  ----- */
 
-    inline Vector outer(const Vector& a, const Vector& b)
+    inline Vector cross(const Vector& a, const Vector& b)
     {
         return Vector(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
-    }		/* -----  end of function outer  -----  */
+    }		/* -----  end of function cross  -----  */
 
-    inline double inner(const Vector& a, const Vector& b)
+    inline double dot(const Vector& a, const Vector& b)
     {
         return a.x * b.x + a.y * b.y + a.z * b.z;
-    }		/* -----  end of function inner -----  */
+    }		/* -----  end of function dot -----  */
 
     inline bool Vector::operator==(const Vector& v) const
     {
@@ -118,7 +118,7 @@ namespace Vec {
 
     inline Vector Vector::reflect(const Vector& n) const
     {
-        return *this - 2 * inner(*this, n.unitize()) * n.unitize();
+        return *this - 2 * dot(*this, n.unitize()) * n.unitize();
     }		/* -----  end of method Vector::reflect  ----- */
 
     inline double dis(const Point& a, const Point& b)
@@ -166,11 +166,11 @@ namespace Vec {
         }
     };
 
-    bool cross(const Flat& fl, const Line& l, Point* p)
+    bool intersect(const Flat& fl, const Line& l, Point* p)
     {
-        double k = inner(fl.n, l.v);
-        if (fabs(k) < 1e-6) return false; // inner(n, v) == 0, namely fl//l
-        double t = -(inner(fl.n, Vector(Point(0, 0, 0), l.m)) + fl.D) / k;
+        double k = dot(fl.n, l.v);
+        if (fabs(k) < 1e-6) return false; // dot(n, v) == 0, namely fl//l
+        double t = -(dot(fl.n, Vector(Point(0, 0, 0), l.m)) + fl.D) / k;
         p->x = l.m.x + l.v.get_x() * t;
         p->y = l.m.y + l.v.get_y() * t;
         p->z = l.m.z + l.v.get_z() * t;

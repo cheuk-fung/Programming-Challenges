@@ -10,13 +10,16 @@
 [DONE]p1114 Tree Recovery                       Binary Tree
 [DONE]p1121 Ultra-QuickSort      		Merge Sort
 [DONE]p1163 Expanding Rods                      Bisection
+[DONE]p1177 Rectangles                          Computational Geometry
 [DONE]p1771 Farm Tour                           MCMF
 [DONE]p1200 Euclid's Game                       Number Theory
 [DONE]p1213 Power Strings                       KMP
 [DONE]p1214 Relatives                           Number Theory
+[DONE]p1219 Triangle                            Graham Scan
 [DONE]p1234 DNA Sorting                         stable sort
 [DONE]p1236 a^b                                 Number Theory
 [DONE]p1249 分解素因子                          Prime
+[DONE]p1257 EXOCENTER OF A TRIANGLE             Computational Geometry
 [DONE]p1313 Tautology                           enum && stack
 [DONE]p1324 Sorting It All Out                  Topological Sort
 [DONE]p1379 C Looooops                          Number Theory
