@@ -19,6 +19,7 @@
 [DONE]1083 Moving Tables                        NULL
 [DONE]1088 滑雪                                 memorize search
 [DONE]1094 Sorting It All Out                   Topological Sort
+[DONE]1099 Square Ice                           string
 [DONE]1101 The Game                             BFS
 [DONE]1113 Wall                                 Graham Scan(Convex Hull)
 [DONE]1129 Channel Allocation                   DFS
@@ -49,6 +50,7 @@
 [DONE]1503 Integer Inquiry                      BigInteger
 [DONE]1505 Copying Books		        Bisection || DP
 [DONE]1552 Doubles                              NULL
+[DONE]1537 Identifying Legal Pascal Real...     string
 [DONE]1637 Sightseeing tour                     Dinic
 [DONE]1673 EXOCENTER OF A TRIANGLE              Computational Geometry
 [DONE]1716 Integer Intervals                    SPFA(max)
@@ -92,6 +94,7 @@
 [DONE]2446 Chessboard                           Hungarian
 [DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
+[DONE]2495 Incomplete chess boards              Hungarian
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2528 Mayor's posters                      Segment Tree
 [DONE]2533 Longest Ordered Subsequence          DP
