@@ -17,7 +17,7 @@
 [DONE]1062 昂贵的聘礼                           Dijkstra
 [DONE]1077 Eight                                BFS
 [DONE]1083 Moving Tables                        NULL
-[DONE]1088 滑雪                                 memorize search
+[DONE]1088 滑雪                                 Memorize search
 [DONE]1094 Sorting It All Out                   Topological Sort
 [DONE]1099 Square Ice                           string
 [DONE]1101 The Game                             BFS
@@ -61,6 +61,7 @@
 [DONE]1860 Currency Exchange                    Bellman Ford
 [DONE]1905 Expanding Rods                       Bisection
 [DONE]1915 Knight Moves                         BFS
+[DONE]1995 Raising Modulo Numbers               BigInteger
 [DONE]2002 Squares                              Geometry
 [DONE]2007 Scrambled Polygon                    Graham Scan
 [DONE]2019 Cornfields                           NULL
@@ -98,7 +99,9 @@
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2528 Mayor's posters                      Segment Tree
 [DONE]2533 Longest Ordered Subsequence          DP
+[DONE]2581 Exact Change Only                    DP(Multiple Pack)
 [DONE]2586 Y2K Accounting Bug                   Greedy
+[DONE]2664 Prerequisites?                       hash
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2750 Potted Flower                        Segment Tree
@@ -108,6 +111,7 @@
 [DONE]2828 Buy Tickets                          BIT
 [DONE]2886 Who Gets the Most Candies?           Segment Tree
 [DONE]2965 The Pilots Brothers' refrigerator    BFS
+[DONE]2982 Time Travel                          Memorize Search
 [DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
 [DONE]3013 Big Christmas Tree                   SPFA
@@ -128,6 +132,7 @@
 [DONE]3278 Catch That Cow                       BFS
 [DONE]3281 Dining                               Dinic
 [DONE]3295 Tautology                            enum && stack
+[DONE]3299 Humidex                              Math
 [DONE]3349 Snowflake Snow Snowflakes            hash
 [DONE]3364 Black and white painting             Math
 [DONE]3436 ACM Computer Factory                 Dinic
@@ -138,4 +143,3 @@
 [DONE]3690 Constellations		        bit
 [DONE]3692 Kindergarten                         Hungarian
 [DONE]3768 Repeater			        D&C(Divide and Conquer)
-[DONE]3299 Humidex                              Math

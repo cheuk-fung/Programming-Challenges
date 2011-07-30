@@ -1,12 +1,14 @@
 [DONE]p1001 A + B Problem		        NULL
 [DONE]p1002 [NKPC1]Lucky 的難題                 Math
 [DONE]p1005 Another A + B Problem	        NULL
+[DONE]p1015 Raising Modulo Numbers              BigInteger
 [DONE]p1019 计算 A+B (超级大数相加)             BigInteger
 [DONE]p1039 Arbitrage                            Floyd
 [DONE]p1042 Knight Moves                        BFS
 [DONE]p1053 哥德巴赫猜想                        Number Theory
 [DONE]p1060 Tian Ji -- The Horse Racing         Greedy + DP
 [DONE]p1086 To the Max                          DP
+[DONE]p1097 Prerequisites?                      hash
 [DONE]p1114 Tree Recovery                       Binary Tree
 [DONE]p1121 Ultra-QuickSort      		Merge Sort
 [DONE]p1163 Expanding Rods                      Bisection
@@ -34,6 +36,7 @@
 [DONE]p1477 Moving Tables                       NULL
 [DONE]p1500 Pie                                 Bisection
 [DONE]p1504 Prime Path                          BFS
+[DONE]p1517 Exact Change Only                   DP(Multiple Pack)
 [DONE]p1559 Jungle Roads                        Prim
 [DONE]p1564 Hangover                            NULL
 [DONE]p1579 Maya Calendar                       NULL

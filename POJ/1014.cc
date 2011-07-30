@@ -10,8 +10,6 @@
 
 #include <cstdio>
 
-using namespace std;
-
 const int MaxN = 60000;
 int f[MaxN + 1];
 
