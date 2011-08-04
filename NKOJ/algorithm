@@ -1,80 +1,81 @@
-[DONE]p1001 A + B Problem		        NULL
-[DONE]p1002 [NKPC1]Lucky 的難題                 Math
-[DONE]p1005 Another A + B Problem	        NULL
-[DONE]p1015 Raising Modulo Numbers              BigInteger
-[DONE]p1019 计算 A+B (超级大数相加)             BigInteger
-[DONE]p1039 Arbitrage                            Floyd
-[DONE]p1042 Knight Moves                        BFS
-[DONE]p1053 哥德巴赫猜想                        Number Theory
-[DONE]p1060 Tian Ji -- The Horse Racing         Greedy + DP
-[DONE]p1086 To the Max                          DP
-[DONE]p1097 Prerequisites?                      hash
-[DONE]p1114 Tree Recovery                       Binary Tree
-[DONE]p1121 Ultra-QuickSort      		Merge Sort
-[DONE]p1163 Expanding Rods                      Bisection
-[DONE]p1177 Rectangles                          Computational Geometry
-[DONE]p1771 Farm Tour                           MCMF
-[DONE]p1200 Euclid's Game                       Number Theory
-[DONE]p1213 Power Strings                       KMP
-[DONE]p1214 Relatives                           Number Theory
-[DONE]p1219 Triangle                            Graham Scan
-[DONE]p1234 DNA Sorting                         stable sort
-[DONE]p1236 a^b                                 Number Theory
-[DONE]p1249 分解素因子                          Prime
-[DONE]p1257 EXOCENTER OF A TRIANGLE             Computational Geometry
-[DONE]p1273 Loansome Car Buyer                  NULL
-[DONE]p1313 Tautology                           enum && stack
-[DONE]p1324 Sorting It All Out                  Topological Sort
-[DONE]p1330 Square Ice                          string
-[DONE]p1379 C Looooops                          Number Theory
-[DONE]p1389 Divisors                            Prime
-[DONE]p1395 Quicksum                            NULL
-[DONE]p1423 Doubles                             NULL
-[DONE]p1430 Fibonacci                           Number Theory
-[DONE]p1434 Sudoku                              DFS
-[DONE]p1442 Blue Jeans		                KMP
-[DONE]p1461 Sightseeing tour                    Dinic
-[DONE]p1477 Moving Tables                       NULL
-[DONE]p1500 Pie                                 Bisection
-[DONE]p1504 Prime Path                          BFS
-[DONE]p1517 Exact Change Only                   DP(Multiple Pack)
-[DONE]p1559 Jungle Roads                        Prim
-[DONE]p1564 Hangover                            NULL
-[DONE]p1579 Maya Calendar                       NULL
-[DONE]p1590 Packets                             NULL
-[DONE]p1593 Robot                               BFS
-[DONE]p1595 Rails                               NULL
-[DONE]p1602 Gossiping                           Number Theory
-[DONE]p1620 Dividing			        DP(Multiple Pack)
-[DONE]p1624 The Game                            BFS
-[DONE]p1641 Japan                               BIT
-[DONE]p1667 Power Network                       Dinic
-[DONE]p1748 Black and white painting            Math
-[DONE]p1777 Popular Cows                        Tarjan(Strongly Connected Component)
-[DONE]p1822 Goldbach's Conjecture        	NULL
-[DONE]p1825 Dining                              Dinic
-[DONE]p1827 Catch That Cow                      BFS
-[DONE]p1833 Monthly Expense		        Bisection
-[DONE]p1838 Silver Cow Party                    Dijkstra
-[DONE]p1846 Best Messenger Tool——NKQQ           Bisection
-[DONE]p1990 Humidex                             Math
-[DONE]p2021 Integer Intervals                   SPFA(max)
-[DONE]p2149 多項式輸出                          NULL
-[DONE]p2150 分數線劃定                          sort
-[DONE]p2151 細胞分裂                            Prime
-[DONE]p2152 道路遊戲                            DP
-[DONE]p2153 All Star Game                       DFS
-[DONE]p2154 Birds Attack                        Physics
-[DONE]p2155 Crazy Review                        Greedy
-[TODO]p2156 Defence Of The ACM                  ????            MLE
-[TODO]p2157 Erase the word                      KMP             WA * 5
-[TODO]p2158 Fantastic Problem from Sheldon      Math            TLE
-[DONE]p2159 Get your chance                     Math
-[DONE]p2160 Harder than usual                   Heap Sort
-[TODO]p2161 In the dormitory                    Math            TLE * 5
-[TODO]p2162 Just a game                         DFS             WA * 1
-[TODO]p2163 April Fool's Day                    Math
-[DONE]p2164 Bug checker                         SPFA || Topological sort
-[DONE]p2167 Eat healthily                       CompletePack
-[DONE]p2169 Gauss is a genius                   Math
-[DONE]p2170 Happy ending                        Math
+[DONE]1001 A + B Problem		        NULL
+[DONE]1002 [NKPC1]Lucky 的難題                  Math
+[DONE]1005 Another A + B Problem	        NULL
+[DONE]1015 Raising Modulo Numbers               BigInteger
+[DONE]1019 计算 A+B (超级大数相加)              BigInteger
+[DONE]1039 Arbitrage                            Floyd
+[DONE]1042 Knight Moves                         BFS
+[DONE]1053 哥德巴赫猜想                         Number Theory
+[DONE]1060 Tian Ji -- The Horse Racing          Greedy + DP
+[DONE]1086 To the Max                           DP
+[DONE]1097 Prerequisites?                       hash
+[DONE]1110 Dungeon Master                       BFS
+[DONE]1114 Tree Recovery                        Binary Tree
+[DONE]1121 Ultra-QuickSort      	        Merge Sort
+[DONE]1163 Expanding Rods                       Bisection
+[DONE]1177 Rectangles                           Computational Geometry
+[DONE]1771 Farm Tour                            MCMF
+[DONE]1200 Euclid's Game                        Number Theory
+[DONE]1213 Power Strings                        KMP
+[DONE]1214 Relatives                            Number Theory
+[DONE]1219 Triangle                             Graham Scan
+[DONE]1234 DNA Sorting                          stable sort
+[DONE]1236 a^b                                  Number Theory
+[DONE]1249 分解素因子                           Prime
+[DONE]1257 EXOCENTER OF A TRIANGLE              Computational Geometry
+[DONE]1273 Loansome Car Buyer                   NULL
+[DONE]1313 Tautology                            enum && stack
+[DONE]1324 Sorting It All Out                   Topological Sort
+[DONE]1330 Square Ice                           string
+[DONE]1379 C Looooops                           Number Theory
+[DONE]1389 Divisors                             Prime
+[DONE]1395 Quicksum                             NULL
+[DONE]1423 Doubles                              NULL
+[DONE]1430 Fibonacci                            Number Theory
+[DONE]1434 Sudoku                               DFS
+[DONE]1442 Blue Jeans		                KMP
+[DONE]1461 Sightseeing tour                     Dinic
+[DONE]1477 Moving Tables                        NULL
+[DONE]1500 Pie                                  Bisection
+[DONE]1504 Prime Path                           BFS
+[DONE]1517 Exact Change Only                    DP(Multiple Pack)
+[DONE]1559 Jungle Roads                         Prim
+[DONE]1564 Hangover                             NULL
+[DONE]1579 Maya Calendar                        NULL
+[DONE]1590 Packets                              NULL
+[DONE]1593 Robot                                BFS
+[DONE]1595 Rails                                NULL
+[DONE]1602 Gossiping                            Number Theory
+[DONE]1620 Dividing			        DP(Multiple Pack)
+[DONE]1624 The Game                             BFS
+[DONE]1641 Japan                                BIT
+[DONE]1667 Power Network                        Dinic
+[DONE]1748 Black and white painting             Math
+[DONE]1777 Popular Cows                         Tarjan(Strongly Connected Component)
+[DONE]1822 Goldbach's Conjecture                NULL
+[DONE]1825 Dining                               Dinic
+[DONE]1827 Catch That Cow                       BFS
+[DONE]1833 Monthly Expense		        Bisection
+[DONE]1838 Silver Cow Party                     Dijkstra
+[DONE]1846 Best Messenger Tool——NKQQ            Bisection
+[DONE]1990 Humidex                              Math
+[DONE]2021 Integer Intervals                    SPFA(max)
+[DONE]2149 多項式輸出                           NULL
+[DONE]2150 分數線劃定                           sort
+[DONE]2151 細胞分裂                             Prime
+[DONE]2152 道路遊戲                             DP
+[DONE]2153 All Star Game                        DFS
+[DONE]2154 Birds Attack                         Physics
+[DONE]2155 Crazy Review                         Greedy
+[TODO]2156 Defence Of The ACM                   ????            MLE
+[TODO]2157 Erase the word                       KMP             WA * 5
+[TODO]2158 Fantastic Problem from Sheldon       Math            TLE
+[DONE]2159 Get your chance                      Math
+[DONE]2160 Harder than usual                    Heap Sort
+[TODO]2161 In the dormitory                     Math            TLE * 5
+[TODO]2162 Just a game                          DFS             WA * 1
+[TODO]2163 April Fool's Day                     Math
+[DONE]2164 Bug checker                          SPFA || Topological sort
+[DONE]2167 Eat healthily                        CompletePack
+[DONE]2169 Gauss is a genius                    Math
+[DONE]2170 Happy ending                         Math
