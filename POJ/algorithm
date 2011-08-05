@@ -27,6 +27,7 @@
 [DONE]1149 PIGS                                 Dinic
 [DONE]1159 Palindrome                           DP
 [DONE]1163 The Triangle                         DP
+[DONE]1167 The Buses                            DFS
 [DONE]1177 Picture                              Segment Tree
 [DONE]1183 反正切函数的应用                     Math
 [DONE]1190 生日蛋糕                             DFS
@@ -40,6 +41,7 @@
 [DONE]1258 Agri-Net                             Kruskal + Disjoint Set || Prim
 [DONE]1273 Drainage Ditches                     Dinic
 [DONE]1321 棋盘问题                             DFS
+[DONE]1324 Holedox Moving                       BFS
 [DONE]1328 Radar Installation                   Greedy
 [DONE]1363 Rails                                NULL
 [DONE]1370 Gossiping                            Number Theory
