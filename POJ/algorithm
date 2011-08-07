@@ -49,6 +49,7 @@
 [DONE]1389 Area of Simple Polygons              Segment Tree
 [DONE]1459 Power Network                        Dinic
 [DONE]1468 Rectangles                           Computational Geometry
+[DONE]1475 Pushing Boxes                        BFS + DFS
 [DONE]1503 Integer Inquiry                      BigInteger
 [DONE]1505 Copying Books		        Bisection || DP
 [DONE]1537 Identifying Legal Pascal Real...     string
