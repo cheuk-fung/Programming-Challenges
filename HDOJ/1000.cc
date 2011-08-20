@@ -1,5 +1,5 @@
 /*
- *  SRC: HDU 1000
+ *  SRC: HDOJ 1000
  * PROB: A + B Problem
  * ALGO: NULL
  * DATE: Aug 08, 2011 

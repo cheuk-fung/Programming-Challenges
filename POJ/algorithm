@@ -7,6 +7,7 @@
 [DONE]1006 Biorhythms                           Number Theory
 [DONE]1007 DNA Sorting		                stable sort
 [DONE]1008 Maya Calendar		        NULL
+[DONE]1011 Sticks                               DFS
 [DONE]1014 Dividing			        DP(Multiple Pack)
 [DONE]1017 Packets			        NULL
 [DONE]1035 Spell checker		        string
@@ -67,6 +68,7 @@
 [DONE]1860 Currency Exchange                    Bellman Ford
 [DONE]1905 Expanding Rods                       Bisection
 [DONE]1915 Knight Moves                         BFS
+[DONE]1936 All in all                           String
 [DONE]1995 Raising Modulo Numbers               BigInteger
 [DONE]2002 Squares                              Geometry
 [DONE]2007 Scrambled Polygon                    Graham Scan
@@ -85,6 +87,7 @@
 [DONE]2239 Selecting Courses                    Dinic
 [DONE]2240 Arbitrage                            Floyd
 [DONE]2243 Knight Moves                         BFS
+[DONE]2246 Matrix Chain Multiplication          String
 [DONE]2251 Dungeon Master                       BFS
 [DONE]2255 Tree Recovery                        Binary Tree
 [DONE]2262 Goldbach's Conjecture        	NULL
@@ -148,8 +151,12 @@
 [DONE]3467 Cross Counting                       NULL
 [DONE]3604 Professor Ben                        Number Theory
 [DONE]3630 Phone List                           Trie
+[DONE]3633 Copying DNA                          BFS
+[DONE]3650 The Seven Percent Solution           String
 [DONE]3659 Cell Phone Network                   Tree DP
 [DONE]3661 Running                              DP
 [DONE]3690 Constellations		        bit
 [DONE]3692 Kindergarten                         Hungarian
 [DONE]3768 Repeater			        D&C(Divide and Conquer)
+[DONE]3842 An Industrial Spy                    Prime
+[DONE]3844 Divisible Subsequences               Math
