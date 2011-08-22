@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 2774
- * PROB: Long Long Message
+ *  SRC: POJ 3882
+ * PROB: Stammering Aliens
  * ALGO: Suffix Array
- * DATE: Jul 22, 2011 
+ * DATE: Aug 21, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -10,13 +10,21 @@
 
 #include <cstdio>
 #include <cstring>
+#include <utility>
+#include <algorithm>
+#include <cmath>
+
+using std::pair;
+using std::make_pair;
+using std::max;
+using std::min;
 
 class suffix_array
 {
     // use Doubling Algorithm
 
     private:
-        const static int MAX_LEN = 200012;
+        const static int MAX_LEN = 40010;
         const static int MAX_CHAR = 128;
 
         int* n_rank;
@@ -52,6 +60,8 @@ class suffix_array
 
         // LCP(i, j): the Longest Common Prefix of the i-th and j-th *sorted* suffixes
         int hgt[MAX_LEN];  //  hgt[i]: LCP(i - 1, i)
+
+        int max_suff[20][MAX_LEN], min_hgt[20][MAX_LEN];
 
         void reset() {
             memset(int_buf_1, 0, sizeof(int_buf_1));
@@ -95,31 +105,67 @@ class suffix_array
             for (int i = 0, j, k = 0; i < len; hgt[rank[i++]] = k)
                 for (k ? k-- : 0, j = suff[rank[i] - 1]; str[i + k] == str[j + k]; k++) ;
         }
+
+        void calc_lcp()
+        {
+            memcpy(max_suff[0] + 1, suff, sizeof(int) * len);
+            memcpy(min_hgt[0] + 1, hgt, sizeof(int) * len);
+            for (int i = 1; 1 << i <= len; i++)
+                for (int j = 1; j + (1 << i) - 1 <= len; j++) {
+                    max_suff[i][j] = max(max_suff[i - 1][j], max_suff[i - 1][j + (1 << (i - 1))]);
+                    min_hgt[i][j] = min(min_hgt[i - 1][j], min_hgt[i - 1][j + (1 << (i - 1))]);
+                }
+
+        }
+
+        pair<int, int> lcp(int a, int b)
+        {
+            a++; b++;
+
+            int id = log(b - a + 1.0) / log(2.0);
+            int pos = max(max_suff[id][a], max_suff[id][b - (1 << id) + 1]);
+
+            a++;
+            id = log(b - a + 1.0) / log(2.0);
+            int res = min(min_hgt[id][a], min_hgt[id][b - (1 << id) + 1]);
+
+            return make_pair(res, pos);
+        }
 };
 
 suffix_array sa;
 
-char s[100010];
-
 int main()
 {
-    scanf("%s", s);
-    for (int i = 0; s[i] != '\0'; i++) sa.str[sa.len++] = s[i];
-    int mid = sa.len;
-    sa.str[sa.len++] = 1;
-    scanf("%s", s);
-    for (int i = 0; s[i] != '\0'; i++) sa.str[sa.len++] = s[i];
-    sa.str[sa.len] = '\0';
+    int m;
+    while (scanf("%d", &m), m) {
+        scanf("%s", sa.str);
+        if (m == 1) {
+            printf("%d %d\n", strlen(sa.str), 0);
+            continue;
+        }
 
-    sa.build();
-    sa.calc_hgt();
+        sa.build();
+        sa.calc_hgt();
+        sa.calc_lcp();
 
-    int ans = 0;
-    for (int i = 1; i < sa.len; i++)
-        if (sa.hgt[i] > ans && ((sa.suff[i - 1] < mid && sa.suff[i] > mid) || (sa.suff[i - 1] > mid && sa.suff[i] < mid)))
-            ans = sa.hgt[i];
+        int longest = 0, pos;
+        for (int i = 0; i + m <= sa.len; i++) {
+            pair<int, int> p = sa.lcp(i, i + m - 1);
+            if (p.first > longest) {
+                longest = p.first;
+                pos = p.second;
+            }
+            else if (p.first == longest && p.second > pos) pos = p.second;
+        }
 
-    printf("%d\n", ans);
+        if (longest) printf("%d %d\n", longest, pos);
+        else puts("none");
+
+        sa.reset();
+    }
 
     return 0;
 }
+
+

@@ -74,6 +74,7 @@
 [DONE]2007 Scrambled Polygon                    Graham Scan
 [DONE]2019 Cornfields                           NULL
 [DONE]2079 Triangle                             Graham Scan
+[DONE]2081 Recaman's Sequence                   NULL
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2094 Angry Teacher                        Math + BigInteger
 [DONE]2109 Power of Cryptography                Bisection
@@ -87,6 +88,7 @@
 [DONE]2239 Selecting Courses                    Dinic
 [DONE]2240 Arbitrage                            Floyd
 [DONE]2243 Knight Moves                         BFS
+[DONE]2244 Eeny Meeny Moo                       Math
 [DONE]2246 Matrix Chain Multiplication          String
 [DONE]2251 Dungeon Master                       BFS
 [DONE]2255 Tree Recovery                        Binary Tree
@@ -160,3 +162,6 @@
 [DONE]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3842 An Industrial Spy                    Prime
 [DONE]3844 Divisible Subsequences               Math
+[DONE]3873 Trick or Treat                       Bisection
+[DONE]3881 Happy Telephones                     NULL
+[DONE]3882 Stammering Aliens                    Suffix Array

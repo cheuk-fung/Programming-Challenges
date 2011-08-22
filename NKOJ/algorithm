@@ -1,10 +1,12 @@
 [DONE]1001 A + B Problem		        NULL
 [DONE]1002 [NKPC1]Lucky 的難題                  Math
+[DONE]1003 [NKPC1]生成串问题                    Math
 [DONE]1005 Another A + B Problem	        NULL
 [DONE]1015 Raising Modulo Numbers               BigInteger
 [DONE]1019 计算 A+B (超级大数相加)              BigInteger
 [DONE]1039 Arbitrage                            Floyd
 [DONE]1042 Knight Moves                         BFS
+[DONE]1043 Eeny Meeny Moo                       Math
 [DONE]1044 Matrix Chain Multiplication          String
 [DONE]1053 哥德巴赫猜想                         Number Theory
 [DONE]1060 Tian Ji -- The Horse Racing          Greedy + DP
@@ -21,6 +23,7 @@
 [DONE]1213 Power Strings                        KMP
 [DONE]1214 Relatives                            Number Theory
 [DONE]1219 Triangle                             Graham Scan
+[DONE]1221 Recaman's Sequence                   NULL
 [DONE]1234 DNA Sorting                          stable sort
 [DONE]1236 a^b                                  Number Theory
 [DONE]1249 分解素因子                           Prime
@@ -62,6 +65,7 @@
 [DONE]1838 Silver Cow Party                     Dijkstra
 [DONE]1846 Best Messenger Tool——NKQQ            Bisection
 [DONE]1890 Moving ACMers                        Greedy
+[DONE]1893 统计数字                             sort
 [DONE]1965 The Seven Percent Solution           String
 [DONE]1990 Humidex                              Math
 [DONE]2021 Integer Intervals                    SPFA(max)
