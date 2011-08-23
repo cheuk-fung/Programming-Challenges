@@ -1,4 +1,4 @@
-int getPrime(int n, int* p, bool* b)
+int get_prime(int n, int* p, bool* b)
 {
     int cnt = 0;
     memset(b, true, sizeof(bool) * n);

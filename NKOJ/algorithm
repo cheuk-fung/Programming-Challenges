@@ -16,9 +16,10 @@
 [DONE]1110 Dungeon Master                       BFS
 [DONE]1114 Tree Recovery                        Binary Tree
 [DONE]1121 Ultra-QuickSort      	        Merge Sort
+[DONE]1131 编辑距离问题                         DP
 [DONE]1163 Expanding Rods                       Bisection
 [DONE]1177 Rectangles                           Computational Geometry
-[DONE]1771 Farm Tour                            MCMF
+[DONE]1175 Circle and Points                    NULL
 [DONE]1200 Euclid's Game                        Number Theory
 [DONE]1213 Power Strings                        KMP
 [DONE]1214 Relatives                            Number Theory
@@ -51,12 +52,14 @@
 [DONE]1590 Packets                              NULL
 [DONE]1593 Robot                                BFS
 [DONE]1595 Rails                                NULL
+[DONE]1597 Prime Land                           Prime
 [DONE]1602 Gossiping                            Number Theory
 [DONE]1620 Dividing			        DP(Multiple Pack)
 [DONE]1624 The Game                             BFS
 [DONE]1641 Japan                                BIT
 [DONE]1667 Power Network                        Dinic
 [DONE]1748 Black and white painting             Math
+[DONE]1771 Farm Tour                            MCMF
 [DONE]1777 Popular Cows                         Tarjan(Strongly Connected Component)
 [DONE]1822 Goldbach's Conjecture                NULL
 [DONE]1825 Dining                               Dinic

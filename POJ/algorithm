@@ -45,6 +45,7 @@
 [DONE]1324 Holedox Moving                       BFS
 [DONE]1328 Radar Installation                   Greedy
 [DONE]1363 Rails                                NULL
+[DONE]1365 Prime Land                           Prime
 [DONE]1370 Gossiping                            Number Theory
 [DONE]1376 Robot                                BFS
 [DONE]1389 Area of Simple Polygons              Segment Tree
@@ -69,6 +70,7 @@
 [DONE]1905 Expanding Rods                       Bisection
 [DONE]1915 Knight Moves                         BFS
 [DONE]1936 All in all                           String
+[DONE]1981 Circle and Points                    NULL
 [DONE]1995 Raising Modulo Numbers               BigInteger
 [DONE]2002 Squares                              Geometry
 [DONE]2007 Scrambled Polygon                    Graham Scan
