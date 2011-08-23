@@ -12,8 +12,7 @@
 #include <cstdlib>
 #include <cstring>
 
-class Trie
-{
+class Trie {
     private:
         const static int CHARSET_SIZE = 10;
         const static int BUF_SIZE = 200000;

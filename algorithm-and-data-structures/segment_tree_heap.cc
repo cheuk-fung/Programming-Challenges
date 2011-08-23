@@ -20,8 +20,7 @@ inline int fmax(int a, int b)
     return a > b ? a : b;
 }
 
-class SegTree
-{
+class SegTree {
     private:
         const static int INF = 0x3FFFFFFF;
 

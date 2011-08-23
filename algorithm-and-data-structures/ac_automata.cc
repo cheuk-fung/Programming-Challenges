@@ -22,8 +22,7 @@ struct Answers {
     char dir;
 } ans[1010];
 
-class ACAutomata
-{
+class ACAutomata {
     private:
         const static int CHARSET_SIZE = 26;
         const static int BUF_SIZE = 200000;

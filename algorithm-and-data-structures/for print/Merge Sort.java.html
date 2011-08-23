@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/Programming/competition/ACM/Algorithm/Merge Sort.java.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v9">
+<meta name="syntax" content="java">
+<meta name="settings" content="number_lines,use_css,pre_wrap,expand_tabs">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.lnr { color: #a52a2a; }
+.Constant { color: #ff00ff; }
+.Statement { color: #a52a2a; font-weight: bold; }
+.Type { color: #2e8b57; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+    <h2>Merge Sort</h2>
+<pre>
+<span class="lnr"> 1 </span><span class="Type">public</span> <span class="Type">void</span> mergeSort(<span class="Type">int</span> l, <span class="Type">int</span> r)
+<span class="lnr"> 2 </span>{
+<span class="lnr"> 3 </span>    <span class="Statement">if</span> (l + <span class="Constant">1</span> == r) <span class="Statement">return</span> ;
+<span class="lnr"> 4 </span>
+<span class="lnr"> 5 </span>    <span class="Type">int</span> mid = (l + r) / <span class="Constant">2</span>;
+<span class="lnr"> 6 </span>    mergeSort(l, mid);
+<span class="lnr"> 7 </span>    mergeSort(mid, r);
+<span class="lnr"> 8 </span>
+<span class="lnr"> 9 </span>    <span class="Type">int</span> size = <span class="Constant">0</span>;
+<span class="lnr">10 </span>    <span class="Type">int</span>[] b = <span class="Statement">new</span> <span class="Type">int</span>[r - l];
+<span class="lnr">11 </span>    <span class="Statement">for</span> (<span class="Type">int</span> i = l, j = mid; ; ) {
+<span class="lnr">12 </span>        <span class="Statement">if</span> (a[i] &lt; a[j]) b[size++] = a[i++];
+<span class="lnr">13 </span>        <span class="Statement">else</span> b[size++] = a[j++];
+<span class="lnr">14 </span>
+<span class="lnr">15 </span>        <span class="Statement">if</span> (i == mid) {
+<span class="lnr">16 </span>            <span class="Statement">while</span> (j &lt; r) b[size++] = a[j++];
+<span class="lnr">17 </span>            <span class="Statement">break</span>;
+<span class="lnr">18 </span>        }
+<span class="lnr">19 </span>        <span class="Statement">if</span> (j == r) {
+<span class="lnr">20 </span>            <span class="Statement">while</span> (i &lt; mid) b[size++] = a[i++];
+<span class="lnr">21 </span>            <span class="Statement">break</span>;
+<span class="lnr">22 </span>        }
+<span class="lnr">23 </span>    }
+<span class="lnr">24 </span>    <span class="Statement">for</span> (<span class="Type">int</span> i = <span class="Constant">0</span>; i &lt; size; i++) a[l + i] = b[i];
+<span class="lnr">25 </span>}
+</pre>
+</body>
+</html>

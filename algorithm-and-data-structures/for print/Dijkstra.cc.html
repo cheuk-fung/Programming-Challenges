@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/Programming/competition/ACM/Algorithm/Dijkstra.cc.html</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v9">
+<meta name="syntax" content="cpp">
+<meta name="settings" content="number_lines,use_css,pre_wrap,expand_tabs">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+.lnr { color: #a52a2a; }
+.Type { color: #2e8b57; font-weight: bold; }
+.Statement { color: #a52a2a; font-weight: bold; }
+.Constant { color: #ff00ff; }
+.PreProc { color: #a020f0; }
+-->
+</style>
+</head>
+<body>
+    <h2>Dijkstra</h2>
+<pre>
+<span class="lnr"> 1 </span><span class="PreProc">#include </span><span class="Constant">&lt;cstdio&gt;</span>
+<span class="lnr"> 2 </span><span class="PreProc">#include </span><span class="Constant">&lt;cstring&gt;</span>
+<span class="lnr"> 3 </span><span class="PreProc">#include </span><span class="Constant">&lt;vector&gt;</span>
+<span class="lnr"> 4 </span><span class="PreProc">#include </span><span class="Constant">&lt;queue&gt;</span>
+<span class="lnr"> 5 </span>
+<span class="lnr"> 6 </span><span class="Statement">using</span> std::vector;
+<span class="lnr"> 7 </span><span class="Statement">using</span> std::priority_queue;
+<span class="lnr"> 8 </span>
+<span class="lnr"> 9 </span><span class="Type">struct</span> Edge
+<span class="lnr">10 </span>{
+<span class="lnr">11 </span>    <span class="Type">int</span> v, d;
+<span class="lnr">12 </span>
+<span class="lnr">13 </span>    Edge(<span class="Type">int</span> vv, <span class="Type">int</span> dd)
+<span class="lnr">14 </span>        : v(vv), d(dd)
+<span class="lnr">15 </span>    { }
+<span class="lnr">16 </span>};
+<span class="lnr">17 </span>
+<span class="lnr">18 </span><span class="Type">struct</span> Node : <span class="Statement">public</span> Edge
+<span class="lnr">19 </span>{
+<span class="lnr">20 </span>    Node(<span class="Type">int</span> vv, <span class="Type">int</span> dd)
+<span class="lnr">21 </span>        : Edge(vv, dd)
+<span class="lnr">22 </span>    { }
+<span class="lnr">23 </span>
+<span class="lnr">24 </span>    <span class="Type">bool</span> <span class="Statement">operator</span> &lt; (<span class="Type">const</span> Node&amp; other) <span class="Type">const</span>
+<span class="lnr">25 </span>    {
+<span class="lnr">26 </span>        <span class="Statement">return</span> d &gt; other.d;
+<span class="lnr">27 </span>    }
+<span class="lnr">28 </span>};
+<span class="lnr">29 </span>
+<span class="lnr">30 </span><span class="Type">const</span> <span class="Type">int</span> MAXN = ;
+<span class="lnr">31 </span>
+<span class="lnr">32 </span>vector&lt;Edge&gt; edge[MAXN + <span class="Constant">1</span>];
+<span class="lnr">33 </span>
+<span class="lnr">34 </span><span class="Type">int</span> lowest[MAXN + <span class="Constant">1</span>];
+<span class="lnr">35 </span>
+<span class="lnr">36 </span><span class="Type">int</span> dijkstra()
+<span class="lnr">37 </span>{
+<span class="lnr">38 </span>    memset(lowest, <span class="Constant">0x3f</span>, <span class="Statement">sizeof</span>(lowest));
+<span class="lnr">39 </span>    lowest[<span class="Constant">0</span>] = <span class="Constant">0</span>;
+<span class="lnr">40 </span>
+<span class="lnr">41 </span>    priority_queue&lt;Node&gt; Q;
+<span class="lnr">42 </span>    Q.push(Node(<span class="Constant">0</span>, <span class="Constant">0</span>));
+<span class="lnr">43 </span>
+<span class="lnr">44 </span>    <span class="Statement">while</span> (!Q.empty()) {
+<span class="lnr">45 </span>        <span class="Type">int</span> u = Q.top().v;
+<span class="lnr">46 </span>        <span class="Type">int</span> d = Q.top().d;
+<span class="lnr">47 </span>        Q.pop();
+<span class="lnr">48 </span>        <span class="Statement">if</span> (d &gt; lowest[u]) <span class="Statement">continue</span>;
+<span class="lnr">49 </span>        <span class="Statement">for</span> (<span class="Type">int</span> i = <span class="Constant">0</span>; i &lt; edge[u].size(); i++) {
+<span class="lnr">50 </span>            <span class="Type">int</span> v = edge[u][i].v;
+<span class="lnr">51 </span>            <span class="Type">int</span> dis = edge[u][i].d;
+<span class="lnr">52 </span>            <span class="Statement">if</span> (dis + lowest[u] &lt; lowest[v]) {
+<span class="lnr">53 </span>                lowest[v] = dis + lowest[u];
+<span class="lnr">54 </span>                Q.push(Node(v, lowest[v]));
+<span class="lnr">55 </span>            }
+<span class="lnr">56 </span>        }
+<span class="lnr">57 </span>    }
+<span class="lnr">58 </span>
+<span class="lnr">59 </span>    <span class="Statement">return</span> something;
+<span class="lnr">60 </span>}
+<span class="lnr">61 </span>
+</pre>
+</body>
+</html>

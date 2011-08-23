@@ -11,8 +11,7 @@
 #include <cstdio>
 #include <cstring>
 
-class suffix_array
-{
+class SuffixArray {
     // use Doubling Algorithm
 
     private:
@@ -97,7 +96,7 @@ class suffix_array
         }
 };
 
-suffix_array sa;
+SuffixArray sa;
 
 char s[100010];
 

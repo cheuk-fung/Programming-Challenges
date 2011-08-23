@@ -10,8 +10,7 @@
 
 #include <cstdio>
 
-class SegTree
-{
+class SegTree {
     private:
         struct Node {
             int a, b; // segment [a, b)
