@@ -14,6 +14,7 @@
 [DONE]1036 Gangsters			        DP
 [DONE]1042 Gone Fishing		                DP || Greedy
 [DONE]1050 To the Max                           DP
+[DONE]1060 Modular multiplication of poly...    NULL
 [DONE]1061 frog's dating                        Number Theory
 [DONE]1062 昂贵的聘礼                           Dijkstra
 [DONE]1077 Eight                                BFS
@@ -64,6 +65,7 @@
 [DONE]1716 Integer Intervals                    SPFA(max)
 [DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
+[DONE]1775 Sum of Factorials                    NULL
 [DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
 [DONE]1822 Fence2                               Combinatorics
 [DONE]1860 Currency Exchange                    Bellman Ford
@@ -108,6 +110,7 @@
 [DONE]2411 Mondriaan's Dream                    DP
 [DONE]2441 Arrange the Bulls                    DP
 [DONE]2446 Chessboard                           Hungarian
+[DONE]2472 106 miles to Chicago                 Dijkstra
 [DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
 [DONE]2495 Incomplete chess boards              Hungarian

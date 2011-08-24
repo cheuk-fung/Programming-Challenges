@@ -8,6 +8,7 @@
 [DONE]1042 Knight Moves                         BFS
 [DONE]1043 Eeny Meeny Moo                       Math
 [DONE]1044 Matrix Chain Multiplication          String
+[DONE]1048 106 miles to Chicago                 Dijkstra
 [DONE]1053 哥德巴赫猜想                         Number Theory
 [DONE]1060 Tian Ji -- The Horse Racing          Greedy + DP
 [DONE]1081 All in all                           String
@@ -29,7 +30,9 @@
 [DONE]1236 a^b                                  Number Theory
 [DONE]1249 分解素因子                           Prime
 [DONE]1257 EXOCENTER OF A TRIANGLE              Computational Geometry
+[DONE]1270 Sum of Factorials                    NULL
 [DONE]1273 Loansome Car Buyer                   NULL
+[DONE]1289 Bignum Arithmetic                    BigInteger
 [DONE]1313 Tautology                            enum && stack
 [DONE]1324 Sorting It All Out                   Topological Sort
 [DONE]1330 Square Ice                           string
@@ -41,6 +44,7 @@
 [DONE]1434 Sudoku                               DFS
 [DONE]1442 Blue Jeans		                KMP
 [DONE]1461 Sightseeing tour                     Dinic
+[DONE]1474 Modular multiplication of poly...    NULL
 [DONE]1477 Moving Tables                        NULL
 [DONE]1500 Pie                                  Bisection
 [DONE]1504 Prime Path                           BFS
@@ -95,3 +99,6 @@
 [DONE]2167 Eat healthily                        CompletePack
 [DONE]2169 Gauss is a genius                    Math
 [DONE]2170 Happy ending                         Math
+[DONE]2171 Fair Division                        NULL
+[DONE]2173 High Score                           String
+[DONE]2174 Hill Driving                         Bisection

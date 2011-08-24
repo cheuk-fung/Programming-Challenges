@@ -8,8 +8,7 @@ using std::priority_queue;
 
 const int MAX_N = ;
 
-struct Edge
-{
+struct Edge {
     int v, d;
 
     Edge(int _v, int _d)
