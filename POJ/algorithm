@@ -61,7 +61,7 @@
 [DONE]1606 Jugs                                 BFS
 [DONE]1637 Sightseeing tour                     Dinic
 [DONE]1673 EXOCENTER OF A TRIANGLE              Computational Geometry
-[DONE]1686 Lazy Math Instructor                 string
+[DONE]1686 Lazy Math Instructor                 Expression
 [DONE]1716 Integer Intervals                    SPFA(max)
 [DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
@@ -125,6 +125,9 @@
 [DONE]2750 Potted Flower                        Segment Tree
 [DONE]2774 Long Long Message                    Suffix Array
 [DONE]2777 Count Color                          Segment Tree
+[DONE]2792 Brackets Removal                     Expression
+[DONE]2794 Double Patience                      DP
+[DONE]2799 IP Networks                          NULL
 [DONE]2823 Sliding Window                       Segment Tree || Monotone Priority Queue
 [DONE]2828 Buy Tickets                          BIT
 [DONE]2886 Who Gets the Most Candies?           Segment Tree

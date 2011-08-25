@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 1686
  * PROB: Lazy Math Instructor
- * ALGO: string
+ * ALGO: Expression
  * DATE: Aug 01, 2011 
  * COMP: c++
  *
