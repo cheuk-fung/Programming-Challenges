@@ -98,7 +98,7 @@
 [DONE]2255 Tree Recovery                        Binary Tree
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2287 Tian Ji -- The Horse Racing          Greedy + DP
-[DONE]2295 A DP Problem                         string
+[DONE]2295 A DP Problem                         Expression
 [DONE]2299 Ultra-QuickSort      		Merge Sort
 [DONE]2348 Euclid's Game                        Number Theory
 [DONE]2352 Stars                                BIT
@@ -119,6 +119,7 @@
 [DONE]2533 Longest Ordered Subsequence          DP
 [DONE]2581 Exact Change Only                    DP(Multiple Pack)
 [DONE]2586 Y2K Accounting Bug                   Greedy
+[DONE]2612 Mine Sweeper                         NULL
 [DONE]2664 Prerequisites?                       hash
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
@@ -159,6 +160,8 @@
 [DONE]3364 Black and white painting             Math
 [DONE]3436 ACM Computer Factory                 Dinic
 [DONE]3467 Cross Counting                       NULL
+[DONE]3569 Equation                             Expression
+[DONE]3573 I18n                                 String
 [DONE]3604 Professor Ben                        Number Theory
 [DONE]3630 Phone List                           Trie
 [DONE]3633 Copying DNA                          BFS

@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 2295
  * PROB: A DP Problem
- * ALGO: string
+ * ALGO: Expression
  * DATE: May 23, 2011 
  * COMP: g++
  *

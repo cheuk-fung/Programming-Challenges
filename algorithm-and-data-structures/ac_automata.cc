@@ -54,16 +54,16 @@ class ACAutomata {
             Node* p = root;
 
             while (*s) {
-                int index = *s - 'A';
-                if (!p->next[index]) {
-                    p->next[index] = &buf[bufansCnt++];
+                int idx = *s - 'A';
+                if (!p->next[idx]) {
+                    p->next[idx] = &buf[bufansCnt++];
 /*
- *                     memset(p->next[index]->next, 0, sizeof(root->next));
+ *                     memset(p->next[idx]->next, 0, sizeof(root->next));
  *                     p->fail = 0;
- *                     p->next[index]->exist = 0;
+ *                     p->next[idx]->exist = 0;
  */
                 }
-                p = p->next[index];
+                p = p->next[idx];
                 s++;
             }
 
@@ -109,9 +109,9 @@ class ACAutomata {
 
             Node* p = root;
             while (map[x][y]) {
-                int index = map[x][y] - 'A';
-                while (!p->next[index] && p != root) p = p->fail;
-                p = p->next[index];
+                int idx = map[x][y] - 'A';
+                while (!p->next[idx] && p != root) p = p->fail;
+                p = p->next[idx];
 
                 if (p->id) {
                     Node* t = p;
