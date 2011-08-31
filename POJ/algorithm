@@ -33,6 +33,7 @@
 [DONE]1167 The Buses                            DFS
 [DONE]1177 Picture                              Segment Tree
 [DONE]1183 反正切函数的应用                     Math
+[DONE]1185 炮兵阵地                             DP
 [DONE]1190 生日蛋糕                             DFS
 [DONE]1195 Mobile phones                        2D BIT(Binary Indexed Tree)
 [DONE]1200 Crazy Search                         Hash
@@ -129,6 +130,7 @@
 [DONE]2777 Count Color                          Segment Tree
 [DONE]2792 Brackets Removal                     Expression
 [DONE]2794 Double Patience                      DP
+[DONE]2796 Feel Good                            NULL
 [DONE]2799 IP Networks                          NULL
 [DONE]2823 Sliding Window                       Segment Tree || Monotone Priority Queue
 [DONE]2828 Buy Tickets                          BIT
@@ -147,6 +149,7 @@
 [DONE]3126 Prime Path                           BFS
 [DONE]3159 Candies                              Dijkstra
 [DONE]3250 Bad Hair Day                         stack
+[DONE]3254 Corn Fields                          DP
 [DONE]3258 River Hopscotch		        Bisection
 [DONE]3259 Wormholes                            Bellman Ford
 [DONE]3264 Balanced Lineup                      Segment Tree || RMQ_ST(Range Maximum/Minimum Query_Sparse Table)
