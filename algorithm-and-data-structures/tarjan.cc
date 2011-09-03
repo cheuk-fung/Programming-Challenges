@@ -20,7 +20,7 @@ vector<int> edge[MAX_N];
 
 vector<int> stack;
 int idx, scc_cnt;
-int dfn[MAX_N], low[MAX_N], scc_no[MAX_N], scc_size[MAX_N];
+int dfn[MAX_N], low[MAX_N], scc_id[MAX_N], scc_size[MAX_N];
 bool in_stack[MAX_N];
 
 void tarjan_dfs(int u)
@@ -45,7 +45,7 @@ void tarjan_dfs(int u)
             v = stack.back();
             stack.pop_back();
             in_stack[v] = false;
-            scc_no[v] = scc_cnt;
+            scc_id[v] = scc_cnt;
             scc_size[scc_cnt]++;
         } while (v != u) ;
     }
@@ -66,7 +66,7 @@ int solve()
 
     for (int u = 1; u <= n; u++)
         for (vci v = edge[u].begin(); v != edge[u].end(); v++)
-            if (scc_no[u] != scc_no[*v]) out_deg[scc_no[u]]++;
+            if (scc_id[u] != scc_id[*v]) out_deg[scc_id[u]]++;
 
     int ans = 0, ans_cnt = 0;
     for (int i = 1; i <= scc_cnt; i++)
