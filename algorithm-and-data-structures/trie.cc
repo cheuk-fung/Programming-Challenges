@@ -23,14 +23,19 @@ class Trie {
         };
         Node* root;
 
-        int bufCnt;
+        int buf_cnt;
         Node buf[BUF_SIZE];
 
     public:
+        Trie()
+        {
+            reset();
+        }
+
         void reset()
         {
-            bufCnt = 0;
-            root = &buf[bufCnt++];
+            buf_cnt = 0;
+            root = &buf[buf_cnt++];
             memset(root->next, 0, sizeof(root->next));
             root->exist = false;
         }
@@ -44,7 +49,7 @@ class Trie {
 
                 int index = *s - '0';
                 if (!p->next[index]) {
-                    p->next[index] = &buf[bufCnt++];
+                    p->next[index] = &buf[buf_cnt++];
                     memset(p->next[index]->next, 0, sizeof(root->next));
                     p->next[index]->exist = 0;
                 }
