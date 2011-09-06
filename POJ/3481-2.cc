@@ -22,6 +22,7 @@ class Splay {
         struct Node {
             int key;
             int id;
+            Node* p;
             Node* l;
             Node* r;
         };
@@ -42,103 +43,148 @@ class Splay {
             return x;
         }
 
-        Node* left_rotate(Node* x)
+        void left_rotate(Node* x)
         {
             Node* y = x->r;
             x->r = y->l;
+            if (y->l) y->l->p = x;
             y->l = x;
 
-            return y;
+            if (x->p) {
+                if (x == x->p->l) x->p->l = y;
+                else x->p->r = y;
+            }
+            else root = y;
+
+            y->p = x->p;
+            x->p = y;
         }
 
-        Node* right_rotate(Node* x)
+        void right_rotate(Node* x)
         {
             Node* y = x->l;
             x->l = y->r;
+            if (y->r) y->r->p = x;
             y->r = x;
 
-            return y;
-        }
-
-        Node* splay(Node* x, int key)
-        {
-            if (!x) return x;
-
-            Node* y = new Node;
-            y->l = y->r = 0;
-            Node* larger = y;
-            Node* smaller = y;
-            
-            while (key != x->key) {
-                if (key < x->key) {
-                    if (x->l && key < x->l->key) x = right_rotate(x);
-                    if (!x->l) break;
-                    larger->l = x;
-                    larger = x;
-                    x = x->l;
-                }
-                else {  // key > x->key
-                    if (x->r && key > x->r->key) x = left_rotate(x);
-                    if (!x->r) break;
-                    smaller->r = x;
-                    smaller = x;
-                    x = x->r;
-                }
+            if (x->p) {
+                if (x == x->p->l) x->p->l = y;
+                else x->p->r = y;
             }
+            else root = y;
 
-            larger->l = x->r;
-            smaller->r = x->l;
-            x->l = y->r;
-            x->r = y->l;
-
-            delete y;
-
-            return x;
+            y->p = x->p;
+            x->p = y;
         }
 
-        Node* _insert(Node* x, int key, int id)
+        void splay(Node* x)
         {
-            if (x) x = splay(x, key);
+            if (x == root) return ;
 
-            size++;
-            Node* y = &buf[buf_cnt++];
-            y->key = key;
-            y->id = id;
-            y->l = y->r = 0;
-
-            if (!x) return y;
-
-            if (key < x->key) {
-                y->l = x->l;
-                y->r = x;
-                x->l = 0;
+            if (x->p == root) {
+                if (x == root->l) right_rotate(root);
+                else left_rotate(root);
             }
             else {
-                y->r = x->r;
-                y->l = x;
-                x->r = 0;
+                Node* p = x->p;
+                Node* g = p->p;
+                if (x == p->l && p == g->l) {
+                    right_rotate(g);
+                    right_rotate(p);
+                }
+                else if (x == p->r && p == g->r) {
+                    left_rotate(g);
+                    left_rotate(p);
+                }
+                else if (x == p->l && p == g->r) {
+                    right_rotate(p);
+                    left_rotate(g);
+                }
+                else {
+                    left_rotate(p);
+                    right_rotate(g);
+                }
             }
 
-            return y;
+            splay(x);
         }
 
-        Node* _erase(Node* x, int key)
+        void _insert(Node* x, Node* p, bool is_left, int key, int id)
         {
-            if (!x) return 0;
+            if (!x) {
+                size++;
+                x = &buf[buf_cnt++];
+                x->key = key;
+                x->id = id;
+                x->p = p;
+                x->l = x->r = 0;
 
-            x = splay(x, key);
-            if (key == x->key) {
-                size--;
+                if (p) {
+                    if (is_left) p->l = x;
+                    else p->r = x;
+                }
+                else root = x;
+
+                splay(x);
+
+                return ;
+            }
+
+            if (key < x->key) _insert(x->l, x, 1, key, id);
+            else _insert(x->r, x, 0, key, id);
+        }
+
+        void _erase(Node* x, int key)
+        {
+            if (!x) return ;
+
+            if (key < x->key) _erase(x->l, key);
+            else if (key > x->key) _erase(x->r, key);
+            else {
                 Node* y;
-                if (!x->l) y = x->r;
-                else {
-                    y = splay(x->l, key);
-                    y->r = x->r;
+                if (x == root) {
+                    if (size == 1) {
+                        size = 0;
+                        root = 0;
+                        return ;
+                    }
+
+                    if (x->l) y = get_max(x->l);
+                    else y = get_min(x->r);
+                    splay(y);
+                    _erase(root, key);
+
+                    return ;
                 }
 
-                return y;
+                size--;
+                if (!x->l && !x->r) {
+                    if (x == x->p->l) x->p->l = 0;
+                    else x->p->r = 0;
+                    y = x;
+                }
+                else {
+                    if (!x->l) y = x->r;
+                    else if (!x->r) y = x->l;
+                    else {
+                        y = get_max(x->l);
+
+                        y->r = x->r;
+                        x->r->p = y;
+                        if (y->p != x) {
+                            y->p->r = y->l;
+                            if (y->l) y->l->p = y->p;
+                            y->l = x->l;
+                            x->l->p = y;
+                        }
+                    }
+                    if (x == x->p->l) x->p->l = y;
+                    else x->p->r = y;
+                    y->p = x->p;
+                }
+
+                splay(y->p);
             }
-            return x;
         }
 
     public:
@@ -161,12 +207,12 @@ class Splay {
 
         void insert(int key, int id)
         {
-            root = _insert(root, key, id);
+            _insert(root, 0, 0, key, id);
         }
 
         void erase(int key)
         {
-            root = _erase(root, key);
+            _erase(root, key);
         }
 
         pair<int, int> find_max() const
