@@ -1,27 +1,31 @@
 /*
- *  SRC: POJ 3481
- * PROB: Double Queue
+ *  SRC: POJ 2985
+ * PROB: The k-th Largest Group
  * ALGO: Splay
- * DATE: Sep 04, 2011 
+ * DATE: Sep 05, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
  */
 
+/* TLE */
+
 #include <cstdio>
 #include <cstring>
-#include <utility>
+#include <algorithm>
 
-using std::pair;
+using std::swap;
+
+const int MAX_N = 200010;
 
 class Splay {
     private:
-        const static int BUF_SIZE = 1000010;
+        const static int BUF_SIZE = MAX_N;
         int size;
 
         struct Node {
             int key;
-            int id;
+            int size, cnt;
             Node* l;
             Node* r;
         };
@@ -42,11 +46,33 @@ class Splay {
             return x;
         }
 
+        void update_size(Node* x)
+        {
+            x->size = x->cnt;
+            if (x->l) x->size += x->l->size;
+            if (x->r) x->size += x->r->size;
+        }
+
+        void update_larger_size(Node* x, const Node* end)
+        {
+            if (x == end) return ;
+            update_larger_size(x->l, end);
+            update_size(x);
+        }
+
+        void update_smaller_size(Node* x, const Node* end)
+        {
+            if (x == end) return ;
+            update_smaller_size(x->r, end);
+            update_size(x);
+        }
+
         Node* left_rotate(Node* x)
         {
             Node* y = x->r;
             x->r = y->l;
             y->l = x;
+            update_size(x);
 
             return y;
         }
@@ -56,6 +82,7 @@ class Splay {
             Node* y = x->l;
             x->l = y->r;
             y->r = x;
+            update_size(x);
 
             return y;
         }
@@ -88,22 +115,33 @@ class Splay {
 
             larger->l = x->r;
             smaller->r = x->l;
+            update_larger_size(y->l, larger->l);
+            update_smaller_size(y->r, smaller->r);
+
             x->l = y->r;
             x->r = y->l;
-
+            update_size(x);
+            
             delete y;
 
             return x;
         }
 
-        Node* _insert(Node* x, int key, int id)
+        Node* _insert(Node* x, int key)
         {
-            if (x) x = splay(x, key);
+            if (x) {
+                x = splay(x, key);
+                if (key == x->key) {
+                    x->size++;
+                    x->cnt++;
+                    return x;
+                }
+            }
 
             size++;
             Node* y = &buf[buf_cnt++];
             y->key = key;
-            y->id = id;
+            y->size = y->cnt = 1;
             y->l = y->r = 0;
 
             if (!x) return y;
@@ -118,6 +156,8 @@ class Splay {
                 y->l = x;
                 x->r = 0;
             }
+            update_size(x);
+            update_size(y);
 
             return y;
         }
@@ -128,12 +168,19 @@ class Splay {
 
             x = splay(x, key);
             if (key == x->key) {
+                if (x->cnt > 1) {
+                    x->size--;
+                    x->cnt--;
+                    return x;
+                }
+
                 size--;
                 Node* y;
                 if (!x->l) y = x->r;
                 else {
                     y = splay(x->l, key);
                     y->r = x->r;
+                    update_size(y);
                 }
 
                 return y;
@@ -156,12 +203,12 @@ class Splay {
 
         bool empty()
         {
-            return !size;
+            return !root;
         }
 
-        void insert(int key, int id)
+        void insert(int key)
         {
-            root = _insert(root, key, id);
+            root = _insert(root, key);
         }
 
         void erase(int key)
@@ -169,50 +216,71 @@ class Splay {
             root = _erase(root, key);
         }
 
-        pair<int, int> find_max() const
+        int search(int k)
         {
-            Node* x = get_max(root);
-            return pair<int, int>(x->key, x->id);
-        }
-
-        pair<int, int> find_min() const
-        {
-            Node* x = get_min(root);
-            return pair<int, int>(x->key, x->id);
+            Node* x = root;
+            while (1 + 1 == 2) {
+                if (x->r && x->r->size >= k) {
+                    x = x->r;
+                    continue;
+                }
+                if (x->r) k -= x->r->size;
+                if (k <= x->cnt) return x->key;
+                k -= x->cnt;
+                x = x->l;
+            }
         }
 };
 
 Splay splay;
 
+int fa[MAX_N], fa_size[MAX_N];
+
+int get_father(int u)
+{
+    if (fa[u] == u) return u;
+
+    return fa[u] = get_father(fa[u]);
+}
+
+void ds_union(int u, int v)
+{
+    int x = get_father(u);
+    int y = get_father(v);
+    if (x != y) fa[x] = y;
+}
+
+void combine(int x, int y)
+{
+    if (get_father(x) == get_father(y)) return ;
+    splay.erase(fa_size[fa[x]]);
+    splay.erase(fa_size[fa[y]]);
+    int new_size = fa_size[fa[x]] + fa_size[fa[y]];
+    splay.insert(new_size);
+    ds_union(x, y);
+    fa_size[get_father(x)] = new_size;
+}
+
 int main()
 {
-    int order;
-    while (scanf("%d", &order), order) {
-        switch(order) {
-            case 0: return 0;
-            case 1: {
-                        int key, id;
-                        scanf("%d%d", &id, &key);
-                        splay.insert(key, id);
-                        break;
-                    }
-            case 2: {
-                        if (splay.empty()) puts("0");
-                        else {
-                            pair<int, int> ans = splay.find_max();
-                            printf("%d\n", ans.second);
-                            splay.erase(ans.first);
-                        }
-                        break;
-                    }
-            case 3: {
-                        if (splay.empty()) puts("0");
-                        else {
-                            pair<int, int> ans = splay.find_min();
-                            printf("%d\n", ans.second);
-                            splay.erase(ans.first);
-                        }
-                    }
+    int n, m;
+    scanf("%d%d", &n, &m);
+    for (int i = 1; i <= n; i++) {
+        fa[i] = i;
+        fa_size[i] = 1;
+        splay.insert(1);
+    }
+
+    int c, i, j, k;
+    while (m--) {
+        scanf("%d", &c);
+        if (!c) {
+            scanf("%d%d", &i, &j);
+            combine(i, j);
+        }
+        else {
+            scanf("%d", &k);
+            printf("%d\n", splay.search(k));
         }
     }
 

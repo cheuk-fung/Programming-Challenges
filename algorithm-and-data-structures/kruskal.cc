@@ -27,17 +27,17 @@ struct Edge
 
 int fa[MAX_N];
 
-int getFather(int u)
+int get_father(int u)
 {
     if (fa[u] == u) return u;
 
-    return fa[u] = getFather(fa[u]);
+    return fa[u] = get_father(fa[u]);
 }
 
-void dsUnion(int u, int v)
+void ds_union(int u, int v)
 {
-    int x = getFather(u);
-    int y = getFather(v);
+    int x = get_father(u);
+    int y = get_father(v);
     if (x != y) fa[x] = y;
 }
 
@@ -64,8 +64,8 @@ bool kruskal()
 
     int sum = 0;
     for (int i = 0; i < cnt; i++)
-        if (getFather(edge[i].u) != getFather(edge[i].v)) {
-            dsUnion(edge[i].u, edge[i].v);
+        if (get_father(edge[i].u) != get_father(edge[i].v)) {
+            ds_union(edge[i].u, edge[i].v);
             sum += edge[i].d;
         }
 

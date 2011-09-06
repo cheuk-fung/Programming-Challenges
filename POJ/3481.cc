@@ -124,7 +124,7 @@ class Treap {
 
         bool empty()
         {
-            return !size;
+            return !root;
         }
 
         void insert(int key, int id)
