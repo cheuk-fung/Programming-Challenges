@@ -83,6 +83,7 @@
 [DONE]2081 Recaman's Sequence                   NULL
 [DONE]2092 Grandpa is Famous		        NULL
 [DONE]2094 Angry Teacher                        Math + BigInteger
+[DONE]2104 K-th Number                          Partition Tree
 [DONE]2109 Power of Cryptography                Bisection
 [DONE]2115 C Looooops                           Number Theory
 [DONE]2135 Farm Tour                            MCMF
@@ -110,9 +111,12 @@
 [DONE]2406 Power Strings                        KMP
 [DONE]2407 Relatives                            Number Theory
 [DONE]2411 Mondriaan's Dream                    DP
+[DONE]2418 Hardwood Species                     Hash
 [DONE]2441 Arrange the Bulls                    DP
 [DONE]2446 Chessboard                           Hungarian
 [DONE]2472 106 miles to Chicago                 Dijkstra
+[DONE]2478 Farey Sequence                       Number Theory
+[DONE]2482 Stars in Your Window                 Segment Tree
 [DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
 [DONE]2495 Incomplete chess boards              Hungarian
@@ -126,6 +130,7 @@
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2750 Potted Flower                        Segment Tree
+[DONE]2761 Feed the dogs                        Splay
 [DONE]2774 Long Long Message                    Suffix Array
 [DONE]2777 Count Color                          Segment Tree
 [DONE]2792 Brackets Removal                     Expression

@@ -12,22 +12,22 @@
 
 class SegTree {
     private:
-        struct Node {
+        struct Tnode {
             int a, b; // segment [a, b)
             int cover;
             int pure;
-            Node* lc;
-            Node* rc;
+            Tnode* lc;
+            Tnode* rc;
 
-            Node(int _a, int _b)
+            Tnode(int _a, int _b)
                 : a(_a), b(_b), cover(1), pure(1), lc(0), rc(0)
             { }
         };
-        Node* root;
+        Tnode* root;
 
-        Node* build(int a, int b)
+        Tnode* build(int a, int b)
         {
-            Node* p = new Node(a, b);
+            Tnode* p = new Tnode(a, b);
 
             if (a + 1 < b) {
                 p->lc = build(a, (a + b) / 2);
@@ -37,7 +37,7 @@ class SegTree {
             return p;
         }
 
-        void _insert(int c, int d, int color, Node* p)
+        void _insert(int c, int d, int color, Tnode* p)
         {
             if (c <= p->a && p->b <= d) {
                 p->pure = 1;
@@ -61,7 +61,7 @@ class SegTree {
             p->cover = p->lc->cover | p->rc->cover;
         }
 
-        int _query(int c, int d, Node* p)
+        int _query(int c, int d, Tnode* p)
         {
             if ((c <= p->a && p->b <= d) || p->pure)
                 return p->cover;

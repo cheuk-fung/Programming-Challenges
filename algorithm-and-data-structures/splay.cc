@@ -21,209 +21,171 @@ const int MAX_N = 200010;
 class Splay {
     private:
         const static int BUF_SIZE = MAX_N;
-        int size;
+        int tree_size;
 
-        struct Node {
+        struct Tnode {
             int key;
             int size, cnt;
-            Node* p;
-            Node* l;
-            Node* r;
+            Tnode* l;
+            Tnode* r;
         };
 
         int buf_cnt;
-        Node buf[BUF_SIZE];
-        Node* root;
+        Tnode buf[BUF_SIZE];
+        Tnode* root;
 
-        Node* get_max(Node* x) const
+        Tnode* get_max(Tnode* x) const
         {
             while (x->r) x = x->r;
             return x;
         }
 
-        Node* get_min(Node* x) const
+        Tnode* get_min(Tnode* x) const
         {
             while (x->l) x = x->l;
             return x;
         }
 
-        void update_size(Node* x)
+        void update_size(Tnode* x)
         {
             x->size = x->cnt;
             if (x->l) x->size += x->l->size;
             if (x->r) x->size += x->r->size;
         }
 
-        void update_tree_size(Node* x)
+        void update_larger_size(Tnode* x, const Tnode* end)
         {
-            while (x) {
-                update_size(x);
-                x = x->p;
-            }
+            if (x == end) return ;
+            update_larger_size(x->l, end);
+            update_size(x);
         }
 
-        void left_rotate(Node* x)
+        void update_smaller_size(Tnode* x, const Tnode* end)
         {
-            Node* y = x->r;
+            if (x == end) return ;
+            update_smaller_size(x->r, end);
+            update_size(x);
+        }
+
+        Tnode* left_rotate(Tnode* x)
+        {
+            Tnode* y = x->r;
             x->r = y->l;
-            if (y->l) y->l->p = x;
             y->l = x;
-
-            if (x->p) {
-                if (x == x->p->l) x->p->l = y;
-                else x->p->r = y;
-            }
-            else root = y;
-
-            y->p = x->p;
-            x->p = y;
-
             update_size(x);
-            update_size(y);
+
+            return y;
         }
 
-        void right_rotate(Node* x)
+        Tnode* right_rotate(Tnode* x)
         {
-            Node* y = x->l;
+            Tnode* y = x->l;
             x->l = y->r;
-            if (y->r) y->r->p = x;
             y->r = x;
+            update_size(x);
 
-            if (x->p) {
-                if (x == x->p->l) x->p->l = y;
-                else x->p->r = y;
+            return y;
+        }
+
+        Tnode* splay(Tnode* x, int key)
+        {
+            if (!x) return x;
+
+            Tnode* y = new Tnode;
+            y->l = y->r = 0;
+            Tnode* larger = y;
+            Tnode* smaller = y;
+            
+            while (key != x->key) {
+                if (key < x->key) {
+                    if (x->l && key < x->l->key) x = right_rotate(x);
+                    if (!x->l) break;
+                    larger->l = x;
+                    larger = x;
+                    x = x->l;
+                }
+                else {  // key > x->key
+                    if (x->r && key > x->r->key) x = left_rotate(x);
+                    if (!x->r) break;
+                    smaller->r = x;
+                    smaller = x;
+                    x = x->r;
+                }
             }
-            else root = y;
 
-            y->p = x->p;
-            x->p = y;
+            larger->l = x->r;
+            smaller->r = x->l;
+            update_larger_size(y->l, larger->l);
+            update_smaller_size(y->r, smaller->r);
 
+            x->l = y->r;
+            x->r = y->l;
+            update_size(x);
+            
+            delete y;
+
+            return x;
+        }
+
+        Tnode* _insert(Tnode* x, int key)
+        {
+            if (x) {
+                x = splay(x, key);
+                if (key == x->key) {
+                    x->size++;
+                    x->cnt++;
+                    return x;
+                }
+            }
+
+            tree_size++;
+            Tnode* y = &buf[buf_cnt++];
+            y->key = key;
+            y->size = y->cnt = 1;
+            y->l = y->r = 0;
+
+            if (!x) return y;
+
+            if (key < x->key) {
+                y->l = x->l;
+                y->r = x;
+                x->l = 0;
+            }
+            else {
+                y->r = x->r;
+                y->l = x;
+                x->r = 0;
+            }
             update_size(x);
             update_size(y);
+
+            return y;
         }
 
-        void splay(Node* x)
+        Tnode* _erase(Tnode* x, int key)
         {
-            if (x == root) return ;
+            if (!x) return 0;
 
-            if (x->p == root) {
-                if (x == root->l) right_rotate(root);
-                else left_rotate(root);
-            }
-            else {
-                Node* p = x->p;
-                Node* g = p->p;
-                if (x == p->l && p == g->l) {
-                    right_rotate(g);
-                    right_rotate(p);
-                }
-                else if (x == p->r && p == g->r) {
-                    left_rotate(g);
-                    left_rotate(p);
-                }
-                else if (x == p->l && p == g->r) {
-                    right_rotate(p);
-                    left_rotate(g);
-                }
-                else {
-                    left_rotate(p);
-                    right_rotate(g);
-                }
-            }
-
-            splay(x);
-        }
-
-        void _insert(Node* x, Node* p, bool is_left, int key)
-        {
-            if (!x) {
-                size++;
-                x = &buf[buf_cnt++];
-                x->key = key;
-                x->size = x->cnt = 1;
-                x->p = p;
-                x->l = x->r = 0;
-
-                if (p) {
-                    if (is_left) p->l = x;
-                    else p->r = x;
-                }
-                else root = x;
-
-                splay(x);
-
-                return ;
-            }
-
-            if (key < x->key) _insert(x->l, x, 1, key);
-            else if (key > x->key) _insert(x->r, x, 0, key);
-            else {
-                x->cnt++;
-                splay(x);
-            }
-        }
-
-        void _erase(Node* x, int key)
-        {
-            if (!x) return ;
-
-            if (key < x->key) _erase(x->l, key);
-            else if (key > x->key) _erase(x->r, key);
-            else {
+            x = splay(x, key);
+            if (key == x->key) {
                 if (x->cnt > 1) {
-                    x->cnt--;
                     x->size--;
-
-                    splay(x);
-
-                    return ;
+                    x->cnt--;
+                    return x;
                 }
 
-                Node* y;
-                if (x == root) {
-                    if (size == 1) {
-                        size = 0;
-                        root = 0;
-                        return ;
-                    }
-
-                    if (x->l) y = get_max(x->l);
-                    else y = get_min(x->r);
-                    splay(y);
-                    _erase(root, key);
-
-                    return ;
-                }
-
-                size--;
-                if (!x->l && !x->r) {
-                    if (x == x->p->l) x->p->l = 0;
-                    else x->p->r = 0;
-                    y = x;
-                }
+                tree_size--;
+                Tnode* y;
+                if (!x->l) y = x->r;
                 else {
-                    if (!x->l) y = x->r;
-                    else if (!x->r) y = x->l;
-                    else {
-                        y = get_max(x->l);
-
-                        y->r = x->r;
-                        x->r->p = y;
-                        if (y->p != x) {
-                            y->p->r = y->l;
-                            if (y->l) y->l->p = y->p;
-                            y->l = x->l;
-                            x->l->p = y;
-                        }
-                    }
-                    if (x == x->p->l) x->p->l = y;
-                    else x->p->r = y;
-                    update_tree_size(y->p);
-                    y->p = x->p;
+                    y = splay(x->l, key);
+                    y->r = x->r;
+                    update_size(y);
                 }
 
-                splay(y->p);
+                return y;
             }
+            return x;
         }
 
     public:
@@ -234,29 +196,29 @@ class Splay {
 
         void reset()
         {
-            size = buf_cnt = 0;
+            tree_size = buf_cnt = 0;
             memset(buf, 0, sizeof(buf));
             root = 0;
         }
 
         bool empty()
         {
-            return !size;
+            return !root;
         }
 
         void insert(int key)
         {
-            _insert(root, 0, 0, key);
+            root = _insert(root, key);
         }
 
         void erase(int key)
         {
-            _erase(root, key);
+            root = _erase(root, key);
         }
 
-        int search(int k)
+        int query(int k)
         {
-            Node* x = root;
+            Tnode* x = root;
             while (1 + 1 == 2) {
                 if (x->r && x->r->size >= k) {
                     x = x->r;
@@ -318,7 +280,7 @@ int main()
         }
         else {
             scanf("%d", &k);
-            printf("%d\n", splay.search(k));
+            printf("%d\n", splay.query(k));
         }
     }
 

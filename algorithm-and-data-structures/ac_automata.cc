@@ -27,16 +27,16 @@ class ACAutomata {
         const static int CHARSET_SIZE = 26;
         const static int BUF_SIZE = 200000;
 
-        struct Node {
-            Node* next[CHARSET_SIZE];
-            Node* fail;
+        struct Tnode {
+            Tnode* next[CHARSET_SIZE];
+            Tnode* fail;
             int exist;
             int id; // used just in this problem
         };
-        Node* root;
+        Tnode* root;
 
         int bufansCnt;
-        Node buf[BUF_SIZE];
+        Tnode buf[BUF_SIZE];
 
     public:
         void reset()
@@ -51,7 +51,7 @@ class ACAutomata {
 //        int insert(char*s)
         int insert(char *s, int id)
         {
-            Node* p = root;
+            Tnode* p = root;
 
             while (*s) {
                 int idx = *s - 'A';
@@ -75,7 +75,7 @@ class ACAutomata {
 
         void buildFail()
         {
-            queue<Node*> Q;
+            queue<Tnode*> Q;
 
             for (int i = 0; i < CHARSET_SIZE; i++) {
                 if (root->next[i]) {
@@ -86,13 +86,13 @@ class ACAutomata {
             }
 
             while (!Q.empty()) {
-                Node* curr = Q.front();
+                Tnode* curr = Q.front();
                 Q.pop();
 
                 for (int i = 0; i < CHARSET_SIZE; i++) {
-                    Node* u = curr->next[i];
+                    Tnode* u = curr->next[i];
                     if (u) {
-                        Node* v = curr->fail;
+                        Tnode* v = curr->fail;
                         while (!v->next[i]) v = v->fail;
                         u->fail = v->next[i];
 
@@ -107,14 +107,14 @@ class ACAutomata {
         {
 //            int res = 0;
 
-            Node* p = root;
+            Tnode* p = root;
             while (map[x][y]) {
                 int idx = map[x][y] - 'A';
                 while (!p->next[idx] && p != root) p = p->fail;
                 p = p->next[idx];
 
                 if (p->id) {
-                    Node* t = p;
+                    Tnode* t = p;
                     while (t != root && t->id != -1) {
                         if (t->id) {
                             ansCnt++;

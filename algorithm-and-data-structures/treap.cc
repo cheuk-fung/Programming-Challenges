@@ -21,41 +21,41 @@ const int MAX_N = 200010;
 class Treap {
     private:
         const static int BUF_SIZE = MAX_N;
-        int size;
+        int tree_size;
 
-        struct Node {
+        struct Tnode {
             int key, fix;
             int size, cnt;
-            Node* l;
-            Node* r;
+            Tnode* l;
+            Tnode* r;
         };
 
         int buf_cnt;
-        Node buf[BUF_SIZE];
-        Node* root;
+        Tnode buf[BUF_SIZE];
+        Tnode* root;
 
-        Node* get_max(Node* x) const
+        Tnode* get_max(Tnode* x) const
         {
             while (x->r) x = x->r;
             return x;
         }
 
-        Node* get_min(Node* x) const
+        Tnode* get_min(Tnode* x) const
         {
             while (x->l) x = x->l;
             return x;
         }
 
-        void update_size(Node* x)
+        void update_size(Tnode* x)
         {
             x->size = x->cnt;
             if (x->l) x->size += x->l->size;
             if (x->r) x->size += x->r->size;
         }
 
-        Node* left_rotate(Node* x)
+        Tnode* left_rotate(Tnode* x)
         {
-            Node* y = x->r;
+            Tnode* y = x->r;
             x->r = y->l;
             y->l = x;
 
@@ -65,9 +65,9 @@ class Treap {
             return y;
         }
 
-        Node* right_rotate(Node* x)
+        Tnode* right_rotate(Tnode* x)
         {
-            Node* y = x->l;
+            Tnode* y = x->l;
             x->l = y->r;
             y->r = x;
 
@@ -77,10 +77,10 @@ class Treap {
             return y;
         }
 
-        Node* _insert(Node* x, int key)
+        Tnode* _insert(Tnode* x, int key)
         {
             if (!x) {
-                size++;
+                tree_size++;
                 x = &buf[buf_cnt++];
                 x->key = key;
                 x->fix = rand() * rand();
@@ -105,7 +105,7 @@ class Treap {
             return x;
         }
 
-        Node* _erase(Node* x, int key)
+        Tnode* _erase(Tnode* x, int key)
         {
             if (!x) return 0;
 
@@ -119,7 +119,7 @@ class Treap {
                 }
 
                 if (!x->l && !x->r) {
-                    size--;
+                    tree_size--;
                     return 0;
                 }
 
@@ -145,7 +145,7 @@ class Treap {
 
         void reset()
         {
-            size = buf_cnt = 0;
+            tree_size = buf_cnt = 0;
             memset(buf, 0, sizeof(buf));
             root = 0;
         }
@@ -165,9 +165,9 @@ class Treap {
             root = _erase(root, key);
         }
 
-        int search(int k)
+        int query(int k)
         {
-            Node* x = root;
+            Tnode* x = root;
             while (1 + 1 == 2) {
                 if (x->r && x->r->size >= k) {
                     x = x->r;
@@ -229,7 +229,7 @@ int main()
         }
         else {
             scanf("%d", &k);
-            printf("%d\n", treap.search(k));
+            printf("%d\n", treap.query(k));
         }
     }
 

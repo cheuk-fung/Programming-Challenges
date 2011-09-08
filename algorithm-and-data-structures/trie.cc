@@ -17,14 +17,14 @@ class Trie {
         const static int CHARSET_SIZE = 10;
         const static int BUF_SIZE = 200000;
 
-        struct Node {
-            Node* next[CHARSET_SIZE];
+        struct Tnode {
+            Tnode* next[CHARSET_SIZE];
             int exist;
         };
-        Node* root;
+        Tnode* root;
 
         int buf_cnt;
-        Node buf[BUF_SIZE];
+        Tnode buf[BUF_SIZE];
 
     public:
         Trie()
@@ -42,7 +42,7 @@ class Trie {
 
         int insert(char *s)
         {
-            Node* p = root;
+            Tnode* p = root;
 
             while (*s) {
                 if (p->exist) return false;
