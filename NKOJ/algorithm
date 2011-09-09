@@ -19,6 +19,7 @@
 [DONE]1114 Tree Recovery                        Binary Tree
 [DONE]1121 Ultra-QuickSort      	        Merge Sort
 [DONE]1131 编辑距离问题                         DP
+[DONE]1153 The Bottom of a Graph                Tarjan
 [DONE]1163 Expanding Rods                       Bisection
 [DONE]1177 Rectangles                           Computational Geometry
 [DONE]1175 Circle and Points                    NULL
@@ -33,6 +34,7 @@
 [DONE]1257 EXOCENTER OF A TRIANGLE              Computational Geometry
 [DONE]1270 Sum of Factorials                    NULL
 [DONE]1273 Loansome Car Buyer                   NULL
+[DONE]1285 Hardwood Species                     Hash
 [DONE]1289 Bignum Arithmetic                    BigInteger
 [DONE]1313 Tautology                            enum && stack
 [DONE]1324 Sorting It All Out                   Topological Sort

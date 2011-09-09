@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 2186
- * PROB: Popular Cows
- * ALGO: Tarjan(Strongly Connected Component)
- * DATE: Jul 23, 2011 
+ *  SRC: POJ 2553
+ * PROB: The Bottom of a Graph
+ * ALGO: Tarjan
+ * DATE: Sep 09, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -10,12 +10,14 @@
 
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
 #include <vector>
 
+using std::sort;
 using std::vector;
 
 typedef vector<int>::const_iterator vci;
-const int MAX_N = 10010;
+const int MAX_N = 5010;
 
 vector<int> edge[MAX_N];
 
@@ -66,38 +68,50 @@ void tarjan(int n)
 
 int n, m;
 int out_deg[MAX_N];
+vector<int> ans;
 
-int solve()
+void solve()
 {
-    if (scc_cnt == 1) return n;
+    memset(out_deg, 0, sizeof(out_deg));
 
     for (int u = 1; u <= n; u++)
         for (vci v = edge[u].begin(); v != edge[u].end(); v++)
             if (scc_id[u] != scc_id[*v]) out_deg[scc_id[u]]++;
 
-    int ans = 0, ans_cnt = 0;
     for (int i = 1; i <= scc_cnt; i++)
         if (out_deg[i] == 0) {
-            ans = scc_size[i];
-            ans_cnt++;
+            for (int j = 1; j <= n; j++)
+                if (scc_id[j] == i) ans.push_back(j);
         }
 
-    return ans_cnt == 1 ? ans : 0;
+    if (ans.empty()) {
+        putchar(10);
+        return ;
+    }
+
+    sort(ans.begin(), ans.end());
+
+    printf("%d", *ans.begin());
+    for (vci p = ans.begin() + 1; p != ans.end(); p++)
+        printf(" %d", *p);
+    putchar(10);
+
+    ans.clear();
 }
 
 int main()
 {
-    scanf("%d%d", &n, &m);
-
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        scanf("%d%d", &a, &b);
-        edge[a].push_back(b);
+    while (scanf("%d%d", &n, &m) != EOF) {
+        for (int i = 0; i < m; i++) {
+            int a, b;
+            scanf("%d%d", &a, &b);
+            edge[a].push_back(b);
+        }
+        tarjan(n);
+        solve();
+        for (int i = 1; i <= n; i++)
+            edge[i].clear();
     }
-
-    tarjan(n);
-
-    printf("%d\n", solve());
 
     return 0;
 }

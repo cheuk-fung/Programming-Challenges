@@ -123,6 +123,7 @@
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2528 Mayor's posters                      Segment Tree
 [DONE]2533 Longest Ordered Subsequence          DP
+[DONE]2553 The Bottom of a Graph                Tarjan
 [DONE]2581 Exact Change Only                    DP(Multiple Pack)
 [DONE]2586 Y2K Accounting Bug                   Greedy
 [DONE]2612 Mine Sweeper                         NULL
@@ -170,6 +171,7 @@
 [DONE]3364 Black and white painting             Math
 [DONE]3436 ACM Computer Factory                 Dinic
 [DONE]3467 Cross Counting                       NULL
+[DONE]3469 Dual Core CPU                        Dinic
 [DONE]3481 Double Queue                         Treap || Splay
 [DONE]3565 Ants                                 NULL
 [DONE]3566 Building for UN                      NULL
@@ -181,6 +183,7 @@
 [DONE]3650 The Seven Percent Solution           String
 [DONE]3659 Cell Phone Network                   Tree DP
 [DONE]3661 Running                              DP
+[DONE]3686 The Windy's                          MCMF
 [DONE]3690 Constellations		        bit
 [DONE]3692 Kindergarten                         Hungarian
 [DONE]3768 Repeater			        D&C(Divide and Conquer)

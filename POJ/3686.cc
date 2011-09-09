@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 2135
- * PROB: Farm Tour
+ *  SRC: POJ 3686
+ * PROB: The Windy's
  * ALGO: MCMF
- * DATE: Jul 25, 2011 
+ * DATE: Sep 09, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -27,9 +27,10 @@ struct Edge {
 };
 
 const int INF = 0x3fffffff;
-const int MAXN = 1010;
+const int MAXN = 500000;
 const int orig = 0, dest = MAXN;
 
+int n, m;
 vector<Edge> edge[MAXN + 1];
 
 struct Route {
@@ -56,16 +57,23 @@ inline void add_edge(int u, int v, int capa, int cpf)
 
 void build_graph()
 {
-    int n, m;
     scanf("%d%d", &n, &m);
-    add_edge(orig, 1, 2, 0);
-    for (int i = 0; i < m; i++) {
-        int s, e, v;
-        scanf("%d%d%d", &s, &e, &v);
-        add_edge(s, e, 1, v);
-        add_edge(e, s, 1, v);
+    for (int i = 1; i <= n; i++) {
+        add_edge(orig, i, 1, 0);
+        for (int j = 1, z; j <= m; j++) {
+            scanf("%d", &z);
+            for (int k = 1; k <= n; k++)
+                add_edge(i, j * n + k, 1, z * k);
+        }
     }
-    add_edge(n, dest, 2, 0);
+    for (int j = 1; j <= m; j++)
+        for (int k = 1; k <= n; k++)
+            add_edge(j * n + k, dest, 1, 0);
+}
+
+void reset_graph()
+{
+    for (int i = 0; i <= dest; i++) edge[i].clear();
 }
 
 bool spfa()
@@ -133,9 +141,13 @@ int mcmf()
 
 int main()
 {
-    build_graph();
-
-    printf("%d\n", mcmf());
+    int jobs;
+    scanf("%d", &jobs);
+    while (jobs--) {
+        build_graph();
+        printf("%.6f\n", 1.0 * mcmf() / n);
+        reset_graph();
+    }
 
     return 0;
 }

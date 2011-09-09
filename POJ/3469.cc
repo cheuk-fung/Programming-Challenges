@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 3281
- * PROB: Dining
+ *  SRC: POJ 3469
+ * PROB: Dual Core CPU
  * ALGO: Dinic
- * DATE: Jun 2, 2011 
+ * DATE: Sep 09, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -26,7 +26,7 @@ struct Edge {
 };
 
 const int INF = 0x3fffffff;
-const int MAX_N = 1000;
+const int MAX_N = 500000;
 const int orig = 0, dest = MAX_N;
 
 vector<Edge> edge[MAX_N + 1];
@@ -45,55 +45,21 @@ inline void add_edge(int u, int v, int capa)
 
 void build_graph()
 {
-    int N, F, D;
-    scanf("%d%d%d", &N, &F, &D);
+    int n, m;
+    scanf("%d%d", &n, &m);
 
-    /*
-     * 0: orig
-     * 1 to F: FF
-     * F + 1 to F + N: C1
-     * F + N + 1 to F + 2N: C2
-     * F + 2N + 1 to F + 2N + D: DD
-     * MAX_N: dest
-     */
-
-    const int FF = 0;
-    const int C1 = F, C2 = F + N;
-    const int DD = F + 2 * N;
-
-    for (int i = 1; i <= F; i++) {
-        // orig -> FF, capa = 1
-        // FF -> orig, capa = 0
-        add_edge(orig, FF + i, 1);
-    }
-    for (int i = 1; i <= N; i++) {
-        // C1 -> C2, capa = 1
-        // C2 -> C1, capa = 0
-        add_edge(C1 + i, C2 + i, 1);
-    }
-    for (int i = 1; i <=D; i++) {
-        // DD -> dest, capa = 1
-        // dest -> DD, capa = 0
-        add_edge(DD + i, dest, 1);
+    for (int i = 1; i <= n; i++) {
+        int a, b;
+        scanf("%d%d", &a, &b);
+        add_edge(orig, i, a);
+        add_edge(i, dest, b);
     }
 
-    for (int i = 1; i <= N; i++) {
-        int f, d;
-        scanf("%d%d", &f, &d);
-        for (int j = 0; j < f; j++) {
-            int tmp;
-            scanf("%d", &tmp);
-            // FF -> C1, capa = 1
-            // C1 -> FF, capa = 0
-            add_edge(FF + tmp, C1 + i, 1);
-        }
-        for (int j = 0; j < d; j++) {
-            int tmp;
-            scanf("%d", &tmp);
-            // C2 -> DD, capa = 1
-            // DD -> C2, capa = 0
-            add_edge(C2 + i, DD + tmp, 1);
-        }
+    for (int i = 0; i < m; i++) {
+        int a, b, w;
+        scanf("%d%d%d", &a, &b, &w);
+        add_edge(a, b, w);
+        add_edge(b, a, w);
     }
 }
 
@@ -160,3 +126,4 @@ int main()
 
     return 0;
 }
+

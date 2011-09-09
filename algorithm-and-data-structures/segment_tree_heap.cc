@@ -32,44 +32,44 @@ class SegTree {
         Tnode node[200000];
 
     public:
-        void build(int a, int b, int p = 1)
+        void build(int a, int b, int idx = 1)
         {
-            node[p].a = a;
-            node[p].b = b;
-            node[p].min = INF;
-            node[p].max = -INF;
+            node[idx].a = a;
+            node[idx].b = b;
+            node[idx].min = INF;
+            node[idx].max = -INF;
 
             if (a + 1 < b) {
-                build(a, (a + b) / 2, p * 2);
-                build((a + b) / 2, b, p * 2 + 1);
+                build(a, (a + b) / 2, idx * 2);
+                build((a + b) / 2, b, idx * 2 + 1);
             }
         }
 
-        void insert(int c, int d, int v, int p = 1)
+        void insert(int c, int d, int v, int idx = 1)
         {
-            if (c <= node[p].a && node[p].b <= d) {
-                node[p].min = fmin(node[p].min, v);
-                node[p].max = fmax(node[p].max, v);
+            if (c <= node[idx].a && node[idx].b <= d) {
+                node[idx].min = fmin(node[idx].min, v);
+                node[idx].max = fmax(node[idx].max, v);
                 return ;
             }
 
-            if (c < (node[p].a + node[p].b) / 2) insert(c, d, v, p * 2);
-            if (d > (node[p].a + node[p].b) / 2) insert(c, d, v, p * 2 + 1);
-            node[p].min = fmin(node[p * 2].min, node[p * 2 + 1].min);
-            node[p].max = fmax(node[p * 2].max, node[p * 2 + 1].max);
+            if (c < (node[idx].a + node[idx].b) / 2) insert(c, d, v, idx * 2);
+            if (d > (node[idx].a + node[idx].b) / 2) insert(c, d, v, idx * 2 + 1);
+            node[idx].min = fmin(node[idx * 2].min, node[idx * 2 + 1].min);
+            node[idx].max = fmax(node[idx * 2].max, node[idx * 2 + 1].max);
         }
 
-        void query(int c, int d, int* minVal, int* maxVal, int p = 1)
+        void query(int c, int d, int* minVal, int* maxVal, int idx = 1)
         {
-            if (c <= node[p].a && node[p].b <= d) {
-                *minVal = node[p].min;
-                *maxVal = node[p].max;
+            if (c <= node[idx].a && node[idx].b <= d) {
+                *minVal = node[idx].min;
+                *maxVal = node[idx].max;
                 return ;
             }
 
             int tlmin = INF, tlmax = -INF, trmin = INF, trmax = -INF;
-            if (c < (node[p].a + node[p].b) / 2) query(c, d, &tlmin, &tlmax, p * 2);
-            if (d > (node[p].a + node[p].b) / 2) query(c, d, &trmin, &trmax, p * 2 + 1);
+            if (c < (node[idx].a + node[idx].b) / 2) query(c, d, &tlmin, &tlmax, idx * 2);
+            if (d > (node[idx].a + node[idx].b) / 2) query(c, d, &trmin, &trmax, idx * 2 + 1);
             *minVal = fmin(tlmin, trmin);
             *maxVal = fmax(tlmax, trmax);
         }

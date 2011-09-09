@@ -25,10 +25,10 @@ class PartitionTree {
 
         int l_cnt[20][MAX_N], seg[20][MAX_N];
 
-        void _build(int a, int b, int d, int p)
+        void _build(int a, int b, int d, int idx)
         {
-            node[p].l = a;
-            node[p].r = b;
+            node[idx].l = a;
+            node[idx].r = b;
 
             int mid = (a + b - 1) / 2, l_same_to_mid = mid - a + 1;
             for (int i = a; i < b; i++)
@@ -55,26 +55,26 @@ class PartitionTree {
             }
 
             if (a + 1 < b) {
-                _build(a, mid + 1, d + 1, p * 2);
-                _build(mid + 1, b, d + 1, p * 2 + 1);
+                _build(a, mid + 1, d + 1, idx * 2);
+                _build(mid + 1, b, d + 1, idx * 2 + 1);
             }
         }
 
-        int _query(int a, int b, int k, int d, int p)
+        int _query(int a, int b, int k, int d, int idx)
         {
             if (b - a == 1) return seg[d][a];
 
-            int l_d = (a == node[p].l ? 0 : l_cnt[d][a - 1]),
+            int l_d = (a == node[idx].l ? 0 : l_cnt[d][a - 1]),
                 l_seg = l_cnt[d][b - 1] - l_d;
             if (l_seg >= k)
-                return _query(node[p].l + l_d, node[p].l + l_d + l_seg, \
-                              k, d + 1, p * 2);
+                return _query(node[idx].l + l_d, node[idx].l + l_d + l_seg, \
+                              k, d + 1, idx * 2);
 
-            int mid = (node[p].l + node[p].r - 1) / 2,
-                r_d = a - node[p].l - l_d,
+            int mid = (node[idx].l + node[idx].r - 1) / 2,
+                r_d = a - node[idx].l - l_d,
                 r_seg = b - a - l_seg;
             return _query(mid + r_d + 1, mid + r_d + r_seg + 1, \
-                          k - l_seg, d + 1, p * 2 + 1);
+                          k - l_seg, d + 1, idx * 2 + 1);
         }
 
     public:
