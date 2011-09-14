@@ -51,6 +51,7 @@
 [DONE]1365 Prime Land                           Prime
 [DONE]1370 Gossiping                            Number Theory
 [DONE]1376 Robot                                BFS
+[DONE]1383 Labyrinth                            DFS
 [DONE]1389 Area of Simple Polygons              Segment Tree
 [DONE]1459 Power Network                        Dinic
 [DONE]1468 Rectangles                           Computational Geometry
@@ -157,6 +158,7 @@
 [DONE]3159 Candies                              Dijkstra
 [DONE]3250 Bad Hair Day                         stack
 [DONE]3254 Corn Fields                          DP
+[DONE]3256 Cow Picnic                           Flood Fill
 [DONE]3258 River Hopscotch		        Bisection
 [DONE]3259 Wormholes                            Bellman Ford
 [DONE]3264 Balanced Lineup                      Segment Tree || RMQ_ST(Range Maximum/Minimum Query_Sparse Table)
@@ -186,6 +188,7 @@
 [DONE]3686 The Windy's                          MCMF
 [DONE]3690 Constellations		        bit
 [DONE]3692 Kindergarten                         Hungarian
+[DONE]3697 USTC campus network                  BFS
 [DONE]3768 Repeater			        D&C(Divide and Conquer)
 [DONE]3842 An Industrial Spy                    Prime
 [DONE]3844 Divisible Subsequences               Math
