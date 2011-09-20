@@ -28,6 +28,7 @@
 [DONE]1214 Relatives                            Number Theory
 [DONE]1219 Triangle                             Graham Scan
 [DONE]1221 Recaman's Sequence                   NULL
+[DONE]1230 Counterfeit Dollar                   Brute Force
 [DONE]1234 DNA Sorting                          stable sort
 [DONE]1236 a^b                                  Number Theory
 [DONE]1249 分解素因子                           Prime
@@ -55,6 +56,7 @@
 [DONE]1559 Jungle Roads                         Prim
 [DONE]1564 Hangover                             NULL
 [DONE]1579 Maya Calendar                        NULL
+[DONE]1584 Joseph                               Math
 [DONE]1586 Sticks                               DFS
 [DONE]1590 Packets                              NULL
 [DONE]1593 Robot                                BFS
@@ -81,6 +83,7 @@
 [DONE]1965 The Seven Percent Solution           String
 [DONE]1990 Humidex                              Math
 [DONE]2021 Integer Intervals                    SPFA(max)
+[DONE]2064 GCC                                  Math
 [DONE]2135 An Industrial Spy                    Prime
 [DONE]2137 Divisible Subsequences               Math
 [TODO]2138 Fractal                              Computational Geometry

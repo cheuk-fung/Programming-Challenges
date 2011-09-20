@@ -8,6 +8,8 @@
 [DONE]1007 DNA Sorting		                stable sort
 [DONE]1008 Maya Calendar		        NULL
 [DONE]1011 Sticks                               DFS
+[DONE]1012 Joseph                               Math
+[DONE]1013 Counterfeit Dollar                   Brute Force
 [DONE]1014 Dividing			        DP(Multiple Pack)
 [DONE]1017 Packets			        NULL
 [DONE]1035 Spell checker		        string
@@ -157,6 +159,7 @@
 [DONE]3126 Prime Path                           BFS
 [DONE]3159 Candies                              Dijkstra
 [DONE]3250 Bad Hair Day                         stack
+[DONE]3253 Fence Repair                         Haffman
 [DONE]3254 Corn Fields                          DP
 [DONE]3256 Cow Picnic                           Flood Fill
 [DONE]3258 River Hopscotch		        Bisection
