@@ -46,6 +46,7 @@
 [DONE]1251 Jungle Roads                         Prim
 [DONE]1258 Agri-Net                             Kruskal + Disjoint Set || Prim
 [DONE]1273 Drainage Ditches                     Dinic
+[DONE]1274 The Perfect Stall                    Hungarian
 [DONE]1321 棋盘问题                             DFS
 [DONE]1324 Holedox Moving                       BFS
 [DONE]1328 Radar Installation                   Greedy
@@ -55,6 +56,7 @@
 [DONE]1376 Robot                                BFS
 [DONE]1383 Labyrinth                            DFS
 [DONE]1389 Area of Simple Polygons              Segment Tree
+[DONE]1442 Black Box                            Treap
 [DONE]1459 Power Network                        Dinic
 [DONE]1468 Rectangles                           Computational Geometry
 [DONE]1475 Pushing Boxes                        BFS + DFS
