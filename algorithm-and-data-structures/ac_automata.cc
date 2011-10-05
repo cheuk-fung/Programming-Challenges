@@ -14,7 +14,7 @@
 
 using std::queue;
 
-int l, c, w, ansCnt, len[1010];
+int l, c, w, ans_cnt, len[1010];
 char map[1010][1010], word[1010];
 
 struct Answers {
@@ -25,7 +25,7 @@ struct Answers {
 class ACAutomata {
     private:
         const static int CHARSET_SIZE = 26;
-        const static int BUF_SIZE = 200000;
+        const static int NODE_MAX_SIZE = 200000;
 
         struct Tnode {
             Tnode* next[CHARSET_SIZE];
@@ -35,17 +35,17 @@ class ACAutomata {
         };
         Tnode* root;
 
-        int bufansCnt;
-        Tnode buf[BUF_SIZE];
+        int node_cnt;
+        Tnode node[NODE_MAX_SIZE];
 
     public:
+        ACAutomata() { reset(); }
+
         void reset()
         {
-            bufansCnt = 0;
-            root = &buf[bufansCnt++];
-            memset(root->next, 0, sizeof(root->next));
-            root->fail = 0;
-            root->exist = false;
+            memset(node, 0, sizeof(node));
+            node_cnt = 0;
+            root = &node[node_cnt++];
         }
 
 //        int insert(char*s)
@@ -55,14 +55,8 @@ class ACAutomata {
 
             while (*s) {
                 int idx = *s - 'A';
-                if (!p->next[idx]) {
-                    p->next[idx] = &buf[bufansCnt++];
-/*
- *                     memset(p->next[idx]->next, 0, sizeof(root->next));
- *                     p->fail = 0;
- *                     p->next[idx]->exist = 0;
- */
-                }
+                if (!p->next[idx])
+                    p->next[idx] = &node[node_cnt++];
                 p = p->next[idx];
                 s++;
             }
@@ -73,7 +67,7 @@ class ACAutomata {
             return true;
         }
 
-        void buildFail()
+        void build_fail()
         {
             queue<Tnode*> Q;
 
@@ -117,7 +111,7 @@ class ACAutomata {
                     Tnode* t = p;
                     while (t != root && t->id != -1) {
                         if (t->id) {
-                            ansCnt++;
+                            ans_cnt++;
                             ans[t->id].x = x - (len[t->id] -1) * dx;
                             ans[t->id].y = y - (len[t->id] -1) * dy;
                             ans[t->id].dir = dir;
@@ -139,8 +133,6 @@ ACAutomata aca;
 
 int main()
 {
-    aca.reset();
-
     scanf("%d%d%d", &l, &c, &w);
 
     for (int i = 1; i <= l; i++) scanf("%s", map[i] + 1);
@@ -151,48 +143,48 @@ int main()
         len[i] = strlen(word);
     }
 
-    aca.buildFail();
+    aca.build_fail();
 
     for (int j = 1; j <= c; j++) {
         aca.query(l, j, -1, 0, 'A');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(l, j, -1, 1, 'B');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(1, j, 1, 1, 'D');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(1, j, 1, 0, 'E');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
         
         aca.query(1, j, 1, -1, 'F');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(l, j, -1, -1, 'H');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
     }
 
     for (int i = 1; i <= l; i++) {
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(i, 1, -1, 1, 'B');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(i, 1, 0, 1, 'C');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(i, 1, 1, 1, 'D');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(i, c, 1, -1, 'F');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(i, c, 0, -1, 'G');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
 
         aca.query(i, c, -1, -1, 'H');
-        if (ansCnt == w) break;
+        if (ans_cnt == w) break;
     }
 
     for (int i = 1; i <= w; i++)

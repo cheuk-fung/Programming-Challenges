@@ -24,23 +24,15 @@ struct Link {
     int v, d;
     Link* next;
 } buf[MAX_N << 2];
-int buftail;
-Link* edge[MAX_N];
+Link *edge[MAX_N],
+     *buf_tail = buf;
 
-void addEdge(int u, int v, int d)
+void add_edge(int u, int v, int d)
 {
-    if (!edge[u]) {
-        edge[u] = &buf[buftail++];
-        edge[u]->v = v;
-        edge[u]->d = d;
-        edge[u]->next = 0;
-    }
-    else {
-        buf[buftail].v = v;
-        buf[buftail].d = d;
-        buf[buftail].next = edge[u]->next;
-        edge[u]->next = &buf[buftail++];
-    }
+    buf_tail->v = v;
+    buf_tail->d = d;
+    buf_tail->next = edge[u];
+    edge[u] = buf_tail++;
 }
 
 void spfa()
@@ -80,13 +72,14 @@ void solve()
     for (int i = 1; i <= v; i++)
         scanf("%d", w + i);
 
+    memset(buf, 0, sizeof(buf));
     memset(edge, 0, sizeof(edge));
-    buftail = 0;
+    buf_tail = buf;
     for (int i = 0; i < e; i++) {
         int a, b, c;
         scanf("%d%d%d", &a, &b, &c);
-        addEdge(a, b, c);
-        addEdge(b, a, c);
+        add_edge(a, b, c);
+        add_edge(b, a, c);
     }
 
     spfa();
