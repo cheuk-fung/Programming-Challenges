@@ -31,7 +31,7 @@ class ACAutomata {
             Tnode* next[CHARSET_SIZE];
             Tnode* fail;
             int exist;
-            int id; // used just in this problem
+            int id;
         };
         Tnode* root;
 
@@ -93,6 +93,9 @@ class ACAutomata {
                         Q.push(u);
                     }
                 }
+
+                // for nesting case
+                // if (!curr->id) curr->id = curr->fail->id;
             }
         }
 

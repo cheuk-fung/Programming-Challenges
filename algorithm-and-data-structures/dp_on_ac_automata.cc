@@ -106,6 +106,8 @@ class ACAutomata {
                         Q.push(u);
                     }
                 }
+
+                if (!curr->id) curr->id = curr->fail->id;
             }
         }
 
@@ -127,7 +129,6 @@ class ACAutomata {
                                 int state = k,
                                     offset = 0;
                                 Tnode *t = p;
-                                while (t != root && !t->id) t = t->fail;
                                 while (t->id) {
                                     int t_state = 1 << (t->id - 1);
                                     if (!(state & t_state)) {
@@ -135,7 +136,6 @@ class ACAutomata {
                                         state |= t_state;
                                     }
                                     t = t->fail;
-                                    while (t != root && !t->id) t = t->fail;
                                 }
 
                                 vis[next][p - node][state] = true;
