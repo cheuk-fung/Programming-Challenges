@@ -28,15 +28,14 @@ class ACAutomata {
         const static int NODE_MAX_SIZE = 200000;
 
         struct Tnode {
-            Tnode* next[CHARSET_SIZE];
-            Tnode* fail;
+            Tnode *next[CHARSET_SIZE];
+            Tnode *fail;
             int exist;
             int id;
         };
-        Tnode* root;
-
-        int node_cnt;
-        Tnode node[NODE_MAX_SIZE];
+        Tnode node[NODE_MAX_SIZE],
+              *node_tail,
+              *root;
 
     public:
         ACAutomata() { reset(); }
@@ -44,21 +43,18 @@ class ACAutomata {
         void reset()
         {
             memset(node, 0, sizeof(node));
-            node_cnt = 0;
-            root = &node[node_cnt++];
+            node_tail = node;
+            root = node_tail++;
         }
 
-//        int insert(char*s)
         int insert(char *s, int id)
         {
-            Tnode* p = root;
+            Tnode *p = root;
 
             while (*s) {
-                int idx = *s - 'A';
-                if (!p->next[idx])
-                    p->next[idx] = &node[node_cnt++];
+                int idx = *s++ - 'A';
+                if (!p->next[idx]) p->next[idx] = node_tail++;
                 p = p->next[idx];
-                s++;
             }
 
             p->exist++;
@@ -69,7 +65,7 @@ class ACAutomata {
 
         void build_fail()
         {
-            queue<Tnode*> Q;
+            queue<Tnode *> Q;
 
             for (int i = 0; i < CHARSET_SIZE; i++) {
                 if (root->next[i]) {
@@ -80,13 +76,13 @@ class ACAutomata {
             }
 
             while (!Q.empty()) {
-                Tnode* curr = Q.front();
+                Tnode *curr = Q.front();
                 Q.pop();
 
                 for (int i = 0; i < CHARSET_SIZE; i++) {
-                    Tnode* u = curr->next[i];
+                    Tnode *u = curr->next[i];
                     if (u) {
-                        Tnode* v = curr->fail;
+                        Tnode *v = curr->fail;
                         while (!v->next[i]) v = v->fail;
                         u->fail = v->next[i];
 

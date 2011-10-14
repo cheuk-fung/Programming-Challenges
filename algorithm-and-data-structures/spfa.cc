@@ -23,9 +23,9 @@ bool vis[MAX_N];
 struct Link {
     int v, d;
     Link* next;
-} buf[MAX_N << 2];
+} edge_buf[MAX_N << 2];
 Link *edge[MAX_N],
-     *buf_tail = buf;
+     *buf_tail = edge_buf;
 
 void add_edge(int u, int v, int d)
 {
@@ -72,9 +72,9 @@ void solve()
     for (int i = 1; i <= v; i++)
         scanf("%d", w + i);
 
-    memset(buf, 0, sizeof(buf));
+    memset(edge_buf, 0, sizeof(edge_buf));
     memset(edge, 0, sizeof(edge));
-    buf_tail = buf;
+    buf_tail = edge_buf;
     for (int i = 0; i < e; i++) {
         int a, b, c;
         scanf("%d%d%d", &a, &b, &c);

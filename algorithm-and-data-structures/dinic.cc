@@ -17,15 +17,16 @@ using std::vector;
 using std::queue;
 
 struct Edge {
-    int v, p;
+    int v;
+    int rev; // the position of revese edge
     int c, f; // capa, flow
 
-    Edge(int _v, int _p, int _c)
-        : v(_v), p(_p), c(_c), f(0)
+    Edge(int _v, int _rev, int _c)
+        : v(_v), rev(_rev), c(_c), f(0)
     { }
 };
 
-const int INF = 0x3fffffff;
+const int INF = 0x3f3f3f3f;
 const int MAX_N = 1000;
 const int orig = 0, dest = MAX_N;
 
@@ -99,7 +100,7 @@ void build_graph()
 
 bool bfs()
 {
-    memset(lev, -1, sizeof(lev));
+    memset(lev, 0xff, sizeof(lev));
 
     queue<int> Q;
     Q.push(orig);
@@ -131,7 +132,7 @@ int dfs(int u, int f)
             int tmp = dfs(v, fmin(f - res, edge[u][i].c - edge[u][i].f));
             res += tmp;
             edge[u][i].f += tmp;
-            int j = edge[u][i].p;
+            int j = edge[u][i].rev;
             edge[v][j].f = -edge[u][i].f;
             if (res == f) break;
         }

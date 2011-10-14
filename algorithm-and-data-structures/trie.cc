@@ -15,16 +15,15 @@
 class Trie {
     private:
         const static int CHARSET_SIZE = 10;
-        const static int BUF_SIZE = 200000;
+        const static int NODE_MAX_SIZE = 200000;
 
         struct Tnode {
-            Tnode* next[CHARSET_SIZE];
+            Tnode *next[CHARSET_SIZE];
             int exist;
         };
-        Tnode* root;
-
-        int buf_cnt;
-        Tnode buf[BUF_SIZE];
+        Tnode node[NODE_MAX_SIZE],
+              *node_tail,
+              *root;
 
     public:
         Trie()
@@ -34,27 +33,22 @@ class Trie {
 
         void reset()
         {
-            buf_cnt = 0;
-            root = &buf[buf_cnt++];
-            memset(root->next, 0, sizeof(root->next));
+            memset(node, 0, sizeof(node));
+            node_tail = node;
+            root = node_tail++;
             root->exist = false;
         }
 
         int insert(char *s)
         {
-            Tnode* p = root;
+            Tnode *p = root;
 
             while (*s) {
                 if (p->exist) return false;
 
-                int index = *s - '0';
-                if (!p->next[index]) {
-                    p->next[index] = &buf[buf_cnt++];
-                    memset(p->next[index]->next, 0, sizeof(root->next));
-                    p->next[index]->exist = 0;
-                }
-                p = p->next[index];
-                s++;
+                int idx = *s++ - '0';
+                if (!p->next[idx]) p->next[idx] = node_tail++;
+                p = p->next[idx];
             }
 
             p->exist++;
@@ -68,9 +62,9 @@ Trie trie;
 int n;
 char phone[10000][20];
 
-int cmp(const void* a, const void* b)
+int cmp(const void *a, const void *b)
 {
-    return strcmp((char*)a, (char*)b);
+    return strcmp((char *)a, (char *)b);
 }
 
 void work()

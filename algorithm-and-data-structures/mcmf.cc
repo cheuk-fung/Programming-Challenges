@@ -17,26 +17,27 @@ using std::vector;
 using std::queue;
 
 struct Edge {
-    int v, p;
+    int v;
+    int rev; // the position of revese edge
     int c, f; // capa, flow
     int cpf; // cost per flow
 
-    Edge(int _v, int _p, int _c, int _cpf)
-        : v(_v), p(_p), c(_c), f(0), cpf(_cpf)
+    Edge(int _v, int _rev, int _c, int _cpf)
+        : v(_v), rev(_rev), c(_c), f(0), cpf(_cpf)
     { }
 };
 
-const int INF = 0x3fffffff;
+const int INF = 0x3f3f3f3f;
 const int MAXN = 1010;
 const int orig = 0, dest = MAXN;
 
 vector<Edge> edge[MAXN + 1];
 
 struct Route {
-    int u, v, p;
+    int u, v, rev;
 
-    Route(int uu = 0, int vv = 0, int pp = 0)
-        : u(uu), v(vv), p(pp)
+    Route(int _u = 0, int _v = 0, int _rev = 0)
+        : u(_u), v(_v), rev(_rev)
     { }
 } bfs_route[MAXN + 1];
 
@@ -71,7 +72,7 @@ void build_graph()
 bool spfa()
 {
     memset(vis, false, sizeof(vis));
-    for (int i = 0; i <= MAXN; i++) dist[i] = INF;
+    memset(dist, 0x3f, sizeof(dist));
 
     queue<int> Q;
     Q.push(orig);
@@ -84,10 +85,10 @@ bool spfa()
         Q.pop();
         vis[u] = false;
         for (unsigned int i = 0; i < edge[u].size(); i++) {
-            int v = edge[u][i].v;
-            int dis = edge[u][i].cpf;
-            if (dis + dist[u] < dist[v] && edge[u][i].f < edge[u][i].c) {
-                dist[v] = dis + dist[u];
+            int v = edge[u][i].v,
+                cpf = edge[u][i].cpf;
+            if (cpf + dist[u] < dist[v] && edge[u][i].f < edge[u][i].c) {
+                dist[v] = cpf + dist[u];
                 bfs_route[v] = Route(u, v, i);
                 if (vis[v] == false) {
                     vis[v] = true;
@@ -103,20 +104,20 @@ bool spfa()
 int flow()
 {
     int min_flow = INF;
-    Route r = bfs_route[dest];
-    while (r.u != -1) {
-        min_flow = fmin(min_flow, edge[r.u][r.p].c - edge[r.u][r.p].f);
-        r = bfs_route[r.u];
+    Route *r = &bfs_route[dest];
+    while (r->u != -1) {
+        min_flow = fmin(min_flow, edge[r->u][r->rev].c - edge[r->u][r->rev].f);
+        r = &bfs_route[r->u];
     }
 
     int res = 0;
-    r = bfs_route[dest];
-    while (r.u != -1) {
-        edge[r.u][r.p].f += min_flow;
-        res += edge[r.u][r.p].cpf;
-        int j = edge[r.u][r.p].p;
-        edge[r.v][j].f = -edge[r.u][r.p].f;
-        r = bfs_route[r.u];
+    r = &bfs_route[dest];
+    while (r->u != -1) {
+        edge[r->u][r->rev].f += min_flow;
+        res += edge[r->u][r->rev].cpf;
+        int j = edge[r->u][r->rev].rev;
+        edge[r->v][j].f = -edge[r->u][r->rev].f;
+        r = &bfs_route[r->u];
     }
     res *= min_flow;
 
