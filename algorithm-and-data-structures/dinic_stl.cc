@@ -16,6 +16,12 @@
 using std::vector;
 using std::queue;
 
+inline int fmin(int a, int b) { return a < b ? a : b; }
+
+const int INF = 0x3f3f3f3f;
+const int MAX_N = 1000;
+const int orig = 0, dest = MAX_N;
+
 struct Edge {
     int v;
     int rev; // the position of revese edge
@@ -25,77 +31,14 @@ struct Edge {
         : v(_v), rev(_rev), c(_c), f(0)
     { }
 };
-
-const int INF = 0x3f3f3f3f;
-const int MAX_N = 1000;
-const int orig = 0, dest = MAX_N;
-
 vector<Edge> edge[MAX_N + 1];
-int lev[MAX_N + 1];
 
-inline int fmin(int a, int b)
-{
-    return a < b ? a : b;
-}
+int lev[MAX_N + 1];
 
 inline void add_edge(int u, int v, int capa)
 {
     edge[u].push_back(Edge(v, edge[v].size(), capa));
     edge[v].push_back(Edge(u, edge[u].size() - 1, 0));
-}
-
-void build_graph()
-{
-    int N, F, D;
-    scanf("%d%d%d", &N, &F, &D);
-
-    /*
-     * 0: orig
-     * 1 to F: FF
-     * F + 1 to F + N: C1
-     * F + N + 1 to F + 2N: C2
-     * F + 2N + 1 to F + 2N + D: DD
-     * MAX_N: dest
-     */
-
-    const int FF = 0;
-    const int C1 = F, C2 = F + N;
-    const int DD = F + 2 * N;
-
-    for (int i = 1; i <= F; i++) {
-        // orig -> FF, capa = 1
-        // FF -> orig, capa = 0
-        add_edge(orig, FF + i, 1);
-    }
-    for (int i = 1; i <= N; i++) {
-        // C1 -> C2, capa = 1
-        // C2 -> C1, capa = 0
-        add_edge(C1 + i, C2 + i, 1);
-    }
-    for (int i = 1; i <=D; i++) {
-        // DD -> dest, capa = 1
-        // dest -> DD, capa = 0
-        add_edge(DD + i, dest, 1);
-    }
-
-    for (int i = 1; i <= N; i++) {
-        int f, d;
-        scanf("%d%d", &f, &d);
-        for (int j = 0; j < f; j++) {
-            int tmp;
-            scanf("%d", &tmp);
-            // FF -> C1, capa = 1
-            // C1 -> FF, capa = 0
-            add_edge(FF + tmp, C1 + i, 1);
-        }
-        for (int j = 0; j < d; j++) {
-            int tmp;
-            scanf("%d", &tmp);
-            // C2 -> DD, capa = 1
-            // DD -> C2, capa = 0
-            add_edge(C2 + i, DD + tmp, 1);
-        }
-    }
 }
 
 bool bfs()
@@ -151,6 +94,60 @@ int dinic()
     }
 
     return res;
+}
+
+void build_graph()
+{
+    int N, F, D;
+    scanf("%d%d%d", &N, &F, &D);
+
+    /*
+     * 0: orig
+     * 1 to F: FF
+     * F + 1 to F + N: C1
+     * F + N + 1 to F + 2N: C2
+     * F + 2N + 1 to F + 2N + D: DD
+     * MAX_N: dest
+     */
+
+    const int FF = 0;
+    const int C1 = F, C2 = F + N;
+    const int DD = F + 2 * N;
+
+    for (int i = 1; i <= F; i++) {
+        // orig -> FF, capa = 1
+        // FF -> orig, capa = 0
+        add_edge(orig, FF + i, 1);
+    }
+    for (int i = 1; i <= N; i++) {
+        // C1 -> C2, capa = 1
+        // C2 -> C1, capa = 0
+        add_edge(C1 + i, C2 + i, 1);
+    }
+    for (int i = 1; i <=D; i++) {
+        // DD -> dest, capa = 1
+        // dest -> DD, capa = 0
+        add_edge(DD + i, dest, 1);
+    }
+
+    for (int i = 1; i <= N; i++) {
+        int f, d;
+        scanf("%d%d", &f, &d);
+        for (int j = 0; j < f; j++) {
+            int tmp;
+            scanf("%d", &tmp);
+            // FF -> C1, capa = 1
+            // C1 -> FF, capa = 0
+            add_edge(FF + tmp, C1 + i, 1);
+        }
+        for (int j = 0; j < d; j++) {
+            int tmp;
+            scanf("%d", &tmp);
+            // C2 -> DD, capa = 1
+            // DD -> C2, capa = 0
+            add_edge(C2 + i, DD + tmp, 1);
+        }
+    }
 }
 
 int main()

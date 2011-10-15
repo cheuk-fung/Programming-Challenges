@@ -16,6 +16,12 @@
 using std::vector;
 using std::queue;
 
+inline int fmin(int a, int b) { return a < b ? a : b; }
+
+const int INF = 0x3f3f3f3f;
+const int MAX_N = 1010;
+const int orig = 0, dest = MAX_N;
+
 struct Edge {
     int v;
     int rev; // the position of revese edge
@@ -26,47 +32,23 @@ struct Edge {
         : v(_v), rev(_rev), c(_c), f(0), cpf(_cpf)
     { }
 };
-
-const int INF = 0x3f3f3f3f;
-const int MAXN = 1010;
-const int orig = 0, dest = MAXN;
-
-vector<Edge> edge[MAXN + 1];
+vector<Edge> edge[MAX_N + 1];
 
 struct Route {
-    int u, v, rev;
+    int u, v, which;
 
-    Route(int _u = 0, int _v = 0, int _rev = 0)
-        : u(_u), v(_v), rev(_rev)
+    Route(int _u = 0, int _v = 0, int _which = 0)
+        : u(_u), v(_v), which(_which)
     { }
-} bfs_route[MAXN + 1];
-
-bool vis[MAXN + 1];
-int dist[MAXN + 1];
-
-inline int fmin(int a, int b)
-{
-    return a < b ? a : b;
-}
+};
+Route bfs_route[MAX_N + 1];
+bool vis[MAX_N + 1];
+int dist[MAX_N + 1];
 
 inline void add_edge(int u, int v, int capa, int cpf)
 {
     edge[u].push_back(Edge(v, edge[v].size(), capa, cpf));
     edge[v].push_back(Edge(u, edge[u].size() - 1, 0, -cpf));
-}
-
-void build_graph()
-{
-    int n, m;
-    scanf("%d%d", &n, &m);
-    add_edge(orig, 1, 2, 0);
-    for (int i = 0; i < m; i++) {
-        int s, e, v;
-        scanf("%d%d%d", &s, &e, &v);
-        add_edge(s, e, 1, v);
-        add_edge(e, s, 1, v);
-    }
-    add_edge(n, dest, 2, 0);
 }
 
 bool spfa()
@@ -106,17 +88,17 @@ int flow()
     int min_flow = INF;
     Route *r = &bfs_route[dest];
     while (r->u != -1) {
-        min_flow = fmin(min_flow, edge[r->u][r->rev].c - edge[r->u][r->rev].f);
+        min_flow = fmin(min_flow, edge[r->u][r->which].c - edge[r->u][r->which].f);
         r = &bfs_route[r->u];
     }
 
     int res = 0;
     r = &bfs_route[dest];
     while (r->u != -1) {
-        edge[r->u][r->rev].f += min_flow;
-        res += edge[r->u][r->rev].cpf;
-        int j = edge[r->u][r->rev].rev;
-        edge[r->v][j].f = -edge[r->u][r->rev].f;
+        edge[r->u][r->which].f += min_flow;
+        res += edge[r->u][r->which].cpf;
+        int j = edge[r->u][r->which].rev;
+        edge[r->v][j].f = -edge[r->u][r->which].f;
         r = &bfs_route[r->u];
     }
     res *= min_flow;
@@ -130,6 +112,20 @@ int mcmf()
     while (spfa()) res += flow();
 
     return res;
+}
+
+void build_graph()
+{
+    int n, m;
+    scanf("%d%d", &n, &m);
+    add_edge(orig, 1, 2, 0);
+    for (int i = 0; i < m; i++) {
+        int s, e, v;
+        scanf("%d%d%d", &s, &e, &v);
+        add_edge(s, e, 1, v);
+        add_edge(e, s, 1, v);
+    }
+    add_edge(n, dest, 2, 0);
 }
 
 int main()
