@@ -25,15 +25,15 @@ bool hole[37][37];
 int match[MAX_N];
 bool vis[MAX_N];
 
-bool findPath(int u)
+bool find_path(int u)
 {
     for (vci v = edge[u].begin(); v != edge[u].end(); v++)
         if (!vis[*v]) {
             vis[*v] = true;
-            int t = match[*v];
-            match[*v] = u;
-            if (t == -1 || findPath(t)) return true;
-            match[*v] = t;
+            if (match[*v] == -1 || find_path(match[*v])) {
+                match[*v] = u;
+                return true;
+            }
         }
     return false;
 }
@@ -46,12 +46,12 @@ int hungarian()
         for (int j = 0; j < m; j++)
             if (((i + j) & 1) == 0 && !hole[i][j]) {
                 memset(vis, 0, sizeof(vis));
-                if (findPath(i * m + j)) res++;
+                if (find_path(i * m + j)) res++;
             }
     return res;
 }
 
-void buildGraph()
+void build_graph()
 {
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
@@ -85,7 +85,7 @@ int main()
         hole[x - 1][y - 1] = true;
     }
 
-    buildGraph();
+    build_graph();
 
     if (hungarian() * 2 + k == n * m) puts("YES");
     else puts("NO");
