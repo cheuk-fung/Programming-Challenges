@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 2186
- * PROB: Popular Cows
- * ALGO: Tarjan(Strongly Connected Component)
- * DATE: Jul 23, 2011 
+ *  SRC: HDOJ 3062
+ * PROB: Party
+ * ALGO: 2-SAT
+ * DATE: Oct 16, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -15,7 +15,7 @@
 using std::vector;
 
 typedef vector<int>::const_iterator vci;
-const int MAX_N = 10010;
+const int MAX_N = 2020;
 
 vector<int> edge[MAX_N];
 
@@ -60,8 +60,7 @@ void tarjan(int n)
     memset(scc_id, 0, sizeof(scc_id));
     memset(scc_size, 0, sizeof(scc_size));
 
- // for (int i = 0; i < n; i++)
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i < n; i++)
         if (!dfn[i]) tarjan_dfs(i);
 }
 
@@ -70,35 +69,24 @@ int out_deg[MAX_N];
 
 int solve()
 {
-    if (scc_cnt == 1) return n;
+    for (int i = 0; i < n * 2; i++) edge[i].clear();
+    for (int i = 0; i < m; i++) {
+        int a1, a2, c1, c2;
+        scanf("%d%d%d%d", &a1, &a2, &c1, &c2);
+        edge[(a1 << 1) ^ c1].push_back((a2 << 1) ^ (c2 ^ 1));
+        edge[(a2 << 1) ^ c2].push_back((a1 << 1) ^ (c1 ^ 1));
+    }
+    tarjan(n * 2);
 
-    for (int u = 1; u <= n; u++)
-        for (vci v = edge[u].begin(); v != edge[u].end(); v++)
-            if (scc_id[u] != scc_id[*v]) out_deg[scc_id[u]]++;
-
-    int ans = 0, ans_cnt = 0;
-    for (int i = 1; i <= scc_cnt; i++)
-        if (out_deg[i] == 0) {
-            ans = scc_size[i];
-            ans_cnt++;
-        }
-
-    return ans_cnt == 1 ? ans : 0;
+    for (int i = 0; i < n * 2; i += 2)
+        if (scc_id[i] == scc_id[i ^ 1]) return false;
+    return true;
 }
 
 int main()
 {
-    scanf("%d%d", &n, &m);
-
-    for (int i = 0; i < m; i++) {
-        int a, b;
-        scanf("%d%d", &a, &b);
-        edge[a].push_back(b);
-    }
-
-    tarjan(n);
-
-    printf("%d\n", solve());
+    while (scanf("%d%d", &n, &m) != EOF)
+        puts(solve() ? "YES" : "NO");
 
     return 0;
 }
