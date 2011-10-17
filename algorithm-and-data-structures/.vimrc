@@ -1,10 +1,9 @@
+" Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-syntax on
 
 set backup		" keep a backup file
 set ruler		" show the cursor position all the time
@@ -16,14 +15,17 @@ set number
 set completeopt=longest,menu
 set autochdir
 set ignorecase smartcase
-set hlsearch
 set hidden
+set hlsearch
+set autoindent		" always set autoindenting on
 
-colorscheme evening
+syntax on
+filetype plugin indent on
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-  filetype plugin indent on
-else
-  set autoindent		" always set autoindenting on
-endif " has("autocmd")
+inoremap {<CR>    {<CR>}<Esc>O
+vnoremap {<CR>   S{<CR>}<Esc>Pk=iB
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+    set mouse=a
+endif
