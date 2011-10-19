@@ -10,15 +10,8 @@
 
 #include <cstdio>
 
-inline int fmin(int a, int b)
-{
-    return a < b ? a : b;
-}
-
-inline int fmax(int a, int b)
-{
-    return a > b ? a : b;
-}
+inline int fmin(int a, int b) { return a < b ? a : b; }
+inline int fmax(int a, int b) { return a > b ? a : b; }
 
 class SegTree {
     private:
@@ -28,7 +21,6 @@ class SegTree {
             int a, b;
             int min, max;
         };
-
         Tnode node[200000];
 
     public:

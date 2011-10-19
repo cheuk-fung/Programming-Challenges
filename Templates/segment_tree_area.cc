@@ -13,34 +13,61 @@
 
 using std::sort;
 
-struct Tnode {
-    int a, b; // segment [a, b)
-    int cover, len;
-    Tnode* lc;
-    Tnode* rc;
+class SegTree {
+    private:
+        struct Tnode {
+            int a, b; // segment [a, b)
+            int cover;
+            int len;
+            Tnode* lc;
+            Tnode* rc;
 
-    Tnode(int _a, int _b)
-        : a(_a), b(_b), cover(0), len(0), lc(0), rc(0)
-    { }
-};
-Tnode* SegTree;
+            Tnode(int _a, int _b)
+                : a(_a), b(_b), cover(0), len(0), lc(0), rc(0)
+            { }
+        };
+        Tnode* root;
 
-void SegTreeInsert(Tnode* p, int c, int d, int delta)
-{
-    if (c <= p->a && p->b <= d) p->cover += delta;
-    else {
-        if (!p->lc) {
-            p->lc = new Tnode(p->a, (p->a + p->b) / 2);
-            p->rc = new Tnode((p->a + p->b) / 2, p->b);
+        Tnode* build(int a, int b)
+        {
+            Tnode* p = new Tnode(a, b);
+
+            return p;
         }
-        if (c < (p->a + p->b) / 2) SegTreeInsert(p->lc, c, d, delta);
-        if (d > (p->a + p->b) / 2) SegTreeInsert(p->rc, c, d, delta);
-    }
 
-    if (p->cover) p->len = p->b - p->a;
-    else if (p->lc) p->len = p->lc->len + p->rc->len;
-    else p->len = 0;
-}
+        void _insert(int c, int d, int delta, Tnode* p)
+        {
+            if (c <= p->a && p->b <= d) p->cover += delta;
+            else {
+                if (!p->lc) {
+                    p->lc = new Tnode(p->a, (p->a + p->b) / 2);
+                    p->rc = new Tnode((p->a + p->b) / 2, p->b);
+                }
+                if (c < (p->a + p->b) / 2) _insert(c, d, delta, p->lc);
+                if (d > (p->a + p->b) / 2) _insert(c, d, delta, p->rc);
+            }
+
+            if (p->cover) p->len = p->b - p->a;
+            else if (p->lc) p->len = p->lc->len + p->rc->len;
+            else p->len = 0;
+        }
+
+    public:
+        SegTree(int l, int r)
+        {
+            root = build(l, r);
+        }
+
+        void insert(int c, int d, int delta)
+        {
+            _insert(c, d, delta, root);
+        }
+
+        int query()
+        {
+            return root->len;
+        }
+};
 
 struct Line {
     int x, y1, y2;
@@ -52,10 +79,7 @@ struct Line {
     }
 };
 
-inline int fmax(int a, int b)
-{
-    return a > b ? a : b;
-}
+inline int fmax(int a, int b) { return a > b ? a : b; }
 
 Line X[2012];
 
@@ -81,11 +105,11 @@ int main()
         sort(X, X + cnt);
 
         int ans = 0;
-        SegTree = new Tnode(0, maxY + 1);
+        SegTree st(0, maxY + 1);
         for (int i = 0, preL = 0, preX = 0; i < cnt; i++) {
-            SegTreeInsert(SegTree, X[i].y1, X[i].y2, X[i].delta);
+            st.insert(X[i].y1, X[i].y2, X[i].delta);
             ans += preL * (X[i].x - preX);
-            preL = SegTree->len;
+            preL = st.query();
             preX = X[i].x;
         }
 

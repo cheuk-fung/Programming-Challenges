@@ -13,20 +13,16 @@
 
 using std::sort;
 
-class BIT
-{
+class BIT {
     private:
-        const static int bound = 320010; // change it to adapt to the problem
-        int c[bound]; 
-        int bitMask;
+        const static int bound = 320010;
+        int c[bound + 1]; 
+        int bit_mask;
 
         // x must *not* be *zero*
-        int lowbit(int x)
-        {
-            return x & -x;
-        }
+        int lowbit(int x) { return x & -x; }
 
-        void getBitMask()
+        void get_bit_mask()
         {
             int res = 0, x = bound;
             while (x) {
@@ -34,35 +30,39 @@ class BIT
                 res++;
             }
 
-            bitMask = 1 << (res - 1);
+            bit_mask = 1 << (res - 1);
         }
 
     public:
         void update(int x, int val)
         {
-            for (int i = x; i <= bound; i += lowbit(i))
-                c[i] += val;
+            while (x <= bound) {
+                c[x] += val;
+                x += lowbit(x);
+            }
         }
 
         int sum(int x)
         {
             int res = 0;
-            for (int i = x; i > 0; i -= lowbit(i))
-                res += c[i];
+            while (x > 0) {
+                res += c[x];
+                x -= lowbit(x);
+            }
             return res;
         }
 
-        // getBitMask() first
+        // get_bit_mask() first
         int find(int tot)
         {
-            int res = 0, cnt = 0, bM = bitMask;
-            while (bM != 0) {
-                if (res + bM < bound && cnt + c[res + bM] < tot) { // find the left one
-             // if (res + bM <=bound && cnt + c[res + bM] <=tot)   // find the right one
-                    res += bM;
+            int res = 0, cnt = 0, bm = bit_mask;
+            while (bm != 0) {
+                if (res + bm < bound && cnt + c[res + bm] < tot) { // find the left one
+             // if (res + bm <=bound && cnt + c[res + bm] <=tot)   // find the right one
+                    res += bm;
                     cnt += c[res];
                 }
-                bM >>= 1;
+                bm >>= 1;
             }
 
             return res + 1; // left
@@ -97,7 +97,6 @@ int main()
         bit.update(star[i].y + 1, 1);
         level[bit.sum(star[i].y + 1) - 1]++;
     }
-
 
     for (int i = 0; i < n; i++)
         printf("%d\n", level[i]);

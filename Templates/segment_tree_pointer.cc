@@ -88,7 +88,6 @@ class SegTree {
         {
             return _query(c, d, root);
         }
-
 };
 
 int main()
