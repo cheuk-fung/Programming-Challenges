@@ -22,7 +22,7 @@
 [DONE]1062 昂贵的聘礼                           Dijkstra
 [DONE]1077 Eight                                BFS
 [DONE]1083 Moving Tables                        NULL
-[DONE]1088 滑雪                                 Memorize search
+[DONE]1088 滑雪                                 Memorize Search
 [DONE]1094 Sorting It All Out                   Topological Sort
 [DONE]1099 Square Ice                           string
 [DONE]1101 The Game                             BFS
@@ -38,6 +38,7 @@
 [DONE]1185 炮兵阵地                             DP
 [DONE]1190 生日蛋糕                             DFS
 [DONE]1195 Mobile phones                        2D BIT(Binary Indexed Tree)
+[DONE]1196 Twofive                              Memorize Search
 [DONE]1200 Crazy Search                         Hash
 [DONE]1201 Intervals                            SPFA(max)
 [DONE]1204 Word Puzzles                         AC Automata

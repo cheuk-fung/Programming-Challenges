@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 1088
  * PROB: 滑雪
- * ALGO: memorize search
+ * ALGO: memorize Search
  * DATE: May 10, 2011
  * COMP: g++
  *
