@@ -75,6 +75,8 @@ struct Line {
 
     bool operator < (const Line& other) const
     {
+        // if two edges are on the same line, first add, then delete;
+        if (x == other.x) return delta > other.delta;
         return x < other.x;
     }
 };
