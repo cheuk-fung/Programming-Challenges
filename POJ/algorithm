@@ -108,7 +108,7 @@
 [DONE]2262 Goldbach's Conjecture        	NULL
 [DONE]2287 Tian Ji -- The Horse Racing          Greedy + DP
 [DONE]2295 A DP Problem                         Expression
-[DONE]2299 Ultra-QuickSort      		Merge Sort
+[DONE]2299 Ultra-QuickSort      		逆序对(Merge Sort)
 [DONE]2348 Euclid's Game                        Number Theory
 [DONE]2352 Stars                                BIT
 [DONE]2386 Lake Counting                        Flood Fill
