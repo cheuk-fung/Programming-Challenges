@@ -41,7 +41,7 @@ int main()
     for (int i = 0; i < q; i++) {
         int l, r;
         scanf("%d%d", &l, &r);
-        int pos = log(r - l + 1.0) / log(2.0);
+        int pos = log2(r - l + 1.0);
         printf("%d\n", max(max_v[pos][l], max_v[pos][r - (1 << pos) + 1]) - min(min_v[pos][l], min_v[pos][r - (1 << pos) + 1]));
     }
 

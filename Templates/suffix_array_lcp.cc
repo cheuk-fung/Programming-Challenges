@@ -122,11 +122,11 @@ class suffix_array
         {
             a++; b++;
 
-            int id = log(b - a + 1.0) / log(2.0);
+            int id = log2(b - a + 1.0);
             int pos = max(max_suff[id][a], max_suff[id][b - (1 << id) + 1]);
 
             a++;
-            id = log(b - a + 1.0) / log(2.0);
+            id = log2(b - a + 1.0);
             int res = min(min_hgt[id][a], min_hgt[id][b - (1 << id) + 1]);
 
             return make_pair(res, pos);
