@@ -30,21 +30,21 @@ class MyReader {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer in;
 
+    boolean hasNext() throws IOException
+    {
+        if (in == null || in.hasMoreTokens()) return true;
+        String line = br.readLine();
+        if (line == null) return false;
+        in = new StringTokenizer(line);
+        return true;
+    }
+
     String next() throws IOException
     {
         while (in == null || !in.hasMoreTokens()) {
             in = new StringTokenizer(br.readLine());
         }
         return in.nextToken();
-    }
-
-    boolean hasNext() throws IOException
-    {
-        if (in.hasMoreTokens()) return true;
-        String line = br.readLine();
-        if (line == null) return false;
-        in = new StringTokenizer(line);
-        return true;
     }
 
     int nextInt() throws IOException
