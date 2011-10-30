@@ -1,3 +1,13 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Cake
+ * ALGO: gcd
+ * DATE: Oct 30, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
 import java.util.*;
 import java.math.*;
@@ -10,12 +20,27 @@ class Main {
 }
 
 class Prob {
+    int gcd(int a, int b)
+    {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        while (in.hasNext()) {
+            int a = in.nextInt(),
+                b = in.nextInt();
+            if (a > b) {
+                a ^= b;
+                b ^= a;
+                a ^= b;
+            }
+            out.println(a + b - gcd(a, b));;
+        }
 
         out.flush();
     }

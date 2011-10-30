@@ -1,3 +1,13 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Leftmost Digit
+ * ALGO: Math
+ * DATE: Oct 30, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
 import java.util.*;
 import java.math.*;
@@ -15,7 +25,11 @@ class Prob {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        in.nextInt();
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            out.println((int)Math.pow(10, n * Math.log10(n) - (long)(n * Math.log10(n))));
+        }
 
         out.flush();
     }
