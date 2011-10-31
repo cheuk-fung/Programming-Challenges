@@ -1,8 +1,8 @@
 /*
  *  SRC: HDOJ ACM Steps
- * PROB: 七夕节
- * ALGO: NULL
- * DATE: Oct 30, 2011 
+ * PROB: Fibonacci
+ * ALGO: Math
+ * DATE: Oct 31, 2011 
  * COMP: jdk 6
  *
  * Created by Leewings Ac
@@ -25,16 +25,30 @@ class Prob {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        in.nextInt();
+        int f[] = new int[30];
+        f[0] = 0;
+        f[1] = 1;
+        for (int i = 2; i < 30; i++)
+            f[i] = f[i - 2] + f[i - 1];
+        for (int i = 2; i < 30; i++)
+            while (f[i] >= 10000) f[i] /= 10;
+
+        // proximately, f[n]=(((1+sqrt(5))/2)^n-((1-sqrt(5))/2)^n)/sqrt(5)
+        // thus, log10(f[n])=n*log10((1+sqrt(5))/2)+log10(1-((1-sqrt(5))/(1+sqrt(5)))^n)-log10(sqrt(5));
+        // log10(1-((1-sqrt(5))/(1+sqrt(5)))^n)->0, when n->infinite
+        // hence, log10(f[n])=n*log10((1+sqrt(5))/2)-log10(5)/2;
+        // let e=log10(f[n])=floor(e)+{e}
+        // so, f[n]=10^e=10^(floor(e)+{e})=10^{e}*10^floor(e)
+        // hence, the first four digits of f[n] is floor(10^{e} * 1000);
+
+        double x = (Math.sqrt(5) + 1) / 2;
         while (in.hasNext()) {
             int n = in.nextInt();
-            int ans = 0;
-            for (int i = 2; i <= Math.sqrt(n); i++)
-                if (n % i == 0) {
-                    ans += i;
-                    if (n / i != i) ans += n / i;
-                }
-            out.println(ans + 1);
+            if (n < 30) out.println(f[n]);
+            else {
+                double e = n * Math.log10(x) - Math.log10(5) / 2;
+                out.println((int)(Math.pow(10, e - (long)e) * 1000));
+            }
         }
 
         out.flush();
@@ -61,26 +75,13 @@ class MyReader {
 
     String next() throws IOException
     {
-        while (in == null || !in.hasMoreTokens()) {
+        while (in == null || !in.hasMoreTokens())
             in = new StringTokenizer(br.readLine());
-        }
         return in.nextToken();
     }
 
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

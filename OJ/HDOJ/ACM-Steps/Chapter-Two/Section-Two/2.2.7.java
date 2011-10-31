@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: N！Again
+ * ALGO: NULL
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,20 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        int f[] = new int[2009];
+        f[0] = 1;
+        for (int i = 1; i < 2009; i++) f[i] = f[i - 1] * i % 2009;
+
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            if (n >= 2009) out.println(0);
+            else out.println(f[n]);
+        }
 
         out.flush();
     }
@@ -52,17 +67,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

@@ -1,8 +1,8 @@
 /*
  *  SRC: HDOJ ACM Steps
- * PROB: 七夕节
+ * PROB: 汉诺塔VII
  * ALGO: NULL
- * DATE: Oct 30, 2011 
+ * DATE: Oct 31, 2011 
  * COMP: jdk 6
  *
  * Created by Leewings Ac
@@ -20,6 +20,27 @@ class Main {
 }
 
 class Prob {
+    int a[] = new int[64],
+        b[] = new int[64],
+        c[] = new int[64];
+
+    boolean check(int p, int a[], int a_cnt, int b[], int b_cnt, int c[], int c_cnt)
+    {
+        if (p == 0) return true;
+        if (b[0] == p) return false;
+        if (a[0] == p) {
+            for (int i = 0; i < a_cnt - 1; i++)
+                a[i] = a[i + 1];
+            return check(p - 1, a, a_cnt - 1, c, c_cnt, b, b_cnt);
+        }
+        if (c[0] == p) {
+            for (int i = 0; i < c_cnt - 1; i++)
+                c[i] = c[i + 1];
+            return check(p - 1, c, c_cnt - 1, a, a_cnt, b, b_cnt);
+        }
+        return true;
+    }
+
     void solve() throws IOException
     {
         MyReader in = new MyReader();
@@ -28,13 +49,17 @@ class Prob {
         in.nextInt();
         while (in.hasNext()) {
             int n = in.nextInt();
-            int ans = 0;
-            for (int i = 2; i <= Math.sqrt(n); i++)
-                if (n % i == 0) {
-                    ans += i;
-                    if (n / i != i) ans += n / i;
-                }
-            out.println(ans + 1);
+            int a_cnt = in.nextInt();
+            for (int i = 0; i < a_cnt; i++)
+                a[i] = in.nextInt();
+            int b_cnt = in.nextInt();
+            for (int i = 0; i < b_cnt; i++)
+                b[i] = in.nextInt();
+            int c_cnt = in.nextInt();
+            for (int i = 0; i < c_cnt; i++)
+                c[i] = in.nextInt();
+
+            out.println(check(n, a, a_cnt, b, b_cnt, c, c_cnt));
         }
 
         out.flush();
@@ -59,28 +84,16 @@ class MyReader {
         return true;
     }
 
+
     String next() throws IOException
     {
-        while (in == null || !in.hasMoreTokens()) {
+        while (in == null || !in.hasMoreTokens())
             in = new StringTokenizer(br.readLine());
-        }
         return in.nextToken();
     }
 
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

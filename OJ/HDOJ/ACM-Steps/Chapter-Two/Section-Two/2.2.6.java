@@ -1,14 +1,15 @@
 /*
  *  SRC: HDOJ ACM Steps
- * PROB: 七夕节
- * ALGO: NULL
- * DATE: Oct 30, 2011 
+ * PROB: Examining the Rooms
+ * ALGO: Stirling numbers of the first kind
+ * DATE: Oct 31, 2011 
  * COMP: jdk 6
  *
  * Created by Leewings Ac
  */
 
 import java.io.*;
+import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -20,21 +21,33 @@ class Main {
 }
 
 class Prob {
+    static DecimalFormat df = new DecimalFormat("0.0000");
+
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
+        BigInteger s[][] = new BigInteger[21][21],
+                   f[]   = new BigInteger[21];
+        for (int i = 0; i <= 20; i++)
+            for (int j = 0; j <= 20; j++)
+                s[i][j] = BigInteger.ZERO;
+
+        s[1][1] = BigInteger.ONE;
+        for (int i = 2; i <= 20; i++)
+            for (int j = 1; j <= i; j++)
+                s[i][j] = s[i - 1][j - 1].add(s[i - 1][j].multiply(BigInteger.valueOf(i - 1)));
+        f[0] = BigInteger.ONE;
+        for (int i = 1; i <= 20; i++) f[i] = f[i - 1].multiply(BigInteger.valueOf(i));
+
         in.nextInt();
         while (in.hasNext()) {
-            int n = in.nextInt();
-            int ans = 0;
-            for (int i = 2; i <= Math.sqrt(n); i++)
-                if (n % i == 0) {
-                    ans += i;
-                    if (n / i != i) ans += n / i;
-                }
-            out.println(ans + 1);
+            BigInteger cnt = BigInteger.ZERO;
+            int n = in.nextInt(),
+                k = in.nextInt();
+            for (int i = 1; i <= k; i++) cnt = cnt.add(s[n][i].subtract(s[n - 1][i - 1]));
+            out.println(new BigDecimal(cnt).divide(new BigDecimal(f[n]), 4, RoundingMode.HALF_UP));
         }
 
         out.flush();
@@ -61,26 +74,13 @@ class MyReader {
 
     String next() throws IOException
     {
-        while (in == null || !in.hasMoreTokens()) {
+        while (in == null || !in.hasMoreTokens())
             in = new StringTokenizer(br.readLine());
-        }
         return in.nextToken();
     }
 
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

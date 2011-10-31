@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Big Number
+ * ALGO: Math
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,22 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        long f[] = new long[21];
+        f[0] = 1;
+        for (int i = 1; i < 21; i++) f[i] = f[i - 1] * i;
+        for (int i = 0; i < 21; i++) f[i] = (int)Math.log10(f[i]) + 1;
+
+        in.nextInt();
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            if (n < 21) out.println(f[n]);
+            else out.println((int)(Math.log10(Math.sqrt(2 * Math.PI * n)) + n * Math.log10(n / Math.E)) + 1);
+        }
 
         out.flush();
     }
@@ -52,17 +69,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

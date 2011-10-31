@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Wolf and Rabbit
+ * ALGO: gcd
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,21 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
+    int gcd(int a, int b)
+    {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        in.nextInt();
+        while (in.hasNext()) {
+            if (gcd(in.nextInt(), in.nextInt()) == 1) out.println("NO");
+            else out.println("YES");
+        }
 
         out.flush();
     }
@@ -52,17 +68,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

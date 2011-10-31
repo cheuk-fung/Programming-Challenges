@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: 三角形
+ * ALGO: Math
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,19 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        int f[] = new int[10010];
+        f[1] = 2;
+        for (int i = 2, offset = 6; i < 10010; i++, offset += 6)
+            f[i] = f[i - 1] + offset;
+
+        in.nextInt();
+        while (in.hasNext())
+            out.println(f[in.nextInt()]);
 
         out.flush();
     }
@@ -52,17 +66,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }

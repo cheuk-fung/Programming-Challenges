@@ -1,7 +1,7 @@
 /*
  *  SRC: HDOJ ACM Steps
  * PROB: 小数化分数2
- * ALGO: 
+ * ALGO: NULL
  * DATE: Oct 30, 2011 
  * COMP: jdk 6
  *

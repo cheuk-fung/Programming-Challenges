@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Joseph
+ * ALGO: Math
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,31 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        int k,
+            ans[] = new int[14];
+        for (k = 1; k < 14; k++) {
+            int m = k;
+            while (ans[k] == 0) {
+                m++;
+                int r = 2 * k;
+                for (int p = 0; r > k; r--) {
+                    p = (p + m - 1) % r;
+                    if (p < k) break;
+                }
+                if (r == k) ans[k] = m;
+            }
+        }
+
+        while (true) {
+            k = in.nextInt();
+            if (k == 0) break;
+            out.println(ans[k]);
+        }
 
         out.flush();
     }
@@ -52,17 +78,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }
