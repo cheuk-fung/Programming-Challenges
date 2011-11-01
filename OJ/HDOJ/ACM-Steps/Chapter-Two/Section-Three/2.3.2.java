@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Exponentiation
+ * ALGO: BigDecimal
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,24 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        while (in.hasNext()) {
+            BigDecimal r = in.nextBigDecimal();
+            int n = in.nextInt();
+            BigDecimal ans = new BigDecimal("1.0");
+            while (n-- > 0) ans = ans.multiply(r);
+            String ansStr = ans.toPlainString();
+            if (ansStr.charAt(0) == '0') ansStr = ansStr.substring(1);
+            int back = ansStr.length() - 1;
+            while (ansStr.charAt(back) == '0') back--;
+            if (ansStr.charAt(back) == '.') back--;
+            ansStr = ansStr.substring(0, back + 1);
+            out.println(ansStr);
+        }
 
         out.flush();
     }
@@ -52,18 +71,6 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
     BigDecimal nextBigDecimal() throws IOException
     {

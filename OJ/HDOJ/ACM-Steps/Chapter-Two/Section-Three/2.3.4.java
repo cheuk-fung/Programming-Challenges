@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Buy the Ticket
+ * ALGO: Combinatorics
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,24 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        BigInteger f[] = new BigInteger[201];
+        f[0] = BigInteger.ONE;
+        for (int i = 1; i <= 200; i++) f[i] = f[i - 1].multiply(BigInteger.valueOf(i));
+
+        int taskCnt = 1;
+        while (true) {
+            int m = in.nextInt(),
+                n = in.nextInt();
+            if (m == 0 && n == 0) break;
+            out.println("Test #" + taskCnt++ + ":");
+            if (n > m) out.println(0);
+            else out.println(f[m + n].multiply(BigInteger.valueOf(m - n + 1)).divide(BigInteger.valueOf(m + 1)));
+        }
 
         out.flush();
     }
@@ -52,21 +71,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
-    }
-    BigDecimal nextBigDecimal() throws IOException
-    {
-        return new BigDecimal(next());
     }
 }

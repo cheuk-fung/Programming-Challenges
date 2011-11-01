@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: A + B Problem II
+ * ALGO: BigInteger
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,19 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        int n = in.nextInt();
+        for (int task = 1; task <= n; task++) {
+            BigInteger a = in.nextBigInteger(),
+                       b = in.nextBigInteger();
+            out.println("Case " + task + ":");
+            out.println(a + " + " + b + " = " + a.add(b));
+            if (task != n) out.println();
+        }
 
         out.flush();
     }
@@ -53,20 +67,9 @@ class MyReader {
     {
         return Integer.parseInt(next());
     }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
+
     BigInteger nextBigInteger() throws IOException
     {
         return new BigInteger(next());
-    }
-    BigDecimal nextBigDecimal() throws IOException
-    {
-        return new BigDecimal(next());
     }
 }

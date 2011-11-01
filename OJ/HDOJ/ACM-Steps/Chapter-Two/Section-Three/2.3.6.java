@@ -1,5 +1,14 @@
+/*
+ *  SRC: HDOJ ACM Steps
+ * PROB: Game of Connections
+ * ALGO: Catalan number
+ * DATE: Oct 31, 2011 
+ * COMP: jdk 6
+ *
+ * Created by Leewings Ac
+ */
+
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
@@ -11,14 +20,21 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        BigInteger c[] = new BigInteger[101];
+        c[0] = BigInteger.ONE;
+        for (int i = 1; i <= 100; i++)
+            c[i] = c[i - 1].multiply(BigInteger.valueOf(2 * (2 * i - 1))).divide(BigInteger.valueOf((i + 1)));
+
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            if (n == -1) break;
+            out.println(c[n]);
+        }
 
         out.flush();
     }
@@ -52,21 +68,5 @@ class MyReader {
     int nextInt() throws IOException
     {
         return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
-    }
-    BigDecimal nextBigDecimal() throws IOException
-    {
-        return new BigDecimal(next());
     }
 }
