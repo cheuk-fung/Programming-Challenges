@@ -1,8 +1,8 @@
 /*
- *  SRC: ZOJ 3545
- * PROB: Rescue the Rabbit
+ *  SRC: HDOJ 3689
+ * PROB: Infinite monkey theorem
  * ALGO: DP on AC Automata
- * DATE: Oct 05, 2011 
+ * DATE: Nov 05, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -13,26 +13,17 @@
 #include <queue>
 #include <algorithm>
 
+const double eps = 1e-8;
+
 using std::queue;
 using std::max;
 
 int n, l;
-int w[20];
-char dna[20][200];
-
-inline int gene_to_id(char c)
-{
-    switch (c) {
-        case 'A': return 0;
-        case 'G': return 1;
-        case 'T': return 2;
-        case 'C': return 3;
-    }
-}
+double w[26];
 
 class ACAutomata {
     private:
-        const static int CHARSET_SIZE = 4;
+        const static int CHARSET_SIZE = 26;
         const static int NODE_MAX_SIZE = 1024;
 
         struct Tnode {
@@ -45,8 +36,8 @@ class ACAutomata {
         int node_cnt;
         Tnode node[NODE_MAX_SIZE];
 
-        int f[2][1024][1024];
-        bool vis[2][1024][1024];
+        double f[2][1024];
+        bool vis[2][1024];
         int curr, next;
 
     public:
@@ -58,7 +49,7 @@ class ACAutomata {
             node_cnt = 0;
             root = &node[node_cnt++];
 
-            memset(f, 0xaf, sizeof(f));
+            for (int i = 0; i < NODE_MAX_SIZE; i++) f[0][i] = f[1][i] = 0.0;
             memset(vis, 0, sizeof(vis));
             curr = 0, next = 1;
         }
@@ -68,7 +59,7 @@ class ACAutomata {
             Tnode* p = root;
 
             while (*s) {
-                int idx = gene_to_id(*s);
+                int idx = *s - 'a';
                 if (!p->next[idx])
                     p->next[idx] = &node[node_cnt++];
                 p = p->next[idx];
@@ -106,51 +97,38 @@ class ACAutomata {
                         Q.push(u);
                     }
                 }
-
-                // for nesting case
-                if (!curr->id) curr->id = curr->fail->id;
             }
         }
 
         void query()
         {
-            int ans = 0xafafafaf;
+            double ans = 0.0;
 
-            f[curr][0][0] = 0;
-            vis[curr][0][0] = 1;
+            f[curr][0] = 100.0;
+            vis[curr][0] = 1;
             for (int i = 0; i < l; i++) {
                 for (int j = 0; j < node_cnt; j++)
-                    for (int k = 0, final = 1 << n; k < final; k++)
-                        if (vis[curr][j][k])
-                            for (int idx = 0; idx < CHARSET_SIZE; idx++) {
-                                Tnode *p = &node[j];
-                                while (!p->next[idx] && p != root) p = p->fail;
-                                p = p->next[idx];
-                                
-                                int state = k,
-                                    offset = 0;
-                                Tnode *t = p;
-                                while (t->id) {
-                                    int t_state = 1 << (t->id - 1);
-                                    if (!(state & t_state)) {
-                                        offset += w[t->id];
-                                        state |= t_state;
-                                    }
-                                    t = t->fail;
-                                }
+                    if (vis[curr][j])
+                        for (int idx = 0; idx < CHARSET_SIZE; idx++) {
+                            Tnode *p = &node[j];
+                            while (!p->next[idx] && p != root) p = p->fail;
+                            p = p->next[idx];
 
-                                vis[next][p - node][state] = true;
-                                f[next][p - node][state] = max(f[next][p - node][state], f[curr][j][k] + offset);
-                                ans = max(ans, f[next][p - node][state]);
+                            if (p->id) ans += f[curr][j] * w[idx];
+                            else {
+                                vis[next][p - node] = true;
+                                f[next][p - node] += f[curr][j] * w[idx];
                             }
+                        }
                 curr ^= 1;
                 next ^= 1;
-                memset(f[next], 0xaf, sizeof(f[next]));
-                memset(vis[next], 0, sizeof(vis[next]));
+                for (int j = 0; j < node_cnt; j++) {
+                    f[next][j] = 0.0;
+                    vis[next][j] = 0;
+                }
             }
 
-            if (ans < 0) puts("No Rabbit after 2012!");
-            else printf("%d\n", ans);
+            printf("%.2f%%\n", ans + eps);
         }
 };
 
@@ -158,11 +136,17 @@ ACAutomata aca;
 
 int main()
 {
-    while (scanf("%d%d", &n, &l) != EOF) {
-        for (int i = 1; i <= n; i++) {
-            scanf("%s%d", dna[i], w + i);
-            aca.insert(dna[i], i);
+    char str[100];
+    while (scanf("%d%d", &n, &l), n && l) {
+        for (int i = 0; i < 26; i++) w[i] = 0.0;
+
+        for (int i = 0; i < n; i++) {
+            char c;
+            scanf(" %c", &c);
+            scanf("%lf", w + (c - 'a'));
         }
+        scanf(" %s", str);
+        aca.insert(str, 1);
 
         aca.build_fail();
         aca.query();
