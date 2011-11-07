@@ -8,9 +8,14 @@
 [DONE]2768 Cat vs. Dog                          Hungarian
 [DONE]2773 White Water Rafting                  Computational Geometry
 [DONE]3062 Party                                2-SAT
-[DONE]3681 Prison Break                         Bisection + BFS
+[DONE]3680 Naughty fairies                      Math
+[DONE]3681 Prison Break                         Bisection + BFS || DP
 [DONE]3682 To Be an Dream Architect             Math
 [DONE]3683 Gomoku                               Gaming
+[TLE ]3684 Gunshots                             Graham Scan
+[DONE]3685 Rotational Painting                  Graham Scan
+[DONE]3687 National Day Parade                  NULL
+[TLE ]3688 Searchlights                         Bisection
 [DONE]3689 Infinite monkey theorem              DP on AC Automata
 [DONE]3691 Nubulsa Expo                         Stoer-Wagner
 [DONE]3695 Computer Virus on Planet Pandora     AC Automata
@@ -19,7 +24,7 @@
 [DONE]3699 A hard Aoshu Problem                 Enum
 [DONE]3711 Binary Number                        NULL
 [DONE]3713 Double Maze                          BFS
-[TODO]3715 Go Deeper                            2-SAT
+[DONE]3715 Go Deeper                            2-SAT
 [DONE]3720 Arranging Your Team                  NULL
 [DONE]3722 Card Game                            KM
 [DONE]3723 Delta Wave                           Math

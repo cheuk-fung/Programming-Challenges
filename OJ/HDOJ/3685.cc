@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 1113
- * PROB: Wall
- * ALGO: Graham Scan(Convex Hull)
- * DATE: Jul 26, 2011 
+ *  SRC: HDOJ 3685
+ * PROB: Rotational Painting
+ * ALGO: Graham Scan
+ * DATE: Nov 06, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -15,11 +15,9 @@
 using std::sort;
 using std::swap;
 
-const int MAX_N = 1000;
-const double pi = acos(-1.0);
+const int MAX_N = 50010;
 const double eps = 1e-12;
 
-inline bool eq0(double x) { return fabs(x) < eps; }
 inline bool eq(double x, double y) { return fabs(x - y) < eps; }
 inline bool ls(double x, double y) { return x + eps < y; }
 inline bool gr(double x, double y) { return x - eps > y; }
@@ -28,8 +26,7 @@ struct Point {
     double x, y;
     double agl;
 
-    Point() { }
-    Point(double _x, double _y) : x(_x), y(_y) { }
+    Point(double _x = 0, double _y = 0) : x(_x), y(_y) { }
 
     bool operator <(const Point &other) const
     {
@@ -47,6 +44,10 @@ struct Point {
 };
 typedef Point Vec;
 
+inline double dot(const Vec &u, const Vec &v)
+{
+    return u.x * v.x + u.y * v.y;
+}
 inline double cross(const Vec &u, const Vec &v)
 {
     return u.x * v.y - u.y * v.x;
@@ -69,7 +70,7 @@ inline bool check(int p)
     return cross(u, v) > eps;
 }
 
-double graham_scan(int n)
+void graham_scan(int n)
 {
     int min_ver = 0;
     for (int i = 1; i < n; i++)
@@ -88,22 +89,51 @@ double graham_scan(int n)
         stack[top++] = i;
     }
     stack[top] = 0;
+}
 
-    double res = 0;
-    for (int i = 0; i < top; i++)
-        res += (ver[stack[i]] - ver[stack[i + 1]]).length();
+Point g_center(int n) // gravity center
+{
+    Point res(0, 0);
+    ver[n] = ver[0];
+
+    double area = 0;
+    for (int i = 1; i <= n; i++) {
+        Point &a = ver[i - 1],
+              &b = ver[i];
+        double t = cross(a, b);
+        area += t / 2.0;
+        res.x += (a.x + b.x) * t;
+        res.y += (a.y + b.y) * t;
+    }
+    res.x /= (6.0 * area);
+    res.y /= (6.0 * area);
 
     return res;
 }
 
 int main()
 {
-    int n, l;
-    scanf("%d%d", &n, &l);
-    for (int i = 0; i < n; i++)
-        scanf("%lf%lf", &ver[i].x, &ver[i].y);
+    int tasks;
+    scanf("%d", &tasks);
+    while (tasks--) {
+        int n;
+        scanf("%d", &n);
+        for (int i = 0; i < n; i++)
+            scanf("%lf%lf", &ver[i].x, &ver[i].y);
 
-    printf("%.0f\n", graham_scan(n) + 2.0 * pi * l);
+        Point gc = g_center(n);
+        graham_scan(n);
+
+        int cnt = 0;
+        for (int i = 0; i < top; i++) {
+            double a = dot(ver[stack[i + 1]] - ver[stack[i]],
+                           gc - ver[stack[i]]),
+                   b = dot(ver[stack[i]] - ver[stack[i + 1]],
+                           gc - ver[stack[i + 1]]);
+            if (gr(a, 0) && gr(b, 0)) cnt++;
+        }
+        printf("%d\n", cnt);
+    }
 
     return 0;
 }
