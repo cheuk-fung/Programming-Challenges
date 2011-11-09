@@ -1,8 +1,8 @@
 /*
- *  SRC: POJ 1258
- * PROB: Agri-Net
- * ALGO: Kruskal + Disjoint Set
- * DATE: Jul 24, 2011 
+ *  SRC: NKOJ 2184
+ * PROB: Exercise 4 最小生成树
+ * ALGO: Kruskal
+ * DATE: Nov 09, 2011 
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -13,8 +13,8 @@
 
 using std::sort;
 
-const int MAX_N = 110;
-const int MAX_M = 10010;
+const int MAX_N = 10010;
+const int MAX_M = 100010;
 
 struct Edge
 {
@@ -55,20 +55,19 @@ int kruskal(int m)
 
 int main()
 {
-    int n;
-    while (~scanf("%d", &n)) {
-        int cnt = 0;
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++) {
-                int d;
-                scanf("%d", &d);
-                if (i == j) fa[i] = i;
-                else if (i < j)
-                    e[cnt++] = (Edge){i, j, d};
-            }
-        
-        printf("%d\n", kruskal(cnt));
+    int n, m;
+    while (~scanf("%d%d", &n, &m)) {
+        for (int i = 0; i < n; i++) fa[i] = i;
+        for (int i = 0; i < m; i++) {
+            int u, v, d;
+            scanf("%d%d%d", &u, &v, &d);
+            u--; v--;
+            e[i] = (Edge){u, v, d};
+        }
+
+        printf("%d\n", kruskal(m));
     }
 
     return 0;
 }
+

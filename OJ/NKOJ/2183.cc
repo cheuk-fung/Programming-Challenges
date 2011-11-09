@@ -1,6 +1,6 @@
 /*
  *  SRC: NKOJ 2183
- * PROB: 2183: Exercise 3 食堂打饭
+ * PROB: Exercise 3 食堂打饭
  * ALGO: Greedy
  * DATE: Oct 20, 2011 
  * COMP: g++

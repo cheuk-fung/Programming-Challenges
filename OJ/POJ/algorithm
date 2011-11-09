@@ -96,6 +96,7 @@
 [DONE]2155 Matrix                               BIT
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2186 Popular Cows                         Tarjan(Strongly Connected Component)
+[DONE]2187 Beauty Contest                       Rotating Calipers
 [DONE]2195 Going Home                           MCMF
 [DONE]2225 Asteroids!                           BFS
 [DONE]2239 Selecting Courses                    Dinic
