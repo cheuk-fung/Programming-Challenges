@@ -9,12 +9,13 @@
  */
 
 #include <cstdio>
+#include <cctype>
 #include <algorithm>
 
 using std::sort;
 
-const int MAX_N = 10010;
-const int MAX_M = 100010;
+const int MAX_N = 10000;
+const int MAX_M = 100000;
 
 struct Edge
 {
@@ -39,8 +40,27 @@ void ds_union(int u, int v)
     if (x != y) fa[x] = y;
 }
 
-int kruskal(int m)
+inline int next_int()
 {
+    char c;
+    while (!isdigit(c = getchar())) ;
+    int res = c - '0';
+    while (isdigit(c = getchar()))
+        res = res * 10 + c - '0';
+    return res;
+}
+
+int main()
+{
+    int n, m;
+    scanf("%d%d\n", &n, &m);
+    for (int i = 0; i < n; i++) fa[i] = i;
+    for (int i = 0; i < m; i++) {
+        e[i].u = next_int() - 1;
+        e[i].v = next_int() - 1;
+        e[i].d = next_int();
+    }
+
     sort(e, e + m);
 
     int sum = 0;
@@ -50,24 +70,7 @@ int kruskal(int m)
             sum += e[i].d;
         }
 
-    return sum;
-}
-
-int main()
-{
-    int n, m;
-    while (~scanf("%d%d", &n, &m)) {
-        for (int i = 0; i < n; i++) fa[i] = i;
-        for (int i = 0; i < m; i++) {
-            int u, v, d;
-            scanf("%d%d%d", &u, &v, &d);
-            u--; v--;
-            e[i] = (Edge){u, v, d};
-        }
-
-        printf("%d\n", kruskal(m));
-    }
+    printf("%d\n", sum);
 
     return 0;
 }
-
