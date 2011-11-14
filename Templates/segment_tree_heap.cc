@@ -51,19 +51,19 @@ class SegTree {
             node[idx].max = fmax(node[idx * 2].max, node[idx * 2 + 1].max);
         }
 
-        void query(int c, int d, int* minVal, int* maxVal, int idx = 1)
+        void query(int c, int d, int* min_val, int* max_val, int idx = 1)
         {
             if (c <= node[idx].a && node[idx].b <= d) {
-                *minVal = node[idx].min;
-                *maxVal = node[idx].max;
+                *min_val = node[idx].min;
+                *max_val = node[idx].max;
                 return ;
             }
 
             int tlmin = INF, tlmax = -INF, trmin = INF, trmax = -INF;
             if (c < (node[idx].a + node[idx].b) / 2) query(c, d, &tlmin, &tlmax, idx * 2);
             if (d > (node[idx].a + node[idx].b) / 2) query(c, d, &trmin, &trmax, idx * 2 + 1);
-            *minVal = fmin(tlmin, trmin);
-            *maxVal = fmax(tlmax, trmax);
+            *min_val = fmin(tlmin, trmin);
+            *max_val = fmax(tlmax, trmax);
         }
 };
 

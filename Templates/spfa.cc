@@ -14,25 +14,25 @@
 
 using std::queue;
 
-const int MAX_N = 50010;
+const int MAX_V = 50010;
+const int MAX_E = 100010;
 
-long long dist[MAX_N];
-int w[MAX_N];
-bool vis[MAX_N];
+long long dist[MAX_V];
+int w[MAX_V];
+bool vis[MAX_V];
 
-struct Link {
+struct Edge {
     int v, d;
-    Link* next;
-} edge_buf[MAX_N << 2];
-Link *edge[MAX_N],
-     *buf_tail = edge_buf;
+    Edge *next;
+};
+Edge e_buf[MAX_E],
+     *e_head[MAX_V],
+     *e_tail = e_buf;
 
 void add_edge(int u, int v, int d)
 {
-    buf_tail->v = v;
-    buf_tail->d = d;
-    buf_tail->next = edge[u];
-    edge[u] = buf_tail++;
+    *e_tail = (Edge){v, d, e_head[u]};
+    e_head[u] = e_tail++;
 }
 
 void spfa()
@@ -48,10 +48,9 @@ void spfa()
         Q.pop();
 
         vis[u] = false;
-        Link* p = edge[u];
-        while (p) {
-            int v = p->v;
-            int d = p->d;
+        for (Edge *e = e_head[u]; e; e = e->next) {
+            int v = e->v;
+            int d = e->d;
             if (d + dist[u] < dist[v]) {
                 dist[v] = d + dist[u];
                 if (!vis[v]) {
@@ -59,7 +58,6 @@ void spfa()
                     Q.push(v);
                 }
             }
-            p = p->next;
         }
     }
 }
@@ -72,9 +70,10 @@ void solve()
     for (int i = 1; i <= v; i++)
         scanf("%d", w + i);
 
-    memset(edge_buf, 0, sizeof(edge_buf));
-    memset(edge, 0, sizeof(edge));
-    buf_tail = edge_buf;
+    memset(e_buf, 0, sizeof(e_buf));
+    memset(e_head, 0, sizeof(e_head));
+    e_tail = e_buf;
+
     for (int i = 0; i < e; i++) {
         int a, b, c;
         scanf("%d%d%d", &a, &b, &c);
