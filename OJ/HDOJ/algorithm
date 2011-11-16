@@ -11,6 +11,7 @@
 [DONE]2768 Cat vs. Dog                          Hungarian
 [DONE]2773 White Water Rafting                  Computational Geometry
 [DONE]3062 Party                                2-SAT
+[TLE ]3660 Alice and Bob's Trip                 Tree DP
 [DONE]3662 3D Convex Hull                       3D Convex Hull
 [DONE]3666 THE MATRIX PROBLEM                   SPFA
 [DONE]3667 Transportation                       MCMF
@@ -21,7 +22,7 @@
 [TLE ]3684 Gunshots                             Graham Scan
 [DONE]3685 Rotational Painting                  Graham Scan
 [DONE]3687 National Day Parade                  NULL
-[DONE]3688 Searchlights                         Bisection
+[DONE]3688 Searchlights                         NULL || Disjoint Set
 [DONE]3689 Infinite monkey theorem              DP on AC Automata
 [DONE]3691 Nubulsa Expo                         Stoer-Wagner
 [DONE]3695 Computer Virus on Planet Pandora     AC Automata

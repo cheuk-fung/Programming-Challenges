@@ -1,7 +1,7 @@
 /*
  *  SRC: HDOJ 3688
  * PROB: Searchlights
- * ALGO: Bisection
+ * ALGO: NULL
  * DATE: Nov 07, 2011 
  * COMP: g++
  *

@@ -23,21 +23,28 @@ struct Edge
     bool operator < (const Edge& other) const { return d < other.d; }
 } e[MAX_M];
 
-int fa[MAX_N];
+struct DisjointSet {
+    int p[MAX_N]; // parent
 
-int get_father(int u)
-{
-    if (fa[u] == u) return u;
+    void reset()
+    {
+        for (int i = 0; i < MAX_N; i++) p[i] = i;
+    }
 
-    return fa[u] = get_father(fa[u]);
-}
+    int find(int u)
+    {
+        if (p[u] == u) return u;
+        return p[u] = find(p[u]);
+    }
 
-void ds_union(int u, int v)
-{
-    int x = get_father(u);
-    int y = get_father(v);
-    if (x != y) fa[x] = y;
-}
+    void join(int u, int v)
+    {
+        int x = find(u),
+            y = find(v);
+        if (x != y) p[x] = y;
+    }
+};
+DisjointSet ds;
 
 int kruskal(int m)
 {
@@ -45,8 +52,8 @@ int kruskal(int m)
 
     int sum = 0;
     for (int i = 0; i < m; i++)
-        if (get_father(e[i].u) != get_father(e[i].v)) {
-            ds_union(e[i].u, e[i].v);
+        if (ds.find(e[i].u) != ds.find(e[i].v)) {
+            ds.join(e[i].u, e[i].v);
             sum += e[i].d;
         }
 
@@ -57,14 +64,14 @@ int main()
 {
     int n;
     while (~scanf("%d", &n)) {
+        ds.reset();
+
         int cnt = 0;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) {
                 int d;
                 scanf("%d", &d);
-                if (i == j) fa[i] = i;
-                else if (i < j)
-                    e[cnt++] = (Edge){i, j, d};
+                if (i < j) e[cnt++] = (Edge){i, j, d};
             }
         
         printf("%d\n", kruskal(cnt));
