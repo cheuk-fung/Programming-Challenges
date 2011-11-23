@@ -10,64 +10,55 @@
 
 import java.util.*;
 
-class Main
-{
+class Main {
     public static void main(String[] args)
     {
-        Scanner cin = new Scanner(System.in);
-
-        while (new Prob().solve(cin)) ;
+        new Prob().solve();
     }
 }
 
-class Prob
-{
-    private int n;
-    private long cnt = 0;
-    private int[] a;
+class Prob {
+    private long ans = 0;
 
-    public void mergeSort(int l, int r)
+    public void mergeSort(int a[], int l, int r) // [l, r)
     {
         if (l + 1 == r) return ;
 
         int mid = (l + r) / 2;
-        mergeSort(l, mid);
-        mergeSort(mid, r);
+        mergeSort(a, l, mid);
+        mergeSort(a, mid, r);
 
-        int size = 0;
-        int[] b = new int[r - l];
-        for (int i = l, j = mid; ; ) {
-            if (a[i] < a[j]) b[size++] = a[i++];
+        int b[] = new int[r - l];
+        int p = l, q = mid, cnt = 0;
+        while (p < mid && q < r) {
+            if (a[p] < a[q]) b[cnt++] = a[p++];
             else {
-                b[size++] = a[j++];
-                cnt += mid - i;
-            }
-            if (i == mid) {
-                while (j < r) b[size++] = a[j++];
-                break;
-            }
-            if (j == r) {
-                while (i < mid) b[size++] = a[i++];
-                break;
+                b[cnt++] = a[q++];
+                ans += mid - p;
             }
         }
-        for (int i = 0; i < size; i++) a[l + i] = b[i];
+        while (p < mid) b[cnt++] = a[p++];
+        while (q < r)   b[cnt++] = a[q++];
+
+        for (int i = 0; i < cnt; i++) a[l + i] = b[i];
     }
 
-    public boolean solve(Scanner cin)
+    public void solve()
     {
-        n = cin.nextInt();
-        if (n == 0) return false;
+        Scanner cin = new Scanner(System.in);
 
-        a = new int[n];
-        for (int i = 0; i < n; i++)
-            a[i] = cin.nextInt();
+        while (true) {
+            int n = cin.nextInt();
+            if (n == 0) break;
 
-        mergeSort(0, n);
+            int a[] = new int[n];
+            for (int i = 0; i < n; i++) a[i] = cin.nextInt();
 
-        System.out.println(cnt);
+            ans = 0;
+            mergeSort(a, 0, n);
 
-        return true;
+            System.out.println(ans);
+        }
     }
 }
 
