@@ -1,4 +1,4 @@
-set nocp backup ru sc is et nu acd scs hid hls ai ignorecase sw=4 cot=longest,menu backspace=indent,eol,start mouse=a
+set nocp backup ru sc is et nu acd scs hid hls ai sm ignorecase sw=4 cot=longest,menu backspace=indent,eol,start mouse=a
 syntax on
 filetype plugin indent on
 winsize 100 100
@@ -19,6 +19,7 @@ winpos 600 0
 " set expandtab
 " set number
 " set completeopt=longest,menu
+" set showmatch
 " set autochdir
 " set ignorecase smartcase
 " set hidden
