@@ -50,15 +50,3 @@ class DropCoins {
             return res == INF ? -1 : res;
         }
 };
-
-int main()
-{
-    vector<string> vs;
-    vs.push_back(".o..");
-    vs.push_back("oooo");
-    vs.push_back("..o.");
-    DropCoins dc;
-    printf("%d\n", dc.getMinimum(vs, 3));
-
-    return 0;
-}

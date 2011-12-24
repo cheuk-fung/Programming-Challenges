@@ -32,15 +32,3 @@ class RainyRoad {
             return vis[0][road[0].length() - 1] ? "YES" : "NO";
         }
 };
-
-int main()
-{
-    vector<string> road;
-    road.push_back(".W..W..");
-    road.push_back("...WWW.");
-
-    RainyRoad RR;
-    printf("%s\n", RR.isReachable(road).c_str());
-
-    return 0;
-}
