@@ -16,33 +16,34 @@ using std::sort;
 const int MAX_N = 110;
 const int MAX_M = 10010;
 
-struct Edge
-{
+struct Edge {
     int u, v, d;
 
-    bool operator < (const Edge& other) const { return d < other.d; }
+    bool operator <(const Edge &other) const { return d < other.d; }
 } e[MAX_M];
 
-struct DisjointSet {
-    int p[MAX_N]; // parent
+class DisjointSet {
+    private:
+        int p[MAX_N]; // parent
 
-    void reset()
-    {
-        for (int i = 0; i < MAX_N; i++) p[i] = i;
-    }
+    public:
+        void reset()
+        {
+            for (int i = 0; i < MAX_N; i++) p[i] = i;
+        }
 
-    int find(int u)
-    {
-        if (p[u] == u) return u;
-        return p[u] = find(p[u]);
-    }
+        int find(int u)
+        {
+            if (p[u] == u) return u;
+            return p[u] = find(p[u]);
+        }
 
-    void join(int u, int v)
-    {
-        int x = find(u),
-            y = find(v);
-        if (x != y) p[x] = y;
-    }
+        void join(int u, int v)
+        {
+            int x = find(u),
+                y = find(v);
+            if (x != y) p[x] = y;
+        }
 };
 DisjointSet ds;
 
@@ -73,7 +74,7 @@ int main()
                 scanf("%d", &d);
                 if (i < j) e[cnt++] = (Edge){i, j, d};
             }
-        
+
         printf("%d\n", kruskal(cnt));
     }
 
