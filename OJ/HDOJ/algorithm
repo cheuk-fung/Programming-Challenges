@@ -4,6 +4,10 @@
 [DONE]1885 Key Task                             BFS
 [DONE]1887 Weird Numbers                        NULL
 [DONE]1889 Reaux! Sham! Beaux!                  NULL
+[DONE]2446 Shell Pyramid                        Math
+[DONE]2448 Mining Station on the Sea            MCMF
+[ WA ]2449 Gauss Elimination                    Math
+[DONE]2452 Navy maneuvers                       DP
 [DONE]2485 Destroying the bus stations          Dinic
 [DONE]2487 Ugly Windows                         NULL
 [DONE]2492 Ping pong                            BIT
@@ -11,6 +15,8 @@
 [DONE]2768 Cat vs. Dog                          Hungarian
 [DONE]2773 White Water Rafting                  Computational Geometry
 [DONE]3062 Party                                2-SAT
+[DONE]3232 Crossing Rivers                      NULL
+[DONE]3233 Download Manager                     NULL
 [TLE ]3660 Alice and Bob's Trip                 Tree DP
 [DONE]3662 3D Convex Hull                       3D Convex Hull
 [DONE]3666 THE MATRIX PROBLEM                   SPFA

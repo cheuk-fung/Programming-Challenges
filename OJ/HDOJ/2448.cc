@@ -1,29 +1,30 @@
 /*
- *  SRC: POJ 2135
- * PROB: Farm Tour
+ *  SRC: HDOJ 2448
+ * PROB: Mining Station on the Sea
  * ALGO: MCMF
- * DATE: Jul 25, 2011 
+ * DATE: Feb 11, 2012
  * COMP: g++
  *
  * Created by Leewings Ac
  */
 
 #include <cstdio>
+#include <algorithm>
 #include <cstring>
 
-inline int fmin(int a, int b) { return a < b ? a : b; }
+using std::min;
 
 const int INF = 0x3f3f3f3f;
-const int MAX_V = 1010;
-const int MAX_E = 1000000;
-const int orig = 0, dest = 1000;
+const int MAX_V = 510;
+const int MAX_E = 510000;
+const int orig = 0, dest = 500;
 
 struct Edge {
     int v;
-    int c, f; // capa, flow
-    int cpf; // cost per flow
+    int c, f;
+    int cpf;
     Edge *next,
-         *rev; // revese edge
+         *rev;
 };
 Edge e_buf[MAX_E],
      *e_tail,
@@ -31,7 +32,7 @@ Edge e_buf[MAX_E],
 
 struct RoadNode {
     RoadNode *next;
-    Edge *which; // which edge
+    Edge *which;
 };
 RoadNode road[MAX_V];
 int que[MAX_E], dist[MAX_V];
@@ -83,7 +84,7 @@ int flow()
 {
     int min_flow = INF;
     for (RoadNode *r = &road[dest]; r->next; r = r->next)
-        min_flow = fmin(min_flow, r->which->c - r->which->f);
+        min_flow = min(min_flow, r->which->c - r->which->f);
 
     int res = 0;
     for (RoadNode *r = &road[dest]; r->next; r = r->next) {
@@ -104,29 +105,40 @@ int mcmf()
     return res;
 }
 
-void build_graph()
-{
-    int n, m;
-    scanf("%d%d", &n, &m);
-    add_edge(orig, 1, 2, 0);
-    for (int i = 0; i < m; i++) {
-        int s, e, v;
-        scanf("%d%d%d", &s, &e, &v);
-        add_edge(s, e, 1, v);
-        add_edge(e, s, 1, v);
-    }
-    add_edge(n, dest, 2, 0);
-}
+int station[500];
 
 int main()
 {
-    memset(e_buf, 0, sizeof(e_buf));
-    memset(e_head, 0, sizeof(e_head));
-    e_tail = e_buf;
+    int n, m, k, p;
+    while (~scanf("%d%d%d%d", &n, &m, &k, &p)) {
+        memset(station, 0, sizeof(station));
+        memset(e_buf, 0, sizeof(e_buf));
+        memset(e_head, 0, sizeof(e_head));
+        e_tail = e_buf;
 
-    build_graph();
+        for (int i = 0; i < n; i++) {
+            int t;
+            scanf("%d", &t);
+            station[t]++;
+        }
+        for (int i = 1; i <= m; i++)
+            if (station[i]) add_edge(orig, i, station[i], 0);
+        for (int i = 0; i < k; i++) {
+            int a, b, c;
+            scanf("%d%d%d", &a, &b, &c);
+            add_edge(a, b, INF, c);
+            add_edge(b, a, INF, c);
+        }
+        for (int i = 0; i < p; i++) {
+            int d, e, f;
+            scanf("%d%d%d", &d, &e, &f);
+            add_edge(e, m + d, INF, f);
+        }
+        for (int i = 1; i <= n; i++)
+            add_edge(m + i, dest, 1, 0);
 
-    printf("%d\n", mcmf());
+        printf("%d\n", mcmf());
+    }
 
     return 0;
 }
