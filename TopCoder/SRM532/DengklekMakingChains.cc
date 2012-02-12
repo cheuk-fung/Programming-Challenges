@@ -11,13 +11,15 @@ class DengklekMakingChains {
     public:
         int maxBeauty(vector <string> chains)
         {
-            int one = 0, res = 0;
+            int one = 0, clean = 0;
             int left[chains.size()], right[chains.size()];
             memset(left, 0, sizeof(left));
             memset(right, 0, sizeof(right));
             for (int i = 0; i < chains.size(); i++) {
                 if (chains[i].find('.') == string::npos)
-                    res += chains[i][0] + chains[i][1] + chains[i][2] - '0' * 3;
+                    clean += chains[i][0] - '0' +                           \
+                             chains[i][1] - '0' +                           \
+                             chains[i][2] - '0';
                 else {
                     int t = 0;
                     if (chains[i][1] != '.') {
@@ -42,6 +44,6 @@ class DengklekMakingChains {
                 for (int j = 0; j < chains.size(); j++)
                     if (i != j) side = max(side, left[i] + right[j]);
 
-            return max(one, res + side);
+            return max(one, clean + side);
         }
 };

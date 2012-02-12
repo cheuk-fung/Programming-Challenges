@@ -10,6 +10,8 @@ class DengklekTryingToSleep {
     public:
         int minDucks(vector <int> ducks)
         {
-            return *max_element(ducks.begin(), ducks.end()) - *min_element(ducks.begin(), ducks.end()) + 1 - ducks.size();
+            return *max_element(ducks.begin(), ducks.end()) -                \
+                   *min_element(ducks.begin(), ducks.end()) + 1 -            \
+                   ducks.size();
         }
 };
