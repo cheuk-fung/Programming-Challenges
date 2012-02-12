@@ -1,24 +1,24 @@
-inline void KMPInit(int* P, char* B, int m)
+void kmp_init(int* prn, char* b, int m)
 {
-    P[0] = 0;
+    prn[0] = 0;
     for (int i = 1, j = 0; i < m; i++) {
-        while (j > 0 && B[j] != B[i]) j = P[j - 1];
-        if (B[j] == B[i]) j++;
-        P[i] = j;
+        while (j > 0 && b[j] != b[i]) j = prn[j - 1];
+        if (b[j] == b[i]) j++;
+        prn[i] = j;
     }
 }
 
-inline int KMP(int* P, char* A, char* B, int n, int m)
+int kmp(int* prn, char* a, char* b, int n, int m)
 {
-    int res = 0;
+    int cnt = 0;
     for (int i = 0, j = 0; i < n; i++) {
-        while (j > 0 && B[j] != A[i]) j = P[j - 1];
-        if (B[j] == A[i]) j++;
+        while (j > 0 && b[j] != a[i]) j = prn[j - 1];
+        if (b[j] == a[i]) j++;
         if (j == m) {
-            res++;
-            j = P[j - 1];
+            cnt++;
+            j = prn[j - 1];
         }
     }
 
-    return res;
+    return cnt;
 }
