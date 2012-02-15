@@ -16,11 +16,11 @@
 
 using std::swap;
 
-const int MAX_N = 200010;
+const int MAXN = 200010;
 
 class Splay {
     private:
-        const static int BUF_SIZE = MAX_N;
+        const static int BUF_SIZE = MAXN;
         int tree_size;
 
         struct Tnode {
@@ -234,7 +234,7 @@ class Splay {
 
 Splay splay;
 
-int fa[MAX_N], fa_size[MAX_N];
+int fa[MAXN], fa_size[MAXN];
 
 int get_father(int u)
 {

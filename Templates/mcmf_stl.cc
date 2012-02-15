@@ -19,8 +19,8 @@ using std::queue;
 inline int fmin(int a, int b) { return a < b ? a : b; }
 
 const int INF = 0x3f3f3f3f;
-const int MAX_N = 1010;
-const int orig = 0, dest = MAX_N;
+const int MAXN = 1010;
+const int orig = 0, dest = MAXN;
 
 struct Edge {
     int v;
@@ -32,7 +32,7 @@ struct Edge {
         : v(_v), rev(_rev), c(_c), f(0), cpf(_cpf)
     { }
 };
-vector<Edge> edge[MAX_N + 1];
+vector<Edge> edge[MAXN + 1];
 
 struct Route {
     int u, v, which;
@@ -41,9 +41,9 @@ struct Route {
         : u(_u), v(_v), which(_which)
     { }
 };
-Route bfs_route[MAX_N + 1];
-bool vis[MAX_N + 1];
-int dist[MAX_N + 1];
+Route bfs_route[MAXN + 1];
+bool vis[MAXN + 1];
+int dist[MAXN + 1];
 
 inline void add_edge(int u, int v, int capa, int cpf)
 {

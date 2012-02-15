@@ -19,8 +19,8 @@ using std::queue;
 inline int fmin(int a, int b) { return a < b ? a : b; }
 
 const int INF = 0x3f3f3f3f;
-const int MAX_N = 1000;
-const int orig = 0, dest = MAX_N;
+const int MAXN = 1000;
+const int orig = 0, dest = MAXN;
 
 struct Edge {
     int v;
@@ -31,9 +31,9 @@ struct Edge {
         : v(_v), rev(_rev), c(_c), f(0)
     { }
 };
-vector<Edge> edge[MAX_N + 1];
+vector<Edge> edge[MAXN + 1];
 
-int lev[MAX_N + 1];
+int lev[MAXN + 1];
 
 inline void add_edge(int u, int v, int capa)
 {
@@ -88,7 +88,7 @@ int dinic()
 {
     int res = 0;
     while (bfs()) {
-        int tmp = dfs(orig, MAX_N);
+        int tmp = dfs(orig, MAXN);
         if (tmp) res += tmp;
         else break;
     }
@@ -107,7 +107,7 @@ void build_graph()
      * F + 1 to F + N: C1
      * F + N + 1 to F + 2N: C2
      * F + 2N + 1 to F + 2N + D: DD
-     * MAX_N: dest
+     * MAXN: dest
      */
 
     const int FF = 0;

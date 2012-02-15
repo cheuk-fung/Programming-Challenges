@@ -6,7 +6,7 @@
 using std::vector;
 using std::priority_queue;
 
-const int MAX_N = ;
+const int MAXN = ;
 
 struct Edge {
     int v, d;
@@ -21,9 +21,9 @@ struct Edge {
     }
 };
 
-vector<Edge> edge[MAX_N];
+vector<Edge> edge[MAXN];
 
-int dist[MAX_N];
+int dist[MAXN];
 
 int dijkstra()
 {

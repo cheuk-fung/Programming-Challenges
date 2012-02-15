@@ -15,7 +15,7 @@
 using std::sort;
 using std::swap;
 
-const int MAX_N = 1000;
+const int MAXN = 1000;
 const double pi = acos(-1.0);
 const double eps = 1e-12;
 
@@ -95,7 +95,7 @@ double graham_scan(Point *ver, Point *stack, int n, int &top)
     return res;
 }
 
-Point ver[MAX_N], stack[MAX_N];
+Point ver[MAXN], stack[MAXN];
 int top;
 
 int main()

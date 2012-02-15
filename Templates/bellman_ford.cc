@@ -22,9 +22,9 @@ struct Edge {
     { }
 };
 
-const int MAX_N = 510;
+const int MAXN = 510;
 
-int dist[MAX_N];
+int dist[MAXN];
 vector<Edge> edge;
 typedef vector<Edge>::const_iterator vci;
 

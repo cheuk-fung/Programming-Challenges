@@ -14,16 +14,16 @@
 
 using std::sort;
 
-const int MAX_N = 100010;
+const int MAXN = 100010;
 
 class PartitionTree {
     private:
         struct Tnode {
             int l, r;
         };
-        Tnode node[MAX_N << 2];
+        Tnode node[MAXN << 2];
 
-        int l_cnt[20][MAX_N], seg[20][MAX_N];
+        int l_cnt[20][MAXN], seg[20][MAXN];
 
         void _build(int a, int b, int d, int idx)
         {
@@ -78,7 +78,7 @@ class PartitionTree {
         }
 
     public:
-        int arr[MAX_N]; // sorted
+        int arr[MAXN]; // sorted
 
         void build(int a, int b)
         {

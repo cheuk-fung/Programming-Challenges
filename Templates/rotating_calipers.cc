@@ -15,7 +15,7 @@
 using std::sort;
 using std::swap;
 
-const int MAX_N = 50010;
+const int MAXN = 50010;
 const double eps = 1e-12;
 
 inline bool eq0(double x) { return fabs(x) < eps; }
@@ -106,7 +106,7 @@ double rotating_calipers(const Point *ver, int n)
     return res;
 }
 
-Point ver[MAX_N], stack[MAX_N];
+Point ver[MAXN], stack[MAXN];
 int top;
 
 int main()

@@ -13,23 +13,23 @@
 
 using std::sort;
 
-const int MAX_N = 110;
-const int MAX_M = 10010;
+const int MAXN = 110;
+const int MAXM = 10010;
 
 struct Edge {
     int u, v, d;
 
     bool operator <(const Edge &other) const { return d < other.d; }
-} e[MAX_M];
+} e[MAXM];
 
 class DisjointSet {
     private:
-        int p[MAX_N]; // parent
+        int p[MAXN]; // parent
 
     public:
         void reset()
         {
-            for (int i = 0; i < MAX_N; i++) p[i] = i;
+            for (int i = 0; i < MAXN; i++) p[i] = i;
         }
 
         int find(int u)

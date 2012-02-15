@@ -12,13 +12,13 @@
 #include <cstring>
 
 const int inf = 0x3f3f3f3f;
-const int MAX_N = 333;
+const int MAXN = 333;
 
 int n, m;
-int map[MAX_N][MAX_N];
+int map[MAXN][MAXN];
 
-bool A[MAX_N];
-int v[MAX_N], w[MAX_N];
+bool A[MAXN];
+int v[MAXN], w[MAXN];
 
 int stoer_wagner(int n)
 {

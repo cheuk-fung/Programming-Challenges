@@ -16,7 +16,7 @@
 using std::vector;
 using std::priority_queue;
 
-const int MAX_N = 110;
+const int MAXN = 110;
 
 struct Edge
 {
@@ -32,14 +32,14 @@ struct Edge
     }
 };
 
-int dist[MAX_N];
+int dist[MAXN];
 
 bool prim()
 {
     int n;
     if (scanf("%d", &n) == EOF) return false;
 
-    vector<Edge> edge[MAX_N];
+    vector<Edge> edge[MAXN];
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++) {
             int d;

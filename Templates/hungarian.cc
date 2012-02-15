@@ -14,16 +14,16 @@
 
 using std::vector;
 
-const int MAX_N = 37 * 37;
+const int MAXN = 37 * 37;
 
-vector<int> edge[MAX_N];
+vector<int> edge[MAXN];
 typedef vector<int>::const_iterator vci;
 
 int n, m, k;
 bool hole[37][37];
 
-int match[MAX_N];
-bool vis[MAX_N];
+int match[MAXN];
+bool vis[MAXN];
 
 bool find_path(int u)
 {

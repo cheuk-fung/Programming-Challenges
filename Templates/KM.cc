@@ -11,14 +11,14 @@
 #include <cstdio>
 #include <cstring>
 
-const int MAX_N = 300;
+const int MAXN = 300;
 const int INF = 0x3f3f3f3f;
 
 int n;
-int  w[MAX_N][MAX_N],
-     lx[MAX_N], ly[MAX_N],
-     match[MAX_N], slack[MAX_N];
-bool visx[MAX_N], visy[MAX_N];
+int  w[MAXN][MAXN],
+     lx[MAXN], ly[MAXN],
+     match[MAXN], slack[MAXN];
+bool visx[MAXN], visy[MAXN];
 
 bool find_path(int x)
 {
@@ -72,7 +72,7 @@ int KM()
     return res;
 }
 
-char card[MAX_N][1010];
+char card[MAXN][1010];
 
 int eval_w(char *a, char *b)
 {

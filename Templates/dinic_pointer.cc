@@ -13,10 +13,10 @@
 
 inline int fmin(int a, int b) { return a < b ? a : b; }
 
-const int INF = 0x3f3f3f3f;
-const int MAX_V = 1010;
-const int MAX_E = 1000000;
-const int orig = 0, dest = 1000;
+const int INF = 0x3f3f3f3f,
+          MAX_V = 1010,
+          MAX_E = 1000000,
+          orig = 0, dest = 1000;
 
 struct Edge {
     int v;
@@ -84,7 +84,7 @@ int dinic()
 {
     int res = 0;
     while (bfs()) {
-        int tmp = dfs(orig, MAX_V);
+        int tmp = dfs(orig, INF);
         if (tmp) res += tmp;
         else break;
     }
@@ -148,7 +148,7 @@ void build_graph()
 
 int main()
 {
-    memset(e_buf, 0, sizeof(e_buf));
+    // memset(e_buf, 0, sizeof(e_buf));
     memset(e_head, 0, sizeof(e_head));
     e_tail = e_buf;
 

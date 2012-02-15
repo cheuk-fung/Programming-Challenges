@@ -17,17 +17,17 @@ using std::vector;
 using std::queue;
 
 typedef vector<int>::const_iterator vci;
-const int MAX_N = 1010 << 1;
+const int MAXN = 1010 << 1;
 
-vector<int> edge[MAX_N];
-vector<int> new_edge[MAX_N];
+vector<int> edge[MAXN];
+vector<int> new_edge[MAXN];
 
 vector<int> stack;
 int idx, scc_cnt;
-int dfn[MAX_N], low[MAX_N], scc_id[MAX_N], scc_size[MAX_N];
-bool in_stack[MAX_N];
+int dfn[MAXN], low[MAXN], scc_id[MAXN], scc_size[MAXN];
+bool in_stack[MAXN];
 
-int in_deg[MAX_N], color[MAX_N];
+int in_deg[MAXN], color[MAXN];
 
 void tarjan_dfs(int u)
 {

@@ -15,14 +15,14 @@
 using std::vector;
 
 typedef vector<int>::const_iterator vci;
-const int MAX_N = 10010;
+const int MAXN = 10010;
 
-vector<int> edge[MAX_N];
+vector<int> edge[MAXN];
 
 vector<int> stack;
 int idx, scc_cnt;
-int dfn[MAX_N], low[MAX_N], scc_id[MAX_N], scc_size[MAX_N];
-bool in_stack[MAX_N];
+int dfn[MAXN], low[MAXN], scc_id[MAXN], scc_size[MAXN];
+bool in_stack[MAXN];
 
 void tarjan_dfs(int u)
 {
@@ -66,7 +66,7 @@ void tarjan(int n)
 }
 
 int n, m;
-int out_deg[MAX_N];
+int out_deg[MAXN];
 
 int solve()
 {

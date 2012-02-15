@@ -15,7 +15,7 @@
 using std::sort;
 
 const double eps = 1e-8;
-const int MAX_N = 10010;
+const int MAXN = 10010;
 const int INF = 0x3FFFFFFF;
 
 inline int fmax(int a, int b) { return a > b ? a : b; }
@@ -28,7 +28,7 @@ class SegTree {
             int a, b;
             int v, max;
         };
-        Tnode node[MAX_N * 20];
+        Tnode node[MAXN * 20];
 
     public:
         void build(int a, int b, int p = 1)
@@ -89,9 +89,9 @@ struct Segment {
 };
 
 SegTree st;
-Point p[MAX_N];
-Discrete dy[MAX_N * 2];
-Segment seg[MAX_N * 2];
+Point p[MAXN];
+Discrete dy[MAXN * 2];
+Segment seg[MAXN * 2];
 
 int main()
 {
