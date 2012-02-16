@@ -4,7 +4,7 @@ import java.util.*;
 import java.math.*;
 
 class Main {
-    public static void main(String args[]) throws IOException
+    public static void main(String[] args) throws IOException
     {
         new Prob().solve();
     }
@@ -49,24 +49,9 @@ class MyReader {
         return in.nextToken();
     }
 
-    int nextInt() throws IOException
-    {
-        return Integer.parseInt(next());
-    }
-    long nextLong() throws IOException
-    {
-        return Long.parseLong(next());
-    }
-    double nextDouble() throws IOException
-    {
-        return Double.parseDouble(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
-    }
-    BigDecimal nextBigDecimal() throws IOException
-    {
-        return new BigDecimal(next());
-    }
+    int nextInt() throws IOException { return Integer.parseInt(next()); }
+    long nextLong() throws IOException { return Long.parseLong(next()); }
+    double nextDouble() throws IOException { return Double.parseDouble(next()); }
+    BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
+    BigDecimal nextBigDecimal() throws IOException { return new BigDecimal(next()); }
 }

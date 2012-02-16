@@ -14,181 +14,192 @@ import java.util.*;
 import java.math.*;
 
 class Main {
-    public static void main(String args[]) throws IOException
+    public static void main(String[] args) throws IOException
     {
         new Prob().solve();
     }
 }
 
-class Fraction {
-    BigInteger up, down;
+class BigFraction {
+    private BigInteger numerator, denominator;
+    public static BigFraction ZERO = new BigFraction(BigInteger.ZERO, BigInteger.ONE);
+    public static BigFraction ONE  = new BigFraction(BigInteger.ONE,  BigInteger.ONE);
 
-    Fraction()
+    public BigFraction()
     {
-        up = BigInteger.ZERO;
-        down = BigInteger.ZERO;
+        numerator = BigInteger.ZERO;
+        denominator = BigInteger.ONE;
     }
 
-    Fraction(BigInteger _up, BigInteger _down)
+    public BigFraction(BigInteger _numerator, BigInteger _denominator)
     {
-        up = _up;
-        down = _down;
+        numerator = _numerator;
+        denominator = _denominator;
+    }
+
+    public BigFraction add(BigFraction other)
+    {
+        BigInteger new_numerator = numerator.multiply(other.denominator).add(other.numerator.multiply(denominator));
+        BigInteger new_denominator = denominator.multiply(other.denominator);
+        return new BigFraction(new_numerator, new_denominator).simplify();
+    }
+
+    public BigFraction subtract(BigFraction other)
+    {
+        BigInteger new_numerator = numerator.multiply(other.denominator).subtract(other.numerator.multiply(denominator));
+        BigInteger new_denominator = denominator.multiply(other.denominator);
+        return new BigFraction(new_numerator, new_denominator).simplify();
+    }
+
+    public BigFraction multiply(BigFraction other)
+    {
+        BigInteger new_numerator = numerator.multiply(other.numerator);
+        BigInteger new_denominator = denominator.multiply(other.denominator);
+        return new BigFraction(new_numerator, new_denominator).simplify();
+    }
+
+    public BigFraction divide(BigFraction other)
+    {
+        BigInteger new_numerator = numerator.multiply(other.denominator);
+        BigInteger new_denominator = denominator.multiply(other.numerator);
+        return new BigFraction(new_numerator, new_denominator).simplify();
+    }
+
+    public BigFraction abs()
+    {
+        return new BigFraction(numerator.abs(), denominator.abs());
+    }
+
+    public int compareTo(BigFraction other)
+    {
+        return subtract(other).signum();
+    }
+
+    public boolean isZero()
+    {
+        return numerator.equals(BigInteger.ZERO);
+    }
+
+    public boolean isInteger()
+    {
+        return denominator.equals(BigInteger.ONE);
+    }
+
+    public BigFraction negate()
+    {
+        return new BigFraction(numerator.negate(), denominator);
+    }
+
+    public int signum()
+    {
+        return numerator.signum();
+    }
+
+    public BigFraction simplify()
+    {
+        if (isZero()) return BigFraction.ZERO;
+        BigInteger gcd = numerator.gcd(denominator);
+        if (denominator.signum() == -1)
+            return new BigFraction(numerator.divide(gcd).negate(),
+                                   denominator.divide(gcd).negate());
+        return new BigFraction(numerator.divide(gcd), denominator.divide(gcd));
     }
 
     public String toString()
     {
         if (isZero()) return "0";
+        if (isInteger()) return numerator.toString();
+        return numerator + "/" + denominator;
+    }
+}
 
-        if (down.compareTo(BigInteger.ZERO) < 0) {
-            up = up.multiply(BigInteger.valueOf(-1));
-            down = down.multiply(BigInteger.valueOf(-1));
+class GaussElimination {
+    private BigFraction[] X;
+
+    //  1: infinitely many solutions
+    //  0: one solution
+    // -1: no solution
+    public int solve(int n, BigFraction[][] A, BigFraction[] B)
+    {
+        X = new BigFraction[n];
+
+        for (int xc = 0; xc < n; xc++) {
+            int row = xc;
+            for (int i = row + 1; i < n; i++)
+                if (A[i][xc].abs().compareTo(A[row][xc].abs()) > 0) row = i;
+            if (A[row][xc].isZero()) {
+                if (B[row].isZero()) return 1;
+                return -1;
+            }
+
+            if (row != xc) {
+                for (int j = xc; j < n; j++) {
+                    BigFraction tmp = A[xc][j];
+                    A[xc][j] = A[row][j];
+                    A[row][j] = tmp;
+                }
+                BigFraction tmp = B[xc];
+                B[xc] = B[row];
+                B[row] = tmp;
+            }
+
+            for (int i = xc + 1; i < n; i++) {
+                BigFraction rate = A[i][xc].divide(A[xc][xc]);
+                for (int j = xc; j < n; j++)
+                    A[i][j] = A[i][j].subtract(rate.multiply(A[xc][j]));
+                B[i] = B[i].subtract(rate.multiply(B[xc]));
+            }
         }
 
-        if (down.equals(BigInteger.ONE)) return up.toString();
-        return up + "/" + down;
+        for (int i = n - 1; i >= 0; i--) {
+            X[i] = B[i];
+            for (int j = n - 1; j > i; j--)
+                X[i] = X[i].subtract(A[i][j].multiply(X[j]));
+            X[i] = X[i].divide(A[i][i]);
+        }
+
+        return 0;
     }
 
-    boolean isZero()
-    {
-        return up.equals(BigInteger.ZERO);
-    }
+    public BigFraction[] getAns() { return X; }
 
-    Fraction simplify()
+    public String toString()
     {
-        if (isZero()) return this;
-        BigInteger gcd = up.gcd(down);
-        return new Fraction(up.divide(gcd), down.divide(gcd));
-    }
-
-    Fraction add(Fraction other)
-    {
-        BigInteger new_up = up.multiply(other.down).add(other.up.multiply(down));
-        BigInteger new_down = down.multiply(other.down);
-        return new Fraction(new_up, new_down).simplify();
-    }
-
-    Fraction subtract(Fraction other)
-    {
-        BigInteger new_up = up.multiply(other.down).subtract(other.up.multiply(down));
-        BigInteger new_down = down.multiply(other.down);
-        return new Fraction(new_up, new_down).simplify();
-    }
-
-    Fraction multiply(Fraction other)
-    {
-        BigInteger new_up = up.multiply(other.up);
-        BigInteger new_down = down.multiply(other.down);
-        return new Fraction(new_up, new_down).simplify();
-    }
-
-    Fraction divide(Fraction other)
-    {
-        BigInteger new_up = up.multiply(other.down);
-        BigInteger new_down = down.multiply(other.up);
-        return new Fraction(new_up, new_down).simplify();
+        String res = "";
+        for (int i = 0; i < X.length - 1; i++)
+            res += X[i] + " ";
+        return res + X[X.length - 1];
     }
 }
 
 class Prob {
     void solve() throws IOException
     {
-        //MyReader in = new MyReader();
-        Scanner in = new Scanner(System.in);
+        MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        Fraction a[][] = new Fraction[200][200],
-                 b[]   = new Fraction[200],
-                 ans[] = new Fraction[200];
+        BigFraction[][] A;
+        BigFraction[]   B;
 
-        /*
-        Fraction aa[][] = new Fraction[200][200],
-                 bb[] = new Fraction[200],
-                 */
-
-CaseLoop:
         while (in.hasNext()) {
             int n = in.nextInt();
+            A = new BigFraction[n][n];
+            B = new BigFraction[n];
+
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++)
-                    a[i][j] = new Fraction(in.nextBigInteger(), BigInteger.ONE);
-                b[i] = new Fraction(in.nextBigInteger(), BigInteger.ONE);
+                    A[i][j] = new BigFraction(in.nextBigInteger(), BigInteger.ONE);
+                B[i] = new BigFraction(in.nextBigInteger(), BigInteger.ONE);
             }
 
-            /*
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++)
-                    aa[i][j] = a[i][j];
-                bb[i] = b[i];
-            }
-
-            for (int ii = 0; ii < n; ii++) {
-                for (int jj = 0; jj < n; jj++)
-                    out.print(a[ii][jj] + " ");
-                out.println(b[ii]);
-            }
-            */
-
-            int pos[] = new int[n];
-            for (int i = 0; i < n; i++) pos[i] = i;
-            for (int j = 0; j < n; j++) {
-                boolean flag = true;
-                for (int i = j; i < n; i++)
-                    if (!a[pos[i]][j].isZero()) {
-                        flag = false;
-
-                        int tmp = pos[i];
-                        pos[i] = pos[j];
-                        pos[j] = tmp;
-
-                        for (int k = i + 1; k < n; k++) {
-                            Fraction t = a[pos[k]][j].divide(a[pos[j]][j]);
-                            for (int l = j; l < n; l++)
-                                a[pos[k]][l] = a[pos[k]][l].subtract(t.multiply(a[pos[j]][l]));
-                            b[pos[k]] = b[pos[k]].subtract(t.multiply(b[pos[j]]));
-                        }
-
-                        break;
-                    }
-
-                /*
-                for (int ii = 0; ii < n; ii++) {
-                    for (int jj = 0; jj < n; jj++)
-                        out.print(a[ii][jj] + " ");
-                    out.println(b[ii]);
-                }
-                */
-
-                if (flag) {
-                    out.println("No solution.");
-                    out.println();
-                    continue CaseLoop;
-                }
-            }
-
-            for (int i = n - 1; i >= 0; i--) {
-                ans[i] = b[pos[i]];
-                for (int j = i + 1; j < n; j++)
-                    ans[i] = ans[i].subtract(a[i][j].multiply(ans[j]));
-                ans[i] = ans[i].divide(a[i][i]);
-            }
-
-            for (int i = 0; i < n; i++) out.println(ans[i]);
-            out.println();
-
-            /*
-            for (int i = 0; i < n; i++) {
-                Fraction test = new Fraction(BigInteger.ZERO, BigInteger.ONE);
-                for (int j = 0; j < n; j++) {
-                    test = test.add(aa[i][j].multiply(ans[j]));
-                    // out.println(test);
-                }
-                // out.println(bb[i]);
-                out.println(test.subtract(bb[i]) + " ");
+            GaussElimination g = new GaussElimination();
+            if (g.solve(n, A, B) != 0) out.println("No solution.");
+            // else out.println(g.toString().replace(" ", "\n"));
+            else {
+                BigFraction X[] = g.getAns();
+                for (int i = 0; i < n; i++) out.println(X[i]);
             }
             out.println();
-            out.println();
-            */
-
         }
 
         out.flush();
