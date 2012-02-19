@@ -1,9 +1,8 @@
 import java.io.*;
-import java.text.*;
 import java.util.*;
 import java.math.*;
 
-class Main {
+public class Main {
     public static void main(String[] args) throws IOException
     {
         new Prob().solve();
@@ -11,14 +10,12 @@ class Main {
 }
 
 class Prob {
-    static DecimalFormat df = new DecimalFormat("0.000");
-
     void solve() throws IOException
     {
         MyReader in = new MyReader();
         PrintWriter out = new PrintWriter(System.out);
 
-        //...
+        // ...
 
         out.flush();
     }
