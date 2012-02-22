@@ -1,27 +1,33 @@
-#include <cstdio>
 #include <cstring>
 #include <vector>
+#include <algorithm>
 
-using std::vector;
+using namespace std;
 
 class CasketOfStarEasy {
     private:
-        int f[20][20];
+        vector<int> order;
+        bool vis[10];
 
     public:
         int maxEnergy(vector <int> weight)
         {
-            memset(f, 0, sizeof(f));
-            int n = weight.size();
-            for (int l = 3; l <= n; l++) {
-                for (int i = 0; i < n; i++) {
-                    int j = i + l - 1;
-                    if (j >= n) break;
-                    for (int k = i + 1; k < j; k++)
-                        f[i][j] = max(f[i][j], f[i][k] + f[k][j] + weight[i] * weight[j]);
-                }
-            }
+            for (int i = 1; i < weight.size() - 1; i++) order.push_back(i);
 
-            return f[0][n - 1];
+            int res = 0;
+            do {
+                int tot = 0;
+                memset(vis, false, sizeof(vis));
+                for (int i = 0; i < order.size(); i++) {
+                    int l = order[i], r = order[i];
+                    vis[order[i]] = true;
+                    while (vis[l]) l--;
+                    while (vis[r]) r++;
+                    tot += weight[l] * weight[r];
+                }
+                res = max(res, tot);
+            } while (next_permutation(order.begin(), order.end()));
+
+            return res;
         }
 };

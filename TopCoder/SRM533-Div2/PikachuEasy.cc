@@ -9,9 +9,6 @@ class PikachuEasy {
     public:
         string check(string word)
         {
-            string pi = "pi",
-                   ka = "ka",
-                   chu = "chu";
             for (int i = 0; i < word.length(); ) {
                 switch (word[i]) {
                     case 'p':
