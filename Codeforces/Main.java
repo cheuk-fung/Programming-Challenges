@@ -19,7 +19,7 @@ class Prob {
         out.flush();
     }
 
-    void debug(Object...x)
+    static void debug(Object...x)
     {
         System.out.println(Arrays.deepToString(x));
     }
@@ -51,3 +51,16 @@ class MyReader {
     BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
     BigDecimal nextBigDecimal() throws IOException { return new BigDecimal(next()); }
 }
+
+// Usage: Arrays.sort(test, new ProbComparator());
+class ProbComparator implements Comparator<Prob> {
+    public int compare(Prob a, Prob b)
+    {
+        // return:
+        //        1: a > b
+        //        0: a = b
+        //       -1: a < b
+        return 0;
+    }
+}
+
