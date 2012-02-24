@@ -2,10 +2,6 @@ import java.util.*;
 import java.math.*;
 
 public class Main {
-    {
-
-        return res;
-    }
 
 /*
     public static void main(String[] args)
@@ -15,7 +11,7 @@ public class Main {
     }
 */
 
-    public void debug(Object...x)
+    public static void debug(Object...x)
     {
         System.out.println(Arrays.deepToString(x));
     }
