@@ -10,8 +10,8 @@ public class Main {
 }
 
 class Prob {
-    static MyReader in = new MyReader();
-    static PrintWriter out = new PrintWriter(System.out);
+    static final MyReader in = new MyReader();
+    static final PrintWriter out = new PrintWriter(System.out);
 
     void solve() throws IOException
     {
@@ -26,8 +26,8 @@ class Prob {
 }
 
 class MyReader {
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer in;
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static final StringTokenizer in;
 
     boolean hasNext() throws IOException
     {
