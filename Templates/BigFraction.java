@@ -1,6 +1,7 @@
+import java.util.*;
 import java.math.BigInteger;
 
-class BigFraction {
+class BigFraction implements Comparable {
     private BigInteger numerator, denominator;
     public static BigFraction ZERO = new BigFraction(BigInteger.ZERO, BigInteger.ONE);
     public static BigFraction ONE  = new BigFraction(BigInteger.ONE,  BigInteger.ONE);
@@ -50,9 +51,9 @@ class BigFraction {
         return new BigFraction(numerator.abs(), denominator.abs());
     }
 
-    public int compareTo(BigFraction other)
+    public int compareTo(Object other)
     {
-        return subtract(other).signum();
+        return subtract((BigFraction)other).signum();
     }
 
     public boolean isZero()

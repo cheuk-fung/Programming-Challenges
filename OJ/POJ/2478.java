@@ -52,7 +52,7 @@ class Main {
         }
     }
 
-    public static void main(String[] argv)
+    public static void main(String[] args)
     {
         prm_cnt = getPrime(MAX_N);
         euler(MAX_N);

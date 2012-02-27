@@ -13,7 +13,7 @@
 
 using std::sort;
 
-class SegTree {
+class Seg_tree {
     private:
         struct Tnode {
             int a, b; // segment [a, b)
@@ -53,7 +53,7 @@ class SegTree {
         }
 
     public:
-        SegTree(int l, int r)
+        Seg_tree(int l, int r)
         {
             root = build(l, r);
         }
@@ -107,7 +107,7 @@ int main()
         sort(X, X + cnt);
 
         int ans = 0;
-        SegTree st(0, maxY + 1);
+        Seg_tree st(0, maxY + 1);
         for (int i = 0, preL = 0, preX = 0; i < cnt; i++) {
             st.insert(X[i].y1, X[i].y2, X[i].delta);
             ans += preL * (X[i].x - preX);

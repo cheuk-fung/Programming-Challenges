@@ -22,7 +22,7 @@ inline int fmax(int a, int b) { return a > b ? a : b; }
 inline bool eq(double a, double b) { return fabs(a - b) < eps; }
 inline bool ls(double a, double b) { return a + eps < b; }
 
-class SegTree {
+class Seg_tree {
     private:
         struct Tnode {
             int a, b;
@@ -88,7 +88,7 @@ struct Segment {
     }
 };
 
-SegTree st;
+Seg_tree st;
 Point p[MAXN];
 Discrete dy[MAXN * 2];
 Segment seg[MAXN * 2];

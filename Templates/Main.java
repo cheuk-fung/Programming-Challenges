@@ -10,26 +10,24 @@ public class Main {
 }
 
 class Prob {
-    static MyReader in = new MyReader();
-    static PrintWriter out = new PrintWriter(System.out);
+    static final MyReader in = new MyReader();
+    static final PrintWriter out = new PrintWriter(System.out);
 
     void solve() throws IOException
     {
 
-        // ...
-
         out.flush();
     }
 
-    void debug(Object...x)
+    static void debug(Object...x)
     {
         System.out.println(Arrays.deepToString(x));
     }
 }
 
 class MyReader {
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer in;
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static final StringTokenizer in;
 
     boolean hasNext() throws IOException
     {
@@ -53,3 +51,16 @@ class MyReader {
     BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
     BigDecimal nextBigDecimal() throws IOException { return new BigDecimal(next()); }
 }
+
+// Usage: Arrays.sort(test, new ProbComparator());
+class ProbComparator implements Comparator<Prob> {
+    public int compare(Prob a, Prob b)
+    {
+        // return:
+        //        1: a > b
+        //        0: a = b
+        //       -1: a < b
+        return 0;
+    }
+}
+

@@ -14,7 +14,7 @@
 
 using std::sort;
 
-class SegTree {
+class Seg_tree {
     private:
         struct Tnode {
             int a, b; // segment [a, b)
@@ -54,7 +54,7 @@ class SegTree {
         }
 
     public:
-        SegTree(int l, int r)
+        Seg_tree(int l, int r)
         {
             root = build(l, r);
         }
@@ -105,14 +105,14 @@ int main()
     sort(Y, Y + cnt);
 
     int ans = 0;
-    SegTree st_x(-10000, 10001);
+    Seg_tree st_x(-10000, 10001);
     for (int i = 0, curr = 0; i < cnt; i++) {
         st_x.insert(X[i].y1, X[i].y2, X[i].delta);
         ans += abs(curr - st_x.query());
         curr = st_x.query();
     }
 
-    SegTree st_y(-10000, 10001);
+    Seg_tree st_y(-10000, 10001);
     for (int i = 0, curr = 0; i < cnt; i++) {
         st_y.insert(Y[i].y1, Y[i].y2, Y[i].delta);
         ans += abs(curr - st_y.query());

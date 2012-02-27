@@ -10,7 +10,7 @@
 
 #include <cstdio>
 
-class SegTree {
+class Seg_tree {
     private:
         struct Tnode {
             int a, b; // segment [a, b)
@@ -74,7 +74,7 @@ class SegTree {
         }
 
     public:
-        SegTree(int l, int r)
+        Seg_tree(int l, int r)
         {
             root = build(l, r);
         }
@@ -95,7 +95,7 @@ int main()
     int l, t, o;
     scanf("%d%d%d", &l, &t, &o);
 
-    SegTree st(1, l + 1);
+    Seg_tree st(1, l + 1);
 
     for (int i = 0; i < o; i++) {
         char ctrl[10];
