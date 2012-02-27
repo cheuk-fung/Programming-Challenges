@@ -15,14 +15,15 @@ class EllysFiveFriends {
 
             long long res = 0;
             for (int i = 0; i < 5; i++) {
-                if (!numbers[i] || !numbers[(i + 1) % 5]) continue;
+                int j = (i + 1) % 5;
+                if (!numbers[i] || !numbers[j]) continue;
                 vector<int> t = numbers;
-                if (t[i] % 2 && t[(i + 1) % 5] % 2) {
-                    t[i]--; t[(i + 1) % 5]--;
+                if (t[i] % 2 && t[j] % 2) {
+                    t[i]--; t[j]--;
                     res = (res + dp(t)) % MOD;
-                    t[i]++; t[(i + 1) % 5]++;
+                    t[i]++; t[j]++;
                 }
-                t[i] /= 2; t[(i + 1) % 5] /= 2;
+                t[i] /= 2; t[j] /= 2;
                 res = (res + dp(t)) % MOD;
             }
 
