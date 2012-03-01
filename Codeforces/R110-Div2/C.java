@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.math.*;
 
-public class Main {
+public class C {
     public static void main(String[] args) throws IOException
     {
         new Prob().solve();
@@ -15,13 +15,22 @@ class Prob {
 
     void solve() throws IOException
     {
+        String s = in.next();
+        String u = in.next();
 
+        for (int i = 0; i < u.length(); i++)
+            s = "." + s + ".";
+
+        int ans = 0x3f3f3f3f;
+        for (int i = 0; i < s.length() - u.length(); i++) {
+            int cnt = 0;
+            for (int j = 0; j < u.length(); j++)
+                if (s.charAt(i + j) != u.charAt(j)) cnt++;
+            ans = Math.min(ans, cnt);
+        }
+
+        out.println(ans);
         out.flush();
-    }
-
-    static void debug(Object...x)
-    {
-        System.out.println(Arrays.deepToString(x));
     }
 }
 
@@ -51,16 +60,3 @@ class MyReader {
     BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
     BigDecimal nextBigDecimal() throws IOException { return new BigDecimal(next()); }
 }
-
-// Usage: Arrays.sort(test, new ProbComparator());
-class ProbComparator implements Comparator<Prob> {
-    public int compare(Prob a, Prob b)
-    {
-        // return:
-        //        1: a > b
-        //        0: a = b
-        //       -1: a < b
-        return 0;
-    }
-}
-
