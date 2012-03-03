@@ -13,7 +13,7 @@
 inline int fmin(int a, int b) { return a < b ? a : b; }
 inline int fmax(int a, int b) { return a > b ? a : b; }
 
-class Seg_tree {
+class SegTree {
     private:
         const static int INF = 0x3FFFFFFF;
 
@@ -67,7 +67,7 @@ class Seg_tree {
         }
 };
 
-Seg_tree st;
+SegTree st;
 
 int main()
 {

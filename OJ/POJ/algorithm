@@ -164,7 +164,7 @@
 [DONE]3126 Prime Path                           BFS
 [DONE]3159 Candies                              Dijkstra
 [DONE]3250 Bad Hair Day                         stack
-[DONE]3253 Fence Repair                         Haffman
+[DONE]3253 Fence Repair                         Huffman
 [DONE]3254 Corn Fields                          DP
 [DONE]3256 Cow Picnic                           Flood Fill
 [DONE]3258 River Hopscotch		        Bisection

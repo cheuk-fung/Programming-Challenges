@@ -27,7 +27,7 @@ class Prob {
 
 class MyReader {
     static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static final StringTokenizer in;
+    static StringTokenizer in;
 
     boolean hasNext() throws IOException
     {

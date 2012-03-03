@@ -1,4 +1,4 @@
-template<class ForwardIterator>
+template<typename ForwardIterator>
 void kmp_init(int* prn, ForwardIterator first, ForwardIterator last)
 {
     prn[0] = 0;
@@ -10,7 +10,7 @@ void kmp_init(int* prn, ForwardIterator first, ForwardIterator last)
     }
 }
 
-template<class ForwardIterator>
+template<typename ForwardIterator>
 void kmp_init(vector<int> *prn, ForwardIterator first, ForwardIterator last)
 {
     prn->clear();
@@ -23,7 +23,7 @@ void kmp_init(vector<int> *prn, ForwardIterator first, ForwardIterator last)
     }
 }
 
-template<class ForwardIterator, class Pattern>
+template<typename ForwardIterator, typename Pattern>
 int kmp(const Pattern &prn,                                                  \
         ForwardIterator first_a, ForwardIterator last_a,                     \
         ForwardIterator first_b, ForwardIterator last_b)

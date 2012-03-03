@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 3253
  * PROB: Fence Repair
- * ALGO: Haffman
+ * ALGO: Huffman
  * DATE: Sep 19, 2011 
  * COMP: g++
  *
