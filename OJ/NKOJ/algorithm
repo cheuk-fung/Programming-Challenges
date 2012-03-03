@@ -39,6 +39,7 @@
 [DONE]1289 Bignum Arithmetic                    BigInteger
 [DONE]1313 Tautology                            enum && stack
 [DONE]1324 Sorting It All Out                   Topological Sort
+[DONE]1326 Trees Made to Order                  NULL
 [DONE]1330 Square Ice                           string
 [DONE]1379 C Looooops                           Number Theory
 [DONE]1389 Divisors                             Prime
@@ -47,6 +48,7 @@
 [DONE]1430 Fibonacci                            Number Theory
 [DONE]1434 Sudoku                               DFS
 [DONE]1442 Blue Jeans		                KMP
+[DONE]1455 Bridging signals                     DP
 [DONE]1461 Sightseeing tour                     Dinic
 [DONE]1474 Modular multiplication of poly...    NULL
 [DONE]1477 Moving Tables                        NULL
@@ -69,6 +71,7 @@
 [DONE]1630 Black Box                            Treap
 [DONE]1641 Japan                                BIT
 [DONE]1667 Power Network                        Dinic
+[DONE]1680 Multiple                             BFS
 [DONE]1748 Black and white painting             Math
 [DONE]1771 Farm Tour                            MCMF
 [DONE]1777 Popular Cows                         Tarjan(Strongly Connected Component)
@@ -78,6 +81,7 @@
 [DONE]1833 Monthly Expense		        Bisection
 [DONE]1838 Silver Cow Party                     Dijkstra
 [DONE]1846 Best Messenger Tool——NKQQ            Bisection
+[DONE]1855 And Then There Was One               NULL
 [DONE]1890 Moving ACMers                        Greedy
 [DONE]1893 统计数字                             sort
 [DONE]1901 Candies Distribution                 DP
