@@ -19,7 +19,7 @@ const int MAXM = 10010;
 struct Edge {
     int u, v, d;
 
-    bool operator <(const Edge &other) const { return d < other.d; }
+    bool operator<(const Edge &other) const { return d < other.d; }
 } e[MAXM];
 
 class DisjointSet {

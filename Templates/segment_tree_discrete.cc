@@ -81,7 +81,7 @@ struct Segment {
     double x;
     int b, e, v;
 
-    bool operator <(const Segment &other) const
+    bool operator<(const Segment &other) const
     {
         if (eq(x, other.x)) { return v < other.v; }
         return x < other.x;

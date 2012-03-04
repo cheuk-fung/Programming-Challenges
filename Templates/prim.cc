@@ -26,7 +26,7 @@ struct Edge
         : v(_v), d(_d)
     { }
 
-    bool operator < (const Edge& other) const
+    bool operator<(const Edge& other) const
     {
         return d > other.d;
     }

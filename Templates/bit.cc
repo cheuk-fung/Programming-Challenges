@@ -74,7 +74,7 @@ BIT bit;
 struct Point {
     int x, y;
 
-    bool operator < (const Point& other) const
+    bool operator<(const Point& other) const
     {
         if (x == other.x) return y < other.y;
         return x < other.x;

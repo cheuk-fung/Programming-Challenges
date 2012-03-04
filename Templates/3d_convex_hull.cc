@@ -30,7 +30,7 @@ struct Point {
         : x(_x), y(_y), z(_z), id(_id)
     { }
 
-    Point operator -(const Point &other) const
+    Point operator-(const Point &other) const
     {
         return Point(x - other.x, y - other.y, z - other.z);
     }

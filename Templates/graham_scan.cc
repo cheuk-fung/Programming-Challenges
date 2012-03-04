@@ -31,13 +31,13 @@ struct Point {
     Point() { }
     Point(double _x, double _y) : x(_x), y(_y) { }
 
-    bool operator <(const Point &other) const
+    bool operator<(const Point &other) const
     {
         if (eq(y, other.y)) return ls(x, other.x);
         return ls(y, other.y);
     }
 
-    Point operator -(const Point &other) const
+    Point operator-(const Point &other) const
     {
         return Point(x - other.x, y - other.y);
     }

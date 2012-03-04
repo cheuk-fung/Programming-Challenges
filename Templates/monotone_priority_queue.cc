@@ -19,7 +19,7 @@ int f[101][16001], que[16001];
 struct Node {
     int l, p, s;
 
-    bool operator < (const Node& other) const
+    bool operator<(const Node& other) const
     {
         return s < other.s;
     }
