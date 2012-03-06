@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 3349
  * PROB: Snowflake Snow Snowflakes
- * ALGO: hash
+ * ALGO: Hash
  * DATE: Jul 19, 2011 
  * COMP: g++
  *

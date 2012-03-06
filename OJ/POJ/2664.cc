@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 2664
  * PROB: Prerequisites?
- * ALGO: hash
+ * ALGO: Hash
  * DATE: Jul 28, 2011 
  * COMP: g++
  *

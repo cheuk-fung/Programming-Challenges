@@ -76,6 +76,7 @@
 [DONE]1775 Sum of Factorials                    NULL
 [DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
 [DONE]1822 Fence2                               Combinatorics
+[DONE]1840 Eqs                                  Bisection
 [DONE]1860 Currency Exchange                    Bellman Ford
 [DONE]1905 Expanding Rods                       Bisection
 [DONE]1915 Knight Moves                         BFS
@@ -93,6 +94,7 @@
 [DONE]2109 Power of Cryptography                Bisection
 [DONE]2115 C Looooops                           Number Theory
 [DONE]2135 Farm Tour                            MCMF
+[DONE]2151 Check the difficulty of problems     DP
 [DONE]2155 Matrix                               BIT
 [DONE]2159 Ancient Cipher                       NULL
 [DONE]2186 Popular Cows                         Tarjan(Strongly Connected Component)
@@ -127,6 +129,7 @@
 [DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
 [DONE]2495 Incomplete chess boards              Hungarian
+[DONE]2503 Babelfish                            Hash
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2528 Mayor's posters                      Segment Tree
 [DONE]2533 Longest Ordered Subsequence          DP
@@ -134,7 +137,7 @@
 [DONE]2581 Exact Change Only                    DP(Multiple Pack)
 [DONE]2586 Y2K Accounting Bug                   Greedy
 [DONE]2612 Mine Sweeper                         NULL
-[DONE]2664 Prerequisites?                       hash
+[DONE]2664 Prerequisites?                       Hash
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2750 Potted Flower                        Segment Tree
@@ -180,7 +183,7 @@
 [DONE]3295 Tautology                            enum && stack
 [DONE]3299 Humidex                              Math
 [DONE]3322 Bloxorz I                            BFS
-[DONE]3349 Snowflake Snow Snowflakes            hash
+[DONE]3349 Snowflake Snow Snowflakes            Hash
 [DONE]3364 Black and white painting             Math
 [DONE]3436 ACM Computer Factory                 Dinic
 [DONE]3467 Cross Counting                       NULL
