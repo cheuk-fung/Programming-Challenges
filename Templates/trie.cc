@@ -44,11 +44,10 @@ class Trie {
             Tnode *p = root;
 
             while (*s) {
-                if (p->exist) return false;
-
                 int idx = *s++ - '0';
                 if (!p->next[idx]) p->next[idx] = node_tail++;
                 p = p->next[idx];
+                if (p->exist) return false;
             }
 
             p->exist++;

@@ -57,6 +57,7 @@
 [DONE]1376 Robot                                BFS
 [DONE]1383 Labyrinth                            DFS
 [DONE]1389 Area of Simple Polygons              Segment Tree
+[DONE]1426 Find The Multiple                    BFS
 [DONE]1442 Black Box                            Treap
 [DONE]1459 Power Network                        Dinic
 [DONE]1468 Rectangles                           Computational Geometry
@@ -128,6 +129,7 @@
 [DONE]2482 Stars in Your Window                 Segment Tree
 [DONE]2485 Highways                             Kruskal + Disjoint Set
 [DONE]2486 Apple Tree                           Tree DP
+[DONE]2488 A Knight's Journey                   DFS
 [DONE]2495 Incomplete chess boards              Hungarian
 [DONE]2503 Babelfish                            Hash
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
@@ -157,6 +159,7 @@
 [DONE]2985 The k-th Largest Group               Treap || Splay
 [DONE]2992 Divisors                             Prime
 [DONE]3006 Dirichlet's Theorem on Arithmetic... Prime
+[DONE]3009 Curling 2.0                          DFS
 [DONE]3013 Big Christmas Tree                   SPFA
 [DONE]3020 Antenna Placement                    Hungarian
 [DONE]3041 Asteroids                            Hungarian
@@ -164,6 +167,7 @@
 [DONE]3067 Japan                                BIT
 [DONE]3074 Sudoku                               DFS
 [DONE]3080 Blue Jeans		                KMP
+[DONE]3087 Shuffle'm Up                         Trie
 [DONE]3094 Quicksum                             NULL
 [DONE]3122 Pie                                  Bisection
 [DONE]3126 Prime Path                           BFS
