@@ -140,6 +140,7 @@
 [DONE]2586 Y2K Accounting Bug                   Greedy
 [DONE]2612 Mine Sweeper                         NULL
 [DONE]2664 Prerequisites?                       Hash
+[DONE]2676 Sudoku                               DFS
 [DONE]2688 Cleaning Robot                       BFS
 [DONE]2739 Sum of Consecutive Prime Numbers     Prime
 [DONE]2750 Potted Flower                        Segment Tree
