@@ -57,6 +57,7 @@
 [DONE]1376 Robot                                BFS
 [DONE]1383 Labyrinth                            DFS
 [DONE]1389 Area of Simple Polygons              Segment Tree
+[DONE]1416 Shredding Company                    DFS
 [DONE]1426 Find The Multiple                    BFS
 [DONE]1442 Black Box                            Treap
 [DONE]1459 Power Network                        Dinic
@@ -77,6 +78,7 @@
 [DONE]1775 Sum of Factorials                    NULL
 [DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
 [DONE]1822 Fence2                               Combinatorics
+[DONE]1837 Balance                              DP
 [DONE]1840 Eqs                                  Bisection
 [DONE]1860 Currency Exchange                    Bellman Ford
 [DONE]1905 Expanding Rods                       Bisection
@@ -134,6 +136,7 @@
 [DONE]2503 Babelfish                            Hash
 [DONE]2516 Minimum Cost                         MCMF(Minimum Cost Maximum Flow)
 [DONE]2528 Mayor's posters                      Segment Tree
+[DONE]2531 Network Saboteur                     Enum
 [DONE]2533 Longest Ordered Subsequence          DP
 [DONE]2553 The Bottom of a Graph                Tarjan
 [DONE]2581 Exact Change Only                    DP(Multiple Pack)

@@ -32,7 +32,7 @@ int dijkstra()
 
     priority_queue<Edge> Q;
     Q.push(Edge(0, 0));
-    
+
     while (!Q.empty()) {
         int u = Q.top().v;
         int d = Q.top().d; 
