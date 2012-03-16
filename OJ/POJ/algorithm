@@ -46,8 +46,10 @@
 [DONE]1228 Grandpa's Estate                     Graham Scan
 [DONE]1251 Jungle Roads                         Prim
 [DONE]1258 Agri-Net                             Kruskal + Disjoint Set || Prim
+[DONE]1260 Pearls                               DP
 [DONE]1273 Drainage Ditches                     Dinic
 [DONE]1274 The Perfect Stall                    Hungarian
+[DONE]1276 Cash Machine                         DP
 [DONE]1321 棋盘问题                             DFS
 [DONE]1324 Holedox Moving                       BFS
 [DONE]1328 Radar Installation                   Greedy
@@ -78,6 +80,7 @@
 [DONE]1775 Sum of Factorials                    NULL
 [DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
 [DONE]1822 Fence2                               Combinatorics
+[DONE]1836 Alignment                            DP
 [DONE]1837 Balance                              DP
 [DONE]1840 Eqs                                  Bisection
 [DONE]1860 Currency Exchange                    Bellman Ford
@@ -176,6 +179,7 @@
 [DONE]3122 Pie                                  Bisection
 [DONE]3126 Prime Path                           BFS
 [DONE]3159 Candies                              Dijkstra
+[DONE]3176 Cow Bowling                          DP
 [DONE]3250 Bad Hair Day                         stack
 [DONE]3253 Fence Repair                         Huffman
 [DONE]3254 Corn Fields                          DP
@@ -183,6 +187,7 @@
 [DONE]3258 River Hopscotch		        Bisection
 [DONE]3259 Wormholes                            Bellman Ford
 [DONE]3264 Balanced Lineup                      Segment Tree || RMQ_ST(Range Maximum/Minimum Query_Sparse Table)
+[DONE]3267 The Cow Lexicon                      DP
 [DONE]3268 Silver Cow Party                     Dijkstra
 [DONE]3273 Monthly Expense		        Bisection
 [DONE]3274 Gold Balanced Lineup                 Hash

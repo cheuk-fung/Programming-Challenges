@@ -19,9 +19,9 @@ class Prob {
         out.flush();
     }
 
-    static void debug(Object...x)
+    static void debug(Object...o)
     {
-        System.out.println(Arrays.deepToString(x));
+        System.err.println(Arrays.deepToString(o));
     }
 }
 

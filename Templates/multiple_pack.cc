@@ -14,27 +14,27 @@ const double eps = 1e-12;
 
 int f[510];
 
-void ZeroOnePack(int value, int TotalValue, int task)
+void zero_one_pack(int value, int max_value, int task)
 {
-    for (int i = TotalValue; i >= value; i--)
+    for (int i = max_value; i >= value; i--)
 	if (f[i - value] == task) f[i] = task;
 }
 
-void CompletePack(int value, int TotalValue, int task)
+void complete_pack(int value, int max_value, int task)
 {
-    for (int i = value; i <= TotalValue; i++)
+    for (int i = value; i <= max_value; i++)
 	if (f[i - value] == task) f[i] = task;
 }
 
-void MultiplePack(int value, int amount, int TotalValue, int task)
+void multiple_pack(int value, int amount, int max_value, int task)
 {
-    if (value * amount >= TotalValue)
-	CompletePack(value, TotalValue, task);
+    if (value * amount >= max_value)
+	complete_pack(value, max_value, task);
     else {
 	for (int k = 1; k < amount; amount -= k, k <<= 1)
-	    ZeroOnePack(k * value, TotalValue, task);
+	    zero_one_pack(k * value, max_value, task);
 
-	ZeroOnePack(value * amount, TotalValue, task);
+	zero_one_pack(value * amount, max_value, task);
     }
 }
 
@@ -45,10 +45,10 @@ int main()
     for (int task = 1; scanf("%lf%d%d%d%d", &ta, &b, &c, &d, &e) == 5; task++) {
         a = (ta + eps) * 100;
         f[0] = task;
-        MultiplePack(25, b, a, task);
-        MultiplePack(10, c, a, task);
-        MultiplePack( 5, d, a, task);
-        MultiplePack( 1, e, a, task);
+        multiple_pack(25, b, a, task);
+        multiple_pack(10, c, a, task);
+        multiple_pack( 5, d, a, task);
+        multiple_pack( 1, e, a, task);
         if (f[a] != task) puts("NO EXACT CHANGE");
         else {
             int B = 0, C = 0, D = 0, E = 0, now = a;
