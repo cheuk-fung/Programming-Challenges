@@ -78,6 +78,7 @@
 [DONE]1731 Orders                               next_permutation
 [DONE]1753 Flip Game                            BFS
 [DONE]1775 Sum of Factorials                    NULL
+[DONE]1080 Human Gene Functions                 DP
 [DONE]1821 Fence                                DP + Monotone Priority Queue(decrease)
 [DONE]1822 Fence2                               Combinatorics
 [DONE]1836 Alignment                            DP

@@ -2,7 +2,7 @@
  *  SRC: POJ 2352
  * PROB: Stars
  * ALGO: BIT
- * DATE: Jul 20, 2011 
+ * DATE: Jul 20, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -24,31 +24,25 @@ class BIT {
 
         void get_bit_mask()
         {
-            int res = 0, x = bound;
-            while (x) {
-                x >>= 1;
-                res++;
-            }
+            int cnt = 0;
+            for (int x = bound; x; x >>= 1, cnt++)
+                ;
 
-            bit_mask = 1 << (res - 1);
+            bit_mask = 1 << (cnt - 1);
         }
 
     public:
         void update(int x, int val)
         {
-            while (x <= bound) {
-                c[x] += val;
-                x += lowbit(x);
-            }
+            for ( ; x <= bound; c[x] += val, x += lowbit(x))
+                ;
         }
 
         int sum(int x)
         {
             int res = 0;
-            while (x > 0) {
-                res += c[x];
-                x -= lowbit(x);
-            }
+            for ( ; x > 0; res += c[x], x -= lowbit(x))
+                ;
             return res;
         }
 
