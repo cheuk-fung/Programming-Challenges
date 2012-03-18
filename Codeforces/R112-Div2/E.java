@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.math.*;
 
-public class Main {
+public class E {
     public static void main(String[] args) throws IOException
     {
         new Prob().solve();
@@ -13,15 +13,40 @@ class Prob {
     static final MyReader in = new MyReader();
     static final PrintWriter out = new PrintWriter(System.out);
 
+    final int MAXBIT = 22;
+    final int MAXNUM = 1 << MAXBIT;
+
+
     void solve() throws IOException
     {
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            int[] a = new int[n];
+            int[] f = new int[MAXNUM];
+            Arrays.fill(f, -1);
+            for (int i = 0; i < n; i++) {
+                a[i] = in.nextInt();
+                f[a[i] ^ ((1 << MAXBIT) - 1)] = a[i];
+            }
+
+            for (int i = (1 << MAXBIT) - 1; i >= 0; i--) {
+                if (f[i] == -1) {
+                    for (int j = 0; j < MAXBIT; j++) {
+                        if (f[i | (1 << j)] != -1) {
+                            f[i] = f[i | (1 << j)];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                out.print(f[a[i]] + " ");
+            }
+            out.println();
+        }
 
         out.flush();
-    }
-
-    static void debug(Object...o)
-    {
-        System.err.println(Arrays.deepToString(o));
     }
 }
 
@@ -51,16 +76,3 @@ class MyReader {
     BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
     BigDecimal nextBigDecimal() throws IOException { return new BigDecimal(next()); }
 }
-
-// Usage: Arrays.sort(test, new ProbComparator());
-class ProbComparator implements Comparator<Prob> {
-    public int compare(Prob a, Prob b)
-    {
-        // return:
-        //        1: a > b
-        //        0: a = b
-        //       -1: a < b
-        return 0;
-    }
-}
-
