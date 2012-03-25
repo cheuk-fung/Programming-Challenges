@@ -10,8 +10,9 @@
 
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
 
-inline int fmin(int a, int b) { return a < b ? a : b; }
+using std::min;
 
 const int INF = 0x3f3f3f3f;
 const int MAX_V = 1010;
@@ -83,7 +84,7 @@ int flow()
 {
     int min_flow = INF;
     for (RoadNode *r = &road[dest]; r->next; r = r->next)
-        min_flow = fmin(min_flow, r->which->c - r->which->f);
+        min_flow = min(min_flow, r->which->c - r->which->f);
 
     int res = 0;
     for (RoadNode *r = &road[dest]; r->next; r = r->next) {

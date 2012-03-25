@@ -25,7 +25,7 @@ class BIT {
         void get_bit_mask()
         {
             int cnt = 0;
-            for (int x = bound; x; x >>= 1, cnt++)
+            for ( ; bound >> cnt; cnt++)
                 ;
 
             bit_mask = 1 << (cnt - 1);
@@ -34,15 +34,15 @@ class BIT {
     public:
         void update(int x, int val)
         {
-            for ( ; x <= bound; c[x] += val, x += lowbit(x))
-                ;
+            for ( ; x <= bound; x += lowbit(x))
+                c[x] += val;
         }
 
         int sum(int x)
         {
             int res = 0;
-            for ( ; x > 0; res += c[x], x -= lowbit(x))
-                ;
+            for ( ; x > 0; x -= lowbit(x))
+                res += c[x];
             return res;
         }
 

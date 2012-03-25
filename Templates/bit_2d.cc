@@ -21,27 +21,17 @@ class BIT_2D {
     public:
         void update(int x, int y, int val)
         {
-            while (x <= bound_x) {
-                int ty = y;
-                while (ty <= bound_y) {
+            for ( ; x <= bound_x; x += lowbit(x))
+                for (int ty = y; ty <= bound_y; ty += lowbit(ty))
                     c[x][ty] += val;
-                    ty += lowbit(ty);
-                }
-                x += lowbit(x);
-            }
         }
 
         int sum(int x, int y)
         {
             int res = 0;
-            while (x > 0) {
-                int ty = y;
-                while (ty > 0) {
+            for ( ; x; x -= lowbit(x))
+                for (int ty = y; ty; ty -= lowbit(ty))
                     res += c[x][ty];
-                    ty -= lowbit(ty);
-                }
-                x -= lowbit(x);
-            }
             return res;
         }
 };
