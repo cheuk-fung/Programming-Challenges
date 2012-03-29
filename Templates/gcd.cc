@@ -1,10 +1,15 @@
 int gcd(int a, int b)
 {
-    if (b == 0) return a;
-    return gcd(b, a % b);
+    while (b) {
+        int t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
 }
 
-int extended_euclid(int a, int b, int* x, int* y)
+// ax + by = gcd(a, b)
+int extended_euclid(int a, int b, int *x, int *y)
 {
     if (b == 0) {
         *x = 1;

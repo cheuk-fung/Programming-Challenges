@@ -30,20 +30,20 @@ int dijkstra()
     memset(dist, 0x3f, sizeof(dist));
     dist[0] = 0;
 
-    priority_queue<Edge> Q;
-    Q.push(Edge(0, 0));
+    priority_queue<Edge> que;
+    que.push(Edge(0, 0));
 
-    while (!Q.empty()) {
-        int u = Q.top().v;
-        int d = Q.top().d; 
-        Q.pop();
+    while (!que.empty()) {
+        int u = que.top().v;
+        int d = que.top().d; 
+        que.pop();
         if (d > dist[u]) continue;
         for (int i = 0; i < edge[u].size(); i++) {
             int v = edge[u][i].v;
             int dis = edge[u][i].d;
             if (dis + dist[u] < dist[v]) {
                 dist[v] = dis + dist[u];
-                Q.push(Edge(v, dist[v]));
+                que.push(Edge(v, dist[v]));
             }
         }
     }

@@ -38,7 +38,7 @@ void tarjan_dfs(int u)
         else if (in_stack[*v])
             if (dfn[*v] < low[u]) low[u] = dfn[*v];
     }
-    
+
     if (dfn[u] == low[u]) {
         scc_cnt++;
         int v;
