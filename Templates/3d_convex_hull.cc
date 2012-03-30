@@ -92,7 +92,7 @@ inline bool point_above_plane(const Point &p, const Plane &f)
 int edge[MAX_V][MAX_V];
 Plane tf[MAX_V];
 
-void convex_hull(Point *ver, Plane *ch, int n, int &ch_cnt)
+void convex_hull(int n, Point *ver, Plane *ch, int *ch_cnt)
 {
     memset(edge, 0, sizeof(edge));
 
@@ -111,27 +111,26 @@ void convex_hull(Point *ver, Plane *ch, int n, int &ch_cnt)
             }
         }
 
-    ch_cnt = 0;
-    ch[ch_cnt++] = Plane(ver[0], ver[1], ver[2]);
-    ch[ch_cnt++] = Plane(ver[2], ver[1], ver[0]);
+    int cnt = 0;
+    ch[cnt++] = Plane(ver[0], ver[1], ver[2]);
+    ch[cnt++] = Plane(ver[2], ver[1], ver[0]);
 
     for (int i = 3; i < n; i++) {
         Point curr = ver[i];
-        for (int j = 0; j < ch_cnt; j++) {
+        for (int j = 0; j < cnt; j++) {
             Plane f = ch[j];
             if (point_above_plane(curr, f)) {
                 edge[f.p0.id][f.p1.id] = 1;
                 edge[f.p1.id][f.p2.id] = 1;
                 edge[f.p2.id][f.p0.id] = 1;
-            }
-            else {
+            } else {
                 edge[f.p0.id][f.p1.id] = -1;
                 edge[f.p1.id][f.p2.id] = -1;
                 edge[f.p2.id][f.p0.id] = -1;
             }
         }
         int tf_cnt = 0;
-        for (int j = 0; j < ch_cnt; j++) {
+        for (int j = 0; j < cnt; j++) {
             Plane f = ch[j];
             if (edge[f.p0.id][f.p1.id] == 1) {
                 if (edge[f.p1.id][f.p0.id] == -1)
@@ -140,12 +139,13 @@ void convex_hull(Point *ver, Plane *ch, int n, int &ch_cnt)
                     tf[tf_cnt++] = Plane(f.p1, f.p2, curr);
                 if (edge[f.p0.id][f.p2.id] == -1)
                     tf[tf_cnt++] = Plane(f.p2, f.p0, curr);
-            }
-            else tf[tf_cnt++] = f;
+            } else tf[tf_cnt++] = f;
         }
         for (int i = 0; i < tf_cnt; i++) ch[i] = tf[i];
-        ch_cnt = tf_cnt;
+        cnt = tf_cnt;
     }
+
+    *ch_cnt = cnt;
 }
 
 int cnt_plane(const Plane *ch, int ch_cnt)
@@ -194,7 +194,7 @@ int main()
             ver[i] = Point(x, y, z, i);
         }
 
-        convex_hull(ver, ch, n, ch_cnt);
+        convex_hull(n, ver, ch, &ch_cnt);
 
         printf("%d\n", cnt_plane(ch, ch_cnt));
     }
