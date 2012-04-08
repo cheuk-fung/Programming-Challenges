@@ -5,7 +5,7 @@ using namespace std;
 
 const int MOD = 1000000007;
 
-int f[26][26][26][26][26];
+int f[27][27][27][27][27];
 class EllysFiveFriends {
     private:
         int idx[5][10010];
