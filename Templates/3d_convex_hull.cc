@@ -15,7 +15,7 @@
 
 using std::swap;
 
-const int MAX_V = 333;
+const int MAXV = 333;
 const double eps = 1e-8;
 
 inline bool eq0(double x) { return fabs(x) < eps; }
@@ -89,8 +89,8 @@ inline bool point_above_plane(const Point &p, const Plane &f)
     return gr(dot(p - f.p0, f.norm_vec()), 0.0);
 }
 
-int edge[MAX_V][MAX_V];
-Plane tf[MAX_V];
+int edge[MAXV][MAXV];
+Plane tf[MAXV];
 
 void convex_hull(int n, Point *ver, Plane *ch, int *ch_cnt)
 {
@@ -180,8 +180,8 @@ double volume(const Plane *ch, int ch_cnt)
     return fabs(v) / 6.0;
 }
 
-Point ver[MAX_V];
-Plane ch[MAX_V]; // convex hull, actually, it stores *triangles*
+Point ver[MAXV];
+Plane ch[MAXV]; // convex hull, actually, it stores *triangles*
 
 int main()
 {

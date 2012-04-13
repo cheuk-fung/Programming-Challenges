@@ -2,7 +2,7 @@
  *  SRC: HDOJ 3691
  * PROB: Nubulsa Expo
  * ALGO: Stoer-Wagner
- * DATE: Oct 12, 2011 
+ * DATE: Oct 12, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <cstring>
 
-const int inf = 0x3f3f3f3f;
+const int INF = 0x3f3f3f3f;
 const int MAXN = 333;
 
 int n, m;
@@ -22,7 +22,7 @@ int v[MAXN], w[MAXN];
 
 int stoer_wagner(int n)
 {
-    int res = inf;
+    int res = INF;
     for (int i = 0; i < n; i++) v[i] = i;
 
     while (n > 1) {
@@ -68,7 +68,7 @@ int main()
             a--, b--;
             map[a][b] = map[b][a] += c;
         }
-        
+
         printf("%d\n", stoer_wagner(n));
     }
 

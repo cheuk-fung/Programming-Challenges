@@ -10,13 +10,14 @@
 
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
 
-inline int fmin(int a, int b) { return a < b ? a : b; }
+using std::min;
 
-const int INF = 0x3f3f3f3f,
-          MAX_V = 1010,
-          MAX_E = 1000000,
-          orig = 0, dest = 1000;
+const int INF = 0x3f3f3f3f;
+const int MAXV = 1010;
+const int MAXE = 1000000;
+const int orig = 0, dest = 1000;
 
 struct Edge {
     int v;
@@ -24,11 +25,11 @@ struct Edge {
     Edge *next;
     Edge *rev; // revese edge
 };
-Edge e_buf[MAX_E],
-     *e_tail,
-     *e_head[MAX_V];
+Edge e_buf[MAXE];
+Edge *e_head[MAXV];
+Edge *e_tail;
 
-int que[MAX_V], lev[MAX_V];
+int que[MAXV], lev[MAXV];
 
 inline void add_edge(int u, int v, int c)
 {
@@ -46,8 +47,7 @@ bool bfs()
 {
     memset(lev, 0xff, sizeof(lev));
 
-    int *head = que,
-        *tail = que;
+    int *head = que, *tail = que;
     *tail++ = orig;
     lev[orig] = 0;
 
@@ -70,7 +70,7 @@ int dfs(int u, int f)
     int res = 0;
     for (Edge *e = e_head[u]; e; e = e->next)
         if (lev[e->v] == lev[u] + 1 && e->f < e->c) {
-            int tmp = dfs(e->v, fmin(f - res, e->c - e->f));
+            int tmp = dfs(e->v, min(f - res, e->c - e->f));
             res += tmp;
             e->f += tmp;
             e->rev->f = -e->f;
@@ -103,7 +103,7 @@ void build_graph()
      * F + 1 to F + N: C1
      * F + N + 1 to F + 2N: C2
      * F + 2N + 1 to F + 2N + D: DD
-     * MAX_V: dest
+     * MAXV: dest
      */
 
     const int FF = 0;

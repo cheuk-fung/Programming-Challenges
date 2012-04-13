@@ -12,11 +12,11 @@
 #include <cstring>
 #include <vector>
 #include <queue>
+#include <algorithm>
 
 using std::vector;
 using std::queue;
-
-inline int fmin(int a, int b) { return a < b ? a : b; }
+using std::min;
 
 const int INF = 0x3f3f3f3f;
 const int MAXN = 1000;
@@ -72,7 +72,7 @@ int dfs(int u, int f)
     for (unsigned int i = 0; i < edge[u].size(); i++) {
         int v = edge[u][i].v;
         if (lev[v] == lev[u] + 1 && edge[u][i].f < edge[u][i].c) {
-            int tmp = dfs(v, fmin(f - res, edge[u][i].c - edge[u][i].f));
+            int tmp = dfs(v, min(f - res, edge[u][i].c - edge[u][i].f));
             res += tmp;
             edge[u][i].f += tmp;
             int j = edge[u][i].rev;

@@ -15,8 +15,8 @@
 using std::min;
 
 const int INF = 0x3f3f3f3f;
-const int MAX_V = 1010;
-const int MAX_E = 1000000;
+const int MAXV = 1010;
+const int MAXE = 1000000;
 const int orig = 0, dest = 1000;
 
 struct Edge {
@@ -26,17 +26,17 @@ struct Edge {
     Edge *next,
          *rev; // revese edge
 };
-Edge e_buf[MAX_E],
+Edge e_buf[MAXE],
      *e_tail,
-     *e_head[MAX_V];
+     *e_head[MAXV];
 
 struct RoadNode {
     RoadNode *next;
     Edge *which; // which edge
 };
-RoadNode road[MAX_V];
-int que[MAX_E], dist[MAX_V];
-bool vis[MAX_V];
+RoadNode road[MAXV];
+int que[MAXE], dist[MAXV];
+bool vis[MAXV];
 
 inline void add_edge(int u, int v, int c, int cpf)
 {

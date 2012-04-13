@@ -14,19 +14,19 @@
 
 using std::queue;
 
-const int MAXV = 1010;
-const int MAXE = 300010;
+const int MAX_V = 1010;
+const int MAX_E = 300010;
 
-int dist[MAXV];
-int cnt[MAXV];
-bool vis[MAXV];
+int dist[MAX_V];
+int cnt[MAX_V];
+bool vis[MAX_V];
 
 struct Edge {
     int v, d;
     Edge *next;
 };
-Edge e_buf[MAXE],
-     *e_head[MAXV],
+Edge e_buf[MAX_E],
+     *e_head[MAX_V],
      *e_tail = e_buf;
 
 void add_edge(int u, int v, int d)

@@ -9,6 +9,7 @@
  */
 
 #include <cstdio>
+#include <cstring>
 #include <algorithm>
 
 using std::sort;
@@ -27,14 +28,19 @@ class DisjointSet {
         int p[MAXN]; // parent
 
     public:
+        DisjointSet()
+        {
+            reset();
+        }
+
         void reset()
         {
-            for (int i = 0; i < MAXN; i++) p[i] = i;
+            memset(p, 0xff, sizeof(p));
         }
 
         int find(int u)
         {
-            if (p[u] == u) return u;
+            if (p[u] < 0) return u;
             return p[u] = find(p[u]);
         }
 
@@ -42,7 +48,10 @@ class DisjointSet {
         {
             int x = find(u),
                 y = find(v);
-            if (x != y) p[x] = y;
+            if (x != y) {
+                p[x] += p[y];
+                p[y] = x;
+            }
         }
 };
 DisjointSet ds;
@@ -65,8 +74,6 @@ int main()
 {
     int n;
     while (~scanf("%d", &n)) {
-        ds.reset();
-
         int cnt = 0;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++) {
@@ -76,7 +83,10 @@ int main()
             }
 
         printf("%d\n", kruskal(cnt));
+
+        ds.reset();
     }
 
     return 0;
 }
+
