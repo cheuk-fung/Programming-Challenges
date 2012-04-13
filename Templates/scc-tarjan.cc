@@ -1,8 +1,8 @@
 /*
  *  SRC: POJ 2186
  * PROB: Popular Cows
- * ALGO: Tarjan(Strongly Connected Component)
- * DATE: Jul 23, 2011 
+ * ALGO: SCC-Tarjan (Strongly Connected Component)
+ * DATE: Jul 23, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -23,25 +23,25 @@ vector<int> edge[MAXN];
 
 vector<int> stack;
 int idx, scc_cnt;
-int dfn[MAXN], low[MAXN], scc_id[MAXN], scc_size[MAXN];
+int dfs_idx[MAXN], lowlink[MAXN], scc_id[MAXN], scc_size[MAXN];
 bool in_stack[MAXN];
 
 void tarjan_dfs(int u)
 {
-    dfn[u] = low[u] = ++idx;
+    dfs_idx[u] = lowlink[u] = ++idx;
     in_stack[u] = true;
     stack.push_back(u);
 
     for (vci v = edge[u].begin(); v != edge[u].end(); v++) {
-        if (!dfn[*v]) {
+        if (!dfs_idx[*v]) {
             tarjan_dfs(*v);
-            low[u] = min(low[u], low[*v]);
+            lowlink[u] = min(lowlink[u], lowlink[*v]);
         } else if (in_stack[*v]) {
-            low[u] = min(low[u], dfn[*v]);
+            lowlink[u] = min(lowlink[u], dfs_idx[*v]);
         }
     }
 
-    if (dfn[u] == low[u]) {
+    if (dfs_idx[u] == lowlink[u]) {
         int v;
         do {
             v = stack.back();
@@ -57,13 +57,13 @@ void tarjan_dfs(int u)
 void tarjan(int n)
 {
     idx = scc_cnt = 0;
-    memset(dfn, 0, sizeof(dfn));
-    memset(low, 0, sizeof(low));
+    memset(dfs_idx, 0, sizeof(dfs_idx));
+    memset(lowlink, 0, sizeof(lowlink));
     memset(scc_id, 0xff, sizeof(scc_id));
     memset(scc_size, 0, sizeof(scc_size));
 
     for (int i = 0; i < n; i++)
-        if (!dfn[i]) tarjan_dfs(i);
+        if (!dfs_idx[i]) tarjan_dfs(i);
 }
 
 int n, m;
