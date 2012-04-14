@@ -23,25 +23,25 @@ vector<int> edge[MAXN];
 
 vector<int> stack;
 int idx, scc_cnt;
-int dfs_idx[MAXN], lowlink[MAXN], scc_id[MAXN], scc_size[MAXN];
+int dfn[MAXN], low[MAXN], scc_id[MAXN], scc_size[MAXN];
 bool in_stack[MAXN];
 
 void tarjan_dfs(int u)
 {
-    dfs_idx[u] = lowlink[u] = ++idx;
-    in_stack[u] = true;
     stack.push_back(u);
+    in_stack[u] = true;
+    dfn[u] = low[u] = idx++;
 
     for (vci v = edge[u].begin(); v != edge[u].end(); v++) {
-        if (!dfs_idx[*v]) {
+        if (dfn[*v] == -1) {
             tarjan_dfs(*v);
-            lowlink[u] = min(lowlink[u], lowlink[*v]);
+            low[u] = min(low[u], low[*v]);
         } else if (in_stack[*v]) {
-            lowlink[u] = min(lowlink[u], dfs_idx[*v]);
+            low[u] = min(low[u], dfn[*v]);
         }
     }
 
-    if (dfs_idx[u] == lowlink[u]) {
+    if (dfn[u] == low[u]) {
         int v;
         do {
             v = stack.back();
@@ -57,13 +57,13 @@ void tarjan_dfs(int u)
 void tarjan(int n)
 {
     idx = scc_cnt = 0;
-    memset(dfs_idx, 0, sizeof(dfs_idx));
-    memset(lowlink, 0, sizeof(lowlink));
+    memset(dfn, 0xff, sizeof(dfn));
+    memset(low, 0xff, sizeof(low));
     memset(scc_id, 0xff, sizeof(scc_id));
     memset(scc_size, 0, sizeof(scc_size));
 
     for (int i = 0; i < n; i++)
-        if (!dfs_idx[i]) tarjan_dfs(i);
+        if (dfn[i] == -1) tarjan_dfs(i);
 }
 
 int n, m;
