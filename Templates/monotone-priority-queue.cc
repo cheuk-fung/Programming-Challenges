@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <algorithm>
 
-using std::sort;
+using namespace std;
 
 int n, m;
 int f[101][16001], que[16001];
@@ -25,16 +25,6 @@ struct Node {
     }
 } worker[101];
 
-inline int fmax(int a, int b)
-{
-    return a > b ? a : b;
-}
-
-inline int fmin(int a, int b)
-{
-    return a < b ? a : b;
-}
-
 inline int key(int i, int k)
 {
     return f[i - 1][k] - k * worker[i].p;
@@ -44,7 +34,7 @@ inline int key(int i, int k)
  * f[i][j] = {
  *              f[i - 1][j],
  *              f[i][j - 1],
- *              f[i - 1][k] + (j - k) * worker[i].p => (f[i - 1][k] - k * worker[i].p) + j * worker[i]. p
+ *              f[i - 1][k] + (j - k) * worker[i].p => (f[i - 1][k] - k * worker[i].p) + j * worker[i].p
  *           }
  */
 
@@ -61,19 +51,19 @@ int main()
         for (int j = 0; j < worker[i].s; j++) f[i][j] = f[i - 1][j];
 
         int head = 0, tail = 0;
-        for (int k = fmax(worker[i].s - worker[i].l, 0); k < worker[i].s; k++) {
+        for (int k = max(worker[i].s - worker[i].l, 0); k < worker[i].s; k++) {
             while (head < tail && key(i, que[tail - 1]) <= key(i, k)) tail--;
             que[tail++] = k;
         }
 
-        for (int j = worker[i].s, finish = fmin(worker[i].s + worker[i].l, n + 1); j < finish; j++) {
+        for (int j = worker[i].s, finish = min(worker[i].s + worker[i].l, n + 1); j < finish; j++) {
             while (head < tail && que[head] < j - worker[i].l) head++;
-            f[i][j] = fmax(f[i - 1][j], f[i][j - 1]);
-            f[i][j] = fmax(f[i][j], key(i, que[head]) + j * worker[i].p);
+            f[i][j] = max(f[i - 1][j], f[i][j - 1]);
+            f[i][j] = max(f[i][j], key(i, que[head]) + j * worker[i].p);
         }
 
         for (int j = worker[i].s + worker[i].l; j <= n; j++)
-            f[i][j] = fmax(f[i - 1][j], f[i][j - 1]);
+            f[i][j] = max(f[i - 1][j], f[i][j - 1]);
     }
 
     printf("%d\n", f[m][n]);
