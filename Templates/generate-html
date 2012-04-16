@@ -19,7 +19,7 @@ algorithm_name_GraphTheory=(Prim        Kruskal+with+Disjoint+Set   Bellman+Ford
 algorithm_file_GraphTheory=(prim.cc     kruskal.cc                  bellman-ford.cc dijkstra.cc     spfa.cc tarjan-scc.cc                               tarjan-bcc.cc                           2-sat.cc        hungarian.cc    KM.cc   dinic_pointer.cc        dinic_stl.cc    mcmf_pointer.cc                 mcmf_stl.cc                     stoer-wagner.cc)
 
 algorithm_name_Tree=(BIT        BIT-2D          "Segment+Tree+(heap)"   "Segment+Tree+(pointer)"        "Segment+Tree+(discrete)"       "Segment+Tree+(perimeter)"      "Segment+Tree+(area)"   Partition+Tree          Splay           Treap)
-algorithm_file_Tree=(bit.cc     bit-2d.cc       segment-tree_heap.cc    segment-tree_pointer.cc         segment-tree_discrete.cc        segment-tree_perimeter.cc       segment-tree_area.cc    partition_tree.cc       splay.cc        treap.cc)
+algorithm_file_Tree=(bit.cc     bit-2d.cc       segment-tree_heap.cc    segment-tree_pointer.cc         segment-tree_discrete.cc        segment-tree_perimeter.cc       segment-tree_area.cc    partition-tree.cc       splay.cc        treap.cc)
 
 algorithm_name_Other=(Heap      Merge+Sort      Inversion+Pair          Monotone+Priority+Queue         Multiple+Pack           RMQ+ST)
 algorithm_file_Other=(heap.cc   merge-sort.cc   inversion-pair.java     monotone-priority-queue.cc      multiple-pack.cc        RMQ-ST.cc)

@@ -2,7 +2,7 @@
  *  SRC: POJ 2104
  * PROB: K-th Number
  * ALGO: Partition Tree
- * DATE: Sep 08, 2011 
+ * DATE: Sep 08, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -32,26 +32,21 @@ class PartitionTree {
 
             int mid = (a + b - 1) / 2, l_same_to_mid = mid - a + 1;
             for (int i = a; i < b; i++)
-                if (seg[d][i] < arr[mid]) l_same_to_mid--;
+                if (seg[d][i] < sorted[mid]) l_same_to_mid--;
 
             int l_pos = a, r_pos = mid + 1;
             for (int i = a; i < b; i++) {
                 l_cnt[d][i] = (i == a ? 0 : l_cnt[d][i - 1]);
-                if (seg[d][i] < arr[mid]) {
+                if (seg[d][i] < sorted[mid]) {
                     l_cnt[d][i]++;
                     seg[d + 1][l_pos++] = seg[d][i];
-                }
-                else if (seg[d][i] > arr[mid]) {
+                } else if (seg[d][i] > sorted[mid]) {
                     seg[d + 1][r_pos++] = seg[d][i];
-                }
-                else {
-                    if (l_same_to_mid > 0) {
+                } else if (l_same_to_mid > 0) {
                         l_same_to_mid--;
                         l_cnt[d][i]++;
                         seg[d + 1][l_pos++] = seg[d][i];
-                    }
-                    else seg[d + 1][r_pos++] = seg[d][i];
-                }
+                } else seg[d + 1][r_pos++] = seg[d][i];
             }
 
             if (a + 1 < b) {
@@ -78,12 +73,12 @@ class PartitionTree {
         }
 
     public:
-        int arr[MAXN]; // sorted
+        int sorted[MAXN];
 
         void build(int a, int b)
         {
-            memcpy(seg[0], arr, sizeof(int) * (b - a));
-            sort(arr, arr + b - a);
+            memcpy(seg[0], sorted, sizeof(int) * (b - a));
+            sort(sorted, sorted + b - a);
             _build(a, b, 0, 1);
         }
 
@@ -99,7 +94,7 @@ int main()
 {
     int n, m;
     scanf("%d%d", &n, &m);
-    for (int i = 0; i < n; i++) scanf("%d", &pt.arr[i]);
+    for (int i = 0; i < n; i++) scanf("%d", &pt.sorted[i]);
     pt.build(0, n);
 
     for (int i = 0; i < m; i++) {
