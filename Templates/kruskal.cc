@@ -25,23 +25,19 @@ struct Edge {
 
 class DisjointSet {
     private:
-        int p[MAXN]; // parent
 
     public:
-        DisjointSet()
-        {
-            reset();
-        }
+        // a[i] > 0: a[i] is i's ancestor;
+        // a[i] < 0: -a[i] is the number of elements sharing the same ancestor i
+        int a[MAXN];
 
-        void reset()
-        {
-            memset(p, 0xff, sizeof(p));
-        }
+        DisjointSet() { reset(); }
+        void reset() { memset(a, 0xff, sizeof(a)); }
 
         int find(int u)
         {
-            if (p[u] < 0) return u;
-            return p[u] = find(p[u]);
+            if (a[u] < 0) return u;
+            return a[u] = find(a[u]);
         }
 
         void join(int u, int v)
@@ -49,8 +45,8 @@ class DisjointSet {
             int x = find(u),
                 y = find(v);
             if (x != y) {
-                p[x] += p[y];
-                p[y] = x;
+                a[x] += a[y];
+                a[y] = x;
             }
         }
 };

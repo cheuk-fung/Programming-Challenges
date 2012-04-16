@@ -1,4 +1,3 @@
-/* TODO: 光读入就超时了……wtf...... */
 /*
  *  SRC: HDOJ 3660
  * PROB: Alice and Bob's Trip
@@ -11,6 +10,7 @@
 
 #include <cstdio>
 #include <cstring>
+#include <cctype>
 #include <algorithm>
 
 using std::max;
@@ -55,6 +55,18 @@ int eval(int p, int curr, int is_bob)
     return res;
 }
 
+int next_int()
+{
+    char c;
+    while (isspace(c = getchar()))
+        ;
+    int res = c - '0';
+    while (isdigit(c = getchar())) {
+        res = res * 10 + c - '0';
+    }
+    return res;
+}
+
 int main()
 {
     while (scanf("%d%d%d", &n, &L, &R) != EOF) {
@@ -62,8 +74,7 @@ int main()
         e_tail = e_buf;
 
         for (int i = 1; i < n; i++) {
-            int u, v, d;
-            scanf("%d%d%d", &u, &v, &d);
+            int u = next_int(), v = next_int(), d = next_int();
             add_edge(u, v, d);
         }
 

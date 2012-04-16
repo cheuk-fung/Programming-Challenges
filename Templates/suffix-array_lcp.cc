@@ -2,7 +2,7 @@
  *  SRC: POJ 3882
  * PROB: Stammering Aliens
  * ALGO: Suffix Array
- * DATE: Aug 21, 2011 
+ * DATE: Aug 21, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -19,8 +19,7 @@ using std::make_pair;
 using std::max;
 using std::min;
 
-class suffix_array
-{
+class Suffix_Array {
     // use Doubling Algorithm
 
     private:
@@ -133,7 +132,7 @@ class suffix_array
         }
 };
 
-suffix_array sa;
+Suffix_Array sa;
 
 int main()
 {

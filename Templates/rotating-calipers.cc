@@ -2,7 +2,7 @@
  *  SRC: POJ 2187
  * PROB: Beauty Contest
  * ALGO: Rotating Calipers
- * DATE: Nov 09, 2011 
+ * DATE: Nov 09, 2011
  * COMP: g++
  *
  * Created by Leewings Ac

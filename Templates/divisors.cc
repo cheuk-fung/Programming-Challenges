@@ -2,7 +2,7 @@
  *  SRC: POJ 2992
  * PROB: Divisors
  * ALGO: Prime
- * DATE: Jul 13, 2011 
+ * DATE: Jul 13, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -28,6 +28,7 @@ void prime()
     }
 }
 
+// C(n, k)
 void divide(int n, int k)
 {
     memset(cnt, 0, sizeof(cnt));
@@ -70,7 +71,7 @@ bool solve()
 int main()
 {
     prime();
-    
+
     while (solve()) ;
 
     return 0;

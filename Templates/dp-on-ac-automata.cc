@@ -2,7 +2,7 @@
  *  SRC: ZOJ 3545
  * PROB: Rescue the Rabbit
  * ALGO: DP on AC Automata
- * DATE: Oct 05, 2011 
+ * DATE: Oct 05, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -58,7 +58,7 @@ class ACAutomata {
             node_cnt = 0;
             root = &node[node_cnt++];
 
-            memset(f, 0xaf, sizeof(f));
+            memset(f, 0x3f, sizeof(f));
             memset(vis, 0, sizeof(vis));
             curr = 0, next = 1;
         }
@@ -114,7 +114,7 @@ class ACAutomata {
 
         void query()
         {
-            int ans = 0xafafafaf;
+            int ans = 0x3f3f3f3f;
 
             f[curr][0][0] = 0;
             vis[curr][0][0] = 1;
@@ -126,7 +126,7 @@ class ACAutomata {
                                 Tnode *p = &node[j];
                                 while (!p->next[idx] && p != root) p = p->fail;
                                 p = p->next[idx];
-                                
+
                                 int state = k,
                                     offset = 0;
                                 Tnode *t = p;
@@ -145,7 +145,7 @@ class ACAutomata {
                             }
                 curr ^= 1;
                 next ^= 1;
-                memset(f[next], 0xaf, sizeof(f[next]));
+                memset(f[next], 0x3f, sizeof(f[next]));
                 memset(vis[next], 0, sizeof(vis[next]));
             }
 

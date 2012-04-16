@@ -2,7 +2,7 @@
  *  SRC: POJ 3648
  * PROB: Wedding
  * ALGO: 2-SAT
- * DATE: Oct 16, 2011 
+ * DATE: Oct 16, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -12,9 +12,11 @@
 #include <cstring>
 #include <vector>
 #include <queue>
+#include <algorithm>
 
 using std::vector;
 using std::queue;
+using std::min;
 
 typedef vector<int>::const_iterator vci;
 const int MAXN = 1010 << 1;
@@ -31,21 +33,19 @@ int in_deg[MAXN], color[MAXN];
 
 void tarjan_dfs(int u)
 {
-    dfn[u] = low[u] = ++idx;
-    in_stack[u] = true;
     stack.push_back(u);
+    in_stack[u] = true;
+    dfn[u] = low[u] = idx++;
 
     for (vci v = edge[u].begin(); v != edge[u].end(); v++) {
-        if (!dfn[*v]) {
+        if (dfn[*v] == -1) {
             tarjan_dfs(*v);
-            if (low[*v] < low[u]) low[u] = low[*v];
-        }
-        else if (in_stack[*v])
-            if (dfn[*v] < low[u]) low[u] = dfn[*v];
+            low[u] = min(low[u], low[*v]);
+        } else if (in_stack[*v])
+            low[u] = min(low[u], dfn[*v]);
     }
-    
+
     if (dfn[u] == low[u]) {
-        scc_cnt++;
         int v;
         do {
             v = stack.back();
@@ -54,19 +54,20 @@ void tarjan_dfs(int u)
             scc_id[v] = scc_cnt;
             scc_size[scc_cnt]++;
         } while (v != u) ;
+        scc_cnt++;
     }
 }
 
 void tarjan(int n)
 {
     idx = scc_cnt = 0;
-    memset(dfn, 0, sizeof(dfn));
-    memset(low, 0, sizeof(low));
-    memset(scc_id, 0, sizeof(scc_id));
+    memset(dfn, 0xff, sizeof(dfn));
+    memset(low, 0xff, sizeof(low));
+    memset(scc_id, 0xff, sizeof(scc_id));
     memset(scc_size, 0, sizeof(scc_size));
 
     for (int i = 0; i < n; i++)
-        if (!dfn[i]) tarjan_dfs(i);
+        if (dfn[i] == -1) tarjan_dfs(i);
 }
 
 void color_dfs(int u)
@@ -76,7 +77,7 @@ void color_dfs(int u)
         if (!color[*v]) color_dfs(*v);
 }
 
-bool sat_2(int n)
+bool sat(int n)
 {
     tarjan(n);
 
@@ -93,7 +94,7 @@ bool sat_2(int n)
 
     queue<int> Q;
     vector<int> topo;
-    for (int i = 1; i <= scc_cnt; i++)
+    for (int i = 0; i < scc_cnt; i++)
         if (!in_deg[i]) Q.push(i);
     while (!Q.empty()) {
         int u = Q.front();
@@ -136,7 +137,7 @@ int main()
         }
         edge[0].push_back(1);
 
-        if (!sat_2(n * 2)) {
+        if (!sat(n * 2)) {
             puts("bad luck");
             continue;
         }

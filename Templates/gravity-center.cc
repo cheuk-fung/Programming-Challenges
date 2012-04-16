@@ -1,15 +1,3 @@
-struct Point {
-    double x, y;
-
-    Point(double _x = 0, double _y = 0) : x(_x), y(_y) { }
-};
-typedef Point Vec;
-
-inline double cross(const Vec &u, const Vec &v)
-{
-    return u.x * v.y - u.y * v.x;
-}
-
 // ver[] has been sorted by clockwise or counterclockwise
 Point g_center(Point *ver, int n)
 {

@@ -1,7 +1,3 @@
-#include <cstdio>
-
-inline void swap(int *x, int *y) { int t = *x; *x = *y; *y = t; }
-
 void adjust_heap(int *first, int *last, int curr)
 {
     int size = last - first;
@@ -45,9 +41,4 @@ void make_heap(int *first, int *last)
 void sort_heap(int *first, int *last)
 {
     while (first != last) pop_heap(first, last--);
-}
-
-int main()
-{
-    return 0;
 }

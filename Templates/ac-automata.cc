@@ -2,7 +2,7 @@
  *  SRC: POJ 1204
  * PROB: Word Puzzles
  * ALGO: AC Automata
- * DATE: Jul 23, 2011 
+ * DATE: Jul 23, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -156,7 +156,7 @@ int main()
 
         aca.query(1, j, 1, 0, 'E');
         if (ans_cnt == w) break;
-        
+
         aca.query(1, j, 1, -1, 'F');
         if (ans_cnt == w) break;
 

@@ -1,8 +1,8 @@
 /*
  *  SRC: NKOJ 2185
- * PROB: Exercise 5 平面最近点对
+ * PROB: Exercise 5
  * ALGO: D&C
- * DATE: Nov 23, 2011 
+ * DATE: Nov 23, 2011
  * COMP: g++
  *
  * Created by Leewings Ac

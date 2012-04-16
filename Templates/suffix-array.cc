@@ -2,7 +2,7 @@
  *  SRC: POJ 2774
  * PROB: Long Long Message
  * ALGO: Suffix Array
- * DATE: Jul 22, 2011 
+ * DATE: Jul 22, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <cstring>
 
-class SuffixArray {
+class Suffix_Array {
     // use Doubling Algorithm
 
     private:
@@ -96,7 +96,7 @@ class SuffixArray {
         }
 };
 
-SuffixArray sa;
+Suffix_Array sa;
 
 char s[100010];
 

@@ -1,0 +1,72 @@
+#!/bin/bash
+echo "Generating HTML"
+
+filename="Leewings Algorithm Library.html"
+
+algorithm_category=(Math String Computational+Geometry Graph+Theory Tree Other)
+algorithm_category_cnt=${#algorithm_category[@]}
+
+algorithm_name_Math=(gcd        Euler   Hash            Count+How+Many+Ones+in+Binary+Notation  Prime           Divisors        Josephus        Gauss+Elimination       Big+Fraction)
+algorithm_file_Math=(gcd.cc     euler.cc hash.cc        count-bit-one.cc                        prime.cc        divisors.cc     josephus.cc     GaussElimination.java   BigFraction.java)
+
+algorithm_name_String=(Trie+Tree        KMP     AC+Automata      DP+on+AC+Automata       Suffix+Array)
+algorithm_file_String=(trie.cc          kmp.cc  ac-automata.cc   dp-on-ac-automata.cc    suffix-array_lcp.cc)
+
+algorithm_name_ComputationalGeometry=(Common     Distance+from+Point+to+Segment  Gravity+Center          Graham+Scan     3d+Convex+Hull          Rotating+Calipers       Cutting+Rectangle       Cloest+Pair+of+Points+on+Plane)
+algorithm_file_ComputationalGeometry=(cg.cc      dist-p2seg.cc                   gravity-center.cc       graham-scan.cc  convex-hull-3d.cc       rotating-calipers.cc    cutting-rectangle.cc    closest-points-2d.cc)
+
+algorithm_name_GraphTheory=(Prim        Kruskal+with+Disjoint+Set   Bellman+Ford    Dijkstra        SPFA    Tarjan+for+Strongly+Connected+Component     Tarjan+for+Biconnected+Component        2-SAT           Hungarian       KM      "Dinic+(Pointer)"       "Dinic+(STL)"   "Minimum+Cost+Flow+(pointer)"   "Minimum+Cost+Flow+(STL)"       Stoer+Wagner)
+algorithm_file_GraphTheory=(prim.cc     kruskal.cc                  bellman-ford.cc dijkstra.cc     spfa.cc tarjan-scc.cc                               tarjan-bcc.cc                           2-sat.cc        hungarian.cc    KM.cc   dinic_pointer.cc        dinic_stl.cc    mcmf_pointer.cc                 mcmf_stl.cc                     stoer-wagner.cc)
+
+algorithm_name_Tree=(BIT        BIT-2D          "Segment+Tree+(heap)"   "Segment+Tree+(pointer)"        "Segment+Tree+(discrete)"       "Segment+Tree+(perimeter)"      "Segment+Tree+(area)"   Partition+Tree          Splay           Treap)
+algorithm_file_Tree=(bit.cc     bit-2d.cc       segment-tree_heap.cc    segment-tree_pointer.cc         segment-tree_discrete.cc        segment-tree_perimeter.cc       segment-tree_area.cc    partition_tree.cc       splay.cc        treap.cc)
+
+algorithm_name_Other=(Heap      Merge+Sort      Inversion+Pair          Monotone+Priority+Queue         Multiple+Pack           RMQ+ST)
+algorithm_file_Other=(heap.cc   merge-sort.cc   inversion-pair.java     monotone-priority-queue.cc      multiple-pack.cc        RMQ-ST.cc)
+
+echo '<html>
+<head>
+<title>[Leewings] Algorithm Library</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="content">' > "$filename"
+
+echo "<h1>Vimrc</h1>" >> "$filename"
+pygmentize -f html ".vimrc" >> "$filename"
+echo '<div class="page-break"></div>' >> "$filename"
+
+echo "<h1>Java Template</h1>" >> "$filename"
+pygmentize -f html "Main.java" >> "$filename"
+
+declare -i algorithm_cnt
+algorithm_cnt=2
+for category in ${algorithm_category[@]} ; do
+    echo
+    echo "Generating Category: ${category//+/ }"
+
+    echo '<div class="page-break"></div>' >> "$filename"
+    echo "<h1>${category//+/ }</h1>" >> "$filename"
+
+    eval algorithm_name_addr=\${algorithm_name_${category//+/}[@]}
+    algorithm_name=(${algorithm_name_addr})
+    eval algorithm_file_addr=\${algorithm_file_${category//+/}[@]}
+    algorithm_file=(${algorithm_file_addr})
+
+    file_cnt=${#algorithm_name[@]}
+    for (( j=0; j<file_cnt; j++ )) ; do
+        echo "Generating File: ${algorithm_file[$j]}"
+
+        echo "<h2>${algorithm_name[$j]//+/ }</h2>" >> "$filename"
+        pygmentize -f html ${algorithm_file[$j]} >> "$filename"
+        # echo '<div class="page-break"></div>' >> "$filename"
+
+        algorithm_cnt=algorithm_cnt+1
+    done
+done
+
+echo '</body>
+</html>' >> "$filename"
+
+echo
+echo "Generated $algorithm_cnt files."
