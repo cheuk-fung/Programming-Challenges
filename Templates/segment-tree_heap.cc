@@ -2,16 +2,19 @@
  *  SRC: POJ 3264
  * PROB: Balanced Lineup
  * ALGO: Segment Tree
- * DATE: Jul 21, 2011 
+ * DATE: Jul 21, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
  */
 
 #include <cstdio>
+#include <algorithm>
 
-inline int fmin(int a, int b) { return a < b ? a : b; }
-inline int fmax(int a, int b) { return a > b ? a : b; }
+using namespace std;
+
+inline int LC(int x) { return x << 1; }
+inline int RC(int x) { return (x << 1) | 1; }
 
 class SegTree {
     private:
@@ -19,7 +22,7 @@ class SegTree {
 
         struct Tnode {
             int a, b;
-            int min, max;
+            int mn, mx; // min, max
         };
         Tnode node[200000];
 
@@ -28,42 +31,42 @@ class SegTree {
         {
             node[idx].a = a;
             node[idx].b = b;
-            node[idx].min = INF;
-            node[idx].max = -INF;
+            node[idx].mn = INF;
+            node[idx].mx = -INF;
 
             if (a + 1 < b) {
-                build(a, (a + b) / 2, idx * 2);
-                build((a + b) / 2, b, idx * 2 + 1);
+                build(a, (a + b) >> 1, LC(idx));
+                build((a + b) >> 1, b, RC(idx));
             }
         }
 
         void insert(int c, int d, int v, int idx = 1)
         {
             if (c <= node[idx].a && node[idx].b <= d) {
-                node[idx].min = fmin(node[idx].min, v);
-                node[idx].max = fmax(node[idx].max, v);
+                node[idx].mn = min(node[idx].mn, v);
+                node[idx].mx = max(node[idx].mx, v);
                 return ;
             }
 
-            if (c < (node[idx].a + node[idx].b) / 2) insert(c, d, v, idx * 2);
-            if (d > (node[idx].a + node[idx].b) / 2) insert(c, d, v, idx * 2 + 1);
-            node[idx].min = fmin(node[idx * 2].min, node[idx * 2 + 1].min);
-            node[idx].max = fmax(node[idx * 2].max, node[idx * 2 + 1].max);
+            if (c < (node[idx].a + node[idx].b) >> 1) insert(c, d, v, LC(idx));
+            if (d > (node[idx].a + node[idx].b) >> 1) insert(c, d, v, RC(idx));
+            node[idx].mn = min(node[LC(idx)].mn, node[RC(idx)].mn);
+            node[idx].mx = max(node[LC(idx)].mx, node[RC(idx)].mx);
         }
 
-        void query(int c, int d, int* min_val, int* max_val, int idx = 1)
+        void query(int c, int d, int* mn, int* mx, int idx = 1)
         {
             if (c <= node[idx].a && node[idx].b <= d) {
-                *min_val = node[idx].min;
-                *max_val = node[idx].max;
+                *mn = node[idx].mn;
+                *mx = node[idx].mx;
                 return ;
             }
 
-            int tlmin = INF, tlmax = -INF, trmin = INF, trmax = -INF;
-            if (c < (node[idx].a + node[idx].b) / 2) query(c, d, &tlmin, &tlmax, idx * 2);
-            if (d > (node[idx].a + node[idx].b) / 2) query(c, d, &trmin, &trmax, idx * 2 + 1);
-            *min_val = fmin(tlmin, trmin);
-            *max_val = fmax(tlmax, trmax);
+            int l_mn = INF, l_mx = -INF, r_mn = INF, r_mx = -INF;
+            if (c < (node[idx].a + node[idx].b) >> 1) query(c, d, &l_mn, &l_mx, LC(idx));
+            if (d > (node[idx].a + node[idx].b) >> 1) query(c, d, &r_mn, &r_mx, RC(idx));
+            *mn = min(l_mn, r_mn);
+            *mx = max(l_mx, r_mx);
         }
 };
 
@@ -86,10 +89,10 @@ int main()
         int a, b;
         scanf("%d%d", &a, &b);
 
-        int min, max;
-        st.query(a - 1, b, &min, &max);
+        int mn, mx;
+        st.query(a - 1, b, &mn, &mx);
 
-        printf("%d\n", max - min);
+        printf("%d\n", mx - mn);
     }
 
     return 0;

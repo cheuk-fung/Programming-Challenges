@@ -2,7 +2,7 @@
  *  SRC: POJ 2482
  * PROB: Stars in Your Window
  * ALGO: Segment Tree
- * DATE: Sep 07, 2011 
+ * DATE: Sep 07, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -12,56 +12,57 @@
 #include <cmath>
 #include <algorithm>
 
-using std::sort;
+using namespace std;
 
 const double eps = 1e-8;
 const int MAXN = 10010;
 const int INF = 0x3FFFFFFF;
 
-inline int fmax(int a, int b) { return a > b ? a : b; }
 inline bool eq(double a, double b) { return fabs(a - b) < eps; }
 inline bool ls(double a, double b) { return a + eps < b; }
+inline int LC(int x) { return x << 1; }
+inline int RC(int x) { return (x << 1) | 1; }
 
 class SegTree {
     private:
         struct Tnode {
             int a, b;
-            int v, max;
+            int v, mx;
         };
         Tnode node[MAXN * 20];
 
     public:
-        void build(int a, int b, int p = 1)
+        void build(int a, int b, int idx = 1)
         {
-            node[p].a = a;
-            node[p].b = b;
-            node[p].v = 0;
-            node[p].max = -INF;
+            node[idx].a = a;
+            node[idx].b = b;
+            node[idx].v = 0;
+            node[idx].mx = -INF;
 
             if (a + 1 < b) {
-                build(a, (a + b) / 2, p * 2);
-                build((a + b) / 2, b, p * 2 + 1);
+                build(a, (a + b) >> 1, LC(idx));
+                build((a + b) >> 1, b, RC(idx));
             }
         }
 
-        void insert(int c, int d, int v, int p = 1)
+        void insert(int c, int d, int v, int idx = 1)
         {
-            if (c <= node[p].a && node[p].b <= d) {
-                node[p].v += v;
-                node[p].max = fmax(node[p * 2].max, node[p * 2 + 1].max) \
-                              + node[p].v;
+            if (c <= node[idx].a && node[idx].b <= d) {
+                node[idx].v += v;
+                node[idx].mx = max(node[LC(idx)].mx, node[RC(idx)].mx) \
+                               + node[idx].v;
                 return ;
             }
 
-            if (c < (node[p].a + node[p].b) / 2) insert(c, d, v, p * 2);
-            if (d > (node[p].a + node[p].b) / 2) insert(c, d, v, p * 2 + 1);
-            node[p].max = fmax(node[p * 2].max, node[p * 2 + 1].max) \
-                          + node[p].v;
+            if (c < (node[idx].a + node[idx].b) >> 1) insert(c, d, v, LC(idx));
+            if (d > (node[idx].a + node[idx].b) >> 1) insert(c, d, v, RC(idx));
+            node[idx].mx = max(node[LC(idx)].mx, node[RC(idx)].mx) \
+                           + node[idx].v;
         }
 
         int query()
         {
-            return node[1].max;
+            return node[1].mx;
         }
 };
 
@@ -100,10 +101,10 @@ int main()
         double dw = W / 2.0, dh = H / 2.0;
         for (int i = 0; i < n; i++) {
             scanf("%d%d%d", &p[i].x, &p[i].y, &p[i].v);
-            dy[i * 2].id = i * 2;
-            dy[i * 2].y = p[i].y - dh;
-            dy[i * 2 + 1].id = i * 2 + 1;
-            dy[i * 2 + 1].y = p[i].y + dh;
+            dy[LC(i)].id = LC(i);
+            dy[LC(i)].y = p[i].y - dh;
+            dy[RC(i)].id = RC(i);
+            dy[RC(i)].y = p[i].y + dh;
         }
 
         sort(dy, dy + n * 2, cmp_y);
@@ -116,15 +117,15 @@ int main()
         sort(dy, dy + n * 2, cmp_id);
 
         for (int i = 0; i < n; i++) {
-            seg[i * 2].x = p[i].x - dw;
-            seg[i * 2].b = dy[i * 2].new_y;
-            seg[i * 2].e = dy[i * 2 + 1].new_y;
-            seg[i * 2].v = p[i].v;
+            seg[LC(i)].x = p[i].x - dw;
+            seg[LC(i)].b = dy[LC(i)].new_y;
+            seg[LC(i)].e = dy[RC(i)].new_y;
+            seg[LC(i)].v = p[i].v;
 
-            seg[i * 2 + 1].x = p[i].x + dw;
-            seg[i * 2 + 1].b = dy[i * 2].new_y;
-            seg[i * 2 + 1].e = dy[i * 2 + 1].new_y;
-            seg[i * 2 + 1].v = -p[i].v;
+            seg[RC(i)].x = p[i].x + dw;
+            seg[RC(i)].b = dy[LC(i)].new_y;
+            seg[RC(i)].e = dy[RC(i)].new_y;
+            seg[RC(i)].v = -p[i].v;
         }
         sort(seg, seg + n * 2);
 
@@ -132,7 +133,7 @@ int main()
         st.build(0, cnt + 1);
         for (int i = 0; i < n * 2; i++) {
             st.insert(seg[i].b, seg[i].e, seg[i].v);
-            ans = fmax(ans, st.query());
+            ans = max(ans, st.query());
         }
 
         printf("%d\n", ans);
