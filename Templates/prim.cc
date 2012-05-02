@@ -2,7 +2,7 @@
  *  SRC: POJ 1258
  * PROB: Agri-Net
  * ALGO: Prim
- * DATE: Jul 24, 2011 
+ * DATE: Jul 24, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -56,16 +56,16 @@ bool prim()
     int sum = 0;
     while (!Q.empty()) {
         int u = Q.top().v;
-        int d = Q.top().d; 
+        int td = Q.top().d; 
         Q.pop();
         if (!dist[u] && u != 0) continue;
-        sum += d;
+        sum += td;
         dist[u] = 0;
         for (int i = 0; i < edge[u].size(); i++) {
             int v = edge[u][i].v;
-            int dis = edge[u][i].d;
-            if (dis < dist[v]) {
-                dist[v] = dis;
+            int d = edge[u][i].d;
+            if (d < dist[v]) {
+                dist[v] = d;
                 Q.push(Edge(v, dist[v]));
             }
         }

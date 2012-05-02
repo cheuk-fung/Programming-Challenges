@@ -16,7 +16,7 @@ using std::sort;
 class BIT {
     private:
         const static int bound = 320010;
-        int c[bound + 1]; 
+        int c[bound + 1];
         int bit_mask;
 
         // x must *not* be *zero*

@@ -35,14 +35,14 @@ int dijkstra()
 
     while (!que.empty()) {
         int u = que.top().v;
-        int d = que.top().d; 
+        int td = que.top().d; 
         que.pop();
-        if (d > dist[u]) continue;
+        if (td > dist[u]) continue;
         for (int i = 0; i < edge[u].size(); i++) {
             int v = edge[u][i].v;
-            int dis = edge[u][i].d;
-            if (dis + dist[u] < dist[v]) {
-                dist[v] = dis + dist[u];
+            int d = edge[u][i].d;
+            if (d + dist[u] < dist[v]) {
+                dist[v] = d + dist[u];
                 que.push(Edge(v, dist[v]));
             }
         }
