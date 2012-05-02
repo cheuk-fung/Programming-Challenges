@@ -2,7 +2,7 @@
  *  SRC: POJ 3281
  * PROB: Dining
  * ALGO: Dinic
- * DATE: Jun 2, 2011 
+ * DATE: Jun 2, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -17,7 +17,7 @@ using std::min;
 const int INF = 0x3f3f3f3f;
 const int MAXV = 1010;
 const int MAXE = 1000000;
-const int orig = 0, dest = 1000;
+const int orig = 0, dest = MAXV - 1;
 
 struct Edge {
     int v;

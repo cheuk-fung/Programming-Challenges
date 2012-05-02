@@ -2,7 +2,7 @@
  *  SRC: POJ 3281
  * PROB: Dining
  * ALGO: Dinic
- * DATE: Jun 2, 2011 
+ * DATE: Jun 2, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -19,8 +19,8 @@ using std::queue;
 using std::min;
 
 const int INF = 0x3f3f3f3f;
-const int MAXN = 1000;
-const int orig = 0, dest = MAXN;
+const int MAXN = 1010;
+const int orig = 0, dest = MAXN - 1;
 
 struct Edge {
     int v;
@@ -31,7 +31,7 @@ struct Edge {
         : v(_v), rev(_rev), c(_c), f(0)
     { }
 };
-vector<Edge> edge[MAXN + 1];
+vector<Edge> edge[MAXN];
 
 int lev[MAXN + 1];
 

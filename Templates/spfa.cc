@@ -25,11 +25,11 @@ struct Edge {
     int v, d;
     Edge *next;
 };
-Edge e_buf[MAXE],
-     *e_head[MAXV],
-     *e_tail = e_buf;
+Edge e_buf[MAXE];
+Edge *e_head[MAXV];
+Edge *e_tail = e_buf;
 
-void add_edge(int u, int v, int d)
+inline void add_edge(int u, int v, int d)
 {
     *e_tail = (Edge){v, d, e_head[u]};
     e_head[u] = e_tail++;
@@ -72,7 +72,6 @@ int main()
     int n, m;
     while (~scanf("%d%d", &n, &m)) {
         memset(e_head, 0, sizeof(e_head));
-        memset(e_tail, 0, sizeof(e_tail));
         e_tail = e_buf;
 
         // some points may be isolate, so add a super source 0
