@@ -19,11 +19,11 @@ class BIT_2D {
         int lowbit(int x) { return x & -x; }
 
     public:
-        void update(int x, int y, int val)
+        void update(int x, int y, int v)
         {
             for ( ; x <= bound_x; x += lowbit(x))
                 for (int ty = y; ty <= bound_y; ty += lowbit(ty))
-                    c[x][ty] += val;
+                    c[x][ty] += v;
         }
 
         int sum(int x, int y)

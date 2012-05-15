@@ -32,10 +32,10 @@ class BIT {
         }
 
     public:
-        void update(int x, int val)
+        void update(int x, int v)
         {
             for ( ; x <= bound; x += lowbit(x))
-                c[x] += val;
+                c[x] += v;
         }
 
         int sum(int x)
