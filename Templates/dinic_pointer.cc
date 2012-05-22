@@ -27,6 +27,7 @@ struct Edge {
 };
 Edge e_buf[MAXE];
 Edge *e_head[MAXV];
+Edge *e_work[MAXV];
 Edge *e_tail;
 
 int que[MAXV], lev[MAXV];
@@ -68,7 +69,7 @@ int dfs(int u, int f)
     if (u == dest) return f;
 
     int res = 0;
-    for (Edge *e = e_head[u]; e; e = e->next)
+    for (Edge *&e = e_work[u]; e; e = e->next)
         if (lev[e->v] == lev[u] + 1 && e->f < e->c) {
             int tmp = dfs(e->v, min(f - res, e->c - e->f));
             res += tmp;
@@ -84,6 +85,7 @@ int dinic()
 {
     int res = 0;
     while (bfs()) {
+        memcpy(e_work, e_head, sizeof(e_head));
         int tmp = dfs(orig, INF);
         if (tmp) res += tmp;
         else break;
