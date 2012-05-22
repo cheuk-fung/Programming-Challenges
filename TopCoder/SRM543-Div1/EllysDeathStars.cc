@@ -90,7 +90,7 @@ double dinic()
 {
     double res = 0;
     while (bfs()) {
-        for (int i = 0; i < (e_tail - e_buf); i++) e_work[i] = e_head[i];
+        memcpy(e_work, e_head, sizeof(e_head));
         double tmp = dfs(orig, DINF);
         if (!eq0(tmp)) res += tmp;
         else break;
