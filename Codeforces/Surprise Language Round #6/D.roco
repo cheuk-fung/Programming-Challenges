@@ -1,0 +1,25 @@
+co loop
+{
+    eq [11] [10] 0
+    if [11] ac
+
+    cout 42
+    sub [10] [10] 1
+}
+
+co loop2
+{
+    gt [12] [9] [0]
+    if [12] ac
+
+    set [10] [9]
+    ca loop
+    cout 10
+    add [9] [9] 1
+}
+
+iin [0]
+set [9] 1
+ca loop2
+
+ac

@@ -1,0 +1,59 @@
+co input
+{
+    gt [103] [102] [101]
+    if [103] ac
+
+    iin [[102]]
+    add [102] [102] 1
+}
+
+co swap
+{
+    set [200] [[110]]
+    set [[110]] [[111]]
+    set [[111]] [200]
+    ac
+}
+
+co sort_inner
+{
+    gt [103] [110] [102]
+    if [103] ac
+
+    add [111] [110] 1
+    gt [103] [[110]] [[111]]
+    if [103] ca swap
+    add [110] [110] 1
+}
+
+co sort
+{
+    eq [103] [102] 0
+    if [103] ac
+
+    set [110] 1
+    ca sort_inner
+    sub [102] [102] 1
+}
+
+co output
+{
+    gt [103] [102] [101]
+    if [103] ac
+
+    iout [[102]]
+    cout 32
+    add [102] [102] 1
+}
+
+iin [101]
+set [102] 1
+ca input
+set [102] [101]
+sub [102] [102] 1
+ca sort
+
+set [102] 1
+ca output
+
+ac
