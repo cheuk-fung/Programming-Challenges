@@ -10,12 +10,15 @@
 
 #include <cstdio>
 #include <cstring>
-#include <queue>
+#include <deque>
 
-using std::queue;
+using std::deque;
 
 const int MAXV = 1010;
 const int MAXE = 300010;
+const int eps = 1e-12;
+
+inline bool gr(double x, double y) { return x - eps > y; }
 
 int dist[MAXV];
 int cnt[MAXV];
@@ -42,11 +45,17 @@ bool spfa(int n, int src)
     memset(in_queue, false, sizeof(in_queue));
     dist[src] = 0;
 
-    queue<int> que;
-    que.push(src);
+    deque<int> que;
+    que.push_back(src);
+    double avg = 0;
     while (!que.empty()) {
+        while (gr(dist[que.front()], avg)) {
+            que.push_back(que.front());
+            que.pop_front();
+        }
         int u = que.front();
-        que.pop();
+        double tot = avg * que.size() - dist[u];
+        que.pop_front();
         in_queue[u] = false;
 
         for (Edge *e = e_head[u]; e; e = e->next) {
@@ -56,11 +65,18 @@ bool spfa(int n, int src)
                 dist[v] = d + dist[u];
                 if (!in_queue[v]) {
                     if (cnt[v]++ >= n) return false;
-                    que.push(v);
+                    if (!que.empty() && dist[v] < dist[que.front()]) {
+                        que.push_front(v);
+                    } else {
+                        que.push_back(v);
+                    }
+                    tot += dist[v];
                     in_queue[v] = true;
                 }
             }
         }
+
+        avg = tot / que.size();
     }
 
     return true;

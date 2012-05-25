@@ -11,12 +11,18 @@
 #include <cstdio>
 #include <cmath>
 #include <cstring>
+#include <deque>
+
+using std::deque;
 
 const int MAX_V = 810;
 const int MAX_E = 500000;
+const double eps = 1e-12;
+
+inline bool ls(double x, double y) { return x + eps < y; }
+inline bool gr(double x, double y) { return x - eps > y; }
 
 double dist[MAX_V];
-int stack[MAX_E];
 bool vis[MAX_V];
 int cnt[MAX_V];
 
@@ -42,24 +48,38 @@ bool spfa(int n)
     for (int i = 0; i <= n; i++) dist[i] = 1e100;
     dist[0] = 0.0;
 
-    int top = 0;
-    stack[top++] = 0;
-    while (top) {
-        int u = stack[--top];
+    deque<int> que;
+    double avg = 0.0;
+    que.push_back(0);
+    while (!que.empty()) {
+        while (gr(dist[que.front()], avg)) {
+            que.push_back(que.front());
+            que.pop_front();
+        }
+        int u = que.front();
+        double tot = avg * que.size() - dist[u];
+        que.pop_front();
 
         vis[u] = false;
         for (Edge *e = e_head[u]; e; e = e->next) {
             int v = e->v;
             double d = e->d;
-            if (d + dist[u] < dist[v]) {
+            if (ls(d + dist[u], dist[v])) {
                 dist[v] = d + dist[u];
                 if (!vis[v]) {
                     if (++cnt[v] >= n) return false;
                     vis[v] = true;
-                    stack[top++] = v;
+                    tot += dist[v];
+                    if (!que.empty() && ls(dist[v], dist[que.front()])) {
+                        que.push_front(v);
+                    } else {
+                        que.push_back(v);
+                    }
                 }
             }
         }
+
+        avg = tot / que.size();
     }
 
     return true;
