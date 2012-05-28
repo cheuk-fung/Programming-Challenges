@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 3352
  * PROB: Road Construction
- * ALGO: BCC-Tarjan (Biconnected Component)
+ * ALGO: Tarjan-BCC (Biconnected Component)
  * DATE: Apr 12, 2012
  * COMP: g++
  *

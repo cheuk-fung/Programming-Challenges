@@ -2,7 +2,7 @@
  *  SRC: POJ 1258
  * PROB: Agri-Net
  * ALGO: Kruskal + Disjoint Set
- * DATE: Jul 24, 2011 
+ * DATE: Jul 24, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -24,11 +24,7 @@ struct Edge {
 } e[MAXM];
 
 class DisjointSet {
-    private:
-
     public:
-        // a[i] > 0: a[i] is i's ancestor;
-        // a[i] < 0: -a[i] is the number of elements sharing the same ancestor i
         int a[MAXN];
 
         DisjointSet() { reset(); }

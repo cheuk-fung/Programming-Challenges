@@ -107,26 +107,24 @@ class Suffix_Array {
 
         void calc_lcp()
         {
-            memcpy(max_suff[0] + 1, suff, sizeof(int) * len);
-            memcpy(min_hgt[0] + 1, hgt, sizeof(int) * len);
+            memcpy(max_suff[0], suff, sizeof(int) * len);
+            memcpy(min_hgt[0], hgt, sizeof(int) * len);
             for (int i = 1; 1 << i <= len; i++)
-                for (int j = 1; j + (1 << i) - 1 <= len; j++) {
+                for (int j = 0; j + (1 << i) <= len; j++) {
                     max_suff[i][j] = max(max_suff[i - 1][j], max_suff[i - 1][j + (1 << (i - 1))]);
                     min_hgt[i][j] = min(min_hgt[i - 1][j], min_hgt[i - 1][j + (1 << (i - 1))]);
                 }
 
         }
 
-        pair<int, int> lcp(int a, int b)
+        pair<int, int> lcp(int l, int r) // [l, r)
         {
-            a++; b++;
+            int idx = log2(r - l);
+            int pos = max(max_suff[idx][l], max_suff[idx][r - (1 << idx)]);
 
-            int id = log2(b - a + 1.0);
-            int pos = max(max_suff[id][a], max_suff[id][b - (1 << id) + 1]);
-
-            a++;
-            id = log2(b - a + 1.0);
-            int res = min(min_hgt[id][a], min_hgt[id][b - (1 << id) + 1]);
+            l++;
+            idx = log2(r - l);
+            int res = min(min_hgt[idx][l], min_hgt[idx][r - (1 << idx)]);
 
             return make_pair(res, pos);
         }
@@ -150,7 +148,7 @@ int main()
 
         int longest = 0, pos;
         for (int i = 0; i + m <= sa.len; i++) {
-            pair<int, int> p = sa.lcp(i, i + m - 1);
+            pair<int, int> p = sa.lcp(i, i + m);
             if (p.first > longest) {
                 longest = p.first;
                 pos = p.second;
