@@ -15,7 +15,7 @@ const int INF = 0x3f3f3f3f;
 const int MAXN = 333;
 
 int n, m;
-int map[MAXN][MAXN];
+int mat[MAXN][MAXN];
 
 bool A[MAXN];
 int v[MAXN], w[MAXN];
@@ -30,7 +30,7 @@ int stoer_wagner(int n)
 
         for (int i = 1; i < n; i++) {
             A[v[i]] = false;
-            w[v[i]] = map[v[0]][v[i]];
+            w[v[i]] = mat[v[0]][v[i]];
         }
 
         for (int prev = 0, i = 1; i < n; i++) {
@@ -43,14 +43,14 @@ int stoer_wagner(int n)
             if (i == n - 1) {
                 if (res > w[v[curr]]) res = w[v[curr]];
                 for (int j = 0; j < n; j++)
-                    map[v[j]][v[prev]] = map[v[prev]][v[j]] += map[v[curr]][v[j]];
+                    mat[v[j]][v[prev]] = mat[v[prev]][v[j]] += mat[v[curr]][v[j]];
                 v[curr] = v[--n];
                 break;
             }
 
             prev = curr;
             for (int j = 1; j < n; j++)
-                if (!A[v[j]]) w[v[j]] += map[v[curr]][v[j]];
+                if (!A[v[j]]) w[v[j]] += mat[v[curr]][v[j]];
         }
     }
 
@@ -60,13 +60,13 @@ int stoer_wagner(int n)
 int main()
 {
     while (scanf("%d%d%*d", &n, &m), n && m) {
-        memset(map, 0, sizeof(map));
+        memset(mat, 0, sizeof(mat));
 
         for (int i = 0; i < m; i++) {
             int a, b, c;
             scanf("%d%d%d", &a, &b, &c);
             a--, b--;
-            map[a][b] = map[b][a] += c;
+            mat[a][b] = mat[b][a] += c;
         }
 
         printf("%d\n", stoer_wagner(n));

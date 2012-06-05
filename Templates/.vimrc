@@ -1,8 +1,12 @@
 set nocp backup ru sc is et nu acd scs hid hls ai sm ignorecase sw=4 cot=longest,menu backspace=indent,eol,start mouse=a
 syntax on
 filetype plugin indent on
-winsize 100 100
-winpos 600 0
+command -bar Imake w | make %:r | cw
+command Irun Imake | !./%:r
+command Irunin Imake | !./%:r < in
+command Igdb !gcc -g -o %:r %; gnome-terminal -e gdb %:r &
+" winsize 100 100
+" winpos 600 0
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
