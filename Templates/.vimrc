@@ -4,7 +4,7 @@ filetype plugin indent on
 command -bar Imake w | make %:r | cw
 command Irun Imake | !./%:r
 command Irunin Imake | !./%:r < in
-command Igdb !gcc -g -o %:r %; gnome-terminal -e gdb %:r &
+command Igdb !g++ -g -o %:r %; gnome-terminal -e gdb %:r &
 " winsize 100 100
 " winpos 600 0
 
