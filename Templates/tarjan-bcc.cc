@@ -26,14 +26,14 @@ int idx, bcc_cnt;
 int dfn[MAXN], low[MAXN], bcc_id[MAXN], bcc_size[MAXN];
 bool in_stack[MAXN];
 
-void tarjan_dfs(int u, int father)
+void tarjan_dfs(int u, int parent)
 {
     stack.push_back(u);
     in_stack[u] = true;
     dfn[u] = low[u] = idx++;
 
     for (vci v = edge[u].begin(); v != edge[u].end(); v++) {
-        if (*v == father) continue;
+        if (*v == parent) continue;
         if (dfn[*v] == -1) {
             tarjan_dfs(*v, u);
             low[u] = min(low[u], low[*v]);

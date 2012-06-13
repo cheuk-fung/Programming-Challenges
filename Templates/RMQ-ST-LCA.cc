@@ -28,7 +28,7 @@ struct Edge {
 typedef vector<Edge>::const_iterator vci;
 vector<Edge> edge[MAXN];
 int idx, cnt;
-int father[MAXN], dist[MAXN], label[MAXN], rev_label[MAXN], pos[MAXN], seq[MAXN << 1];
+int parent[MAXN], dist[MAXN], label[MAXN], rev_label[MAXN], pos[MAXN], seq[MAXN << 1];
 int mn[20][MAXN << 1];
 
 void dfs(int u, int length)
@@ -40,8 +40,8 @@ void dfs(int u, int length)
     seq[idx++] = label[u];
 
     for (vci e = edge[u].begin(); e != edge[u].end(); e++) {
-        if (e->v != father[u]) {
-            father[e->v] = u;
+        if (e->v != parent[u]) {
+            parent[e->v] = u;
             dfs(e->v, length + e->d);
             seq[idx++] = label[u];
         }
@@ -84,7 +84,7 @@ int main()
     }
 
     idx = cnt = 0;
-    father[0] = 0;
+    parent[0] = 0;
     dfs(0, 0);
     RMQ_init(seq, idx);
 

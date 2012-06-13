@@ -1,9 +1,10 @@
+// we can use __gcd() in <algorithm>
 int gcd(int a, int b)
 {
     while (b) {
-        int t = b;
-        b = a % b;
-        a = t;
+        int t = a % b;
+        a = b;
+        b = t;
     }
     return a;
 }

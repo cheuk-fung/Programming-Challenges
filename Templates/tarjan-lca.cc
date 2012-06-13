@@ -49,7 +49,7 @@ typedef vector<Edge>::const_iterator vci;
 vector<Edge> edge[MAXN];
 vector<Edge> query[MAXN];
 DisjointSet ds;
-int father[MAXN], dist[MAXN], ans[MAXN];
+int parent[MAXN], dist[MAXN], ans[MAXN];
 bool vis[MAXN];
 
 void tarjan(int u, int length)
@@ -65,13 +65,13 @@ void tarjan(int u, int length)
     }
 
     for (vci e = edge[u].begin(); e != edge[u].end(); e++) {
-        if (e->v != father[u]) {
-            father[e->v] = u;
+        if (e->v != parent[u]) {
+            parent[e->v] = u;
             tarjan(e->v, length + e->d);
         }
     }
 
-    ds.join(father[u], u);
+    ds.join(parent[u], u);
 }
 
 int main()
@@ -97,7 +97,7 @@ int main()
     }
 
     memset(vis, false, sizeof(vis));
-    father[0] = 0;
+    parent[0] = 0;
     tarjan(0, 0);
     for (int i = 0; i < k; i++) printf("%d\n", ans[i]);
 
