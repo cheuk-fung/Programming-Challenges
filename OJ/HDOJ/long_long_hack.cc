@@ -8,6 +8,8 @@
 
 // method 1
 // usage: myprintf("%lld %lld\n", a, b);
+#include <cstdarg>
+
 inline void myprintf(string s, ...)
 {
     va_list ap;
