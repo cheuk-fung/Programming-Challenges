@@ -11,14 +11,37 @@
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
-
-#ifdef ONLINE_JUDGE
-#define LLD "%I64d"
-#else
-#define LLD "%lld"
-#endif
+#include <string>
+#include <cstdarg>
 
 using std::min;
+using std::string;
+
+inline void myscanf(string s, ...)
+{
+    va_list ap;
+    va_start(ap, s);
+#ifdef ONLINE_JUDGE
+    int pos;
+    while ((pos = s.find("lld")) != string::npos) {
+        s.replace(pos, 3, "I64d");
+    }
+#endif
+    vscanf(s.c_str(), ap);
+}
+
+inline void myprintf(string s, ...)
+{
+    va_list ap;
+    va_start(ap, s);
+#ifdef ONLINE_JUDGE
+    int pos;
+    while ((pos = s.find("lld")) != string::npos) {
+        s.replace(pos, 3, "I64d");
+    }
+#endif
+    vprintf(s.c_str(), ap);
+}
 
 const long long LLINF = 0x3f3f3f3f3f3f3f3fll;
 const int MAXV = 100000;
@@ -115,8 +138,9 @@ int main()
 
         long long sum = 0;
         for (int i = 1; i <= m; i++) {
-            int a, b, c;
-            scanf("%d%d%d", &a, &b, &c);
+            int a, b;
+            long long c;
+            myscanf("%d%d%lld", &a, &b, &c);
             add_edge(orig, n + i, c);
             add_edge(n + i, a, LLINF);
             add_edge(n + i, b, LLINF);
@@ -124,7 +148,7 @@ int main()
             sum += c;
         }
 
-        printf(LLD"\n", sum - dinic());
+        myprintf("%lld\n", sum - dinic());
     }
 
     return 0;
