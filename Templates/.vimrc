@@ -1,10 +1,12 @@
 set nocp backup ru sc is et nu acd scs hid hls ai sm ignorecase sw=4 cot=longest,menu backspace=indent,eol,start mouse=a
 syntax on
 filetype plugin indent on
-command -bar Imake w | make %:r | cw
+autocmd FileType cpp setlocal makeprg=g++\ -g\ -Wall\ -o\ %:r\ %
+command -bar Imake w | make | cw
 command Irun Imake | !./%:r
 command Irunin Imake | !./%:r < in
-command Igdb !g++ -g -o %:r %; gnome-terminal -e gdb %:r &
+command Igdb !gnome-terminal -e gdb %:r &
+
 " winsize 100 100
 " winpos 600 0
 

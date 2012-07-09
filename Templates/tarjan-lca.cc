@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 1986
  * PROB: Distance Queries
- * ALGO: Tarjan-LCA (Lowest Common Ancestor)
+ * ALGO: Tarjan LCA (Lowest Common Ancestor)
  * DATE: May 28, 2012
  * COMP: g++
  *

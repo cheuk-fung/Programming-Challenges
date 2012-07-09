@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 2186
  * PROB: Popular Cows
- * ALGO: Tarjan-SCC (Strongly Connected Component)
+ * ALGO: Tarjan SCC (Strongly Connected Component)
  * DATE: Jul 23, 2011
  * COMP: g++
  *
