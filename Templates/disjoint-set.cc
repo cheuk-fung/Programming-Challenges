@@ -1,4 +1,4 @@
-class DisjointSet {
+class Disjoint_Set {
     private:
 
     public:
@@ -6,7 +6,7 @@ class DisjointSet {
         // a[i] < 0: -a[i] is the number of elements sharing the same ancestor i
         int a[MAXN];
 
-        DisjointSet() { reset(); }
+        Disjoint_Set() { reset(); }
         void reset() { memset(a, 0xff, sizeof(a)); }
 
         int find(int u)
