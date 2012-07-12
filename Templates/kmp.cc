@@ -1,4 +1,4 @@
-void kmp_init(int* prn, char* b, int m)
+void kmp_init(int *prn, char *b, int m)
 {
     prn[0] = 0;
     for (int i = 1, j = 0; i < m; i++) {
@@ -8,7 +8,7 @@ void kmp_init(int* prn, char* b, int m)
     }
 }
 
-int kmp(int* prn, char* a, char* b, int n, int m)
+int kmp(int *prn, char *a, char *b, int n, int m)
 {
     int cnt = 0;
     for (int i = 0, j = 0; i < n; i++) {
