@@ -2,7 +2,7 @@
  *  SRC: POJ 2688
  * PROB: Cleaning Robot
  * ALGO: BFS
- * DATE: Jul 15, 3011 
+ * DATE: Jul 15, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
