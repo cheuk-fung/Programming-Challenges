@@ -2,7 +2,7 @@
  *  SRC: POJ 1389
  * PROB: Area of Simple Polygons
  * ALGO: Segment Tree
- * DATE: Jul 21, 2011 
+ * DATE: Jul 21, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -13,38 +13,32 @@
 
 using std::sort;
 
-class SegTree {
+class Segment_Tree {
     private:
         struct Tnode {
             int a, b; // segment [a, b)
             int cover;
             int len;
-            Tnode* lc;
-            Tnode* rc;
+            Tnode *lc;
+            Tnode *rc;
 
             Tnode(int _a, int _b)
                 : a(_a), b(_b), cover(0), len(0), lc(0), rc(0)
             { }
         };
-        Tnode* root;
+        Tnode *root;
 
-        Tnode* build(int a, int b)
+        void insert(int c, int d, int delta, Tnode *p)
         {
-            Tnode* p = new Tnode(a, b);
-
-            return p;
-        }
-
-        void _insert(int c, int d, int delta, Tnode* p)
-        {
-            if (c <= p->a && p->b <= d) p->cover += delta;
-            else {
+            if (c <= p->a && p->b <= d) {
+                p->cover += delta;
+            } else {
                 if (!p->lc) {
                     p->lc = new Tnode(p->a, (p->a + p->b) / 2);
                     p->rc = new Tnode((p->a + p->b) / 2, p->b);
                 }
-                if (c < (p->a + p->b) / 2) _insert(c, d, delta, p->lc);
-                if (d > (p->a + p->b) / 2) _insert(c, d, delta, p->rc);
+                if (c < (p->a + p->b) / 2) insert(c, d, delta, p->lc);
+                if (d > (p->a + p->b) / 2) insert(c, d, delta, p->rc);
             }
 
             if (p->cover) p->len = p->b - p->a;
@@ -53,14 +47,14 @@ class SegTree {
         }
 
     public:
-        SegTree(int l, int r)
+        Segment_Tree(int l, int r)
         {
-            root = build(l, r);
+            root = new Tnode(l, r);
         }
 
         void insert(int c, int d, int delta)
         {
-            _insert(c, d, delta, root);
+            insert(c, d, delta, root);
         }
 
         int query()
@@ -107,7 +101,7 @@ int main()
         sort(X, X + cnt);
 
         int ans = 0;
-        SegTree st(0, maxY + 1);
+        Segment_Tree st(0, maxY + 1);
         for (int i = 0, preL = 0, preX = 0; i < cnt; i++) {
             st.insert(X[i].y1, X[i].y2, X[i].delta);
             ans += preL * (X[i].x - preX);

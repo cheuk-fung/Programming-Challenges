@@ -14,32 +14,26 @@
 
 using std::sort;
 
-class SegTree {
+class Segment_Tree {
     private:
         struct Tnode {
             int a, b; // segment [a, b)
             int cover;
             int len;
-            Tnode* lc;
-            Tnode* rc;
+            Tnode *lc;
+            Tnode *rc;
 
             Tnode(int _a, int _b)
                 : a(_a), b(_b), cover(0), len(0), lc(0), rc(0)
             { }
         };
-        Tnode* root;
+        Tnode *root;
 
-        Tnode* build(int a, int b)
+        void _insert(int c, int d, int delta, Tnode *p)
         {
-            Tnode* p = new Tnode(a, b);
-
-            return p;
-        }
-
-        void _insert(int c, int d, int delta, Tnode* p)
-        {
-            if (c <= p->a && p->b <= d) p->cover += delta;
-            else {
+            if (c <= p->a && p->b <= d) {
+                p->cover += delta;
+            } else {
                 if (!p->lc) {
                     p->lc = new Tnode(p->a, (p->a + p->b) / 2);
                     p->rc = new Tnode((p->a + p->b) / 2, p->b);
@@ -54,9 +48,9 @@ class SegTree {
         }
 
     public:
-        SegTree(int l, int r)
+        Segment_Tree(int l, int r)
         {
-            root = build(l, r);
+            root = new Tnode(l, r);
         }
 
         void insert(int c, int d, int delta)
@@ -105,14 +99,14 @@ int main()
     sort(Y, Y + cnt);
 
     int ans = 0;
-    SegTree st_x(-10000, 10001);
+    Segment_Tree st_x(-10000, 10001);
     for (int i = 0, curr = 0; i < cnt; i++) {
         st_x.insert(X[i].y1, X[i].y2, X[i].delta);
         ans += abs(curr - st_x.query());
         curr = st_x.query();
     }
 
-    SegTree st_y(-10000, 10001);
+    Segment_Tree st_y(-10000, 10001);
     for (int i = 0, curr = 0; i < cnt; i++) {
         st_y.insert(Y[i].y1, Y[i].y2, Y[i].delta);
         ans += abs(curr - st_y.query());

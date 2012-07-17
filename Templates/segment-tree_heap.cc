@@ -16,7 +16,7 @@ using namespace std;
 inline int LC(int x) { return x << 1; }
 inline int RC(int x) { return (x << 1) | 1; }
 
-class SegTree {
+class Segment_Tree {
     private:
         const static int INF = 0x3FFFFFFF;
 
@@ -70,7 +70,7 @@ class SegTree {
         }
 };
 
-SegTree st;
+Segment_Tree st;
 
 int main()
 {

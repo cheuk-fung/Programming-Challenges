@@ -23,7 +23,7 @@ inline bool ls(double a, double b) { return a + eps < b; }
 inline int LC(int x) { return x << 1; }
 inline int RC(int x) { return (x << 1) | 1; }
 
-class SegTree {
+class Segment_Tree {
     private:
         struct Tnode {
             int a, b;
@@ -89,7 +89,7 @@ struct Segment {
     }
 };
 
-SegTree st;
+Segment_Tree st;
 Point p[MAXN];
 Discrete dy[MAXN * 2];
 Segment seg[MAXN * 2];

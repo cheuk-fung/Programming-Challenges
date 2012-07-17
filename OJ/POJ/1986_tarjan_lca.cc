@@ -59,7 +59,7 @@ void tarjan(int u, int length)
 
     for (vci e = query[u].begin(); e != query[u].end(); e++) {
         if (vis[e->v]) {
-            ans[e->d] = dist[u] + dist[e->v] - dist[ds.find(e->v)]* 2;
+            ans[e->d] = dist[u] + dist[e->v] - dist[ds.find(e->v)] * 2;
         }
     }
 

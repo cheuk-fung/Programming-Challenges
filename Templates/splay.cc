@@ -123,7 +123,7 @@ class Splay {
             return x;
         }
 
-        Tnode *_insert(Tnode *x, int key)
+        Tnode *insert(Tnode *x, int key)
         {
             if (x) {
                 x = splay(x, key);
@@ -157,7 +157,7 @@ class Splay {
             return y;
         }
 
-        Tnode *_erase(Tnode *x, int key)
+        Tnode *erase(Tnode *x, int key)
         {
             if (!x) return 0;
 
@@ -187,8 +187,8 @@ class Splay {
     public:
         Splay() { reset(); }
         bool empty() { return !root; }
-        void insert(int key) { root = _insert(root, key); }
-        void erase(int key)  { root = _erase(root, key); }
+        void insert(int key) { root = insert(root, key); }
+        void erase(int key)  { root = erase(root, key); }
 
         void reset()
         {

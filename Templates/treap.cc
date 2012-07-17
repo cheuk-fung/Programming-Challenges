@@ -77,7 +77,7 @@ class Treap {
             return y;
         }
 
-        Tnode *_insert(Tnode *x, int key)
+        Tnode *insert(Tnode *x, int key)
         {
             if (!x) {
                 tree_size++;
@@ -91,24 +91,26 @@ class Treap {
             }
 
             if (key < x->key) {
-                x->l = _insert(x->l, key);
+                x->l = insert(x->l, key);
                 if (x->l->fix > x->fix) x = right_rotate(x);
             } else if (key > x->key) {
-                x->r = _insert(x->r, key);
+                x->r = insert(x->r, key);
                 if (x->r->fix > x->fix) x = left_rotate(x);
-            } else x->cnt++;
+            } else {
+                x->cnt++;
+            }
 
             update_size(x);
 
             return x;
         }
 
-        Tnode *_erase(Tnode *x, int key)
+        Tnode *erase(Tnode *x, int key)
         {
             if (!x) return 0;
 
-            if (key < x->key) x->l = _erase(x->l, key);
-            else if (key > x->key) x->r = _erase(x->r, key);
+            if (key < x->key) x->l = erase(x->l, key);
+            else if (key > x->key) x->r = erase(x->r, key);
             else {
                 if (x->cnt > 1) {
                     x->cnt--;
@@ -125,7 +127,7 @@ class Treap {
                 else if (!x->r) x = right_rotate(x);
                 else if (x->l->fix < x->r->fix) x = right_rotate(x);
                 else x = left_rotate(x);
-                x = _erase(x, key);
+                x = erase(x, key);
             }
 
             update_size(x);
@@ -136,8 +138,8 @@ class Treap {
     public:
         Treap() { reset(); }
         bool empty() { return !root; }
-        void insert(int key) { root = _insert(root, key); }
-        void erase(int key) { root = _erase(root, key); }
+        void insert(int key) { root = insert(root, key); }
+        void erase(int key) { root = erase(root, key); }
 
         void reset()
         {
@@ -164,13 +166,13 @@ class Treap {
         }
 };
 
-class DisjointSet {
+class Disjoint_Set {
     private:
 
     public:
         int a[MAXN];
 
-        DisjointSet() { reset(); }
+        Disjoint_Set() { reset(); }
         void reset() { memset(a, 0xff, sizeof(a)); }
 
         int find(int u)
@@ -191,7 +193,7 @@ class DisjointSet {
 };
 
 Treap treap;
-DisjointSet ds;
+Disjoint_Set ds;
 
 void combine(int x, int y)
 {

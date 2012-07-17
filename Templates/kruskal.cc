@@ -23,17 +23,23 @@ struct Edge {
     bool operator<(const Edge &other) const { return d < other.d; }
 } e[MAXM];
 
-class DisjointSet {
+class Disjoint_Set {
     public:
         int a[MAXN];
 
-        DisjointSet() { reset(); }
+        Disjoint_Set() { reset(); }
         void reset() { memset(a, 0xff, sizeof(a)); }
 
         int find(int u)
         {
-            if (a[u] < 0) return u;
-            return a[u] = find(a[u]);
+            int x = u, y = u;
+            while (a[u] >= 0) u = a[u];
+            while (a[y] >= 0) {
+                x = a[y];
+                a[y] = u;
+                y = x;
+            }
+            return u;
         }
 
         void join(int u, int v)
@@ -46,7 +52,7 @@ class DisjointSet {
             }
         }
 };
-DisjointSet ds;
+Disjoint_Set ds;
 
 int kruskal(int m)
 {

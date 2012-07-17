@@ -10,24 +10,24 @@
 
 #include <cstdio>
 
-class SegTree {
+class Segment_Tree {
     private:
         struct Tnode {
             int a, b; // segment [a, b)
             int cover;
             int pure;
-            Tnode* lc;
-            Tnode* rc;
+            Tnode *lc;
+            Tnode *rc;
 
             Tnode(int _a, int _b)
                 : a(_a), b(_b), cover(1), pure(1), lc(0), rc(0)
             { }
         };
-        Tnode* root;
+        Tnode *root;
 
-        Tnode* build(int a, int b)
+        Tnode *build(int a, int b)
         {
-            Tnode* p = new Tnode(a, b);
+            Tnode *p = new Tnode(a, b);
 
             if (a + 1 < b) {
                 p->lc = build(a, (a + b) / 2);
@@ -37,7 +37,7 @@ class SegTree {
             return p;
         }
 
-        void _insert(int c, int d, int color, Tnode* p)
+        void _insert(int c, int d, int color, Tnode *p)
         {
             if (c <= p->a && p->b <= d) {
                 p->pure = 1;
@@ -61,7 +61,7 @@ class SegTree {
             p->cover = p->lc->cover | p->rc->cover;
         }
 
-        int _query(int c, int d, Tnode* p)
+        int _query(int c, int d, Tnode *p)
         {
             if ((c <= p->a && p->b <= d) || p->pure)
                 return p->cover;
@@ -74,7 +74,7 @@ class SegTree {
         }
 
     public:
-        SegTree(int l, int r)
+        Segment_Tree(int l, int r)
         {
             root = build(l, r);
         }
@@ -95,7 +95,7 @@ int main()
     int l, t, o;
     scanf("%d%d%d", &l, &t, &o);
 
-    SegTree st(1, l + 1);
+    Segment_Tree st(1, l + 1);
 
     for (int i = 0; i < o; i++) {
         char ctrl[10];
