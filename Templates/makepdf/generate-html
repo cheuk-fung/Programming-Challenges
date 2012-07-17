@@ -1,7 +1,9 @@
 #!/bin/bash
 echo "Generating HTML"
 
-filename="Leewings Algorithm Library.html"
+html_file="Leewings Algorithm Library.html"
+style_file="light.css"
+algorithm_path=".."
 
 algorithm_category=(Math String Computational+Geometry Graph+Theory Tree Other)
 algorithm_category_cnt=${#algorithm_category[@]}
@@ -16,7 +18,7 @@ algorithm_name_ComputationalGeometry=(Common     Distance+from+Point+to+Segment 
 algorithm_file_ComputationalGeometry=(cg.cc      dist-p2seg.cc                   gravity-center.cc       graham-scan.cc  convex-hull-3d.cc       rotating-calipers.cc    cutting-rectangle.cc    closest-points-2d.cc)
 
 algorithm_name_GraphTheory=(Prim        Kruskal         Bellman+Ford    Dijkstra        SPFA    SPFA+with+SLF+and+LLL           Tarjan+for+Strongly+Connected+Component     Tarjan+for+Vertex+Biconnected+Component     Tarjan+for+Edge+Biconnected+Component        Tarjan+for+Lowest+Common+Ancestor   2-SAT           Hungarian       KM      "Dinic+(Pointer)"       "Dinic+(STL)"   "Minimum+Cost+Flow+(pointer)"   "Minimum+Cost+Flow+(STL)"       Stoer+Wagner)
-algorithm_file_GraphTheory=(prim.cc     kruskal.cc     bellman-ford.cc  dijkstra.cc     spfa.cc spfa-with-slf-and-lll.cc        tarjan-scc.cc                               tarjan-vertex-bcc.cc                        tarjan-edge-bcc.cc                           tarjan-lca.cc                       2-sat.cc        hungarian.cc    KM.cc   dinic_pointer.cc        dinic_stl.cc    mcmf_pointer.cc                 mcmf_stl.cc                     stoer-wagner.cc)
+algorithm_file_GraphTheory=(prim.cc     kruskal.cc      bellman-ford.cc  dijkstra.cc     spfa.cc spfa-with-slf-and-lll.cc        tarjan-scc.cc                               tarjan-vertex-bcc.cc                        tarjan-edge-bcc.cc                           tarjan-lca.cc                       2-sat.cc        hungarian.cc    KM.cc   dinic_pointer.cc        dinic_stl.cc    mcmf_pointer.cc                 mcmf_stl.cc                     stoer-wagner.cc)
 
 algorithm_name_Tree=(BIT        BIT-2D          "Segment+Tree+(heap)"   "Segment+Tree+(pointer)"        "Segment+Tree+(discrete)"       "Segment+Tree+(perimeter)"      "Segment+Tree+(area)"   Partition+Tree          Splay           Treap)
 algorithm_file_Tree=(bit.cc     bit-2d.cc       segment-tree_heap.cc    segment-tree_pointer.cc         segment-tree_discrete.cc        segment-tree_perimeter.cc       segment-tree_area.cc    partition-tree.cc       splay.cc        treap.cc)
@@ -28,16 +30,16 @@ echo '<html>
 <head>
 <title>[Leewings] Algorithm Library</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="'$style_file'" rel="stylesheet" type="text/css" />
 </head>
-<body id="content">' > "$filename"
+<body id="content">' > "$html_file"
 
-echo "<h1>Vimrc</h1>" >> "$filename"
-pygmentize -f html ".vimrc" >> "$filename"
-echo '<div class="page-break"></div>' >> "$filename"
+echo "<h1>Vimrc</h1>" >> "$html_file"
+pygmentize -f html "$algorithm_path/.vimrc" >> "$html_file"
+echo '<div class="page-break"></div>' >> "$html_file"
 
-echo "<h1>Java Template</h1>" >> "$filename"
-pygmentize -f html "Main.java" >> "$filename"
+echo "<h1>Java Template</h1>" >> "$html_file"
+pygmentize -f html "$algorithm_path/Main.java" >> "$html_file"
 
 declare -i algorithm_cnt
 algorithm_cnt=2
@@ -45,8 +47,8 @@ for category in ${algorithm_category[@]} ; do
     echo
     echo "Generating Category: ${category//+/ }"
 
-    echo '<div class="page-break"></div>' >> "$filename"
-    echo "<h1>${category//+/ }</h1>" >> "$filename"
+    echo '<div class="page-break"></div>' >> "$html_file"
+    echo "<h1>${category//+/ }</h1>" >> "$html_file"
 
     eval algorithm_name_addr=\${algorithm_name_${category//+/}[@]}
     algorithm_name=(${algorithm_name_addr})
@@ -57,16 +59,16 @@ for category in ${algorithm_category[@]} ; do
     for (( j=0; j<file_cnt; j++ )) ; do
         echo "Generating File: ${algorithm_file[$j]}"
 
-        echo "<h2>${algorithm_name[$j]//+/ }</h2>" >> "$filename"
-        pygmentize -f html ${algorithm_file[$j]} >> "$filename"
-        # echo '<div class="page-break"></div>' >> "$filename"
+        echo "<h2>${algorithm_name[$j]//+/ }</h2>" >> "$html_file"
+        pygmentize -f html "$algorithm_path/${algorithm_file[$j]}" >> "$html_file"
+        # echo '<div class="page-break"></div>' >> "$html_file"
 
         algorithm_cnt=algorithm_cnt+1
     done
 done
 
 echo '</body>
-</html>' >> "$filename"
+</html>' >> "$html_file"
 
 echo
 echo "Generated $algorithm_cnt files."
