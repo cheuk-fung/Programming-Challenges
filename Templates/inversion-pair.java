@@ -13,14 +13,12 @@ import java.util.*;
 class Main {
     public static void main(String[] args)
     {
-        new Prob().solve();
+        new Main().run();
     }
-}
 
-class Prob {
-    private long ans = 0;
+    long ans = 0;
 
-    public void mergeSort(int a[], int l, int r) // [l, r)
+    void mergeSort(int a[], int l, int r) // [l, r)
     {
         if (l + 1 == r) return ;
 
@@ -43,7 +41,7 @@ class Prob {
         for (int i = 0; i < cnt; i++) a[l + i] = b[i];
     }
 
-    public void solve()
+    void run()
     {
         Scanner cin = new Scanner(System.in);
 

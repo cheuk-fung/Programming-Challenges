@@ -13,17 +13,15 @@ import java.util.*;
 import java.math.BigInteger;
 
 class Main {
-    public static void main(String[] args) throws IOException
-    {
-        new Prob().solve();
-    }
-}
-
-class Prob {
     static final MyReader in = new MyReader();
     static final PrintWriter out = new PrintWriter(System.out);
 
-    void solve() throws IOException
+    public static void main(String[] args)
+    {
+        new Main().run();
+    }
+
+    void run()
     {
         int r = in.nextInt();
         int c = in.nextInt();
@@ -49,6 +47,43 @@ class Prob {
             out.println(result.cnt[i]);
         out.flush();
     }
+
+    static void debug(Object...o)
+    {
+        System.err.println(Arrays.deepToString(o));
+    }
+}
+
+class MyReader {
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer in;
+
+    String next()
+    {
+        while (in == null || !in.hasMoreTokens()) {
+            try {
+                in = new StringTokenizer(br.readLine());
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return in.nextToken();
+    }
+
+    boolean hasNext()
+    {
+        if (in == null || in.hasMoreTokens()) return true;
+        try {
+            String line = br.readLine();
+            in = new StringTokenizer(line);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    int nextInt() { return Integer.parseInt(next()); }
+    BigInteger nextBigInteger() { return new BigInteger(next()); }
 }
 
 class Matrix {
@@ -117,28 +152,4 @@ class Matrix {
         }
         return result;
     }
-}
-
-class MyReader {
-    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer in;
-
-    boolean hasNext() throws IOException
-    {
-        if (in == null || in.hasMoreTokens()) return true;
-        String line = br.readLine();
-        if (line == null) return false;
-        in = new StringTokenizer(line);
-        return true;
-    }
-
-    String next() throws IOException
-    {
-        while (in == null || !in.hasMoreTokens())
-            in = new StringTokenizer(br.readLine());
-        return in.nextToken();
-    }
-
-    int nextInt() throws IOException { return Integer.parseInt(next()); }
-    BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
 }

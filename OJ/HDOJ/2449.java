@@ -14,10 +14,74 @@ import java.util.*;
 import java.math.*;
 
 class Main {
-    public static void main(String[] args) throws IOException
+    static final MyReader in = new MyReader();
+    static final PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args)
     {
-        new Prob().solve();
+        new Main().run();
     }
+
+    void run()
+    {
+        BigFraction[][] A;
+        BigFraction[]   B;
+
+        while (in.hasNext()) {
+            int n = in.nextInt();
+            A = new BigFraction[n][n];
+            B = new BigFraction[n];
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++)
+                    A[i][j] = new BigFraction(in.nextBigInteger(), BigInteger.ONE);
+                B[i] = new BigFraction(in.nextBigInteger(), BigInteger.ONE);
+            }
+
+            GaussElimination g = new GaussElimination();
+            if (g.solve(n, A, B) != 0) out.println("No solution.");
+            // else out.println(g.toString().replace(" ", "\n"));
+            else {
+                BigFraction X[] = g.getAns();
+                for (int i = 0; i < n; i++) out.println(X[i]);
+            }
+            out.println();
+        }
+
+        out.flush();
+    }
+}
+
+class MyReader {
+    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer in;
+
+    String next()
+    {
+        while (in == null || !in.hasMoreTokens()) {
+            try {
+                in = new StringTokenizer(br.readLine());
+            } catch (Exception e) {
+                return null;
+            }
+        }
+        return in.nextToken();
+    }
+
+    boolean hasNext()
+    {
+        if (in == null || in.hasMoreTokens()) return true;
+        try {
+            String line = br.readLine();
+            in = new StringTokenizer(line);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    int nextInt() { return Integer.parseInt(next()); }
+    BigInteger nextBigInteger() { return new BigInteger(next()); }
 }
 
 class BigFraction {
@@ -169,69 +233,5 @@ class GaussElimination {
         for (int i = 0; i < X.length - 1; i++)
             res += X[i] + " ";
         return res + X[X.length - 1];
-    }
-}
-
-class Prob {
-    void solve() throws IOException
-    {
-        MyReader in = new MyReader();
-        PrintWriter out = new PrintWriter(System.out);
-
-        BigFraction[][] A;
-        BigFraction[]   B;
-
-        while (in.hasNext()) {
-            int n = in.nextInt();
-            A = new BigFraction[n][n];
-            B = new BigFraction[n];
-
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++)
-                    A[i][j] = new BigFraction(in.nextBigInteger(), BigInteger.ONE);
-                B[i] = new BigFraction(in.nextBigInteger(), BigInteger.ONE);
-            }
-
-            GaussElimination g = new GaussElimination();
-            if (g.solve(n, A, B) != 0) out.println("No solution.");
-            // else out.println(g.toString().replace(" ", "\n"));
-            else {
-                BigFraction X[] = g.getAns();
-                for (int i = 0; i < n; i++) out.println(X[i]);
-            }
-            out.println();
-        }
-
-        out.flush();
-    }
-}
-
-class MyReader {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer in;
-
-    boolean hasNext() throws IOException
-    {
-        if (in == null || in.hasMoreTokens()) return true;
-        String line = br.readLine();
-        if (line == null) return false;
-        in = new StringTokenizer(line);
-        return true;
-    }
-
-    String next() throws IOException
-    {
-        while (in == null || !in.hasMoreTokens())
-            in = new StringTokenizer(br.readLine());
-        return in.nextToken();
-    }
-
-    int nextInt() throws IOException
-    {
-        return Integer.parseInt(next());
-    }
-    BigInteger nextBigInteger() throws IOException
-    {
-        return new BigInteger(next());
     }
 }
