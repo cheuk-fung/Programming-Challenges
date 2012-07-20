@@ -25,7 +25,7 @@ struct Edge {
     Edge *next;
     Edge *rev; // revese edge
 };
-Edge e_buf[MAXE];
+Edge e_buf[MAXE << 1];
 Edge *e_head[MAXV];
 Edge *e_work[MAXV];
 Edge *e_tail;
@@ -46,7 +46,7 @@ inline void add_edge(int u, int v, int c)
 
 bool bfs()
 {
-    memset(lev, 0xff, sizeof(lev));
+    memset(lev, 0xff, sizeof lev);
 
     int *head = que, *tail = que;
     *tail++ = orig;
@@ -85,7 +85,7 @@ int dinic()
 {
     int res = 0;
     while (bfs()) {
-        memcpy(e_work, e_head, sizeof(e_head));
+        memcpy(e_work, e_head, sizeof e_head);
         int tmp = dfs(orig, INF);
         if (tmp) res += tmp;
         else break;

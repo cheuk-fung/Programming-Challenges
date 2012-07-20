@@ -32,14 +32,14 @@ class Disjoint_Set {
 
         int find(int u)
         {
-            int x = u, y = u;
-            while (a[u] >= 0) u = a[u];
-            while (a[y] >= 0) {
-                x = a[y];
-                a[y] = u;
-                y = x;
+            int r = u;
+            while (a[r] >= 0) r = a[r];
+            while (a[u] >= 0) {
+                int v = a[u];
+                a[u] = r;
+                u = v;
             }
-            return u;
+            return r;
         }
 
         void join(int u, int v)

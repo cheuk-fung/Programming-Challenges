@@ -177,8 +177,14 @@ class Disjoint_Set {
 
         int find(int u)
         {
-            if (a[u] < 0) return u;
-            return a[u] = find(a[u]);
+            int x = u, y = u;
+            while (a[u] >= 0) u = a[u];
+            while (a[y] >= 0) {
+                x = a[y];
+                a[y] = u;
+                y = x;
+            }
+            return u;
         }
 
         void join(int u, int v)
