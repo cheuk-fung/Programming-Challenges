@@ -5,7 +5,7 @@ class Disjoint_Set {
         int a[MAXN];
 
         Disjoint_Set() { reset(); }
-        void reset() { memset(a, 0xff, sizeof(a)); }
+        void reset() { memset(a, 0xff, sizeof a); }
 
         int find(int u)
         {

@@ -57,10 +57,10 @@ void tarjan_dfs(int u)
 void tarjan(int n)
 {
     idx = scc_cnt = 0;
-    memset(dfn, 0xff, sizeof(dfn));
-    memset(low, 0xff, sizeof(low));
-    memset(scc_id, 0xff, sizeof(scc_id));
-    memset(scc_size, 0, sizeof(scc_size));
+    memset(dfn, 0xff, sizeof dfn);
+    memset(low, 0xff, sizeof low);
+    memset(scc_id, 0xff, sizeof scc_id);
+    memset(scc_size, 0, sizeof scc_size);
 
     for (int i = 0; i < n; i++)
         if (dfn[i] == -1) tarjan_dfs(i);

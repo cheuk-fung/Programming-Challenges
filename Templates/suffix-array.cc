@@ -18,25 +18,25 @@ class Suffix_Array {
     // use Doubling Algorithm
 
     private:
-        const static int MAX_LEN = 200012;
-        const static int MAX_CHAR = 128;
+        const static int MAXLEN = 200012;
+        const static int MAXCHAR = 128;
 
-        int *n_rank;
-        int intbuf1[MAX_LEN], intbuf2[MAX_LEN]; // used for ranking
+        int *nrank;
+        int rbuf[MAXLEN][2]; // used for ranking
 
-        int cnt[MAX_LEN]; // used for counting sort
+        int cnt[MAXLEN]; // used for counting sort
 
-        void c_sort(int k, int range)
+        void csort(int k, int range)
         {
             int t = 0;
-            for (int i = len - k; i < len; i++) n_rank[t++] = i;
+            for (int i = len - k; i < len; i++) nrank[t++] = i;
             for (int i = 0; i < len; i++)
-                if (suff[i] >= k) n_rank[t++] = suff[i] - k;
+                if (suff[i] >= k) nrank[t++] = suff[i] - k;
 
             for (int i = 0; i < len; i++) cnt[rank[i]]++;
             for (int i = 1; i < range; i++) cnt[i] += cnt[i - 1];
             for (int i = len - 1, j; i >= 0; i--) {
-                j = n_rank[i];
+                j = nrank[i];
                 suff[--cnt[rank[j]]] = j;
             }
 
@@ -44,20 +44,19 @@ class Suffix_Array {
         }
 
     public:
-        char str[MAX_LEN];
+        char str[MAXLEN];
         int len;
 
-        int suff[MAX_LEN]; // suff[i]: the i-th *sorted* suffix
+        int suff[MAXLEN]; // suff[i]: the i-th *sorted* suffix
         int *rank;         // rank[i]: the rank of the i-th *original* suffix
         // suff[i] = j <=> rank[j] = i
 
         // LCP(i, j): the Longest Common Prefix of the i-th and j-th *sorted* suffixes
-        int hgt[MAX_LEN];  //  hgt[i]: LCP(i - 1, i)
+        int hgt[MAXLEN];  //  hgt[i]: LCP(i - 1, i)
 
         void reset()
         {
-            memset(intbuf1, 0, sizeof intbuf1);
-            memset(intbuf2, 0, sizeof intbuf2);
+            memset(rbuf, 0, sizeof rbuf);
             memset(cnt, 0, sizeof cnt);
             memset(suff, 0, sizeof suff);
             memset(hgt, 0, sizeof hgt);
@@ -66,28 +65,28 @@ class Suffix_Array {
         void build()
         {
             len = strlen(str);
-            rank = intbuf1;
-            n_rank = intbuf2;
+            rank = rbuf[0];
+            nrank = rbuf[1];
 
             for (int i = 0; i < len; i++) {
                 rank[i] = str[i];
                 suff[i] = i;
             }
-            c_sort(0, MAX_CHAR);
+            csort(0, MAXCHAR);
 
-            for (int k = 1, max_rank = MAX_CHAR; max_rank != len; k <<= 1) {
-                c_sort(k, max_rank + 1);
+            for (int k = 1, maxrank = MAXCHAR; maxrank != len; k <<= 1) {
+                csort(k, maxrank + 1);
 
-                max_rank = n_rank[suff[0]] = 1;
+                maxrank = nrank[suff[0]] = 1;
                 for (int i = 1; i < len; i++) {
                     if (rank[suff[i - 1]] == rank[suff[i]] && rank[suff[i - 1] + k] == rank[suff[i] + k]) {
-                        n_rank[suff[i]] = max_rank;
+                        nrank[suff[i]] = maxrank;
                     } else {
-                        n_rank[suff[i]] = ++max_rank;
+                        nrank[suff[i]] = ++maxrank;
                     }
                 }
 
-                swap(rank, n_rank);
+                swap(rank, nrank);
             }
             for (int i = 0; i < len; i++) rank[i]--;
         }

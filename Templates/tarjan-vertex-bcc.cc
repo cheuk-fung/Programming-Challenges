@@ -58,8 +58,8 @@ void tarjan(int n)
     for (int i = 0; i < bcc_cnt; i++) bcc_block[i].clear();
     stack.clear();
     idx = bcc_cnt = 0;
-    memset(dfn, 0xff, sizeof(dfn));
-    memset(low, 0xff, sizeof(low));
+    memset(dfn, 0xff, sizeof dfn);
+    memset(low, 0xff, sizeof low);
     for (int i = 0; i < n; i++)
         if (dfn[i] == -1) tarjan_dfs(i , -1);
 }
@@ -86,10 +86,10 @@ bool dye_dfs(int u, bool col)
 
 void dye()
 {
-    memset(expel, true, sizeof(expel));
+    memset(expel, true, sizeof expel);
     for (int i = 0; i < bcc_cnt; i++) {
-        memset(to_dye, false, sizeof(to_dye));
-        memset(vis, false, sizeof(vis));
+        memset(to_dye, false, sizeof to_dye);
+        memset(vis, false, sizeof vis);
         for (int j = 0; j < bcc_block[i].size(); j++) to_dye[bcc_block[i][j]] = true;
         if (dye_dfs(bcc_block[i].back(), 0)) {
             for (int j = 0; j < bcc_block[i].size(); j++) expel[bcc_block[i][j]] = false;
@@ -101,7 +101,7 @@ int main()
 {
     int n, m;
     while (scanf("%d%d", &n, &m), n || m) {
-        memset(mat, 0, sizeof(mat));
+        memset(mat, 0, sizeof mat);
         for (int i = 0; i < m; i++) {
             int x, y;
             scanf("%d%d", &x, &y);

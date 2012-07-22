@@ -21,7 +21,7 @@ class Disjoint_Set {
         int a[MAXN];
 
         Disjoint_Set() { reset(); }
-        void reset() { memset(a, 0xff, sizeof(a)); }
+        void reset() { memset(a, 0xff, sizeof a); }
 
         int find(int u)
         {
@@ -102,7 +102,7 @@ int main()
         query[v - 1].push_back(Edge(u - 1, i));
     }
 
-    memset(vis, false, sizeof(vis));
+    memset(vis, false, sizeof vis);
     parent[0] = 0;
     tarjan(0, 0);
     for (int i = 0; i < k; i++) printf("%d\n", ans[i]);

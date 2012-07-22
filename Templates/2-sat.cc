@@ -61,10 +61,10 @@ void tarjan_dfs(int u)
 void tarjan(int n)
 {
     idx = scc_cnt = 0;
-    memset(dfn, 0xff, sizeof(dfn));
-    memset(low, 0xff, sizeof(low));
-    memset(scc_id, 0xff, sizeof(scc_id));
-    memset(scc_size, 0, sizeof(scc_size));
+    memset(dfn, 0xff, sizeof dfn);
+    memset(low, 0xff, sizeof low);
+    memset(scc_id, 0xff, sizeof scc_id);
+    memset(scc_size, 0, sizeof scc_size);
 
     for (int i = 0; i < n; i++)
         if (dfn[i] == -1) tarjan_dfs(i);
@@ -84,7 +84,7 @@ bool sat(int n)
     for (int i = 0; i < n; i += 2)
         if (scc_id[i] == scc_id[i ^ 1]) return false;
 
-    memset(in_deg, 0, sizeof(in_deg));
+    memset(in_deg, 0, sizeof in_deg);
     for (int u = 0; u < n; u++)
         for (vci v = edge[u].begin(); v != edge[u].end(); v++)
             if (scc_id[u] != scc_id[*v]) {
@@ -104,7 +104,7 @@ bool sat(int n)
             if (--in_deg[*v] == 0) Q.push(*v);
     }
 
-    memset(color, 0, sizeof(color));
+    memset(color, 0, sizeof color);
     for (vci u = topo.begin(); u != topo.end(); u++)
         if (!color[*u]) {
             color[*u] = 1;

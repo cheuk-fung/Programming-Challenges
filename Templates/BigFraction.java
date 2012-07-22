@@ -12,38 +12,54 @@ class BigFraction implements Comparable {
         denominator = BigInteger.ONE;
     }
 
-    public BigFraction(BigInteger _numerator, BigInteger _denominator)
+    public BigFraction(int numerator, int denominator)
     {
-        numerator = _numerator;
-        denominator = _denominator;
+        this.numerator = BigInteger.valueOf(numerator);
+        this.denominator = BigInteger.valueOf(denominator);
+    }
+
+    public BigFraction(BigInteger numerator, BigInteger denominator)
+    {
+        this.numerator = numerator;
+        this.denominator = denominator;
+    }
+
+    public BigInteger getNumerator()
+    {
+        return numerator;
+    }
+
+    public BigInteger getDenominator()
+    {
+        return denominator;
     }
 
     public BigFraction add(BigFraction other)
     {
-        BigInteger new_numerator = numerator.multiply(other.denominator).add(other.numerator.multiply(denominator));
-        BigInteger new_denominator = denominator.multiply(other.denominator);
-        return new BigFraction(new_numerator, new_denominator).simplify();
+        BigInteger resNumerator = numerator.multiply(other.denominator).add(other.numerator.multiply(denominator));
+        BigInteger resDenominator = denominator.multiply(other.denominator);
+        return new BigFraction(resNumerator, resDenominator).simplify();
     }
 
     public BigFraction subtract(BigFraction other)
     {
-        BigInteger new_numerator = numerator.multiply(other.denominator).subtract(other.numerator.multiply(denominator));
-        BigInteger new_denominator = denominator.multiply(other.denominator);
-        return new BigFraction(new_numerator, new_denominator).simplify();
+        BigInteger resNumerator = numerator.multiply(other.denominator).subtract(other.numerator.multiply(denominator));
+        BigInteger resDenominator = denominator.multiply(other.denominator);
+        return new BigFraction(resNumerator, resDenominator).simplify();
     }
 
     public BigFraction multiply(BigFraction other)
     {
-        BigInteger new_numerator = numerator.multiply(other.numerator);
-        BigInteger new_denominator = denominator.multiply(other.denominator);
-        return new BigFraction(new_numerator, new_denominator).simplify();
+        BigInteger resNumerator = numerator.multiply(other.numerator);
+        BigInteger resDenominator = denominator.multiply(other.denominator);
+        return new BigFraction(resNumerator, resDenominator).simplify();
     }
 
     public BigFraction divide(BigFraction other)
     {
-        BigInteger new_numerator = numerator.multiply(other.denominator);
-        BigInteger new_denominator = denominator.multiply(other.numerator);
-        return new BigFraction(new_numerator, new_denominator).simplify();
+        BigInteger resNumerator = numerator.multiply(other.denominator);
+        BigInteger resDenominator = denominator.multiply(other.numerator);
+        return new BigFraction(resNumerator, resDenominator).simplify();
     }
 
     public BigFraction abs()
@@ -81,8 +97,7 @@ class BigFraction implements Comparable {
         if (isZero()) return BigFraction.ZERO;
         BigInteger gcd = numerator.gcd(denominator);
         if (denominator.signum() == -1)
-            return new BigFraction(numerator.divide(gcd).negate(),
-                    denominator.divide(gcd).negate());
+            return new BigFraction(numerator.divide(gcd).negate(), denominator.divide(gcd).negate());
         return new BigFraction(numerator.divide(gcd), denominator.divide(gcd));
     }
 

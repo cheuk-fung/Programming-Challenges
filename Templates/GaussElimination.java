@@ -4,14 +4,21 @@ class GaussElimination {
     //  1: infinitely many solutions
     //  0: one solution
     // -1: no solution
-    public int solve(int n, BigFraction[][] A, BigFraction[] B)
+    public int solve(BigFraction[][] A, BigFraction[] B)
     {
+        int n = A.length;
         X = new BigFraction[n];
 
         for (int xc = 0; xc < n; xc++) {
             int row = xc;
-            for (int i = row + 1; i < n; i++)
-                if (A[i][xc].abs().compareTo(A[row][xc].abs()) > 0) row = i;
+            if (A[row][xc].isZero()) {
+                for (int i = row + 1; i < n; i++) {
+                    if (!A[i][xc].isZero()) {
+                        row = i;
+                        break;
+                    }
+                }
+            }
             if (A[row][xc].isZero()) {
                 if (B[row].isZero()) return 1;
                 return -1;

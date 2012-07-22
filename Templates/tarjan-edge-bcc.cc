@@ -58,10 +58,10 @@ void tarjan_dfs(int u, int parent)
 void tarjan(int n)
 {
     idx = bcc_cnt = 0;
-    memset(dfn, 0xff, sizeof(dfn));
-    memset(low, 0xff, sizeof(low));
-    memset(bcc_id, 0xff, sizeof(bcc_id));
-    memset(bcc_size, 0, sizeof(bcc_size));
+    memset(dfn, 0xff, sizeof dfn);
+    memset(low, 0xff, sizeof low);
+    memset(bcc_id, 0xff, sizeof bcc_id);
+    memset(bcc_size, 0, sizeof bcc_size);
 
     for (int i = 0; i < n; i++)
         if (dfn[i] == -1) tarjan_dfs(i, -1);
@@ -71,7 +71,7 @@ int degree[MAXN];
 
 int count_leaves(int n)
 {
-    memset(degree, 0, sizeof(degree));
+    memset(degree, 0, sizeof degree);
 
     for (int u = 0; u < n; u++) {
         for (vci v = edge[u].begin(); v != edge[u].end(); v++) {
