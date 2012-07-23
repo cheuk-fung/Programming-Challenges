@@ -3,17 +3,15 @@ import java.util.*;
 import java.math.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException
-    {
-        new Prob().solve();
-    }
-}
-
-class Prob {
     static final MyReader in = new MyReader();
     static final PrintWriter out = new PrintWriter(System.out);
 
-    void solve() throws IOException
+    public static void main(String[] args)
+    {
+        new Main().run();
+    }
+
+    void run()
     {
 
         out.flush();
@@ -29,32 +27,40 @@ class MyReader {
     static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer in;
 
-    boolean hasNext() throws IOException
+    String next()
     {
-        if (in == null || in.hasMoreTokens()) return true;
-        String line = br.readLine();
-        if (line == null) return false;
-        in = new StringTokenizer(line);
-        return true;
-    }
-
-    String next() throws IOException
-    {
-        while (in == null || !in.hasMoreTokens())
-            in = new StringTokenizer(br.readLine());
+        while (in == null || !in.hasMoreTokens()) {
+            try {
+                in = new StringTokenizer(br.readLine());
+            } catch (Exception e) {
+                return null;
+            }
+        }
         return in.nextToken();
     }
 
-    int nextInt() throws IOException { return Integer.parseInt(next()); }
-    long nextLong() throws IOException { return Long.parseLong(next()); }
-    double nextDouble() throws IOException { return Double.parseDouble(next()); }
-    BigInteger nextBigInteger() throws IOException { return new BigInteger(next()); }
-    BigDecimal nextBigDecimal() throws IOException { return new BigDecimal(next()); }
+    boolean hasNext()
+    {
+        if (in == null || in.hasMoreTokens()) return true;
+        try {
+            String line = br.readLine();
+            in = new StringTokenizer(line);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    int nextInt() { return Integer.parseInt(next()); }
+    long nextLong() { return Long.parseLong(next()); }
+    double nextDouble() { return Double.parseDouble(next()); }
+    BigInteger nextBigInteger() { return new BigInteger(next()); }
+    BigDecimal nextBigDecimal() { return new BigDecimal(next()); }
 }
 
-// Usage: Arrays.sort(test, new ProbComparator());
-class ProbComparator implements Comparator<Prob> {
-    public int compare(Prob a, Prob b)
+// Usage: Arrays.sort(test, new MyComparator());
+class MyComparator implements Comparator<Main> {
+    public int compare(Main a, Main b)
     {
         // return:
         //        1: a > b
