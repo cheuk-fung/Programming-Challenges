@@ -14,35 +14,12 @@ pair<int, int> dfn[MAXN];
 int times;
 int anc[MAXN];
 int dep[MAXN];
-int pos[MAXN];
-
-class Comparator {
-    private:
-        int p;
-    public:
-        Comparator(int _p) : p(_p) { }
-        bool operator ()(int x, int y) const
-        {
-            int ancdep = dep[x] - p;
-            vector<int>::const_iterator it = upper_bound(levdfn[ancdep].begin(), levdfn[ancdep].end(), max(dfn[x].second, dfn[y].second));
-            return !(*(it - 1) < min(dfn[x].first, dfn[y].first));
-            /*
-            for (int i = 0; i < p; i++) {
-                x = anc[x];
-                y = anc[y];
-                if (x == y) return false;
-            }
-            return true;
-            */
-        }
-};
 
 void traverse(int u, int d)
 {
     dfn[u].first = times++;
 
     dep[u] = d;
-    pos[u] = lev[d].size();
     lev[d].push_back(u);
     levdfn[d].push_back(dfn[u].first);
     for (int i = 0; i < (int)tree[u].size(); i++) {
@@ -73,9 +50,12 @@ int main(int argc, char *argv[])
         if (dep[v] <= p) {
             cout << 0 << endl;
         } else {
-            cout << upper_bound(lev[dep[v]].begin() + pos[v] + 1, lev[dep[v]].end(), v, Comparator(p)) - lower_bound(lev[dep[v]].begin(), lev[dep[v]].begin() + pos[v] + 1, v, Comparator(p)) - 1 << endl;
+            int ancdep = dep[v] - p;
+            vector<int>::const_iterator it = upper_bound(levdfn[ancdep].begin(), levdfn[ancdep].end(), dfn[v].second);
+            cout << (upper_bound(levdfn[dep[v]].begin(), levdfn[dep[v]].end(), *it) - lower_bound(levdfn[dep[v]].begin(), levdfn[dep[v]].end(), *(it - 1))) / 2 - 1 << endl;
         }
     }
 
     return 0;
 }
+
