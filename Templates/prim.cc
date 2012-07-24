@@ -56,9 +56,9 @@ bool prim()
     int sum = 0;
     while (!Q.empty()) {
         int u = Q.top().v;
-        int td = Q.top().d; 
+        int td = Q.top().d;
         Q.pop();
-        if (!dist[u] && u != 0) continue;
+        if (td > dist[u]) continue;
         sum += td;
         dist[u] = 0;
         for (int i = 0; i < edge[u].size(); i++) {
