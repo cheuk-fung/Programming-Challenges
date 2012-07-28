@@ -1,4 +1,4 @@
-void euler(int n, int *phi, int prm_cnt, int *prm, int *is_prm)
+void calc_phi(int n, int *phi, int prm_cnt, int *prm, int *is_prm)
 {
     phi[1] = 1;
     for (int i = 2; i < n; i++) {

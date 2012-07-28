@@ -1,7 +1,7 @@
 /*
  *  SRC: HDOJ 4305
  * PROB: Lightning
- * ALGO: Marix Tree Therome
+ * ALGO: Marix tree theorem
  * DATE: Jul 22, 2012
  * COMP: g++
  *

@@ -28,22 +28,22 @@ struct Edge {
 typedef vector<Edge>::const_iterator vci;
 vector<Edge> edge[MAXN];
 int idx, cnt;
-int parent[MAXN], dist[MAXN], label[MAXN], rev_label[MAXN], pos[MAXN], seq[MAXN << 1];
+int parent[MAXN], dist[MAXN], dfn[MAXN], rev_dfn[MAXN], pos[MAXN], seq[MAXN << 1];
 int mn[20][MAXN << 1];
 
 void dfs(int u, int length)
 {
     dist[u] = length;
-    label[u] = cnt;
-    rev_label[cnt++] = u;
-    pos[label[u]] = idx;
-    seq[idx++] = label[u];
+    dfn[u] = cnt;
+    rev_dfn[cnt++] = u;
+    pos[dfn[u]] = idx;
+    seq[idx++] = dfn[u];
 
     for (vci e = edge[u].begin(); e != edge[u].end(); e++) {
         if (e->v != parent[u]) {
             parent[e->v] = u;
             dfs(e->v, length + e->d);
-            seq[idx++] = label[u];
+            seq[idx++] = dfn[u];
         }
     }
 }
@@ -66,10 +66,10 @@ int RMQ_min(int l, int r) // [l, r)
 
 int RMQ_lca(int u, int v)
 {
-    u = label[u];
-    v = label[v];
+    u = dfn[u];
+    v = dfn[v];
     if (pos[u] > pos[v]) swap(u, v);
-    return rev_label[RMQ_min(pos[u], pos[v] + 1)];
+    return rev_dfn[RMQ_min(pos[u], pos[v] + 1)];
 }
 
 int main()

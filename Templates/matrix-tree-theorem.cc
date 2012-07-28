@@ -1,7 +1,7 @@
 /*
  *  SRC: HDOJ 4305
  * PROB: Lightning
- * ALGO: Marix Tree Therome
+ * ALGO: Marix tree theorem
  * DATE: Jul 22, 2012
  * COMP: g++
  *
@@ -24,6 +24,10 @@ struct Point {
 Point pnt[MAXN];
 
 int A[MAXN][MAXN];
+/*
+ * A[i][i] equals the degree of vertex i, excluded all loops;
+ * A[i][j] equals -m, where m is the number of edges between i and j.
+ */
 
 int modnum(int x) { return (x % MOD + MOD) % MOD; }
 
