@@ -1,7 +1,7 @@
 /*
  *  SRC: poj 2942
  * PROB: Knights of the Round Table
- * ALGO: Tarjan Vertex BCC (Vertex Biconnected Component
+ * ALGO: Tarjan Vertex BCC (Vertex Biconnected Component)
  * DATE: Jul 09, 2012
  * COMP: g++
  *
