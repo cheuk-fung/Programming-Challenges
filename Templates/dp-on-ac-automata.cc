@@ -69,8 +69,9 @@ class ACAutomata {
 
             while (*s) {
                 int idx = gene_to_id(*s);
-                if (!p->next[idx])
+                if (!p->next[idx]) {
                     p->next[idx] = &node[node_cnt++];
+                }
                 p = p->next[idx];
                 s++;
             }
@@ -88,8 +89,9 @@ class ACAutomata {
                 if (root->next[i]) {
                     root->next[i]->fail = root;
                     Q.push(root->next[i]);
+                } else {
+                    root->next[i] = root;
                 }
-                else root->next[i] = root;
             }
 
             while (!Q.empty()) {
@@ -114,14 +116,14 @@ class ACAutomata {
 
         void query()
         {
-            int ans = 0xafafafaf;
+            int ans = 0xc0c0c0c0;
 
             f[curr][0][0] = 0;
             vis[curr][0][0] = 1;
             for (int i = 0; i < l; i++) {
-                for (int j = 0; j < node_cnt; j++)
-                    for (int k = 0, final = 1 << n; k < final; k++)
-                        if (vis[curr][j][k])
+                for (int j = 0; j < node_cnt; j++) {
+                    for (int k = 0, final = 1 << n; k < final; k++) {
+                        if (vis[curr][j][k]) {
                             for (int idx = 0; idx < CHARSET_SIZE; idx++) {
                                 Tnode *p = &node[j];
                                 while (!p->next[idx] && p != root) p = p->fail;
@@ -143,9 +145,12 @@ class ACAutomata {
                                 f[next][p - node][state] = max(f[next][p - node][state], f[curr][j][k] + offset);
                                 ans = max(ans, f[next][p - node][state]);
                             }
+                        }
+                    }
+                }
                 curr ^= 1;
                 next ^= 1;
-                memset(f[next], 0xaf, sizeof(f[next]));
+                memset(f[next], 0xc0, sizeof(f[next]));
                 memset(vis[next], 0, sizeof(vis[next]));
             }
 

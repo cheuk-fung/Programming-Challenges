@@ -32,3 +32,11 @@ Check if all situations have been considered with small data (including zeros).
                 }
             }
         }
+
+107\. 987654321 problem  
+Think about the case when N equals 9.
+
+108\. Self-numbers 2  
+Use a char as 8 bits to mark if a number is a self-number or not to fit the
+memory limit.  
+Not all items of s[1]...s[k] are different.

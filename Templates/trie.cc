@@ -21,9 +21,9 @@ class Trie {
             Tnode *next[CHARSET_SIZE];
             int exist;
         };
-        Tnode node[NODE_MAX_SIZE],
-              *node_tail,
-              *root;
+        Tnode nodes[NODE_MAX_SIZE];
+        Tnode *node_tail;
+        Tnode *root;
 
     public:
         Trie()
@@ -33,8 +33,8 @@ class Trie {
 
         void reset()
         {
-            memset(node, 0, sizeof(node));
-            node_tail = node;
+            memset(nodes, 0, sizeof(nodes));
+            node_tail = nodes;
             root = node_tail++;
             root->exist = false;
         }
