@@ -28,6 +28,7 @@ inline int gene_to_id(char c)
         case 'T': return 2;
         case 'C': return 3;
     }
+    return 0;
 }
 
 class ACAutomata {
@@ -36,11 +37,11 @@ class ACAutomata {
         const static int NODE_MAX_SIZE = 1024;
 
         struct Tnode {
-            Tnode* next[CHARSET_SIZE];
-            Tnode* fail;
+            Tnode *next[CHARSET_SIZE];
+            Tnode *fail;
             int id;
         };
-        Tnode* root;
+        Tnode *root;
 
         int node_cnt;
         Tnode node[NODE_MAX_SIZE];
@@ -58,14 +59,14 @@ class ACAutomata {
             node_cnt = 0;
             root = &node[node_cnt++];
 
-            memset(f, 0xaf, sizeof(f));
+            memset(f, 0xc0, sizeof(f));
             memset(vis, 0, sizeof(vis));
             curr = 0, next = 1;
         }
 
         int insert(char *s, int id)
         {
-            Tnode* p = root;
+            Tnode *p = root;
 
             while (*s) {
                 int idx = gene_to_id(*s);
@@ -83,7 +84,7 @@ class ACAutomata {
 
         void build_fail()
         {
-            queue<Tnode*> Q;
+            queue<Tnode *> Q;
 
             for (int i = 0; i < CHARSET_SIZE; i++) {
                 if (root->next[i]) {
@@ -95,17 +96,15 @@ class ACAutomata {
             }
 
             while (!Q.empty()) {
-                Tnode* curr = Q.front();
+                Tnode *curr = Q.front();
                 Q.pop();
 
                 for (int i = 0; i < CHARSET_SIZE; i++) {
-                    Tnode* u = curr->next[i];
-                    if (u) {
-                        Tnode* v = curr->fail;
-                        while (!v->next[i]) v = v->fail;
-                        u->fail = v->next[i];
-
-                        Q.push(u);
+                    if (curr->next[i]) {
+                        curr->next[i]->fail = curr->fail->next[i];
+                        Q.push(curr->next[i]);
+                    } else {
+                        curr->next[i] = curr->fail->next[i];
                     }
                 }
 
@@ -126,7 +125,6 @@ class ACAutomata {
                         if (vis[curr][j][k]) {
                             for (int idx = 0; idx < CHARSET_SIZE; idx++) {
                                 Tnode *p = &node[j];
-                                while (!p->next[idx] && p != root) p = p->fail;
                                 p = p->next[idx];
 
                                 int state = k,

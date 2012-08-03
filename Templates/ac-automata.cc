@@ -33,9 +33,9 @@ class ACAutomata {
             int exist;
             int id;
         };
-        Tnode node[NODE_MAX_SIZE],
-              *node_tail,
-              *root;
+        Tnode node[NODE_MAX_SIZE];
+        Tnode *node_tail;
+        Tnode *root;
 
     public:
         ACAutomata() { reset(); }
@@ -71,8 +71,9 @@ class ACAutomata {
                 if (root->next[i]) {
                     root->next[i]->fail = root;
                     Q.push(root->next[i]);
+                } else {
+                    root->next[i] = root;
                 }
-                else root->next[i] = root;
             }
 
             while (!Q.empty()) {
@@ -80,13 +81,11 @@ class ACAutomata {
                 Q.pop();
 
                 for (int i = 0; i < CHARSET_SIZE; i++) {
-                    Tnode *u = curr->next[i];
-                    if (u) {
-                        Tnode *v = curr->fail;
-                        while (!v->next[i]) v = v->fail;
-                        u->fail = v->next[i];
-
-                        Q.push(u);
+                    if (curr->next[i]) {
+                        curr->next[i]->fail = curr->fail->next[i];
+                        Q.push(curr->next[i]);
+                    } else {
+                        curr->next[i] = curr->fail->next[i];
                     }
                 }
 
@@ -100,14 +99,13 @@ class ACAutomata {
         {
 //            int res = 0;
 
-            Tnode* p = root;
+            Tnode *p = root;
             while (map[x][y]) {
                 int idx = map[x][y] - 'A';
-                while (!p->next[idx] && p != root) p = p->fail;
                 p = p->next[idx];
 
                 if (p->id) {
-                    Tnode* t = p;
+                    Tnode *t = p;
                     while (t != root && t->id != -1) {
                         if (t->id) {
                             ans_cnt++;
