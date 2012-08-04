@@ -12,7 +12,7 @@ There might be adjacent traffic lights whose colors always differ from
 each other.
 
 104\. Little shop of flowers  
-Let $f[i][j]$ denote the maximium pleasant effect if the i-th flower is
+Let $f[i][j]$ denote the maximum pleasant effect if the i-th flower is
 put in vase j or the vases before it. Hence we have,
 \\\[f[i][j] = \max\\\{f[i - 1][j - 1] + A[i][j], f[i][j - 1]\\\}\\\]
 
@@ -42,3 +42,13 @@ Think about the case when N equals 9.
 Use a char as 8 bits to mark if a number is a self-number or not to fit
 the memory limit.  
 Not all items of s[1]...s[k] are different.
+
+109\. Magic of David Copperfield II  
+Parity counts.
+
+110\. Dungeon  
+The sequence of sphere numbers will be empty if the light ray hits none
+of the spheres. In such a case, output nothing.
+
+111\. Very simple problem  
+It is a very simple problem indeed if you use *Java* and *BigInteger*.
