@@ -52,3 +52,9 @@ of the spheres. In such a case, output nothing.
 
 111\. Very simple problem  
 It is a very simple problem indeed if you use *Java* and *BigInteger*.
+
+112\. a^b-b^a  
+Well. Java and BigInteger again....
+
+113\. Nearly prime numbers  
+$10^9 / 2 > \sqrt{10^9}$
