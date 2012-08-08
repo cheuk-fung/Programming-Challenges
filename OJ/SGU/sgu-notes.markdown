@@ -25,15 +25,15 @@ it.
 Check if all situations have been considered with small data (including
 zeros).
 
-        for (int a = -10; a <= 10; a++) {
-            for (int b = -10; b <= 10; b++) {
-                for (int c = -10;; c <= 10; c++) {
-                    blahblah;
-                    blahblah;
-                    blahblah;
-                }
+    for (int a = -10; a <= 10; a++) {
+        for (int b = -10; b <= 10; b++) {
+            for (int c = -10;; c <= 10; c++) {
+                blahblah;
+                blahblah;
+                blahblah;
             }
         }
+    }
 
 107\. 987654321 problem  
 Think about the case when N equals 9.
@@ -58,3 +58,12 @@ Well. Java and BigInteger again....
 
 113\. Nearly prime numbers  
 $10^9 / 2 > \sqrt{10^9}$
+
+114\. Telecasting station  
+It has multiple acceptable answers and is special judged, which is not
+mentioned by the problem statement. One of these acceptable points for
+station is always locates in one of these cities.
+
+115\. Calendar  
+
+    #include <ctime>
