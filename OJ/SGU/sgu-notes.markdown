@@ -67,3 +67,9 @@ station is always locates in one of these cities.
 115\. Calendar  
 
     #include <ctime>
+
+116\. Index of super-prime  
+Viewing the input number as a knapsack and super-prime numbers as items,
+the problem actually is an unbounded knapsack problem. Hence we can
+solve it with a dp algorithm.  
+But, well, a bruter-force search is also acceptable.
