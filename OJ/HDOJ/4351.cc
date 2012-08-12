@@ -30,17 +30,12 @@ struct Tnode {
     }
 };
 
-int calc(int v)
+inline int calc(int v)
 {
-    while (v / 10) {
-        int r = 0;
-        while (v) {
-            r += v % 10;
-            v /= 10;
-        }
-        v = r;
-    }
-    return v;
+    if (!v) return v;
+
+    v %= 9;
+    return v ? v : 9;
 }
 
 class Segment_tree {

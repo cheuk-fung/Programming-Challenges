@@ -13,12 +13,12 @@
 
 using namespace std;
 
-inline int LC(int x) { return x << 1; }
-inline int RC(int x) { return (x << 1) | 1; }
-
 class Segment_Tree {
     private:
-        const static int INF = 0x3FFFFFFF;
+        const static int INF = 0x3f3f3f3f;
+
+        int LC(int x) { return x << 1; }
+        int RC(int x) { return (x << 1) | 1; }
 
         struct Tnode {
             int a, b;
@@ -62,11 +62,11 @@ class Segment_Tree {
                 return ;
             }
 
-            int l_mn = INF, l_mx = -INF, r_mn = INF, r_mx = -INF;
-            if (c < (node[idx].a + node[idx].b) >> 1) query(c, d, &l_mn, &l_mx, LC(idx));
-            if (d > (node[idx].a + node[idx].b) >> 1) query(c, d, &r_mn, &r_mx, RC(idx));
-            *mn = min(l_mn, r_mn);
-            *mx = max(l_mx, r_mx);
+            int lmn = INF, lmx = -INF, rmn = INF, rmx = -INF;
+            if (c < (node[idx].a + node[idx].b) >> 1) query(c, d, &lmn, &lmx, LC(idx));
+            if (d > (node[idx].a + node[idx].b) >> 1) query(c, d, &rmn, &rmx, RC(idx));
+            *mn = min(lmn, rmn);
+            *mx = max(lmx, rmx);
         }
 };
 

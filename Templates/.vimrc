@@ -17,10 +17,10 @@ command GDB !gnome-terminal -e gdb %:r &
 " allow backspacing over everything in insert mode
 " set backspace=indent,eol,start
 
-" set backup		" keep a backup file
-" set ruler		" show the cursor position all the time
-" set showcmd		" display incomplete commands
-" set incsearch		" do incremental searching
+" set backup            " keep a backup file
+" set ruler             " show the cursor position all the time
+" set showcmd           " display incomplete commands
+" set incsearch         " do incremental searching
 " set shiftwidth=4
 " set expandtab
 " set number
@@ -30,7 +30,7 @@ command GDB !gnome-terminal -e gdb %:r &
 " set ignorecase smartcase
 " set hidden
 " set hlsearch
-" set autoindent		" always set autoindenting on
+" set autoindent        " always set autoindenting on
 
 " syntax on
 " filetype plugin indent on

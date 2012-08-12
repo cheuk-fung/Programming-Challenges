@@ -72,4 +72,13 @@ station is always locates in one of these cities.
 Viewing the input number as a knapsack and super-prime numbers as items,
 the problem actually is an unbounded knapsack problem. Hence we can
 solve it with a dp algorithm.  
-But, well, a bruter-force search is also acceptable.
+But, well, a brute-force search is also acceptable.
+
+117\. Counting  
+Count the number of each prime factor of K and compared with that of
+each number.
+
+118\. Digital Root  
+If $9 \mid n$ then $f(n) = n \bmod 9$ else $f(n) = 9$. And it's easy to
+prove that $f(m + n) = f(f(m) + f(n))$ and
+$f(m \times n) = f(f(m) \times f(n))$.
