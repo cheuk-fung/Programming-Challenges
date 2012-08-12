@@ -4,8 +4,7 @@ class Disjoint_Set {
         // a[i] < 0: -a[i] is the number of elements sharing the same ancestor i
         int a[MAXN];
 
-        Disjoint_Set() { reset(); }
-        void reset() { memset(a, 0xff, sizeof a); }
+        void build() { memset(a, 0xff, sizeof a); }
 
         int find(int u)
         {

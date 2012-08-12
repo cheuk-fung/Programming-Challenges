@@ -20,8 +20,7 @@ class Disjoint_Set {
     public:
         int a[MAXN];
 
-        Disjoint_Set() { reset(); }
-        void reset() { memset(a, 0xff, sizeof a); }
+        void build() { memset(a, 0xff, sizeof a); }
 
         int find(int u)
         {
@@ -104,6 +103,7 @@ int main()
 
     memset(vis, false, sizeof vis);
     parent[0] = 0;
+    ds.build();
     tarjan(0, 0);
     for (int i = 0; i < k; i++) printf("%d\n", ans[i]);
 
