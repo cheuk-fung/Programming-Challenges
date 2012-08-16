@@ -1,4 +1,6 @@
 110\. Dungeon  
+Find the sphere the light hits first and calculate its reflected ray
+again and again until no sphere will be hit.  
 The sequence of sphere numbers will be empty if the light ray hits none
 of the spheres. In such a case, output nothing.
 

@@ -33,3 +33,17 @@ I found [WolframAlpha](http://www.wolframalpha.com/) is fun :) I typed
 "sum of fibonacci 1 to 41" then it returned
 $\sum\_{n = 1}^{40}F\_n = 267914295$ to me. Hence I knew that an *int*
 is enough to represent the answer.
+
+124\. Broken line  
+I didn't mention that all segments are parallel to coordinate axes until
+I got an AC, which led me to write a generic but a bit complex
+algorithm....  
+
+1. Sort all segment endpoints in clockwise or anticlockwise order to
+   form a *cycle*. Actually, I found an Eulerian path among these
+   points.
+2. If the point belongs to the broken line, return "BORDER".
+3. If the absolute value of the sum of angles of the given point and
+   every two consecutive endpoints in the sorted cycle (angles maybe
+   either positive or *negtive*) equals $2\pi$, return "INSIDE",
+   otherwise "OUTSIDE".

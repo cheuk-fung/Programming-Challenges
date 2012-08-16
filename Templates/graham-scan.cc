@@ -2,7 +2,7 @@
  *  SRC: POJ 1113
  * PROB: Wall
  * ALGO: Graham Scan(Convex Hull)
- * DATE: Jul 26, 2011 
+ * DATE: Jul 26, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -12,8 +12,7 @@
 #include <cmath>
 #include <algorithm>
 
-using std::sort;
-using std::swap;
+using namespace std;
 
 const int MAXN = 1000;
 const double pi = acos(-1.0);
@@ -28,74 +27,52 @@ struct Point {
     double x, y;
     double agl;
 
-    Point() { }
-    Point(double _x, double _y) : x(_x), y(_y) { }
-
-    bool operator<(const Point &other) const
-    {
-        if (eq(y, other.y)) return ls(x, other.x);
-        return ls(y, other.y);
-    }
-
-    Point operator-(const Point &other) const
-    {
-        return Point(x - other.x, y - other.y);
-    }
+    bool operator<(const Point &o) const { return eq(y, o.y) ? ls(x, o.x) : ls(y, o.y); }
+    Point operator-(const Point &o) const { return (Point){x - o.x, y - o.y}; }
+    double operator^(const Point &o) const { return x * o.y - y * o.x; }
 
     double sqlen() const { return x * x + y * y; }
     double length() const { return sqrt(sqlen()); }
 };
-typedef Point Vec;
 
-inline double cross(const Vec &u, const Vec &v)
+class Point_cmp {
+    private:
+        Point first;
+    public:
+        Point_cmp(const Point &_first) : first(_first) { }
+        bool operator()(const Point &a, const Point &b)
+        {
+            return eq(a.agl, b.agl) ? ls((a - first).sqlen(), (b - first).sqlen()) : ls(a.agl, b.agl);
+        }
+};
+
+double graham_scan(Point *ver, Point *vstack, int n, int &top)
 {
-    return u.x * v.y - u.y * v.x;
-}
+    Point *min_ver = min_element(ver, ver + n);
+    swap(ver[0], *min_ver);
 
-Point first_ver;
-
-inline bool cmp(const Point &a, const Point &b)
-{
-    if (eq(a.agl, b.agl))
-        return ls((a - first_ver).sqlen(), (b - first_ver).sqlen());
-    return ls(a.agl, b.agl);
-}
-
-inline bool check(const Point &a, const Point &b, const Point &c)
-{
-    return cross(b - c, a - c) > eps;
-}
-
-double graham_scan(Point *ver, Point *stack, int n, int &top)
-{
-    int min_ver = 0;
-    for (int i = 1; i < n; i++)
-        if (ver[i] < ver[min_ver]) min_ver = i;
-    swap(ver[0], ver[min_ver]);
-    first_ver = ver[0];
-
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i < n; i++) {
         ver[i].agl = atan2(ver[i].y - ver[0].y, ver[i].x - ver[0].x);
-    sort(ver + 1, ver + n, cmp);
+    }
+    sort(ver + 1, ver + n, Point_cmp(ver[0]));
 
     top = 0;
-    stack[top++] = ver[0];
-    stack[top++] = ver[1];
+    vstack[top++] = ver[0];
+    vstack[top++] = ver[1];
     for (int i = 2; i < n; i++) {
-        while (top > 1 && !check(ver[i], stack[top - 1], stack[top - 2]))
-            top--;
-        stack[top++] = ver[i];
+        while (top > 1 && (!gr((vstack[top - 1] - vstack[top - 2]) ^ (ver[i] - vstack[top - 2]), 0))) top--;
+        vstack[top++] = ver[i];
     }
-    stack[top] = ver[0];
+    vstack[top] = ver[0];
 
     double res = 0;
     for (int i = 0; i < top; i++)
-        res += (stack[i] - stack[i + 1]).length();
+        res += (vstack[i] - vstack[i + 1]).length();
 
     return res;
 }
 
-Point ver[MAXN], stack[MAXN];
+Point ver[MAXN], vstack[MAXN];
 int top;
 
 int main()
@@ -105,7 +82,7 @@ int main()
     for (int i = 0; i < n; i++)
         scanf("%lf%lf", &ver[i].x, &ver[i].y);
 
-    printf("%.0f\n", graham_scan(ver, stack, n, top) + 2.0 * pi * l);
+    printf("%.0f\n", graham_scan(ver, vstack, n, top) + 2.0 * pi * l);
 
     return 0;
 }

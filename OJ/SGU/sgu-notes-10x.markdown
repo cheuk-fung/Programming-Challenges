@@ -8,8 +8,9 @@ Eulerian path. Don't forget to judge if the graph is connected.
 When N equals 1, the answer is 1.
 
 103\. Traffic Lights  
-There might be adjacent traffic lights whose colors always differ from
-each other.
+A SSSP problem. Calculate the distance (time here) carefully when
+relaxing the edge to the next junction and what's more, there might be
+adjacent traffic lights whose colors always differ from each other.
 
 104\. Little shop of flowers  
 Let $f[i][j]$ denote the maximum pleasant effect if the i-th flower is
