@@ -15,7 +15,7 @@ on $(x, y)$:
 Add an offset(e.g. 1e-12) to a floating number to avoid outputting
 **-0.000000**.
 
-121\. Bridges painting  
+TODO: 121\. Bridges painting  
 Don't know how to solve it yet :(
 
 122\. The book  
@@ -47,3 +47,11 @@ algorithm....
    every two consecutive endpoints in the sorted cycle (angles maybe
    either positive or *negtive*) equals $2\pi$, return "INSIDE",
    otherwise "OUTSIDE".
+
+125\. Shtirlits  
+Enumerate A[i][j] one by one with a brute force DFS and check if each
+A[i][j] whose neighbors are all assigned satisfies B[i][j] at every
+step.
+
+TODO: 126\. Boxes  
+Failed to solve a number theory problem *again*.
