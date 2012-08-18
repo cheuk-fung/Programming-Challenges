@@ -55,3 +55,6 @@ step.
 
 TODO: 126\. Boxes  
 Failed to solve a number theory problem *again*.
+
+127\. Telephone directory  
+Sort and count.
