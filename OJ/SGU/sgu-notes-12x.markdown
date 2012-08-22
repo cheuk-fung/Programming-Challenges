@@ -58,3 +58,13 @@ Failed to solve a number theory problem *again*.
 
 127\. Telephone directory  
 Sort and count.
+
+TODO: 128\. Snake
+
+TODO: 129\. Inheritance  
+The middle son's territory forms an convex hull. Thus for every mineral
+deposits, check whether the two endpoints are in the convex hull or not.
+If only one of them is in it, we need to find the intersecting point of
+the segment (namely, the mineral deposit) and one of the edge of the
+convex hull and then calculate the distance between this point and the
+endpoint in the convex hull.
