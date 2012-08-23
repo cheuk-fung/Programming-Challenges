@@ -2,7 +2,7 @@
  *  SRC: POJ 2581
  * PROB: Exact Change Only
  * ALGO: DP(Multiple Pack)
- * DATE: Jul 28, 2011 
+ * DATE: Jul 28, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
@@ -17,24 +17,24 @@ int f[510];
 void zero_one_pack(int value, int max_value, int task)
 {
     for (int i = max_value; i >= value; i--)
-	if (f[i - value] == task) f[i] = task;
+        if (f[i - value] == task) f[i] = task;
 }
 
 void complete_pack(int value, int max_value, int task)
 {
     for (int i = value; i <= max_value; i++)
-	if (f[i - value] == task) f[i] = task;
+        if (f[i - value] == task) f[i] = task;
 }
 
 void multiple_pack(int value, int amount, int max_value, int task)
 {
     if (value * amount >= max_value)
-	complete_pack(value, max_value, task);
+        complete_pack(value, max_value, task);
     else {
-	for (int k = 1; k < amount; amount -= k, k <<= 1)
-	    zero_one_pack(k * value, max_value, task);
+        for (int k = 1; k < amount; amount -= k, k <<= 1)
+            zero_one_pack(k * value, max_value, task);
 
-	zero_one_pack(value * amount, max_value, task);
+        zero_one_pack(value * amount, max_value, task);
     }
 }
 
