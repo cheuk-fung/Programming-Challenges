@@ -125,8 +125,8 @@ class Treap {
 
                 if (!x->l) x = left_rotate(x);
                 else if (!x->r) x = right_rotate(x);
-                else if (x->l->fix < x->r->fix) x = right_rotate(x);
-                else x = left_rotate(x);
+                else if (x->l->fix < x->r->fix) x = left_rotate(x);
+                else x = right_rotate(x);
                 x = erase(x, key);
             }
 

@@ -12,9 +12,8 @@
 #include <cstdlib>
 #include <ctime>
 
-using namespace std;
-
 const int MAXN = 100010;
+const long long LLINF = 0x3f3f3f3f3f3f3f3fll;
 
 inline long long MIN(long long x, long long y) { return x < y ? x : y; }
 
@@ -69,7 +68,7 @@ class Treap {
             return x;
         }
 
-        Tnode *erase(Tnode *x, int key)
+        Tnode *erase(Tnode *x, long long key)
         {
             if (!x) return 0;
             if (key < x->key) x->l = erase(x->l, key);
@@ -86,8 +85,8 @@ class Treap {
 
                 if (!x->l) x = left_rotate(x);
                 else if (!x->r) x = right_rotate(x);
-                else if (x->l->fix < x->r->fix) x = right_rotate(x);
-                else x = left_rotate(x);
+                else if (x->l->fix < x->r->fix) x = left_rotate(x);
+                else x = right_rotate(x);
                 x = erase(x, key);
             }
 
@@ -100,6 +99,7 @@ class Treap {
         void erase(long long key) { root = erase(root, key); }
         long long min_element()
         {
+            if (!root) return LLINF;
             Tnode *x = root;
             while (x->l) x = x->l;
             return x->key;
@@ -142,22 +142,20 @@ int main()
     int head = 0, tail = 0;
     for (int i = 1; i <= n; i++) {
         int lower = getlower(i, m);
+        while (head < tail && que[head] < lower) {
+            head++;
+            if (head < tail) priority.erase(f[que[head - 1]] + a[que[head]]);
+        }
         while (head < tail && a[que[tail - 1]] <= a[i]) {
             tail--;
             if (head < tail) priority.erase(f[que[tail - 1]] + a[que[tail]]);
         }
-        while (head < tail && que[head] < lower)
-        {
-            priority.erase(f[que[head]] + a[que[head + 1]]);
-            head++;
-        }
-        if (head == tail) {
-            f[i] = f[lower - 1] + a[i];
-        } else {
+        if (head < tail) {
             priority.insert(f[que[tail - 1]] + a[i]);
-            f[i] = MIN(priority.min_element(), f[lower - 1] + a[que[head]]);
         }
         que[tail++] = i;
+
+        f[i] = MIN(f[lower - 1] + a[que[head]], priority.min_element());
     }
 
     printf("%lld\n", f[n]);
