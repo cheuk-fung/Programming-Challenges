@@ -1,32 +1,36 @@
 /*
- *  SRC: POJ 3017
- * PROB: Cut the Sequence
- * ALGO: DP
- * DATE: Aug 23, 2012
+ *  SRC: POJ 3245
+ * PROB: Sequence Partitioning
+ * ALGO: Monotone Priority Queue
+ * DATE: Aug 24, 2012
  * COMP: g++
  *
- * Created by Leewings Ac
+ * Created by Leewings Ng
  */
 
 #include <cstdio>
 #include <cstdlib>
-#include <ctime>
 
-const int MAXN = 100010;
+const int MAXN = 50010;
 const long long LLINF = 0x3f3f3f3f3f3f3f3fll;
 
-inline long long MIN(long long x, long long y) { return x < y ? x : y; }
+int n;
+long long limit;
+long long a[MAXN], b[MAXN], na[MAXN], nb[MAXN], f[MAXN];
+long long amx[MAXN];
+long long sum[MAXN];
+int que[MAXN];
+
+template<typename T> inline T MAX(T a, T b) { return a > b ? a : b; }
+template<typename T> inline T MIN(T a, T b) { return a < b ? a : b; }
 
 class Treap {
     private:
         struct Tnode {
             long long key;
-            int fix;
-            int cnt;
-
+            int fix, cnt;
             Tnode *l, *r;
-        };
-        Tnode buf[MAXN];
+        } buf[MAXN];
         Tnode *root, *buftail;
 
         Tnode *left_rotate(Tnode *x)
@@ -71,6 +75,7 @@ class Treap {
         Tnode *erase(Tnode *x, long long key)
         {
             if (!x) return 0;
+
             if (key < x->key) x->l = erase(x->l, key);
             else if (key > x->key) x->r = erase(x->r, key);
             else {
@@ -91,10 +96,11 @@ class Treap {
         }
 
     public:
-        Treap() : root(0), buftail(buf) { }
+        void build() { root = 0; buftail = buf; }
         void insert(long long key) { root = insert(root, key); }
         void erase(long long key) { root = erase(root, key); }
-        long long min_element()
+
+        long long min_element() const
         {
             if (!root) return LLINF;
 
@@ -102,29 +108,11 @@ class Treap {
             while (x->l) x = x->l;
             return x->key;
         }
-};
+} priority;
 
-Treap priority;
-long long a[MAXN], sum[MAXN], que[MAXN];
-long long f[MAXN];
-
-int main()
+bool check(long long m)
 {
-    // srand(time(0));
-
-    int n;
-    long long m;
-    scanf("%d%lld", &n, &m);
-    for (int i = 1; i <= n; i++) {
-        scanf("%lld", a + i);
-        if (a[i] > m) {
-            puts("-1");
-            return 0;
-        }
-    }
-    for (int i = 1; i <= n; i++) {
-        sum[i] = sum[i - 1] + a[i];
-    }
+    priority.build();
 
     int head = 0, tail = 0;
     int lower = 1;
@@ -133,21 +121,60 @@ int main()
 
         while (head < tail && que[head] < lower) {
             head++;
-            if (head < tail) priority.erase(f[que[head - 1]] + a[que[head]]);
+            if (head < tail) priority.erase(f[que[head - 1]] + na[que[head]]);
         }
-        while (head < tail && a[que[tail - 1]] <= a[i]) {
+        while (head < tail && na[que[tail - 1]] <= na[i]) {
             tail--;
-            if (head < tail) priority.erase(f[que[tail - 1]] + a[que[tail]]);
+            if (head < tail) priority.erase(f[que[tail - 1]] + na[que[tail]]);
         }
         if (head < tail) {
-            priority.insert(f[que[tail - 1]] + a[i]);
+            priority.insert(f[que[tail - 1]] + na[i]);
         }
         que[tail++] = i;
 
-        f[i] = MIN(f[lower - 1] + a[que[head]], priority.min_element());
+        f[i] = MIN(f[lower - 1] + na[que[head]], priority.min_element());
     }
 
-    printf("%lld\n", f[n]);
+    return f[n] <= limit;
+}
+
+int main()
+{
+    scanf("%d%lld", &n, &limit);
+    for (int i = 1; i <= n; i++) {
+        scanf("%lld%lld", a + i, b + i);
+    }
+    for (int i = n; i > 0; i--) {
+        amx[i] = MAX(amx[i + 1], a[i]);
+    }
+
+    int gid = 1;
+    for (int i = 1; i <= n; gid++) {
+        long long bmn = b[i];
+        na[gid] = a[i];
+        nb[gid] = b[i];
+        for (i++; bmn <= amx[i]; i++) {
+            na[gid] = MAX(na[gid], a[i]);
+            nb[gid] += b[i];
+            bmn = MIN(bmn, b[i]);
+        }
+    }
+    n = gid - 1;
+
+    long long l = 0;
+    for (int i = 1; i <= n; i++) {
+        sum[i] = sum[i - 1] + nb[i];
+        l = MAX(l, nb[i]);
+    }
+
+    long long r = LLINF;
+    while (l < r) {
+        long long mid = (l + r) >> 1;
+        if (check(mid)) r = mid;
+        else l = mid + 1;
+    }
+
+    printf("%lld\n", l);
 
     return 0;
 }
