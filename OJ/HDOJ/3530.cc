@@ -15,11 +15,8 @@ const int MAXN = 100010;
 
 inline int MAX(int x, int y) { return x > y ? x : y; }
 
-struct Node {
-    int v, t;
-    int id;
-};
-Node mxque[MAXN], mnque[MAXN];
+int a[MAXN];
+int mxque[MAXN], mnque[MAXN];
 
 int main()
 {
@@ -28,25 +25,21 @@ int main()
         int ans = 0;
         int mxhead = 0, mxtail = 0;
         int mnhead = 0, mntail = 0;
-        for (int i = 1; i <= n; i++) {
-            int a;
-            scanf("%d", &a);
+        int left = 0;
+        for (int i = 0; i < n; i++) {
+            scanf("%d", a + i);
 
-            int mxpt = -1;
-            while (mxhead < mxtail && mxque[mxtail - 1].v <= a) mxpt = mxque[--mxtail].t;
-            mxque[mxtail++] = (Node){a, mxpt == -1 ? i : mxpt, i};
-
-            int mnpt = -1;
-            while (mnhead < mntail && mnque[mntail - 1].v >= a) mnpt = mnque[--mntail].t;
-            mnque[mntail++] = (Node){a, mnpt == -1 ? i : mnpt, i};
-
-            while (mxhead < mxtail && mnhead < mntail && mxque[mxhead].v - mnque[mnhead].v > k) {
-                if (mxque[mxhead].id <= mnque[mnhead].id) mxhead++;
-                else mnhead++;
+            while (mxhead < mxtail && a[mxque[mxtail - 1]] <= a[i]) mxtail--;
+            mxque[mxtail++] = i;
+            while (mnhead < mntail && a[mnque[mntail - 1]] >= a[i]) mntail--;
+            mnque[mntail++] = i;
+            while (mxhead < mxtail && mnhead < mntail && a[mxque[mxhead]] - a[mnque[mnhead]] > k) {
+                if (mxque[mxhead] <= mnque[mnhead]) left = mxque[mxhead++] + 1;
+                else left = mnque[mnhead++] + 1;
             }
 
-            if (mxhead < mxtail && mnhead < mntail && m <= mxque[mxhead].v - mnque[mnhead].v) {
-                ans = MAX(ans, i - MAX(mxque[mxhead].t, mnque[mnhead].t) + 1);
+            if (mxhead < mxtail && mnhead < mntail && m <= a[mxque[mxhead]] - a[mnque[mnhead]]) {
+                ans = MAX(ans, i - left + 1);
             }
         }
 
