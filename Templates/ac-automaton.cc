@@ -1,7 +1,7 @@
 /*
  *  SRC: POJ 1204
  * PROB: Word Puzzles
- * ALGO: AC Automata
+ * ALGO: AC Automaton
  * DATE: Jul 23, 2011
  * COMP: g++
  *
@@ -22,7 +22,7 @@ struct Answers {
     char dir;
 } ans[1010];
 
-class ACAutomata {
+class ACAutomaton {
     private:
         const static int CHARSET_SIZE = 26;
         const static int NODE_MAX_SIZE = 200000;
@@ -38,7 +38,7 @@ class ACAutomata {
         Tnode *root;
 
     public:
-        ACAutomata() { reset(); }
+        ACAutomaton() { reset(); }
 
         void reset()
         {
@@ -126,7 +126,7 @@ class ACAutomata {
         }
 };
 
-ACAutomata aca;
+ACAutomaton ac;
 
 int main()
 {
@@ -136,51 +136,51 @@ int main()
 
     for (int i = 1; i <= w; i++) {
         scanf("%s", word);
-        aca.insert(word, i);
+        ac.insert(word, i);
         len[i] = strlen(word);
     }
 
-    aca.build_fail();
+    ac.build_fail();
 
     for (int j = 1; j <= c; j++) {
-        aca.query(l, j, -1, 0, 'A');
+        ac.query(l, j, -1, 0, 'A');
         if (ans_cnt == w) break;
 
-        aca.query(l, j, -1, 1, 'B');
+        ac.query(l, j, -1, 1, 'B');
         if (ans_cnt == w) break;
 
-        aca.query(1, j, 1, 1, 'D');
+        ac.query(1, j, 1, 1, 'D');
         if (ans_cnt == w) break;
 
-        aca.query(1, j, 1, 0, 'E');
+        ac.query(1, j, 1, 0, 'E');
         if (ans_cnt == w) break;
 
-        aca.query(1, j, 1, -1, 'F');
+        ac.query(1, j, 1, -1, 'F');
         if (ans_cnt == w) break;
 
-        aca.query(l, j, -1, -1, 'H');
+        ac.query(l, j, -1, -1, 'H');
         if (ans_cnt == w) break;
     }
 
     for (int i = 1; i <= l; i++) {
         if (ans_cnt == w) break;
 
-        aca.query(i, 1, -1, 1, 'B');
+        ac.query(i, 1, -1, 1, 'B');
         if (ans_cnt == w) break;
 
-        aca.query(i, 1, 0, 1, 'C');
+        ac.query(i, 1, 0, 1, 'C');
         if (ans_cnt == w) break;
 
-        aca.query(i, 1, 1, 1, 'D');
+        ac.query(i, 1, 1, 1, 'D');
         if (ans_cnt == w) break;
 
-        aca.query(i, c, 1, -1, 'F');
+        ac.query(i, c, 1, -1, 'F');
         if (ans_cnt == w) break;
 
-        aca.query(i, c, 0, -1, 'G');
+        ac.query(i, c, 0, -1, 'G');
         if (ans_cnt == w) break;
 
-        aca.query(i, c, -1, -1, 'H');
+        ac.query(i, c, -1, -1, 'H');
         if (ans_cnt == w) break;
     }
 

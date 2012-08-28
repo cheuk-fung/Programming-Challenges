@@ -1,7 +1,7 @@
 /*
  *  SRC: ZOJ 3545
  * PROB: Rescue the Rabbit
- * ALGO: DP on AC Automata
+ * ALGO: DP on AC Automaton
  * DATE: Oct 05, 2011
  * COMP: g++
  *
@@ -31,7 +31,7 @@ inline int gene_to_id(char c)
     return 0;
 }
 
-class ACAutomata {
+class ACAutomaton {
     private:
         const static int CHARSET_SIZE = 4;
         const static int NODE_MAX_SIZE = 1024;
@@ -51,7 +51,7 @@ class ACAutomata {
         int curr, next;
 
     public:
-        ACAutomata() { reset(); }
+        ACAutomaton() { reset(); }
 
         void reset()
         {
@@ -157,19 +157,19 @@ class ACAutomata {
         }
 };
 
-ACAutomata aca;
+ACAutomaton ac;
 
 int main()
 {
     while (scanf("%d%d", &n, &l) != EOF) {
         for (int i = 1; i <= n; i++) {
             scanf("%s%d", dna[i], w + i);
-            aca.insert(dna[i], i);
+            ac.insert(dna[i], i);
         }
 
-        aca.build_fail();
-        aca.query();
-        aca.reset();
+        ac.build_fail();
+        ac.query();
+        ac.reset();
     }
 
     return 0;

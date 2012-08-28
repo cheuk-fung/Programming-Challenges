@@ -44,3 +44,15 @@ f[i + 1][s\_{i + 1}][s\_{i}'] = \min\_{(s\_{i - 1}, s\_{i}) \to (s\_{i}', s\_{i 
 The answer is $\min\_{s\_{m} = 0}^{1 \dots 1}{f[m + 1][0][s\_{m}]}$.
 What's more, use `int` for array `f[71][1 << 7][1 << 7]` will exceed the
 memory limit but `short int` is fine.
+
+133\. Border  
+Sort and count.
+
+134\. Centroid  
+Arbitrarily choose a vertex as root and then traverse the tree by DFS to
+get the size of every sub-tree.  
+Let $(u, v)$ denote a *directed* edge in the tree and $\mathbb{E}$
+denote the set of all such edges. The associated value of vertex u is:
+\\\[
+\max\\{\max\_{(u, v) \in \mathbb{E}}{size[v]}, N - size[u]\\}
+\\\]
