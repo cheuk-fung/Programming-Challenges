@@ -123,7 +123,7 @@ class ACAutomata {
                                 Tnode *p = &node[j];
                                 while (!p->next[idx] && p != root) p = p->fail;
                                 p = p->next[idx];
-                                
+
                                 int state = k,
                                     offset = 0;
                                 Tnode *t = p;
