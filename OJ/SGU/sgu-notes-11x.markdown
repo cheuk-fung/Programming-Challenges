@@ -40,7 +40,7 @@ $f(m \times n) = f(f(m) \times f(n))$.
 119\. Magic Pairs  
 \\\[
 \forall x, y \in \mathbb{Z},\ 
-\mbox{if } N \mid A\_0x + B\_0y,\ \mbox{then } N \mid Ax + By \iff
+\text{if } N \mid A\_0x + B\_0y,\ \text{then } N \mid Ax + By \iff
 \begin{cases}
 A \equiv A\_0k \pmod{N} \\\\
 B \equiv B\_0k \pmod{N}
