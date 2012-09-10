@@ -38,6 +38,8 @@ inline double dist(const Point &a, const Point &b)
 
 double solve(int root)
 {
+    memset(erase, 0, sizeof erase);
+
     double res = 0;
     bool has_circuit = false;
     do {
@@ -59,16 +61,16 @@ double solve(int root)
         }
 
         has_circuit = false;
+        memset(vis, 0xff, sizeof vis);
         for (int i = 0; i < n; i++) {
             if (i == root || erase[i]) continue;
 
-            memset(vis, 0, sizeof vis);
             int curr = i;
-            while (!vis[curr] && curr != root) {
-                vis[curr] = true;
+            while (vis[curr] != i && curr != root) {
+                vis[curr] = i;
                 curr = prev[curr];
             }
-            if (curr == root) continue;
+            if (curr != i) continue;
 
             has_circuit = true;
             res += G[prev[curr]][curr];
@@ -88,8 +90,6 @@ double solve(int root)
                 }
                 t = prev[t];
             } while (t != curr) ;
-
-            break;
         }
     } while (has_circuit) ;
 
@@ -105,7 +105,6 @@ double solve(int root)
 int main()
 {
     while (~scanf("%d%d", &n, &m)) {
-        memset(erase, 0, sizeof erase);
         for (int i = 0; i < MAXN; i++)
             for (int j = 0; j < MAXN; j++)
                 G[i][j] = DINF;
