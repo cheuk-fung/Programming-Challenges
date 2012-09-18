@@ -13,6 +13,7 @@
 #include <vector>
 #include <queue>
 #include <algorithm>
+#include <cassert>
 
 using std::vector;
 using std::queue;
@@ -104,6 +105,7 @@ bool sat(int n)
             if (--in_deg[*v] == 0) Q.push(*v);
     }
 
+    // color 1 is a solution to 2-SAT problem
     memset(color, 0, sizeof color);
     for (vci u = topo.begin(); u != topo.end(); u++)
         if (!color[*u]) {
@@ -143,6 +145,7 @@ int main()
         }
 
         int c = color[scc_id[0]];
+        assert(c == 2);
         bool first = true;
         for (int i = 2; i < n * 2; i++)
             if (color[scc_id[i]] == c) {
