@@ -31,13 +31,12 @@ int main()
     long long x, y, m, n, L;
     while (scanf("%lld%lld%lld%lld%lld", &x, &y, &m, &n, &L) != EOF) {
         long long a = n - m, b = x - y, k, t;
-        long long d = extended_gcd(a, L, &k, &t);
-        if (b % d != 0) {
+        long long g = extended_gcd(a, L, &k, &t);
+        if (b % g != 0) {
             puts("Impossible");
         }
         else {
-            long long ans = (k * b / d) % (L / d);
-            if (ans < 0) ans += L / d;
+            long long ans = ((k * b / g) % (L / g) + L / g) % (L / g);
             printf("%lld\n", ans);
         }
     }

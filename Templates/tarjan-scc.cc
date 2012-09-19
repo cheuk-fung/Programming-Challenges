@@ -22,7 +22,7 @@ const int MAXN = 10010;
 vector<int> edge[MAXN];
 
 vector<int> stack;
-int idx, scc_cnt;
+int tms, scc_cnt;
 int dfn[MAXN], low[MAXN], scc_id[MAXN], scc_size[MAXN];
 bool in_stack[MAXN];
 
@@ -30,7 +30,7 @@ void tarjan_dfs(int u)
 {
     stack.push_back(u);
     in_stack[u] = true;
-    dfn[u] = low[u] = idx++;
+    dfn[u] = low[u] = tms++;
 
     for (vci v = edge[u].begin(); v != edge[u].end(); v++) {
         if (dfn[*v] == -1) {
@@ -56,7 +56,7 @@ void tarjan_dfs(int u)
 
 void tarjan(int n)
 {
-    idx = scc_cnt = 0;
+    tms = scc_cnt = 0;
     memset(dfn, 0xff, sizeof dfn);
     memset(low, 0xff, sizeof low);
     memset(scc_id, 0xff, sizeof scc_id);
