@@ -30,11 +30,11 @@ Edge e_buf[MAXE],
      *e_tail,
      *e_head[MAXV];
 
-struct RoadNode {
-    RoadNode *next;
+struct Rnode {
+    Rnode *next;
     Edge *which; // which edge
 };
-RoadNode road[MAXV];
+Rnode road[MAXV];
 int que[MAXE], dist[MAXV];
 bool vis[MAXV];
 
@@ -82,17 +82,17 @@ bool spfa()
 
 int flow()
 {
-    int min_flow = INF;
-    for (RoadNode *r = &road[dest]; r->next; r = r->next)
-        min_flow = min(min_flow, r->which->c - r->which->f);
+    int f = INF;
+    for (Rnode *r = &road[dest]; r->next; r = r->next)
+        f = min(f, r->which->c - r->which->f);
 
     int res = 0;
-    for (RoadNode *r = &road[dest]; r->next; r = r->next) {
-        r->which->f += min_flow;
+    for (Rnode *r = &road[dest]; r->next; r = r->next) {
+        r->which->f += f;
         res += r->which->cpf;
         r->which->rev->f = -r->which->f;
     }
-    res *= min_flow;
+    res *= f;
 
     return res;
 }
