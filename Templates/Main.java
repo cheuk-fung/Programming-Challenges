@@ -41,14 +41,15 @@ class MyReader {
 
     boolean hasNext()
     {
-        if (in == null || in.hasMoreTokens()) return true;
-        try {
-            String line = br.readLine();
-            in = new StringTokenizer(line);
-            return true;
-        } catch (Exception e) {
-            return false;
+        while (in == null || !in.hasMoreTokens()) {
+            try {
+                String line = br.readLine();
+                in = new StringTokenizer(line);
+            } catch (Exception e) {
+                return false;
+            }
         }
+        return true;
     }
 
     int nextInt() { return Integer.parseInt(next()); }
