@@ -3,7 +3,7 @@
  * PROB: Lazy Math Instructor
  * ALGO: Expression
  * DATE: Aug 01, 2011 
- * COMP: c++
+ * COMP: C++
  *
  * Created by Leewings Ac
  */

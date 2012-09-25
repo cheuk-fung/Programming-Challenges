@@ -3,7 +3,7 @@
  * PROB: Check the difficulty of problems
  * ALGO: DP
  * DATE: Mar 06, 2012
- * COMP: c++
+ * COMP: g++
  *
  * Created by Leewings Ac
  */
@@ -47,7 +47,7 @@ int main()
             lessThanN *= sum;
         }
 
-        printf("%.3lf\n", atLeastOne - lessThanN);
+        printf("%.3f\n", atLeastOne - lessThanN);
     }
 
     return 0;

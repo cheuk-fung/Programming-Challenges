@@ -20,6 +20,8 @@ using std::queue;
 using std::min;
 
 typedef vector<int>::const_iterator vci;
+const int RED = 1;
+const int BLUE = 2;
 const int MAXN = 1010 << 1;
 
 vector<int> edge[MAXN];
@@ -71,11 +73,11 @@ void tarjan(int n)
         if (dfn[i] == -1) tarjan_dfs(i);
 }
 
-void color_dfs(int u)
+void dye(int u)
 {
-    color[u] = 2;
+    color[u] = BLUE;
     for (vci v = new_edge[u].begin(); v != new_edge[u].end(); v++)
-        if (!color[*v]) color_dfs(*v);
+        if (!color[*v]) dye(*v);
 }
 
 bool sat(int n)
@@ -105,15 +107,15 @@ bool sat(int n)
             if (--in_deg[*v] == 0) Q.push(*v);
     }
 
-    // color 1 is a solution to 2-SAT problem
+    // color RED is a solution to 2-SAT problem
     memset(color, 0, sizeof color);
     for (vci u = topo.begin(); u != topo.end(); u++)
         if (!color[*u]) {
-            color[*u] = 1;
+            color[*u] = RED;
             for (int i = 0; i < n; i++)
                 if (scc_id[i] == *u)
                     if (!color[scc_id[i ^ 1]])
-                        color_dfs(scc_id[i ^ 1]);
+                        dye(scc_id[i ^ 1]);
         }
 
     return true;
@@ -145,7 +147,7 @@ int main()
         }
 
         int c = color[scc_id[0]];
-        assert(c == 2);
+        assert(c == BLUE);
         bool first = true;
         for (int i = 2; i < n * 2; i++)
             if (color[scc_id[i]] == c) {

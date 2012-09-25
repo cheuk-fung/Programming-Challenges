@@ -3,7 +3,7 @@
  * PROB: Sliding Window
  * ALGO: Segment Tree
  * DATE: Jul 20, 2011 
- * COMP: c++
+ * COMP: C++
  *
  * Created by Leewings Ac
  */

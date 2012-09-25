@@ -3,7 +3,7 @@
  * PROB: Moles
  * ALGO: BIT + BST
  * DATE: Sep 21, 2012
- * COMP: C++
+ * COMP: g++
  *
  * Created by Leewings Ng
  */
