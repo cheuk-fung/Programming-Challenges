@@ -25,31 +25,24 @@ public class Main {
 
 class MyReader {
     static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer in;
-
-    String next()
-    {
-        while (in == null || !in.hasMoreTokens()) {
-            try {
-                in = new StringTokenizer(br.readLine());
-            } catch (Exception e) {
-                return null;
-            }
-        }
-        return in.nextToken();
-    }
+    static StringTokenizer token;
 
     boolean hasNext()
     {
-        while (in == null || !in.hasMoreTokens()) {
+        while (token == null || !token.hasMoreTokens()) {
             try {
-                String line = br.readLine();
-                in = new StringTokenizer(line);
+                token = new StringTokenizer(br.readLine());
             } catch (Exception e) {
                 return false;
             }
         }
         return true;
+    }
+
+    String next()
+    {
+        if (hasNext()) return token.nextToken();
+        return null;
     }
 
     int nextInt() { return Integer.parseInt(next()); }
