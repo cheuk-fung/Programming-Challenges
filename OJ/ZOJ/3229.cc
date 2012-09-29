@@ -20,17 +20,16 @@ const int MAXE = 1000000;
 
 struct Edge {
     int v, c, f;
-    bool clear;
     Edge *next, *rev;
 } ebuf[MAXE];
 Edge *ehead[MAXV], *ework[MAXV], *etail;
 int que[MAXV], lev[MAXV];
 
-inline void addedge(int u, int v, int c, bool clear = false)
+inline void addedge(int u, int v, int c)
 {
-    *etail = (Edge){v, c, 0, clear, ehead[u]};
+    *etail = (Edge){v, c, 0, ehead[u]};
     ehead[u] = etail++;
-    *etail = (Edge){u, 0, 0, clear, ehead[v]};
+    *etail = (Edge){u, 0, 0, ehead[v]};
     ehead[v] = etail++;
     ehead[u]->rev = ehead[v];
     ehead[v]->rev = ehead[u];
@@ -99,8 +98,8 @@ int main()
             int G;
             scanf("%d", &G);
             addedge(s, i, INF);
-            addedge(s, vt, G, true);
-            addedge(vs, i, G, true);
+            addedge(s, vt, G);
+            addedge(vs, i, G);
             vsum += G;
         }
 
@@ -113,26 +112,19 @@ int main()
                 int T, L, R;
                 scanf("%d%d%d", &T, &L, &R);
                 addedge(T, m + i, R - L);
-                addedge(T, vt, L, true);
-                addedge(vs, m + i, L, true);
+                addedge(T, vt, L);
+                addedge(vs, m + i, L);
                 vsum += L;
             }
         }
         Edge *outputlast = etail;
-        addedge(t, s, INF, true);
+        addedge(t, s, INF);
 
         int r = dinic(vs, vt);
         if (r != vsum) {
             puts("-1");
         } else {
-            for (Edge *e = ebuf; e != etail; e++) {
-                if (e->clear) e->f = e->c;
-            }
-            dinic(s, t);
-            int ans = 0;
-            for (Edge *e = ehead[s]; e; e = e->next) {
-                ans += e->f;
-            }
+            int ans = dinic(s, t);
             printf("%d\n", ans);
             do {
                 if (outputfirst->v == t) outputfirst += 2;
