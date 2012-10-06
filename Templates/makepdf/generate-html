@@ -11,8 +11,8 @@ algorithm_category_cnt=${#algorithm_category[@]}
 algorithm_name_Math=(gcd        "Euler's+Phi+Function"  Hash            Count+How+Many+Ones+in+Binary+Notation  Prime           Divisors        Josephus        Gauss+Elimination       Big+Fraction)
 algorithm_file_Math=(gcd.cc     eulers-phi-function.cc  hash.cc         count-bit-one.cc                        prime.cc        divisors.cc     josephus.cc     GaussElimination.java   BigFraction.java)
 
-algorithm_name_String=(Trie+Tree        KMP     AC+Automaton      DP+on+AC+Automaton       Suffix+Array)
-algorithm_file_String=(trie.cc          kmp.cc  ac-automaton.cc   dp-on-ac-automaton.cc    suffix-array_lcp.cc)
+algorithm_name_String=(Trie+Tree        KMP     "AC+Automaton+(DP+by+Digit)"    Suffix+Array)
+algorithm_file_String=(trie.cc          kmp.cc  ac-automaton_dp-by-digit.cc     suffix-array_lcp.cc)
 
 algorithm_name_ComputationalGeometry=(Common     Distance+from+Point+to+Segment  Gravity+Center          Graham+Scan     3d+Convex+Hull          Rotating+Calipers       Cutting+Rectangle       Cloest+Pair+of+Points+on+Plane)
 algorithm_file_ComputationalGeometry=(cg.cc      dist-p2seg.cc                   gravity-center.cc       graham-scan.cc  convex-hull-3d.cc       rotating-calipers.cc    cutting-rectangle.cc    closest-points-2d.cc)
