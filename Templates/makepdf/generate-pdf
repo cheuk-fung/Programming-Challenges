@@ -1,12 +1,15 @@
 #!/bin/bash
 algorithm_path=".."
+date="`date +%Y.%m.%d`"
 
 ./generate-html
 
 echo
 echo "Generating PDF Cover"
+sed -i "s|<div class=\"date\">.*</div>|<div class=\"date\">$date</div>|" cover.html
 ./wkhtmltopdf --title "[Leewings] Algorithm Library" cover.html cover.pdf
 
 echo
 echo "Generating PDF"
+sed -i "s|<div class=\"date\">.*</div>|<div class=\"date\">$date</div>|" frontpage.html
 ./wkhtmltopdf --title "[Leewings] Algorithm Library" --book --toc-header-font-size 20 --toc-l1-font-size 16 --toc-l2-font-size 14 --toc-l3-font-size 12 --header-right '- [page] -' --header-spacing 1 --cover frontpage.html "Leewings Algorithm Library.html" "Leewings Algorithm Library.pdf"
