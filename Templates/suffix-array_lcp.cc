@@ -28,7 +28,7 @@ class Suffix_Array {
         const static int MAXCHAR = 128;
 
         int *nrank;
-        int rbuf[MAXLEN][2]; // used for ranking
+        int rbuf[2][MAXLEN]; // used for ranking
 
         int cnt[MAXLEN]; // used for counting sort
 
@@ -102,7 +102,7 @@ class Suffix_Array {
         void calc_hgt()
         {
             for (int i = 0, j, k = 0; i < len; hgt[rank[i++]] = k)
-                for (k ? k-- : 0, j = suff[rank[i] - 1]; str[i + k] == str[j + k]; k++)
+                for (k ? k-- : 0, j = rank[i] ? suff[rank[i] - 1] : len; str[i + k] == str[j + k]; k++)
                     ;
         }
 

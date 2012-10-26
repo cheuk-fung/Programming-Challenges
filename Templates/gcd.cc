@@ -10,7 +10,7 @@ int gcd(int a, int b)
 }
 
 // ax + by = gcd(a, b)
-int extended_euclid(int a, int b, int *x, int *y)
+int extended_euclidean(int a, int b, int *x, int *y)
 {
     if (b == 0) {
         *x = 1;
@@ -19,7 +19,7 @@ int extended_euclid(int a, int b, int *x, int *y)
         return a;
     }
 
-    int r = extended_euclid(b, a % b, x, y);
+    int r = extended_euclidean(b, a % b, x, y);
     int t = *x;
     *x = *y;
     *y = t - a / b * *y;
