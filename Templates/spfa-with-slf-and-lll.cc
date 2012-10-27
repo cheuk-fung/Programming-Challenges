@@ -16,7 +16,7 @@ using std::deque;
 
 const int MAXV = 1010;
 const int MAXE = 300010;
-const int eps = 1e-12;
+const double eps = 1e-12;
 
 inline bool gr(double x, double y) { return x - eps > y; }
 
