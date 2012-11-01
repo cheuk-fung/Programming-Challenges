@@ -72,7 +72,7 @@ class ACAutomaton {
             for (int i = 0; i < len - 1; i++) {
                 for (Tnode *p = root; p != tail; p++) {
                     if (!f[i][p - root]) continue;
-                    for (int j = (i == 0 ? 1 : 0); j <= 9; j++) {
+                    for (int j = i == 0 ? 1 : 0; j <= 9; j++) {
                         Tnode *q = p->next[j];
                         if (q->tag) continue;
                         f[i + 1][q - root] += f[i][p - root];

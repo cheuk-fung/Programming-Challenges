@@ -46,7 +46,7 @@ class Treap {
             return x;
         }
 
-        void update_size(Tnode *x)
+        void push_up(Tnode *x)
         {
             x->size = x->cnt;
             if (x->l) x->size += x->l->size;
@@ -59,8 +59,8 @@ class Treap {
             x->r = y->l;
             y->l = x;
 
-            update_size(x);
-            update_size(y);
+            push_up(x);
+            push_up(y);
 
             return y;
         }
@@ -71,8 +71,8 @@ class Treap {
             x->l = y->r;
             y->r = x;
 
-            update_size(x);
-            update_size(y);
+            push_up(x);
+            push_up(y);
 
             return y;
         }
@@ -100,7 +100,7 @@ class Treap {
                 x->cnt++;
             }
 
-            update_size(x);
+            push_up(x);
 
             return x;
         }
@@ -130,7 +130,7 @@ class Treap {
                 x = erase(x, key);
             }
 
-            update_size(x);
+            push_up(x);
 
             return x;
         }

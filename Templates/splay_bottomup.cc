@@ -1,24 +1,26 @@
 /*
- *  SRC: POJ 2985
- * PROB: The k-th Largest Group
+ *  SRC: POJ 2761
+ * PROB: Feed the dogs
  * ALGO: Splay
- * DATE: Sep 05, 2011 
+ * DATE: Sep 08, 2011
  * COMP: g++
  *
  * Created by Leewings Ac
  */
 
+#include <cassert>
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
 
 using std::swap;
+using std::sort;
 
-const int MAX_N = 200010;
+const int MAXN = 100010;
 
 class Splay {
     private:
-        enum { BUF_SIZE = MAX_N };
+        enum { BUF_SIZE = MAXN };
         int tree_size;
 
         struct Tnode {
@@ -143,6 +145,7 @@ class Splay {
                 else p->r = x;
             }
             root = x = splay(x, 0);
+            assert(x->p == 0);
 
             tree_size++;
         }
@@ -165,6 +168,7 @@ class Splay {
                     Tnode *y = get_max(x->l);
                     root = y = splay(y, x);
                     root->p = 0;
+                    assert(y->r == 0);
                     y->r = x->r;
                     if (x->r) x->r->p = y;
                     push_up(y);
@@ -174,73 +178,66 @@ class Splay {
             }
         }
 
+        /* find the kth smallest one */
         int query(int k) const
         {
-            Tnode* x = root;
+            Tnode *x = root;
             while (1 + 1 == 2) {
-                if (x->r && x->r->size >= k) {
-                    x = x->r;
+                if (x->l && x->l->size >= k) {
+                    x = x->l;
                     continue;
                 }
-                if (x->r) k -= x->r->size;
+                if (x->l) k -= x->l->size;
                 if (k <= x->cnt) return x->key;
                 k -= x->cnt;
-                x = x->l;
+                x = x->r;
             }
         }
 };
 
+struct Query {
+    int l, r, k;
+    int id, ans;
+
+    bool operator <(const Query &other) const
+    {
+        return l == other.l ? r < other.r : l < other.l;
+    }
+};
+bool cmp_id(const Query &a, const Query &b) { return a.id < b.id; }
+
 Splay splay;
-
-int fa[MAX_N], fa_size[MAX_N];
-
-int get_father(int u)
-{
-    if (fa[u] == u) return u;
-
-    return fa[u] = get_father(fa[u]);
-}
-
-void ds_union(int u, int v)
-{
-    int x = get_father(u);
-    int y = get_father(v);
-    if (x != y) fa[x] = y;
-}
-
-void combine(int x, int y)
-{
-    if (get_father(x) == get_father(y)) return ;
-    splay.erase(fa_size[fa[x]]);
-    splay.erase(fa_size[fa[y]]);
-    int new_size = fa_size[fa[x]] + fa_size[fa[y]];
-    splay.insert(new_size);
-    ds_union(x, y);
-    fa_size[get_father(x)] = new_size;
-}
+int v[MAXN];
+Query q[50010];
 
 int main()
 {
     int n, m;
     scanf("%d%d", &n, &m);
-    for (int i = 1; i <= n; i++) {
-        fa[i] = i;
-        fa_size[i] = 1;
-        splay.insert(1);
+    for (int i = 1; i <= n; i++) scanf("%d", v + i);
+    for (int i = 0; i < m; i++) {
+        scanf("%d%d%d", &q[i].l, &q[i].r, &q[i].k);
+        q[i].id = i;
+    }
+    sort(q, q + m);
+
+    for (int i = q[0].l; i <= q[0].r; i++) splay.insert(v[i]);
+    q[0].ans = splay.query(q[0].k);
+
+    for (int i = 1; i < m; i++) {
+        if (q[i - 1].r < q[i].l) {
+            for (int j = q[i - 1].l; j <= q[i - 1].r; j++) splay.erase(v[j]);
+            for (int j = q[i].l; j <= q[i].r; j++) splay.insert(v[j]);
+        } else {
+            for (int j = q[i - 1].l; j < q[i].l; j++) splay.erase(v[j]);
+            for (int j = q[i - 1].r + 1; j <= q[i].r; j++) splay.insert(v[j]);
+        }
+        q[i].ans = splay.query(q[i].k);
     }
 
-    int c, i, j, k;
-    while (m--) {
-        scanf("%d", &c);
-        if (!c) {
-            scanf("%d%d", &i, &j);
-            combine(i, j);
-        }
-        else {
-            scanf("%d", &k);
-            printf("%d\n", splay.query(k));
-        }
-    }
+    sort(q, q + m, cmp_id);
+    for (int i = 0; i < m; i++)
+        printf("%d\n", q[i].ans);
 
     return 0;
 }

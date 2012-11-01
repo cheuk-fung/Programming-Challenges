@@ -19,7 +19,7 @@ const int MAXN = 100010;
 
 class Splay {
     private:
-        const static int BUF_SIZE = MAXN;
+        enum { BUF_SIZE = MAXN };
         int tree_size;
 
         struct Tnode {
@@ -221,8 +221,7 @@ struct Query {
 
     bool operator <(const Query &other) const
     {
-        if (l == other.l) return r < other.r;
-        return l < other.l;
+        return l == other.l ? r < other.r : l < other.l;
     }
 };
 bool cmp_id(const Query &a, const Query &b) { return a.id < b.id; }
@@ -242,26 +241,16 @@ int main()
     }
     sort(q, q + m);
 
-    for (int i = q[0].l; i <= q[0].r; i++)
-        splay.insert(v[i]);
+    for (int i = q[0].l; i <= q[0].r; i++) splay.insert(v[i]);
     q[0].ans = splay.query(q[0].k);
 
     for (int i = 1; i < m; i++) {
         if (q[i - 1].r < q[i].l) {
-            for (int j = q[i - 1].l; j <= q[i - 1].r; j++)
-                splay.erase(v[j]);
-            for (int j = q[i].l; j <= q[i].r; j++)
-                splay.insert(v[j]);
+            for (int j = q[i - 1].l; j <= q[i - 1].r; j++) splay.erase(v[j]);
+            for (int j = q[i].l; j <= q[i].r; j++) splay.insert(v[j]);
         } else {
-            for (int j = q[i - 1].l; j < q[i].l; j++)
-                splay.erase(v[j]);
-            if (q[i - 1].r < q[i].r) {
-                for (int j = q[i - 1].r + 1; j <= q[i].r; j++)
-                    splay.insert(v[j]);
-            } else {
-                for (int j = q[i].r + 1; j <= q[i - 1].r; j++)
-                    splay.erase(v[j]);
-            }
+            for (int j = q[i - 1].l; j < q[i].l; j++) splay.erase(v[j]);
+            for (int j = q[i - 1].r + 1; j <= q[i].r; j++) splay.insert(v[j]);
         }
         q[i].ans = splay.query(q[i].k);
     }
