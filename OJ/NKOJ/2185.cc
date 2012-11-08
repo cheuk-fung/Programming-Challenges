@@ -9,91 +9,74 @@
  */
 
 #include <cstdio>
-#include <cstring>
-#include <cstdlib>
+#include <cctype>
+#include <cmath>
 #include <algorithm>
 
-using std::sort;
-using std::min;
+using namespace std;
 
-const int MAX_P = 30010;
+enum {
+    MAX_P = 30000,
+    INF = 0x3f3f3f3f
+};
 
 struct Point {
-    int id;
     int x, y;
 };
-Point X[MAX_P], Y[MAX_P], Z[MAX_P];
+Point X[MAX_P], Y[MAX_P];
 
 inline bool cmp_x(const Point &a, const Point &b) { return a.x < b.x; }
 inline bool cmp_y(const Point &a, const Point &b) { return a.y < b.y; }
 inline int sqr(int x) { return x * x; }
-inline int sqr_dist(const Point &a, const Point &b)
+inline int sqr_dist(const Point &a, const Point &b) { return sqr(a.x - b.x) + sqr(a.y - b.y); }
+
+int closest(int l, int r) // X[l, r)
 {
-    return sqr(a.x - b.x) + sqr(a.y - b.y);
-}
+    if (l + 1 == r) return INF;
+    if (l + 2 == r) return sqr_dist(X[l], X[l + 1]);
 
-void merge(Point *p, Point *q, int left, int mid, int right)
-{
-    int l = left, r = mid + 1, cnt = left;
-    while (l <= mid && r <= right) {
-        if (q[l].y < q[r].y) p[cnt++] = q[l++];
-        else p[cnt++] = q[r++];
-    }
-    while (l <= mid)   p[cnt++] = q[l++];
-    while (r <= right) p[cnt++] = q[r++];
-}
-
-int closest(Point *X, Point *Y, Point *Z, int l, int r) // X[l, r]
-{
-    if (r - l == 1) return sqr_dist(X[l], X[r]);
-    if (r - l == 2) {
-        int d1 = sqr_dist(X[l], X[l + 1]),
-            d2 = sqr_dist(X[l], X[r]),
-            d3 = sqr_dist(X[l + 1], X[r]);
-        return min(d1, min(d2, d3));
-    }
-
-    int mid = (l + r) / 2;
-    for (int i = l, j = l, k = mid + 1; i <= r; i++) {
-        if (Y[i].id <= mid) Z[j++] = Y[i];
-        else Z[k++] = Y[i];
-    }
-
-    int dl = closest(X, Z, Y, l, mid),
-        dr = closest(X, Z, Y, mid + 1, r),
+    int mid = (l + r) >> 1;
+    int dl = closest(l, mid),
+        dr = closest(mid, r),
         d  = min(dl, dr);
-    merge(Y, Z, l, mid, r);
 
-    int z_cnt = l;
-    for (int i = l; i <= r; i++)
-        if (sqr(abs(X[mid].x - Y[i].x)) < d)
-            Z[z_cnt++] = Y[i];
 
-    for (int i = l; i < z_cnt; i++)
-        for (int j = i + 1; j < z_cnt && sqr(Z[j].y - Z[i].y) < d; j++)
-            d = min(d, sqr_dist(Z[i], Z[j]));
+    int cnt = 0;
+    for (int i = l; i < r; i++) {
+        if (sqr(X[i].x - X[mid].x) < d) {
+            Y[cnt++] = X[i];
+        }
+    }
+    sort(Y, Y + cnt, cmp_y);
+
+    for (int i = 0; i < cnt; i++) {
+        for (int j = i + 1; j < cnt && sqr(Y[j].y - Y[i].y) < d; j++) {
+            d = min(d, sqr_dist(Y[i], Y[j]));
+        }
+    }
 
     return d;
 }
 
-int closest_pair(Point *X, int n)
+int next_int()
 {
-    sort(X, X + n, cmp_x);
-    for (int i = 0; i < n; i++) X[i].id = i;
-    memcpy(Y, X, n * sizeof(X[0]));
-    sort(Y, Y + n, cmp_y);
-
-    return closest(X, Y, Z, 0, n - 1);
+    char c;
+    while (isspace(c = getchar())) ;
+    int r = c - '0';
+    while (isdigit(c = getchar())) r = r * 10 + c - '0';
+    return r;
 }
 
 int main()
 {
-    int n;
-    scanf("%d\n", &n);
-    for (int i = 0; i < n; i++)
-        scanf("%d%d", &X[i].x, &X[i].y);
+    int n = next_int();
+    for (int i = 0; i < n; i++){
+        X[i].x = next_int();
+        X[i].y = next_int();
+    }
 
-    int ans = closest_pair(X, n);
+    sort(X, X + n, cmp_x);
+    int ans = closest(0, n);
     printf("%d\n", ans);
 
     return 0;
