@@ -1,0 +1,1 @@
+puts [*1..500].product([*1..500]).select { |a, b| a < b && (c = Math.sqrt(a**2 + b**2).to_i)**2 == a**2 + b**2 && a + b + c <= 1000 }.map { |a, b| a + b + Math.sqrt(a**2 + b**2).to_i }.each_with_object(Hash.new(0)) { |p, h| h[p] += 1 }.sort_by { |p, count| count }.last[0]

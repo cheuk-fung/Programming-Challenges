@@ -1,0 +1,1 @@
+puts [*1..9].permutation(4).map(&:join).map(&:to_i).select { |product| [*"1".."9"].reject { |x| product.to_s.include?(x) }.permutation.map(&:join).map { |per| per[0].to_i * per[1..4].to_i == product || per[0..1].to_i * per[2..4].to_i == product }.any? }.reduce(:+)
