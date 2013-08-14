@@ -1,2 +1,2 @@
 require "prime"
-puts (1..Float::INFINITY).take_while { |x| !(0..3).map { |i| (x + i).prime_division.size == 4 }.all? }.last + 1
+puts (1..Float::INFINITY).each_cons(4).detect { |nums| nums.all? { |x| x.prime_division.size == 4 } }[0]
