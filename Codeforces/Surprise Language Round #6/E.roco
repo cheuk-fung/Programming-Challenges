@@ -1,0 +1,38 @@
+co main
+{
+    cin [0]
+    lt [1] [0] 33
+    if [1] ac
+    gt [1] [0] 126
+    if [1] ac
+
+    eq [1] [0] 72
+    if [1] set [2] 1
+    eq [1] [0] 81
+    if [1] set [2] 1
+    eq [1] [0] 57
+    if [1] set [2] 1
+}
+
+co YES
+{
+    cout 89
+    cout 69
+    cout 83
+    ac
+}
+
+co NO
+{
+    cout 78
+    cout 79
+    ac
+}
+
+ca main
+eq [3] [2] 1
+if [3] ca YES
+neq [3] [2] 1
+if [3] ca NO
+
+ac
