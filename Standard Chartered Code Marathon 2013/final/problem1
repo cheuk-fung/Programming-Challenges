@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+path=$1
+
+echo -n "2013-10-21,"
+ruby problem1.rb "${path}/eTrade.20131021.log"
+
+echo -n "2013-10-22,"
+ruby problem1.rb "${path}/eTrade.20131022.log"
+
+echo -n "2013-10-23,"
+ruby problem1.rb "${path}/eTrade.20131023.log"
+
+echo -n "2013-10-24,"
+ruby problem1.rb "${path}/eTrade.20131024.log"
+
+echo -n "2013-10-25,"
+ruby problem1.rb "${path}/eTrade.20131025.log"
