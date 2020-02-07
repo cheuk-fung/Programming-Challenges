@@ -48,50 +48,52 @@ public class Main {
         return left;
     }
 
-}
 
-class FastReader {
+    @SuppressWarnings("unused")
+    private static class FastReader {
 
-    private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private static StringTokenizer in;
+        private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        private static StringTokenizer in;
 
-    public String next() {
-        while (in == null || !in.hasMoreTokens()) {
-            try {
-                in = new StringTokenizer(br.readLine());
-            } catch (IOException e) {
-                return null;
+        public String next() {
+            while (in == null || !in.hasMoreTokens()) {
+                try {
+                    in = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    return null;
+                }
             }
+            return in.nextToken();
         }
-        return in.nextToken();
-    }
 
-    public BigDecimal nextBigDecimal() {
-        return new BigDecimal(next());
-    }
+        public BigDecimal nextBigDecimal() {
+            return new BigDecimal(next());
+        }
 
-    public BigInteger nextBigInteger() {
-        return new BigInteger(next());
-    }
+        public BigInteger nextBigInteger() {
+            return new BigInteger(next());
+        }
 
-    public boolean nextBoolean() {
-        return Boolean.valueOf(next());
-    }
+        public boolean nextBoolean() {
+            return Boolean.valueOf(next());
+        }
 
-    public byte nextByte() {
-        return Byte.valueOf(next());
-    }
+        public byte nextByte() {
+            return Byte.valueOf(next());
+        }
 
-    public double nextDouble() {
-        return Double.valueOf(next());
-    }
+        public double nextDouble() {
+            return Double.valueOf(next());
+        }
 
-    public int nextInt() {
-        return Integer.valueOf(next());
-    }
+        public int nextInt() {
+            return Integer.valueOf(next());
+        }
 
-    public long nextLong() {
-        return Long.valueOf(next());
+        public long nextLong() {
+            return Long.valueOf(next());
+        }
+
     }
 
 }
