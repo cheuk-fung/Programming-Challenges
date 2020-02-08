@@ -48,6 +48,21 @@ public class Main {
         return left;
     }
 
+    @SuppressWarnings("unused")
+    private static void println(int[] a) {
+        for (var i = 0; i < a.length; i++) {
+            out.print(a[i]);
+            out.print(i + 1 < a.length ? ' ' : '\n');
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static <T> void println(T[] a) {
+        for (var i = 0; i < a.length; i++) {
+            out.print(a[i]);
+            out.print(i + 1 < a.length ? ' ' : '\n');
+        }
+    }
 
     @SuppressWarnings("unused")
     private static class FastReader {
