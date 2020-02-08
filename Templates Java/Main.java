@@ -65,6 +65,72 @@ public class Main {
     }
 
     @SuppressWarnings("unused")
+    private static class Pair<T, U> {
+
+        T a;
+        U b;
+
+        Pair(T a, U b) {
+            this.a = a;
+            this.b = b;
+        }
+
+        T getA() {
+            return a;
+        }
+
+        U getB() {
+            return b;
+        }
+
+    }
+
+    @SuppressWarnings("unused")
+    private static class IntPair extends Pair<Integer, Integer> {
+
+        IntPair(Integer a, Integer b) {
+            super(a, b);
+        }
+
+    }
+
+    @SuppressWarnings("unused")
+    private static class Triple<T, U, V> {
+
+        T a;
+        U b;
+        V c;
+
+        Triple(T a, U b, V c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        T getA() {
+            return a;
+        }
+
+        U getB() {
+            return b;
+        }
+
+        V getC() {
+            return c;
+        }
+
+    }
+
+    @SuppressWarnings("unused")
+    private static class IntTriple extends Triple<Integer, Integer, Integer> {
+
+        IntTriple(Integer a, Integer b, Integer c) {
+            super(a, b, c);
+        }
+
+    }
+
+    @SuppressWarnings("unused")
     private static class FastReader {
 
         private static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
