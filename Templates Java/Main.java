@@ -167,12 +167,36 @@ public class Main {
             return Double.valueOf(next());
         }
 
+        public double[] nextDoubleArray(int length) {
+            var a = new double[length];
+            for (var i = 0; i < length; i++) {
+                a[i] = nextDouble();
+            }
+            return a;
+        }
+
         public int nextInt() {
             return Integer.valueOf(next());
         }
 
+        public int[] nextIntArray(int length) {
+            var a = new int[length];
+            for (var i = 0; i < length; i++) {
+                a[i] = nextInt();
+            }
+            return a;
+        }
+
         public long nextLong() {
             return Long.valueOf(next());
+        }
+
+        public long[] nextLongArray(int length) {
+            var a = new long[length];
+            for (var i = 0; i < length; i++) {
+                a[i] = nextLong();
+            }
+            return a;
         }
 
     }
