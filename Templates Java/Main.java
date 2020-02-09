@@ -9,7 +9,7 @@ import java.util.function.*;
 public class Main {
 
     private static final FastReader in = new FastReader();
-    private static final PrintWriter out = new PrintWriter(System.out);
+    private static final FastWriter out = new FastWriter();
 
     public static void main(String[] args) {
         new Main().run();
@@ -28,13 +28,6 @@ public class Main {
     }
 
     @SuppressWarnings("unused")
-    private static void debug(String name, Object o) {
-        String value = Arrays.deepToString(new Object[] { o });
-        value = value.substring(1, value.length() - 1);
-        System.err.println(name + " => " + value);
-    }
-
-    @SuppressWarnings("unused")
     private static int binarySearch(int left, int right, Predicate<Integer> leftShouldAdvance) {
         while (left < right) {
             int mid = left + (right - left) / 2;
@@ -46,22 +39,6 @@ public class Main {
         }
 
         return left;
-    }
-
-    @SuppressWarnings("unused")
-    private static void println(int[] a) {
-        for (var i = 0; i < a.length; i++) {
-            out.print(a[i]);
-            out.print(i + 1 < a.length ? ' ' : '\n');
-        }
-    }
-
-    @SuppressWarnings("unused")
-    private static <T> void println(T[] a) {
-        for (var i = 0; i < a.length; i++) {
-            out.print(a[i]);
-            out.print(i + 1 < a.length ? ' ' : '\n');
-        }
     }
 
     @SuppressWarnings("unused")
@@ -197,6 +174,49 @@ public class Main {
                 a[i] = nextLong();
             }
             return a;
+        }
+
+    }
+
+    @SuppressWarnings("unused")
+    private static class FastWriter extends PrintWriter {
+
+        public FastWriter() {
+            super(System.out);
+        }
+
+        public void println(double[] a) {
+            for (var i = 0; i < a.length; i++) {
+                print(a[i]);
+                print(i + 1 < a.length ? ' ' : '\n');
+            }
+        }
+
+        public void println(int[] a) {
+            for (var i = 0; i < a.length; i++) {
+                print(a[i]);
+                print(i + 1 < a.length ? ' ' : '\n');
+            }
+        }
+
+        public void println(long[] a) {
+            for (var i = 0; i < a.length; i++) {
+                print(a[i]);
+                print(i + 1 < a.length ? ' ' : '\n');
+            }
+        }
+
+        public <T> void println(T[] a) {
+            for (var i = 0; i < a.length; i++) {
+                print(a[i]);
+                print(i + 1 < a.length ? ' ' : '\n');
+            }
+        }
+
+        public void debug(String name, Object o) {
+            String value = Arrays.deepToString(new Object[] { o });
+            value = value.substring(1, value.length() - 1);
+            System.err.println(name + " => " + value);
         }
 
     }
