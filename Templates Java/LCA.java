@@ -104,7 +104,7 @@ class LCA {
         }
 
         @Override
-        public java.lang.String toString() {
+        public String toString() {
             return "LCA.Node("
                     + "label=" + this.label + ", "
                     + "neighbors=" + this.neighbors + ", "
@@ -128,7 +128,7 @@ class LCA {
         }
 
         @Override
-        public java.lang.String toString() {
+        public String toString() {
             return "LCA.Edge(neighbor=" + this.neighbor.label + ", weight=" + this.weight + ")";
         }
 

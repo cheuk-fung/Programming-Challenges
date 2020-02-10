@@ -65,12 +65,21 @@ public class Main {
             this.b = b;
         }
 
+        static <T, U> Pair<T, U> of(T a, U b) {
+            return new Pair<>(a, b);
+        }
+
         T getA() {
             return a;
         }
 
         U getB() {
             return b;
+        }
+
+        @Override
+        public String toString() {
+            return "Pair(a=" + this.getA() + ", b=" + this.getB() + ")";
         }
 
     }
@@ -80,6 +89,10 @@ public class Main {
 
         IntPair(Integer a, Integer b) {
             super(a, b);
+        }
+
+        static IntPair of(int a, int b) {
+            return new IntPair(a, b);
         }
 
     }
@@ -97,6 +110,10 @@ public class Main {
             this.c = c;
         }
 
+        static <T, U, V> Triple<T, U, V> of(T a, U b, V c) {
+            return new Triple<>(a, b, c);
+        }
+
         T getA() {
             return a;
         }
@@ -109,6 +126,11 @@ public class Main {
             return c;
         }
 
+        @Override
+        public String toString() {
+            return "Triple(a=" + this.getA() + ", b=" + this.getB() + ", c=" + this.getC() + ")";
+        }
+
     }
 
     @SuppressWarnings("unused")
@@ -116,6 +138,10 @@ public class Main {
 
         IntTriple(Integer a, Integer b, Integer c) {
             super(a, b, c);
+        }
+
+        static IntTriple of(int a, int b, int c) {
+            return new IntTriple(a, b, c);
         }
 
     }
