@@ -27,6 +27,19 @@ public class Main {
     private void solve() {
     }
 
+    private static final double EPS = 1e-12;
+
+    @SuppressWarnings("unused")
+    private static final Comparator<Double> EPS_COMPARATOR = (x, y) -> {
+        if (x + EPS < y) {
+            return -1;
+        } else if (x - EPS > y) {
+            return 1;
+        } else {
+            return 0;
+        }
+    };
+
     @SuppressWarnings("unused")
     private static int binarySearch(int left, int right, Predicate<Integer> leftShouldAdvance) {
         while (left < right) {
