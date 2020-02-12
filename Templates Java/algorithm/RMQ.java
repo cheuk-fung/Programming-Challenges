@@ -1,6 +1,7 @@
 package algorithm;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
 
 public class RMQ<T extends Comparable<T>> {
 

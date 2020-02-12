@@ -40,7 +40,7 @@ sources = find_sources_from(ARGV[0])
 collected = sources.map
   .with_index { |source, index| collect_source(source, index == 0) }
 
-imports = collected.map(&:first).reduce(Set[], :+).to_a
+imports = collected.map(&:first).reduce(Set[], :+).sort
 content = collected.map(&:last).reduce([], :+)
 
 puts imports

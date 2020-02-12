@@ -5,8 +5,8 @@ all: $(addsuffix .class, $(ALL-PROBLEMS))
 new-all: $(addsuffix .new, $(ALL-PROBLEMS))
 
 clean:
-	rm *.class
-	rm algorithm/*.class
+	rm -f *.class
+	rm -f algorithm/*.class
 
 %.new:
 	cp Main.java $*.java
@@ -15,7 +15,9 @@ clean:
 %.class: %.java
 	javac --release 11 $<
 
-%.run: %.class
+algorithms: $(patsubst %.java, %.class, $(wildcard algorithm/*.java))
+
+%.run: algorithms %.class
 	java $*
 
 A: A.run
