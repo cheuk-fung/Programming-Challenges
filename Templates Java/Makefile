@@ -6,6 +6,7 @@ new-all: $(addsuffix .new, $(ALL-PROBLEMS))
 
 clean:
 	rm *.class
+	rm algorithm/*.class
 
 %.new:
 	cp Main.java $*.java

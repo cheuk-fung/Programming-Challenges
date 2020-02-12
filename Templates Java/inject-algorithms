@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'set'
+
+def find_sources_from(source)
+  sources = Set[source]
+  queue = sources.to_a
+  while !queue.empty?
+    file = queue.pop
+
+    new_sources = File.readlines(file)
+      .map { |l| l[/^import algorithm\.([^;]+)/, 1] }
+      .compact
+      .map { |f| "#{__dir__}/algorithm/#{f}.java" }
+      .reject { |f| sources.include?(f) }
+
+    sources += new_sources
+    queue += new_sources
+  end
+  sources
+end
+
+def collect_source(source, is_public)
+  lines = File.readlines(source)
+
+  imports = lines
+    .select { |l| l =~ /^import / }
+    .reject { |l| l =~ /^import algorithm\./ }
+
+  content = lines
+    .reject { |l| l =~ /^package algorithm;$/ }
+    .reject { |l| l =~ /^import / }
+
+  content.map! { |l| l.sub(/^public class /, 'class ') } unless is_public
+
+  [imports, content]
+end
+
+sources = find_sources_from(ARGV[0])
+collected = sources.map
+  .with_index { |source, index| collect_source(source, index == 0) }
+
+imports = collected.map(&:first).reduce(Set[], :+).to_a
+content = collected.map(&:last).reduce([], :+)
+
+puts imports
+puts content

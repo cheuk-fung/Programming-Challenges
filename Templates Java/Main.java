@@ -43,7 +43,7 @@ public class Main {
     @SuppressWarnings("unused")
     private static int binarySearch(int left, int right, Predicate<Integer> leftShouldAdvance) {
         while (left < right) {
-            int mid = left + (right - left) / 2;
+            var mid = left + (right - left) / 2;
             if (leftShouldAdvance.test(mid)) {
                 left = mid + 1;
             } else {

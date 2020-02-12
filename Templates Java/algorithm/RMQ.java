@@ -1,6 +1,8 @@
+package algorithm;
+
 import java.util.*;
 
-class RMQ<T extends Comparable<T>> {
+public class RMQ<T extends Comparable<T>> {
 
     private final int n;
     private final List<T> values;
