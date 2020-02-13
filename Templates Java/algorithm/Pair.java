@@ -5,7 +5,7 @@ public class Pair<T, U> {
     public T a;
     public U b;
 
-    public Pair(T a, U b) {
+    Pair(T a, U b) {
         this.a = a;
         this.b = b;
     }
@@ -24,7 +24,7 @@ public class Pair<T, U> {
 
     @Override
     public String toString() {
-        return "Pair(a=" + this.getA() + ", b=" + this.getB() + ")";
+        return String.format("(%s, %s)", a, b);
     }
 
 }

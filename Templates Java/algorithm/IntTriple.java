@@ -4,7 +4,7 @@ import algorithm.Triple;
 
 public class IntTriple extends Triple<Integer, Integer, Integer> {
 
-    public IntTriple(Integer a, Integer b, Integer c) {
+    IntTriple(Integer a, Integer b, Integer c) {
         super(a, b, c);
     }
 

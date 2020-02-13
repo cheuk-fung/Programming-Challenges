@@ -4,7 +4,7 @@ import algorithm.Pair;
 
 public class IntPair extends Pair<Integer, Integer> {
 
-    public IntPair(Integer a, Integer b) {
+    IntPair(Integer a, Integer b) {
         super(a, b);
     }
 

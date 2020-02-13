@@ -6,7 +6,7 @@ public class Triple<T, U, V> {
     public U b;
     public V c;
 
-    public Triple(T a, U b, V c) {
+    Triple(T a, U b, V c) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -30,7 +30,7 @@ public class Triple<T, U, V> {
 
     @Override
     public String toString() {
-        return "Triple(a=" + this.getA() + ", b=" + this.getB() + ", c=" + this.getC() + ")";
+        return String.format("(%s, %s, %s)", a, b, c);
     }
 
 }
