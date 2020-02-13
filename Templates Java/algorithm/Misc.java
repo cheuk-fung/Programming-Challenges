@@ -1,6 +1,7 @@
 package algorithm;
 
 import java.util.Comparator;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Misc {
@@ -28,6 +29,17 @@ public class Misc {
         }
 
         return left;
+    }
+
+    /**
+     * Search for the maximum value of a unimodal function f(x).
+     * <p>
+     * A function f(x) is a <b>unimodal function</b> if for some value m, it is <b>monotonically increasing</b> for x ≤
+     * m and <b>monotonically decreasing</b> for x ≥ m. In that case, the maximum value of f(x) is f(m) and there are no
+     * other local maxima.
+     */
+    public static int ternarySearch(int left, int right, Function<Integer, Integer> f) {
+        return binarySearch(left, right, mid -> f.apply(mid) < f.apply(Math.min(mid + 1, right - 1)));
     }
 
 }
