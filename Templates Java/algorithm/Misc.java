@@ -18,6 +18,10 @@ public class Misc {
         }
     };
 
+    public static int compare(double x, double y) {
+        return EPS_COMPARATOR.compare(x, y);
+    }
+
     public static int binarySearch(int left, int right, Predicate<Integer> leftShouldAdvance) {
         while (left < right) {
             var mid = left + (right - left) / 2;
