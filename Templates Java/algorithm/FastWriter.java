@@ -2,6 +2,7 @@ package algorithm;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.List;
 
 public class FastWriter extends PrintWriter {
 
@@ -35,6 +36,10 @@ public class FastWriter extends PrintWriter {
             print(a[i]);
             print(i + 1 < a.length ? ' ' : '\n');
         }
+    }
+
+    public <T> void println(List<T> l) {
+        println(l.toArray());
     }
 
     public void debug(String name, Object o) {
