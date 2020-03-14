@@ -1,5 +1,6 @@
 package algorithm;
 
+import algorithm.ArrayUtils;
 import algorithm.Graph;
 import algorithm.IntPair;
 
@@ -16,8 +17,7 @@ public class Dijkstra {
     }
 
     public int[] startFrom(int start) {
-        var dist = new int[graph.nodes];
-        Arrays.fill(dist, -1);
+        var dist = ArrayUtils.of(graph.nodes, -1);
         dist[start] = 0;
 
         PriorityQueue<IntPair> queue = new PriorityQueue<>(Comparator.comparing(IntPair::getB));

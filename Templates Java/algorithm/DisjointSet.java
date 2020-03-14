@@ -1,15 +1,13 @@
 package algorithm;
 
-import java.util.Arrays;
+import algorithm.ArrayUtils;
 
 public class DisjointSet {
 
     private final int[] parent;
 
     public DisjointSet(int n) {
-        this.parent = new int[n];
-
-        Arrays.fill(parent, -1);
+        this.parent = ArrayUtils.of(n, -1);
     }
 
     public void union(int u, int v) {

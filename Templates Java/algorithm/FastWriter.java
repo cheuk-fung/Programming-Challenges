@@ -31,7 +31,7 @@ public class FastWriter extends PrintWriter {
         }
     }
 
-    public <T> void println(T[] a) {
+    public void println(Object... a) {
         for (var i = 0; i < a.length; i++) {
             print(a[i]);
             print(i + 1 < a.length ? ' ' : '\n');

@@ -50,6 +50,10 @@ public class Graph<T> {
         return adjacencyList.get(u);
     }
 
+    public int degree(int u) {
+        return neighbors(u).size();
+    }
+
     @Override
     public String toString() {
         String adj = IntStream.range(0, nodes)
