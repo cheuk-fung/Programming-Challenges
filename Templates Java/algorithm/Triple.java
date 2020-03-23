@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.Objects;
+
 public class Triple<T, U, V> {
 
     public T a;
@@ -26,6 +28,15 @@ public class Triple<T, U, V> {
 
     public V getC() {
         return c;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Triple)) return false;
+
+        var other = (Triple<?, ?, ?>) obj;
+        return Objects.equals(a, other.a) && Objects.equals(b, other.b) && Objects.equals(c, other.c);
     }
 
     @Override

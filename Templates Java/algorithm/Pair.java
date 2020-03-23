@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.Objects;
+
 public class Pair<T, U> {
 
     public T a;
@@ -20,6 +22,15 @@ public class Pair<T, U> {
 
     public U getB() {
         return b;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Pair)) return false;
+
+        var other = (Pair<?, ?>) obj;
+        return Objects.equals(a, other.a) && Objects.equals(b, other.b);
     }
 
     @Override
