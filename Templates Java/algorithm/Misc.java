@@ -22,6 +22,10 @@ public class Misc {
         return EPS_COMPARATOR.compare(x, y);
     }
 
+    /**
+     * Returns the index of the first element in the range <b>[left, right)</b> which <i>leftShouldAdvance</i> tested to
+     * be <i>false</i>.
+     */
     public static int binarySearch(int left, int right, Predicate<Integer> leftShouldAdvance) {
         while (left < right) {
             var mid = left + (right - left) / 2;
@@ -36,7 +40,29 @@ public class Misc {
     }
 
     /**
-     * Search for the maximum value of a unimodal function f(x).
+     * Returns the index of the first element in <i>a</i> which >= <i>x</i>.
+     */
+    public static int lowerBound(int[] a, int x) {
+        return binarySearch(0, a.length, mid -> a[mid] < x);
+    }
+
+    public static int lowerBound(long[] a, long x) {
+        return binarySearch(0, a.length, mid -> a[mid] < x);
+    }
+
+    /**
+     * Returns the index of the first element in <i>a</i> which > <i>x</i>.
+     */
+    public static int upperBound(int[] a, int x) {
+        return binarySearch(0, a.length, mid -> a[mid] <= x);
+    }
+
+    public static int upperBound(long[] a, long x) {
+        return binarySearch(0, a.length, mid -> a[mid] <= x);
+    }
+
+    /**
+     * Searches for the maximum value of a unimodal function f(x).
      * <p>
      * A function f(x) is a <b>unimodal function</b> if for some value m, it is <b>monotonically increasing</b> for x ≤
      * m and <b>monotonically decreasing</b> for x ≥ m. In that case, the maximum value of f(x) is f(m) and there are no
