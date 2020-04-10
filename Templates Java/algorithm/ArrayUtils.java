@@ -1,7 +1,9 @@
 package algorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class ArrayUtils {
 
@@ -39,6 +41,20 @@ public class ArrayUtils {
 
     public static <T extends Comparable<? super T>> T min(T[] a) {
         return Collections.max(Arrays.asList(a));
+    }
+
+    public static int[] sort(int[] a) {
+        var al = Arrays.stream(a).boxed().collect(Collectors.toCollection(ArrayList::new));
+        Collections.shuffle(al);
+        Collections.sort(al);
+        return al.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public static long[] sort(long[] a) {
+        var al = Arrays.stream(a).boxed().collect(Collectors.toCollection(ArrayList::new));
+        Collections.shuffle(al);
+        Collections.sort(al);
+        return al.stream().mapToLong(Long::longValue).toArray();
     }
 
 }
