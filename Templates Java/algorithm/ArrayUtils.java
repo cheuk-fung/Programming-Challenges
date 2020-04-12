@@ -43,18 +43,40 @@ public class ArrayUtils {
         return Collections.max(Arrays.asList(a));
     }
 
-    public static int[] sort(int[] a) {
+    public static void sort(int[] a) {
         var al = Arrays.stream(a).boxed().collect(Collectors.toCollection(ArrayList::new));
         Collections.shuffle(al);
         Collections.sort(al);
-        return al.stream().mapToInt(Integer::intValue).toArray();
+
+        for (var i = 0; i < a.length; i++) {
+            a[i] = al.get(i);
+        }
     }
 
-    public static long[] sort(long[] a) {
+    public static void sort(long[] a) {
         var al = Arrays.stream(a).boxed().collect(Collectors.toCollection(ArrayList::new));
         Collections.shuffle(al);
         Collections.sort(al);
-        return al.stream().mapToLong(Long::longValue).toArray();
+
+        for (var i = 0; i < a.length; i++) {
+            a[i] = al.get(i);
+        }
+    }
+
+    public static void reverse(int[] a) {
+        for (int l = 0, r = a.length - 1; l <= r; l++, r--) {
+            var t = a[l];
+            a[l] = a[r];
+            a[r] = t;
+        }
+    }
+
+    public static void reverse(long[] a) {
+        for (int l = 0, r = a.length - 1; l <= r; l++, r--) {
+            var t = a[l];
+            a[l] = a[r];
+            a[r] = t;
+        }
     }
 
 }
