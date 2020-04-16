@@ -1,8 +1,9 @@
 package algorithm;
 
 import java.util.Comparator;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.IntPredicate;
+import java.util.function.IntToLongFunction;
+import java.util.function.IntUnaryOperator;
 
 public class Misc {
 
@@ -26,7 +27,7 @@ public class Misc {
      * Returns the index of the first element in the range <b>[left, right)</b> which <i>leftShouldAdvance</i> tested to
      * be <i>false</i>.
      */
-    public static int binarySearch(int left, int right, Predicate<Integer> leftShouldAdvance) {
+    public static int binarySearch(int left, int right, IntPredicate leftShouldAdvance) {
         while (left < right) {
             var mid = left + (right - left) / 2;
             if (leftShouldAdvance.test(mid)) {
@@ -68,8 +69,12 @@ public class Misc {
      * m and <b>monotonically decreasing</b> for x ≥ m. In that case, the maximum value of f(x) is f(m) and there are no
      * other local maxima.
      */
-    public static int ternarySearch(int left, int right, Function<Integer, Integer> f) {
-        return binarySearch(left, right, mid -> f.apply(mid) < f.apply(Math.min(mid + 1, right - 1)));
+    public static int ternarySearchMaxInt(int left, int right, IntUnaryOperator f) {
+        return binarySearch(left, right, mid -> f.applyAsInt(mid) < f.applyAsInt(Math.min(mid + 1, right - 1)));
+    }
+
+    public static int ternarySearchMaxLong(int left, int right, IntToLongFunction f) {
+        return binarySearch(left, right, mid -> f.applyAsLong(mid) < f.applyAsLong(Math.min(mid + 1, right - 1)));
     }
 
 }

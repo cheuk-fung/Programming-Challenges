@@ -10,6 +10,13 @@ public class FastWriter extends PrintWriter {
         super(System.out);
     }
 
+    public void println(boolean[] a) {
+        for (var i = 0; i < a.length; i++) {
+            print(a[i]);
+            print(i + 1 < a.length ? ' ' : '\n');
+        }
+    }
+
     public void println(double[] a) {
         for (var i = 0; i < a.length; i++) {
             print(a[i]);
