@@ -1,97 +1,131 @@
 package algorithm;
 
+import algorithm.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Graph<T> {
+public abstract class Graph<T> {
 
-    public final int nodes;
-    private final List<List<Edge<T>>> adjacencyList;
-    private final T defaultWeight;
+    public final int n;
+    final List<List<T>> adjacencyList;
 
-    Graph(int nodes, T defaultWeight) {
-        this.nodes = nodes;
-        this.adjacencyList = new ArrayList<>(nodes);
-        this.defaultWeight = defaultWeight;
+    Graph(int n) {
+        this.n = n;
+        this.adjacencyList = new ArrayList<>(n);
 
-        for (var i = 0; i < nodes; i++) {
+        for (var i = 0; i < n; i++) {
             this.adjacencyList.add(new ArrayList<>());
         }
     }
 
-    public static Graph<Integer> ofInt(int nodes) {
-        return new Graph<Integer>(nodes, 1);
+    public static UnweightedGraph unweighted(int n) {
+        return new UnweightedGraph(n);
     }
 
-    public static Graph<Double> ofDouble(int nodes) {
-        return new Graph<Double>(nodes, 1.0);
+    public static <T> WeightedGraph<T> weighted(int n) {
+        return new WeightedGraph<>(n);
     }
 
-    public void addEdge(int u, int v) {
-        addEdge(u, v, defaultWeight);
-    }
-
-    public void addEdge(int u, int v, T weight) {
-        adjacencyList.get(u).add(Edge.of(v, weight));
-    }
-
-    public void addBidirectedEdges(int u, int v) {
-        addBidirectedEdges(u, v, defaultWeight);
-    }
-
-    public void addBidirectedEdges(int u, int v, T weight) {
-        addEdge(u, v, weight);
-        addEdge(v, u, weight);
-    }
-
-    public List<Edge<T>> neighbors(int u) {
+    public List<T> neighbors(int u) {
         return adjacencyList.get(u);
     }
+
+    public abstract int neighborId(T neighbor);
 
     public int degree(int u) {
         return neighbors(u).size();
     }
 
+    public Tree asTree(int root) {
+        return new Tree(this, root);
+    }
+
     @Override
     public String toString() {
-        String adj = IntStream.range(0, nodes)
-                .mapToObj(i -> "    " + i + ": " + adjacencyList.get(i))
+        String adj = IntStream.range(0, n)
+                .mapToObj(i -> "    " + i + ": " + neighbors(i))
                 .collect(Collectors.joining(",\n"));
         return "Graph {\n"
-                + "  nodes: " + nodes + ",\n"
+                + "  nodeCount: " + n + ",\n"
                 + "  adjacencyList: {\n"
                 + adj + "\n"
                 + "  }\n"
                 + "}";
     }
 
-    public static class Edge<T> {
+    public static class UnweightedGraph extends Graph<Integer> {
 
-        public final int neighbor;
-        public final T weight;
-
-        Edge(int neighbor, T weight) {
-            this.neighbor = neighbor;
-            this.weight = weight;
+        UnweightedGraph(int n) {
+            super(n);
         }
 
-        public static <T> Edge<T> of(int neighbor, T weight) {
-            return new Edge<>(neighbor, weight);
+        public void addEdge(int u, int v) {
+            adjacencyList.get(u).add(v);
         }
 
-        public int getNeighbor() {
+        public void addBidirectedEdges(int u, int v) {
+            addEdge(u, v);
+            addEdge(v, u);
+        }
+
+
+        @Override
+        public int neighborId(Integer neighbor) {
             return neighbor;
         }
 
-        public T getWeight() {
-            return weight;
+    }
+
+    public static class WeightedGraph<T> extends Graph<Edge<T>> {
+
+        WeightedGraph(int n) {
+            super(n);
+        }
+
+        public void addEdge(int u, int v, T w) {
+            adjacencyList.get(u).add(Edge.of(v, w));
+        }
+
+        public void addBidirectedEdges(int u, int v, T w) {
+            addEdge(u, v, w);
+            addEdge(v, u, w);
+        }
+
+        @Override
+        public int neighborId(Edge<T> neighbor) {
+            return neighbor.v;
+        }
+
+    }
+
+    public static class Edge<T> {
+
+        public final int v;
+        public final T w;
+
+        public Edge(int v, T w) {
+            this.v = v;
+            this.w = w;
+        }
+
+        public static <T> Edge<T> of(int v, T w) {
+            return new Edge<>(v, w);
+        }
+
+        public int getV() {
+            return v;
+        }
+
+        public T getW() {
+            return w;
         }
 
         @Override
         public String toString() {
-            return String.format("(%s, %s)", neighbor, weight);
+            return String.format("(%s, %s)", v, w);
         }
 
     }

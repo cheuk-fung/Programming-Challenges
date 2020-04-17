@@ -31,7 +31,7 @@ def collect_source(source, is_public)
     .reject { |l| l =~ /^package algorithm;$/ }
     .reject { |l| l =~ /^import / }
 
-  content.map! { |l| l.sub(/^public class /, 'class ') } unless is_public
+  content.map! { |l| l.sub(/^public /, '') } unless is_public
 
   [imports, content]
 end
