@@ -34,6 +34,15 @@ public class Pair<T, U> {
     }
 
     @Override
+    public int hashCode() {
+        final var PRIME = 59;
+        var result = 1;
+        result = result * PRIME + (a == null ? 43 : a.hashCode());
+        result = result * PRIME + (b == null ? 43 : b.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
         return String.format("(%s, %s)", a, b);
     }
