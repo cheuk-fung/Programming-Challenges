@@ -9,8 +9,7 @@ public class Modulo {
         this.mod = mod;
     }
 
-    // a + b
-    public long add(long a, long b) {
+    public long plus(long a, long b) {
         var c = a + b;
         if (c >= mod) {
             c -= mod;
@@ -18,8 +17,7 @@ public class Modulo {
         return c;
     }
 
-    // a - b
-    public long subtract(long a, long b) {
+    public long minus(long a, long b) {
         var c = a - b;
         if (c < 0) {
             c += mod;
@@ -27,13 +25,15 @@ public class Modulo {
         return c;
     }
 
-    // a * b
-    public long multiply(long a, long b) {
+    public long times(long a, long b) {
         return a * b % mod;
     }
 
-    // a ^ b
-    public long power(long a, long b) {
+    public long div(long a, long b) {
+        return times(a, pow(b, mod - 2));
+    }
+
+    public long pow(long a, long b) {
         long c = 1;
 
         while (b > 0) {
@@ -47,9 +47,29 @@ public class Modulo {
         return c;
     }
 
-    // a / b
-    public long divide(long a, long b) {
-        return multiply(a, power(b, mod - 2));
+    public long combination(int n, int k) {
+        return div(factorial(n), times(factorial(k), factorial(n - k)));
+    }
+
+    public long combination(int n, int k, long[] factorials) {
+        return div(factorials[n], times(factorials[k], factorials[n - k]));
+    }
+
+    public long factorial(int n) {
+        var f = 1L;
+        for (var i = 1; i <= n; i++) {
+            f = f * i % mod;
+        }
+        return f;
+    }
+
+    public long[] factorials(int n) {
+        var f = new long[n + 1];
+        f[0] = 1L;
+        for (var i = 1; i <= n; i++) {
+            f[i] = f[i - 1] * i % mod;
+        }
+        return f;
     }
 
 }

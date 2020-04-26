@@ -79,7 +79,7 @@ public class MathUtils {
 
     public static long gcd(long a, long b) {
         while (b > 0) {
-            long t = a % b;
+            var t = a % b;
             a = b;
             b = t;
         }
@@ -97,8 +97,8 @@ public class MathUtils {
             return a;
         }
 
-        long r = extendedEuclidean(b, a % b, xy);
-        long t = xy[0];
+        var r = extendedEuclidean(b, a % b, xy);
+        var t = xy[0];
         xy[0] = xy[1];
         xy[1] = t - a / b * xy[1];
 
