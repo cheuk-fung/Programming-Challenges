@@ -5,7 +5,7 @@ import java.util.function.IntPredicate;
 import java.util.function.IntToLongFunction;
 import java.util.function.IntUnaryOperator;
 
-public class Misc {
+public class MathUtils {
 
     public static final double EPS = 1e-12;
 
@@ -75,6 +75,38 @@ public class Misc {
 
     public static int ternarySearchMaxLong(int left, int right, IntToLongFunction f) {
         return binarySearch(left, right, mid -> f.applyAsLong(mid) < f.applyAsLong(Math.min(mid + 1, right - 1)));
+    }
+
+    public static long gcd(long a, long b) {
+        while (b > 0) {
+            long t = a % b;
+            a = b;
+            b = t;
+        }
+        return a;
+    }
+
+    /**
+     * Solves x and y such that ax + by = gcd(a, b).
+     */
+    public static long extendedEuclidean(long a, long b, long[] xy) {
+        if (b == 0L) {
+            xy[0] = 1L;
+            xy[1] = 0L;
+
+            return a;
+        }
+
+        long r = extendedEuclidean(b, a % b, xy);
+        long t = xy[0];
+        xy[0] = xy[1];
+        xy[1] = t - a / b * xy[1];
+
+        return r;
+    }
+
+    public static long lcm(long a, long b) {
+        return a / gcd(a, b) * b;
     }
 
 }
